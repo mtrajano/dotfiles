@@ -1,0 +1,84 @@
+# =================
+# helpers
+# =================
+snippet vd
+var_dump($1);
+endsnippet
+
+snippet dd
+var_dump($1);die();
+endsnippet
+
+# =================
+# methods/functions
+# =================
+snippet pubm
+public function ${1:name}(${2:args}) ${3:: void} {
+
+	$0
+
+}
+endsnippet
+
+snippet prom
+protected function _${1:name}(${2:args}) ${3:: void} {
+
+	$0
+
+}
+endsnippet
+
+snippet prim
+private function _${1:name}(${2:args}) ${3:: void} {
+
+	$0
+
+}
+endsnippet
+
+snippet construct
+public function __construct(${1:args}) {
+
+	$0
+
+}
+endsnippet
+
+snippet testm
+public function test${1:Name}() : void {
+
+	$0
+
+}
+endsnippet
+
+snippet setup
+protected function setUp() : void {
+
+	$0
+
+}
+endsnippet
+
+# =================
+# control flow
+# =================
+snippet foreach
+foreach (${1:iterable} as ${2:variable}) {
+	$0
+}
+endsnippet
+
+snippet if
+if (${1:condition}) {
+	$2
+}
+endsnippet
+
+snippet ife
+if (${1:condition}) {
+	$2
+} else {
+	$3
+}
+endsnippet
