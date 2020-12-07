@@ -21,6 +21,11 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-hijack.vim'
 
+" highlighting
+Plug 'yuezk/vim-js'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
+
 if has("nvim")
   Plug 'antoinemadec/FixCursorHold.nvim'
 endif
