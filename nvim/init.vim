@@ -11,6 +11,7 @@ Plug 'SirVer/ultisnips'
 Plug 'vim-test/vim-test'
 Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'mileszs/ack.vim'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -42,6 +43,7 @@ source $HOME/dotfiles/nvim/plugins/ultisnips.vim
 source $HOME/dotfiles/nvim/plugins/fzf.vim
 source $HOME/dotfiles/nvim/plugins/test.vim
 source $HOME/dotfiles/nvim/plugins/fern.vim
+source $HOME/dotfiles/nvim/plugins/ack.vim
 
 " custom vim config for project
 if filereadable(".vim.custom")

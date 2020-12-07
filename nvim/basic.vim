@@ -82,6 +82,10 @@ nnoremap <silent> <leader>ri :%s/\ze<C-r>///g<left><left>
 nnoremap <nowait> <C-n> $]m^zt
 nnoremap <nowait> <C-p> [Mzb
 
+" jump through quickfix results
+nnoremap [q :cprev<cr>
+nnoremap ]q :cnext<cr>
+
 " =============
 " VISUAL REMAPS
 " =============
