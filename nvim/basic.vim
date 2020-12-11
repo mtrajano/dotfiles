@@ -86,6 +86,11 @@ nnoremap <nowait> <C-p> [Mzb
 nnoremap [q :cprev<cr>
 nnoremap ]q :cnext<cr>
 
+" clipboard integreation
+nnoremap <leader>y "+yiw
+nnoremap <leader>p "+p
+vnoremap <leader>y "+y
+
 " =============
 " VISUAL REMAPS
 " =============
