@@ -17,6 +17,9 @@ set smartcase
 set incsearch
 set termguicolors
 
+" decrease timeout b/w remaps
+set timeoutlen=500
+
 " display realtime substitute update
 set inccommand=split
 
@@ -36,13 +39,13 @@ set pyxversion=3
 " INSERT REMAPS
 " =============
 
-" append remaps
-imap <silent> ;; <ESC>A;
+" esc remap
+inoremap <nowait> kj <esc>
 
 " autoindent blocks
-imap <silent> {<cr> {<cr>}<esc>O
-imap <silent> (<cr> (<cr>)<esc>O
-imap <silent> [<cr> [<cr>]<esc>O
+inoremap <silent> {<cr> {<cr>}<esc>O
+inoremap <silent> (<cr> (<cr>)<esc>O
+inoremap <silent> [<cr> [<cr>]<esc>O
 
 " =============
 " NORMAL REMAPS
@@ -94,6 +97,8 @@ vnoremap <leader>y "+y
 " =============
 " VISUAL REMAPS
 " =============
+
+vnoremap <nowait> kj <esc>
 
 " search under selection
 vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>
