@@ -13,5 +13,5 @@ augroup fern-custom
 augroup END
 
 " file/find remaps
-nnoremap <silent> <leader>k :Fern . -drawer -toggle -reveal=%<cr>
+nnoremap <silent> <leader>h :Fern . -drawer -toggle -reveal=%<cr>
 

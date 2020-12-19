@@ -3,7 +3,8 @@ let g:coc_global_extensions = [
   \  'coc-json',
   \  'coc-html',
   \  'coc-css',
-  \  'coc-phpls'
+  \  'coc-phpls',
+  \  'coc-pyright'
   \ ]
 
 command! -nargs=0 Do call CocAction('codeAction')
@@ -12,6 +13,7 @@ command! -nargs=? Foldc call CocAction('fold', 'comment')
 command! -nargs=? Foldi call CocAction('fold', 'imports')
 
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gD :call CocAction('jumpDefinition', v:false)<cr>
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
@@ -42,9 +44,9 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Find symbol of current document.
-nnoremap <silent><nowait> <leader>p :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <leader>k :<C-u>CocList outline<cr>
 " Search workspace symbols.
-nnoremap <silent><nowait> <leader>P :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <leader>K :<C-u>CocList -I symbols<cr>
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)

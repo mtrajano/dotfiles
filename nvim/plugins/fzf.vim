@@ -14,7 +14,6 @@ command! -bang -nargs=? FilesAll
 " fuzzy find buffers
 nnoremap <nowait> <leader>l :Buffers<cr>
 
-nnoremap <silent> <leader>o :Files<cr>
-nnoremap <silent> <leader>O :FilesAll<cr>
-nnoremap <silent> <leader>f :Rg<cr>
+nnoremap <silent> <leader>j :Files<cr>
+nnoremap <silent> <leader>J :FilesAll<cr>
 
