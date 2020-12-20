@@ -108,6 +108,10 @@ nnoremap ]q :cnext<cr>
 nnoremap <leader>y "+yiw
 vnoremap <leader>y "+y
 
+" null register deletes
+nnoremap <leader>x "_d
+vnoremap <leader>x "_d
+
 " =============
 " VISUAL REMAPS
 " =============
