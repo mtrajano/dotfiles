@@ -35,12 +35,17 @@ set splitright
 
 set pyxversion=3
 
+" ========================
+" ESC REMAP (EXPERIMENTAL)
+" ========================
+vnoremap <nowait> kj <esc>
+inoremap <nowait> kj <esc>
+tnoremap <nowait> kj <esc>
+cnoremap <nowait> kj <C-c>
+
 " =============
 " INSERT REMAPS
 " =============
-
-" esc remap
-inoremap <nowait> kj <esc>
 
 " autoindent blocks
 inoremap <silent> {<cr> {<cr>}<esc>O
@@ -100,8 +105,6 @@ vnoremap <leader>y "+y
 " =============
 " VISUAL REMAPS
 " =============
-
-vnoremap <nowait> kj <esc>
 
 " search under selection
 vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>
