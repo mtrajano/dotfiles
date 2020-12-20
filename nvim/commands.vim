@@ -1,12 +1,15 @@
+" alias for toggling relative number
+command! Nu set relativenumber!
+
 " trim trailing space on save
-fun! <SID>TrimTrailingSpace()
+function! <SID>TrimTrailingSpace()
   let l:save = winsaveview()
 
   " remove all spaces ending with EOL
   keeppatterns %s/\s\+$//e
 
   call winrestview(l:save)
-endfun
+endfunction
 
 augroup formatting_fixes
   autocmd!
