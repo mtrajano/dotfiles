@@ -33,6 +33,10 @@ set scrolljump=1
 set splitbelow
 set splitright
 
+" undo config
+set undofile
+set undodir=$XDG_CACHE_HOME/nvim/undo
+
 set pyxversion=3
 
 " ========================
@@ -74,6 +78,10 @@ nnoremap ^ 0
 " last buffer/window
 nnoremap <leader><space> <C-^>
 
+" easier navigation through buffer history
+nnoremap <nowait> <leader>n :bnext<cr>
+nnoremap <nowait> <leader>p :bprev<cr>
+
 " split remaps
 nnoremap <leader><right> :vertical resize +10<cr>
 nnoremap <leader><left> :vertical resize -10<cr>
@@ -95,10 +103,6 @@ nnoremap <nowait> <C-p> [Mzb
 " jump through quickfix results
 nnoremap [q :cprev<cr>
 nnoremap ]q :cnext<cr>
-
-" easier navigation through buffer history
-nnoremap <nowait> <leader>n :bnext<cr>
-nnoremap <nowait> <leader>p :bprev<cr>
 
 " clipboard integreation
 nnoremap <leader>y "+yiw
