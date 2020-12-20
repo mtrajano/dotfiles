@@ -34,7 +34,7 @@ set splitbelow
 set splitright
 
 " undo config
-set undofile
+set undofile " persistent undo
 set undodir=$XDG_CACHE_HOME/nvim/undo
 
 set pyxversion=3
