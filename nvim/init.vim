@@ -4,7 +4,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Rigellute/rigel'
 
-Plug 'tpope/vim-fugitive'
 Plug 'preservim/nerdcommenter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'SirVer/ultisnips'
@@ -31,6 +30,9 @@ if has("nvim")
   Plug 'antoinemadec/FixCursorHold.nvim'
 endif
 
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
+
 call plug#end()
 
 source $HOME/dotfiles/nvim/basic.vim
@@ -44,6 +46,7 @@ source $HOME/dotfiles/nvim/plugins/fzf.vim
 source $HOME/dotfiles/nvim/plugins/test.vim
 source $HOME/dotfiles/nvim/plugins/fern.vim
 source $HOME/dotfiles/nvim/plugins/ack.vim
+source $HOME/dotfiles/nvim/plugins/signifiy.vim
 
 " custom vim config for project
 if filereadable(".vim.custom")
