@@ -1,5 +1,5 @@
 " alias for toggling relative number
-command! Nu set relativenumber!
+command! -nargs=0 Nu set relativenumber!
 
 " trim trailing space on save
 function! <SID>TrimTrailingSpace()
