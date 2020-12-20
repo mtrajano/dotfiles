@@ -40,8 +40,10 @@ omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
 
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" easier navigation through diagnostics in file
+nmap <silent> <leader>dp <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>dn <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>dd :CocList diagnostics<cr>
 
 " Find symbol of current document.
 nnoremap <silent><nowait> <leader>k :<C-u>CocList outline<cr>

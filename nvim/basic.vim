@@ -89,9 +89,12 @@ nnoremap <nowait> <C-p> [Mzb
 nnoremap [q :cprev<cr>
 nnoremap ]q :cnext<cr>
 
+" easier navigation through buffer history
+nnoremap <nowait> <leader>n :bnext<cr>
+nnoremap <nowait> <leader>p :bprev<cr>
+
 " clipboard integreation
 nnoremap <leader>y "+yiw
-nnoremap <leader>p "+p
 vnoremap <leader>y "+y
 
 " =============
