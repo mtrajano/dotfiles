@@ -80,11 +80,11 @@ nnoremap <leader><left> :vertical resize -10<cr>
 nnoremap <leader>= <C-W>=
 
 " replace last search result
-nnoremap <silent> <leader>rr :%s///g<left><left>
+nnoremap <leader>rr :%s///g<left><left>
 " append to last search result
-nnoremap <silent> <leader>ra :%s/<C-r>/\zs//g<left><left>
+nnoremap <leader>ra :%s/<C-r>/\zs//g<left><left>
 " prepend to last search result
-nnoremap <silent> <leader>ri :%s/\ze<C-r>///g<left><left>
+nnoremap <leader>ri :%s/\ze<C-r>///g<left><left>
 
 " easy method navigations
 nnoremap <nowait> <C-n> $]m^zt
