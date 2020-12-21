@@ -26,8 +26,8 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 inoremap <silent><expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <silent><expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 
-" Use <C-space> to confirm completion (if pum is open).
-inoremap <silent><expr> <C-space> pumvisible() ? coc#_select_confirm() : "\<C-space>"
+" Use <cr> to confirm completion (if pum is open).
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<cr>"
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
