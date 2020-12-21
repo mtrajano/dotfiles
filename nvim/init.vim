@@ -11,6 +11,7 @@ Plug 'vim-test/vim-test'
 Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-dispatch'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
