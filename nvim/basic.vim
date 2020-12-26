@@ -68,7 +68,6 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " save/close
 nnoremap <leader>w :w<cr>
-nnoremap <leader>q :q<cr>
 nnoremap <leader>Q :qall!<cr>
 
 " swap 0 and ^
