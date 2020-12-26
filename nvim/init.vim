@@ -4,14 +4,16 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Rigellute/rigel'
 
-Plug 'preservim/nerdcommenter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'SirVer/ultisnips'
 Plug 'vim-test/vim-test'
 Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mileszs/ack.vim'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-abolish'
+Plug 'romainl/vim-qf'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -41,7 +43,6 @@ source $HOME/dotfiles/nvim/commands.vim
 source $HOME/dotfiles/nvim/theme.vim
 source $HOME/dotfiles/nvim/plugins/coc.vim
 source $HOME/dotfiles/nvim/plugins/fugitive.vim
-source $HOME/dotfiles/nvim/plugins/nerdcommenter.vim
 source $HOME/dotfiles/nvim/plugins/ultisnips.vim
 source $HOME/dotfiles/nvim/plugins/fzf.vim
 source $HOME/dotfiles/nvim/plugins/test.vim
