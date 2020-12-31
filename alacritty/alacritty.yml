@@ -37,3 +37,5 @@ colors:
     text: "0x002635"
     cursor: "0xffcc1b"
 
+key_bindings:
+  - { key: J,         mods: Control,                    action: ReceiveChar }
