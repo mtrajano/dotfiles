@@ -13,6 +13,7 @@ Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-surround'
 Plug 'romainl/vim-qf'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
