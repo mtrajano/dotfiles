@@ -30,8 +30,12 @@ Plug 'yuezk/vim-js'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 
-if has("nvim")
+if has('nvim')
   Plug 'antoinemadec/FixCursorHold.nvim'
+endif
+
+if has('nvim-0.5')
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 endif
 
 Plug 'tpope/vim-fugitive'
@@ -50,6 +54,10 @@ source $HOME/dotfiles/nvim/plugins/test.vim
 source $HOME/dotfiles/nvim/plugins/fern.vim
 source $HOME/dotfiles/nvim/plugins/ack.vim
 source $HOME/dotfiles/nvim/plugins/signifiy.vim
+
+if has('nvim-0.5')
+  source $HOME/dotfiles/nvim/nnvim.vim
+endif
 
 " custom vim config for project
 if filereadable(".vim.custom")
