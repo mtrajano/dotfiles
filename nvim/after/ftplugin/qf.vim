@@ -1,1 +1,1 @@
-set scrolloff=1
+setlocal scrolloff=1
