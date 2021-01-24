@@ -4,7 +4,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Rigellute/rigel'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'SirVer/ultisnips'
 Plug 'vim-test/vim-test'
 Plug 'benmills/vimux'
@@ -15,6 +14,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-surround'
 Plug 'romainl/vim-qf'
+Plug 'moll/vim-bbye'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -25,17 +25,26 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-hijack.vim'
 
-" highlighting
-Plug 'yuezk/vim-js'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'maxmellon/vim-jsx-pretty'
-
 if has('nvim')
   Plug 'antoinemadec/FixCursorHold.nvim'
 endif
 
+" remove when switch to native lsp
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" 0.4.4 plugins
+" js highlighting is handled by treesitter
+" lsp is handled by native lsp vs coc
+if !has('nvim-0.5')
+  " js highlighting
+  Plug 'yuezk/vim-js'
+  Plug 'HerringtonDarkholme/yats.vim'
+  Plug 'maxmellon/vim-jsx-pretty'
+endif
+
 if has('nvim-0.5')
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"   Plug 'neovim/nvim-lspconfig'
 endif
 
 Plug 'tpope/vim-fugitive'
@@ -56,10 +65,10 @@ source $HOME/dotfiles/nvim/plugins/ack.vim
 source $HOME/dotfiles/nvim/plugins/signifiy.vim
 
 if has('nvim-0.5')
-  source $HOME/dotfiles/nvim/nnvim.vim
+  lua require('init')
 endif
 
 " custom vim config for project
 if filereadable(".vim.custom")
-  so .vim.custom
+  source .vim.custom
 endif

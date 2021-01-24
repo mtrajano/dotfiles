@@ -13,7 +13,7 @@ endfunction
 command! -nargs=0 -bang Pair call <SID>TogglePairMode(<bang>1)
 
 " closes out every other buffer but this one
-command! -nargs=0 On :%bd|e#
+command! -nargs=0 On :%bd|e#|bd#
 
 " trim trailing space on save
 function! <SID>TrimTrailingSpace()
