@@ -1,6 +1,8 @@
 colorscheme rigel
 let g:airline_theme='rigel'
 
+highlight MatchParen guibg=#002635 guifg=#00ffff
+
 " fzf preview window match theme
 let g:fzf_colors =
     \ { 'fg':      ['fg', 'Normal'],
