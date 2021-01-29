@@ -1,7 +1,7 @@
 let test#strategy = 'vimux'
 let test#preserve_screen = 0
 
-let test#php#phpunit#file_pattern = 'test/phpunit'
+let test#php#phpunit#file_pattern = 'Test.php'
 let test#php#codeception#file_pattern = 'test/codeception'
 
 nnoremap <silent> <leader>tn :TestNearest<cr>
