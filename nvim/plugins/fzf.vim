@@ -19,8 +19,7 @@ command! -nargs=0 H :Helptags
 nnoremap <nowait> <leader>l :Buffers<cr>
 
 nnoremap <silent> <leader>j :Files<cr>
-nnoremap <silent> <leader>Ja :FilesAll<cr>
-nnoremap <silent> <leader>Jl :Files vendor<cr>
+nnoremap <silent> <leader>JJ :FilesAll<cr>
 nnoremap <silent> <leader>Jh :Files ~<cr>
 nnoremap <silent> <leader>Jd :Files ~/dotfiles<cr>
 

@@ -4,10 +4,6 @@ syntax enable
 
 set hidden
 set noerrorbells
-set tabstop=2
-set softtabstop=2
-set shiftwidth=2
-set expandtab
 set smartindent
 set number relativenumber
 set nowrap
@@ -16,6 +12,12 @@ set ignorecase
 set smartcase
 set incsearch
 set termguicolors
+
+" spacing
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
 
 " decrease timeout b/w remaps
 set timeoutlen=500
@@ -64,9 +66,10 @@ inoremap <silent> [<cr> [<cr>]<esc>O
 nnoremap Q <nop>
 
 " resource files
-nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
 
 " save/close
+nnoremap gq :q<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>Q :qall!<cr>
 
@@ -77,17 +80,11 @@ nnoremap ^ 0
 " last buffer/window
 nnoremap <leader><space> <C-^>
 
-" easier navigation through buffer history
-nnoremap <nowait> <C-n> :bnext<cr>
-nnoremap <nowait> <C-p> :bprev<cr>
-
 " split remaps
 nnoremap <leader><right> :vertical resize +10<cr>
 nnoremap <leader><left> :vertical resize -10<cr>
 nnoremap <leader>= <C-W>=
 
-" replace last search result
-nnoremap <leader>rr :%s///g<left><left>
 " append to last search result
 nnoremap <leader>ra :%s/<C-r>/\zs//g<left><left>
 " prepend to last search result
@@ -95,12 +92,8 @@ nnoremap <leader>ri :%s/\ze<C-r>///g<left><left>
 
 nnoremap <silent> <leader>/ :noh<cr>
 
-" jump through quickfix results
-nnoremap [q :cprev<cr>
-nnoremap ]q :cnext<cr>
-
 " clipboard integreation
-nnoremap <leader>y "+yiw
+nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 
 " null register deletes
