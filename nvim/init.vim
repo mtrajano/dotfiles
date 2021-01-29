@@ -15,6 +15,11 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-surround'
 Plug 'romainl/vim-qf'
 Plug 'moll/vim-bbye'
+Plug 'dense-analysis/ale'
+Plug 'tpope/vim-unimpaired'
+
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -44,11 +49,8 @@ endif
 
 if has('nvim-0.5')
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-"   Plug 'neovim/nvim-lspconfig'
+  " Plug 'neovim/nvim-lspconfig'
 endif
-
-Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-signify'
 
 call plug#end()
 
