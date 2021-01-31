@@ -44,10 +44,10 @@ set pyxversion=3
 " ========================
 " ESC REMAP (EXPERIMENTAL)
 " ========================
-vnoremap <nowait> kj <esc>
 inoremap <nowait> kj <esc>
 tnoremap <nowait> kj <esc>
 cnoremap <nowait> kj <C-c>
+onoremap <nowait> kj <C-c>
 
 " =============
 " INSERT REMAPS
