@@ -5,6 +5,7 @@ function! s:init_fern() abort
   nnoremap <silent> <buffer> <C-k> :TmuxNavigateUp<cr>
   nnoremap <silent> <buffer> <C-j> :TmuxNavigateDown<cr>
   nnoremap <silent> <buffer> <C-h> :TmuxNavigateLeft<cr>
+  nmap <buffer> <BS> <Plug>(fern-action-leave)
 endfunction
 
 augroup fern-custom
