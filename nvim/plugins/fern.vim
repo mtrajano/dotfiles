@@ -1,6 +1,11 @@
 " fix navigation keys so they work with vim-tmux-navigator
 function! s:init_fern() abort
-  nmap <buffer> N <Plug>(fern-action-new-path)
+  " fix navigating results
+  nnoremap n jn
+  " unmap <buffer> N " this breaks a bunch of things
+
+  nmap <buffer> y "+<Plug>(fern-action-yank:path)
+  nmap <buffer> K <Plug>(fern-action-new-path)
   nnoremap <silent> <buffer> <C-l> :TmuxNavigateRight<cr>
   nnoremap <silent> <buffer> <C-k> :TmuxNavigateUp<cr>
   nnoremap <silent> <buffer> <C-j> :TmuxNavigateDown<cr>
@@ -13,5 +18,4 @@ augroup fern-custom
   autocmd FileType fern call s:init_fern()
 augroup END
 
-" file/find remaps
 nnoremap <silent> <leader>h :Fern . -reveal=%<cr>

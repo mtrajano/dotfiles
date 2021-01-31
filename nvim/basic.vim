@@ -66,7 +66,7 @@ inoremap <silent> [<cr> [<cr>]<esc>O
 nnoremap Q <nop>
 
 " resource files
-nnoremap <silent> <leader>sv :source $MYVIMRC<cr>
+nnoremap <silent> <leader>sv :source $MYVIMRC <bar> echo "reloaded"<cr>
 
 " save/close
 nnoremap gq :q<cr>
@@ -98,6 +98,7 @@ vnoremap <leader>y "+y
 
 " null register deletes
 nnoremap <leader>x "_d
+nnoremap <leader>xx "_dd
 vnoremap <leader>x "_d
 
 " =============
