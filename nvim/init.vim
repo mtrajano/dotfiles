@@ -49,7 +49,11 @@ endif
 
 if has('nvim-0.5')
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/playground'
   " Plug 'neovim/nvim-lspconfig'
+
+  " lua dev
+  Plug 'nvim-lua/plenary.nvim'
 endif
 
 call plug#end()
@@ -64,7 +68,7 @@ source $HOME/dotfiles/nvim/plugins/fzf.vim
 source $HOME/dotfiles/nvim/plugins/test.vim
 source $HOME/dotfiles/nvim/plugins/fern.vim
 source $HOME/dotfiles/nvim/plugins/ack.vim
-source $HOME/dotfiles/nvim/plugins/signifiy.vim
+source $HOME/dotfiles/nvim/plugins/signify.vim
 
 if has('nvim-0.5')
   lua require('init')

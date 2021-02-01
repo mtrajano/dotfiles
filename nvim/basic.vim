@@ -41,14 +41,6 @@ set undodir=$XDG_CACHE_HOME/nvim/undo
 
 set pyxversion=3
 
-" ========================
-" ESC REMAP (EXPERIMENTAL)
-" ========================
-inoremap <nowait> kj <esc>
-tnoremap <nowait> kj <esc>
-cnoremap <nowait> kj <C-c>
-onoremap <nowait> kj <C-c>
-
 " =============
 " INSERT REMAPS
 " =============

@@ -8,5 +8,3 @@ let g:ack_use_dispatch = 1
 let g:ack_use_cword_for_empty_search = 1
 
 cnoreabbrev Ack Ack!
-
-nnoremap <leader>f :Ack!<space>
