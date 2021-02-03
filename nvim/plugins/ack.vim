@@ -1,5 +1,5 @@
 " use ripgrep for searching
-let g:ackprg = 'rg --vimgrep --smart-case -F'
+let g:ackprg = 'rg --vimgrep --smart-case'
 
 " use dispatch for non-blocking
 let g:ack_use_dispatch = 1

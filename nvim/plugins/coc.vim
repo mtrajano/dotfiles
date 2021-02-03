@@ -13,8 +13,6 @@ command! -nargs=? Fold call CocAction('fold')
 command! -nargs=? Foldc call CocAction('fold', 'comment')
 command! -nargs=? Foldi call CocAction('fold', 'imports')
 
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
 " Navigate autocomplete PUM using j/k
 inoremap <silent><expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <silent><expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"

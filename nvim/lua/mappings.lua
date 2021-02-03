@@ -1,25 +1,33 @@
 local map = function(mode, lhs, rhs, override_opts)
-  local opts = {noremap = true, silent = true}
+  local opts = {unique = true, noremap = true, silent = true}
   if override_opts then opts = vim.tbl_extend('force', opts, override_opts) end
   vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
 end
 
 local function bmap(mode, lhs, rhs, override_opts)
-  local opts = {noremap = true, silent = true}
+  local opts = {unique = true, noremap = true, silent = true}
   if override_opts then opts = vim.tbl_extend('force', opts, override_opts) end
   vim.api.nvim_buf_set_keymap(0, mode, lhs, rhs, opts)
 end
 
 -- Text object remaps
 -- NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+-- function and object text objects provided by CoC
 map('o', 'ac', '<Plug>(coc-classobj-a)', {noremap=false})
 map('x', 'ac', '<Plug>(coc-classobj-a)', {noremap=false})
 map('o', 'af', '<Plug>(coc-funcobj-a)', {noremap=false})
 map('x', 'af', '<Plug>(coc-funcobj-a)', {noremap=false})
+-- TODO: look into the inner ones, they don't seem to be working correctly
 map('o', 'ic', '<Plug>(coc-classobj-i)', {noremap=false})
 map('x', 'ic', '<Plug>(coc-classobj-i)', {noremap=false})
 map('o', 'if', '<Plug>(coc-funcobj-i)', {noremap=false})
 map('x', 'if', '<Plug>(coc-funcobj-i)', {noremap=false})
+
+-- "hunk" text objects provided by signify
+map('o', 'ah', '<Plug>(signify-motion-outer-pending)', {noremap=false})
+map('x', 'ah', '<Plug>(signify-motion-outer-visual)', {noremap=false})
+map('o', 'ih', '<Plug>(signify-motion-inner-pending)', {noremap=false})
+map('x', 'ih', '<Plug>(signify-motion-inner-visual)', {noremap=false})
 
 -- Esc remaps
 map('c', 'kj', '<C-c>')
@@ -49,6 +57,10 @@ map('n', '<leader>f', ':Ack!<space>', {silent = false})
 map('n', '<leader>gs', ':G<cr>')
 map('n', '<leader>gd', ':Gdiff<cr>')
 map('n', '<leader>gb', ':Gblame<cr>')
+-- Signify remaps
+map('n', '<leader>gk', ':SignifyHunkDiff<cr>')
+map('n', '<leader>gu', ':SignifyHunkUndo<cr>')
+map('n', '<leader>gz', ':SignifyFold<cr>')
 
 -- FZF remaps
 map('n', '<leader>l', ':Buffers<CR>')
