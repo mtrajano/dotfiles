@@ -69,8 +69,3 @@ source $HOME/dotfiles/nvim/plugins/signifiy.vim
 if has('nvim-0.5')
   lua require('init')
 endif
-
-" custom vim config for project
-if filereadable(".vim.custom")
-  source .vim.custom
-endif
