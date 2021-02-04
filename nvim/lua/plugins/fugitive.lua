@@ -1,6 +1,8 @@
+local u = require('utils')
+
 vim.g.github_enterprise_urls = {
   "https://git.corp.adobe.com"
 }
 
-vim.cmd([[ cnoreabbrev Gds Gdiffsplit ]])
-vim.cmd([[ cnoreabbrev Gco GBranches ]])
+u.cnoreabbrev('Gds', 'Gdiffsplit')
+u.cnoreabbrev('Gco', 'GBranches')

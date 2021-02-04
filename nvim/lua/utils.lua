@@ -1,15 +1,14 @@
 local utils = {}
 
-local function merge_default_maps(override_opts)
-  -- flip unique to true if want to debug overlapping mappings
-  local opts = {unique = false, noremap = true, silent = true}
-  if override_opts then opts = vim.tbl_extend('force', opts, override_opts) end
-
-  return opts
-end
+local cmd = vim.cmd
 
 local function map(mode, lhs, rhs, override_opts)
-  opts = merge_default_maps(override_opts)
+  -- flip unique to true if want to debug overlapping mappings
+  local opts = {unique = false, noremap = true, silent = true}
+
+  if override_opts then
+    opts = vim.tbl_extend('force', opts, override_opts)
+  end
 
   vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
 end
@@ -22,6 +21,10 @@ utils.xmap = function(lhs, rhs, override_opts) map('x', lhs, rhs, override_opts)
 utils.omap = function(lhs, rhs, override_opts) map('o', lhs, rhs, override_opts) end
 utils.tmap = function(lhs, rhs, override_opts) map('t', lhs, rhs, override_opts) end
 utils.cmap = function(lhs, rhs, override_opts) map('c', lhs, rhs, override_opts) end
+
+utils.cnoreabbrev = function(abbrev, expanded)
+  cmd('cnoreabbrev ' .. abbrev .. ' ' .. expanded)
+end
 
 -- translate vim keycodes into actual term keycodes
 utils.t = function(keycode)
