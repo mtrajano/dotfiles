@@ -1,75 +1,63 @@
-local map = function(mode, lhs, rhs, override_opts)
-  local opts = {unique = true, noremap = true, silent = true}
-  if override_opts then opts = vim.tbl_extend('force', opts, override_opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, opts)
-end
-
-local function bmap(mode, lhs, rhs, override_opts)
-  local opts = {unique = true, noremap = true, silent = true}
-  if override_opts then opts = vim.tbl_extend('force', opts, override_opts) end
-  vim.api.nvim_buf_set_keymap(0, mode, lhs, rhs, opts)
-end
+local u = require('utils')
 
 -- Text object remaps
 -- NOTE: Requires 'textDocument.documentSymbol' support from the language server.
 -- function and object text objects provided by CoC
-map('o', 'ac', '<Plug>(coc-classobj-a)', {noremap=false})
-map('x', 'ac', '<Plug>(coc-classobj-a)', {noremap=false})
-map('o', 'af', '<Plug>(coc-funcobj-a)', {noremap=false})
-map('x', 'af', '<Plug>(coc-funcobj-a)', {noremap=false})
+u.omap('ac', '<Plug>(coc-classobj-a)', {noremap=false})
+u.xmap('ac', '<Plug>(coc-classobj-a)', {noremap=false})
+u.omap('af', '<Plug>(coc-funcobj-a)', {noremap=false})
+u.xmap('af', '<Plug>(coc-funcobj-a)', {noremap=false})
 -- TODO: look into the inner ones, they don't seem to be working correctly
-map('o', 'ic', '<Plug>(coc-classobj-i)', {noremap=false})
-map('x', 'ic', '<Plug>(coc-classobj-i)', {noremap=false})
-map('o', 'if', '<Plug>(coc-funcobj-i)', {noremap=false})
-map('x', 'if', '<Plug>(coc-funcobj-i)', {noremap=false})
+u.omap('ic', '<Plug>(coc-classobj-i)', {noremap=false})
+u.xmap('ic', '<Plug>(coc-classobj-i)', {noremap=false})
+u.omap('if', '<Plug>(coc-funcobj-i)', {noremap=false})
+u.xmap('if', '<Plug>(coc-funcobj-i)', {noremap=false})
 
 -- "hunk" text objects provided by signify
-map('o', 'ah', '<Plug>(signify-motion-outer-pending)', {noremap=false})
-map('x', 'ah', '<Plug>(signify-motion-outer-visual)', {noremap=false})
-map('o', 'ih', '<Plug>(signify-motion-inner-pending)', {noremap=false})
-map('x', 'ih', '<Plug>(signify-motion-inner-visual)', {noremap=false})
+u.omap('ah', '<Plug>(signify-motion-outer-pending)', {noremap=false})
+u.xmap('ah', '<Plug>(signify-motion-outer-visual)', {noremap=false})
+u.omap('ih', '<Plug>(signify-motion-inner-pending)', {noremap=false})
+u.xmap('ih', '<Plug>(signify-motion-inner-visual)', {noremap=false})
 
 -- Esc remaps
-map('c', 'kj', '<C-c>')
-map('i', 'kj', '<Esc>')
-map('o', 'kj', '<Esc>')
-map('t', 'kj', '<Esc>')
-map('v', 'v', '<Esc>')
+u.cmap('kj', '<C-c>')
+u.imap('kj', '<Esc>')
+u.omap('kj', '<Esc>')
+u.tmap('kj', '<Esc>')
+u.vmap('v', '<Esc>')
 
 -- Coc remaps
--- easier navigation through diagnostics in file
-map('n', '<leader>dd', ':CocList diagnostics<cr>' )
-map('n', '<leader>dp', '<Plug>(coc-diagnostic-prev)', {noremap=false})
-map('n', '<leader>dn', '<Plug>(coc-diagnostic-next)', {noremap=false})
-map('n', 'gd', '<Plug>(coc-definition)', {noremap=false})
-map('n', 'gD', ':call CocAction("jumpDefinition", v:false)<cr>')
-map('n', 'gr', '<Plug>(coc-rename)', {noremap=false})
-map('n', 'gR', '<Plug>(coc-references)', {noremap=false})
-map('n', 'gy', '<Plug>(coc-type-definition)', {noremap=false})
+u.nmap('gd', '<Plug>(coc-definition)', {noremap=false})
+u.nmap('gD', ':call CocAction("jumpDefinition", v:false)<cr>')
+u.nmap('gr', '<Plug>(coc-rename)', {noremap=false})
+u.nmap('gR', '<Plug>(coc-references)', {noremap=false})
+u.nmap('gy', '<Plug>(coc-type-definition)', {noremap=false})
 -- interferes with jumping to last insert
 -- map('n', 'gi', '<Plug>(coc-implementation)', {noremap=false})
-map('n', 'K', ':lua require"plugins.coc".show_documentation()<CR>')
+u.nmap('K', ':lua require"plugins.coc".show_documentation()<CR>')
+-- easier navigation through diagnostics in file
+u.nmap('<leader>dd', ':CocList diagnostics<cr>' )
+u.nmap('<leader>dp', '<Plug>(coc-diagnostic-prev)', {noremap=false})
+u.nmap('<leader>dn', '<Plug>(coc-diagnostic-next)', {noremap=false})
+-- symbol search across file and workspace
+u.nmap('<leader>k', ':<C-u>CocList outline<cr>', {noremap=false})
+u.nmap('<leader>K', ':<C-u>CocList -I symbols<cr>', {noremap=false})
 
 -- Ack remaps
-map('n', '<leader>f', ':Ack!<space>', {silent = false})
+u.nmap('<leader>f', ':Ack!<space>', {silent = false})
 
 -- Fugitive remaps
-map('n', '<leader>gs', ':G<cr>')
-map('n', '<leader>gd', ':Gdiff<cr>')
-map('n', '<leader>gb', ':Gblame<cr>')
+u.nmap('<leader>gs', ':G<cr>')
+u.nmap('<leader>gd', ':Gdiff<cr>')
+u.nmap('<leader>gb', ':Gblame<cr>')
 -- Signify remaps
-map('n', '<leader>gk', ':SignifyHunkDiff<cr>')
-map('n', '<leader>gu', ':SignifyHunkUndo<cr>')
-map('n', '<leader>gz', ':SignifyFold<cr>')
+u.nmap('<leader>gk', ':SignifyHunkDiff<cr>')
+u.nmap('<leader>gu', ':SignifyHunkUndo<cr>')
+u.nmap('<leader>gz', ':SignifyFold<cr>')
 
 -- FZF remaps
-map('n', '<leader>l', ':Buffers<CR>')
-map('n', '<leader>j', ':Files<CR>')
-map('n', '<leader>JJ', ':FilesAll<cr>')
-map('n', '<leader>Jh', ':Files ~<cr>')
-map('n', '<leader>Jd', ':Files ~/dotfiles<cr>')
-
-return {
-  map = map,
-  bmap = map
-}
+u.nmap('<leader>l', ':Buffers<CR>')
+u.nmap('<leader>j', ':Files<CR>')
+u.nmap('<leader>JJ', ':FilesAll<cr>')
+u.nmap('<leader>Jh', ':Files ~<cr>')
+u.nmap('<leader>Jd', ':Files ~/dotfiles<cr>')
