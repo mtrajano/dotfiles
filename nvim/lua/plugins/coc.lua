@@ -14,10 +14,10 @@ vim.g.coc_global_extensions = {
   'coc-lua'
 }
 
-cmd([[ command! -nargs=0 Do call CocAction('codeAction') ]])
-cmd([[ command! -nargs=0 Fold call CocAction('fold') ]])
-cmd([[ command! -nargs=0 Foldc call CocAction('fold', 'comment') ]])
-cmd([[ command! -nargs=0 Foldi call CocAction('fold', 'imports') ]])
+cmd [[ command! -nargs=0 Do call CocAction('codeAction') ]]
+cmd [[ command! -nargs=0 Fold call CocAction('fold') ]]
+cmd [[ command! -nargs=0 Foldc call CocAction('fold', 'comment') ]]
+cmd [[ command! -nargs=0 Foldi call CocAction('fold', 'imports') ]]
 
 local Coc = {}
 
@@ -35,7 +35,7 @@ Coc.show_documentation = function()
   end
 end
 
--- need to fix these
+-- TODO: need to fix these
 Coc.ac_next = function(key)
   return fn.pumvisible() == 1 and '<C-n>' or key
 end

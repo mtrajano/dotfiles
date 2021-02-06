@@ -6,6 +6,7 @@ set hidden
 set noerrorbells
 set smartindent
 set number relativenumber
+set cursorline
 set nowrap
 set noswapfile
 set ignorecase
