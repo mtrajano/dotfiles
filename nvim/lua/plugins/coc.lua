@@ -4,6 +4,8 @@ local cmd = vim.cmd
 local api = vim.api
 local fn = vim.fn
 
+cmd [[ set tagfunc=CocTagFunc ]]
+
 vim.g.coc_global_extensions = {
   'coc-tsserver',
   'coc-json',

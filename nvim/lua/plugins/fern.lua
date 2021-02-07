@@ -5,7 +5,7 @@ local api = vim.api
 vim.g['fern#keepjumps_on_edit'] = 1
 
 -- TODO: see if this needs to be global
-function _G.Init_fern()
+function _G.Fern_Init()
   -- fix navigation keys so they work with vim-tmux-navigator
   u.buf_nmap('n', 'jn')
 
@@ -23,7 +23,7 @@ end
 api.nvim_exec([[
 augroup fern-custom
   autocmd!
-  autocmd FileType fern call v:lua.Init_fern()
+  autocmd FileType fern call v:lua.Fern_Init()
 augroup END
 ]], false)
 
