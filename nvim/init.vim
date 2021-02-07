@@ -19,7 +19,9 @@ Plug 'dense-analysis/ale'
 Plug 'tpope/vim-unimpaired'
 
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'mhinz/vim-signify'
+Plug 'stsewd/fzf-checkout.vim'
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -49,7 +51,11 @@ endif
 
 if has('nvim-0.5')
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/playground'
   " Plug 'neovim/nvim-lspconfig'
+
+  " lua dev
+  Plug 'nvim-lua/plenary.nvim'
 endif
 
 call plug#end()
@@ -58,14 +64,11 @@ source $HOME/dotfiles/nvim/basic.vim
 source $HOME/dotfiles/nvim/commands.vim
 source $HOME/dotfiles/nvim/theme.vim
 source $HOME/dotfiles/nvim/plugins/coc.vim
-source $HOME/dotfiles/nvim/plugins/fugitive.vim
 source $HOME/dotfiles/nvim/plugins/ultisnips.vim
 source $HOME/dotfiles/nvim/plugins/fzf.vim
-source $HOME/dotfiles/nvim/plugins/test.vim
-source $HOME/dotfiles/nvim/plugins/fern.vim
-source $HOME/dotfiles/nvim/plugins/ack.vim
-source $HOME/dotfiles/nvim/plugins/signifiy.vim
 
+lua require'plenary.reload'.reload_module('mappings')
+lua require'plenary.reload'.reload_module('init')
 if has('nvim-0.5')
   lua require('init')
 endif

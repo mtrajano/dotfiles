@@ -11,15 +11,5 @@ command! -bang -nargs=? FilesAll
       \     <q-args>,
       \     fzf#vim#with_preview({'source': 'fd . --type f --no-ignore --hidden'}), <bang>0)
 
-
 " TODO: remove preview and move to quickfix window
 command! -nargs=0 H :Helptags
-
-" fuzzy find buffers
-nnoremap <nowait> <leader>l :Buffers<cr>
-
-nnoremap <silent> <leader>j :Files<cr>
-nnoremap <silent> <leader>JJ :FilesAll<cr>
-nnoremap <silent> <leader>Jh :Files ~<cr>
-nnoremap <silent> <leader>Jd :Files ~/dotfiles<cr>
-

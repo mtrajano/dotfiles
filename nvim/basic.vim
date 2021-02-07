@@ -6,6 +6,7 @@ set hidden
 set noerrorbells
 set smartindent
 set number relativenumber
+set cursorline
 set nowrap
 set noswapfile
 set ignorecase
@@ -14,9 +15,9 @@ set incsearch
 set termguicolors
 
 " spacing
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 
 " decrease timeout b/w remaps
@@ -41,14 +42,6 @@ set undodir=$XDG_CACHE_HOME/nvim/undo
 
 set pyxversion=3
 
-" ========================
-" ESC REMAP (EXPERIMENTAL)
-" ========================
-inoremap <nowait> kj <esc>
-tnoremap <nowait> kj <esc>
-cnoremap <nowait> kj <C-c>
-onoremap <nowait> kj <C-c>
-
 " =============
 " INSERT REMAPS
 " =============
@@ -72,6 +65,9 @@ nnoremap <silent> <leader>sv :source $MYVIMRC <bar> echo "reloaded"<cr>
 nnoremap gq :q<cr>
 nnoremap <leader>w :w<cr>
 nnoremap <leader>Q :qall!<cr>
+
+nnoremap <leader>DD :profile start /tmp/temp_prof <bar> :profile func * <bar> :profile file * <cr>
+nnoremap <leader>Do :profile stop <bar> :e /tmp/temp_prof <cr>
 
 " swap 0 and ^
 nnoremap 0 ^
