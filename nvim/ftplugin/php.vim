@@ -8,7 +8,7 @@ function! <SID>FixTestFormat()
   let l:save = winsaveview()
 
   " append :void return type to any test methods missing it
-  keeppatterns %s/\(public function test.\+(.*)\)\(\s\?: void\)\@!/\1 : void
+  keeppatterns %s/\(public function test.\+(.*)\)\(\s\?: void\)\@!/\1 : void/e
 
   call winrestview(l:save)
 endfunction

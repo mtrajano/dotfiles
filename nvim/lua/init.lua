@@ -1,4 +1,5 @@
 require'mappings'
+require'textobjs'
 
 require'plugins.ack'
 require'plugins.ale'

@@ -3,21 +3,21 @@ set nocompatible
 syntax enable
 
 set hidden
+set noswapfile
 set noerrorbells
-set smartindent
 set number relativenumber
 set cursorline
 set nowrap
-set noswapfile
+set incsearch
 set ignorecase
 set smartcase
-set incsearch
 set termguicolors
 
 " spacing
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
+set smartindent
 set expandtab
 
 " decrease timeout b/w remaps
@@ -27,9 +27,9 @@ set timeoutlen=500
 set inccommand=split
 
 " horizontal/vertical cursor padding, move cursor 1 line at a time
-set sidescrolloff=5
+set sidescrolloff=3
 set sidescroll=1
-set scrolloff=5
+set scrolloff=3
 set scrolljump=1
 
 " natural split positions

@@ -18,6 +18,8 @@ Plug 'moll/vim-bbye'
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-unimpaired'
 
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'mhinz/vim-signify'
@@ -31,6 +33,11 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-hijack.vim'
+
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-function' " Coc func object seems to be pretty hacky
+Plug 'glts/vim-textobj-comment'
+Plug 'kana/vim-textobj-entire'
 
 if has('nvim')
   Plug 'antoinemadec/FixCursorHold.nvim'
