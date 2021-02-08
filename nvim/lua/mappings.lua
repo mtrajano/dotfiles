@@ -31,6 +31,9 @@ u.nmap('<leader>f', ':Ack!<space>', {silent = false})
 u.nmap('<leader>gs', ':G<cr>')
 u.nmap('<leader>gd', ':Gdiff<cr>')
 u.nmap('<leader>gb', ':Gblame<cr>')
+-- Merge conflict remaps
+u.nmap('<leader>gh', ':diffget //2')
+u.nmap('<leader>gl', ':diffget //3')
 -- Signify remaps
 u.nmap('<leader>gk', ':SignifyHunkDiff<cr>')
 u.nmap('<leader>gu', ':SignifyHunkUndo<cr>')

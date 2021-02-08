@@ -17,6 +17,7 @@ Plug 'romainl/vim-qf'
 Plug 'moll/vim-bbye'
 Plug 'dense-analysis/ale'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-projectionist'
 
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
