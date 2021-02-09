@@ -37,6 +37,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-hijack.vim'
 
+Plug 'wellle/targets.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function' " Coc func object seems to be pretty hacky
 Plug 'kana/vim-textobj-entire'
@@ -74,7 +75,6 @@ source $HOME/dotfiles/nvim/basic.vim
 source $HOME/dotfiles/nvim/commands.vim
 source $HOME/dotfiles/nvim/theme.vim
 source $HOME/dotfiles/nvim/plugins/coc.vim
-source $HOME/dotfiles/nvim/plugins/ultisnips.vim
 source $HOME/dotfiles/nvim/plugins/fzf.vim
 
 lua require'plenary.reload'.reload_module('mappings')

@@ -94,6 +94,7 @@ nnoremap <silent> <leader>/ :noh<cr>
 " clipboard integreation
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
+vnoremap <leader>p "0p
 
 " null register deletes
 nnoremap <leader>x "_d

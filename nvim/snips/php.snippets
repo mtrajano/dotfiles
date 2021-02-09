@@ -37,7 +37,7 @@ snippet class "Default class declaration template" b
 
 `!p snip.rv = ADOBE_HEADER`
 
-namespace $1;
+namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
 
 class `!v expand('%:t:r')` {
 
@@ -51,7 +51,7 @@ snippet qclass "Query object class declaration template" b
 
 `!p snip.rv = ADOBE_HEADER`
 
-namespace $1;
+namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
 
 class `!v expand('%:t:r')` {
 
@@ -65,7 +65,7 @@ snippet qhclass "Query handler class declaration template" b
 
 `!p snip.rv = ADOBE_HEADER`
 
-namespace $1;
+namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
 
 use ${1/QueryHandlers/Queries/};
 
@@ -85,7 +85,7 @@ snippet cclass "Command class declaration template" b
 
 `!p snip.rv = ADOBE_HEADER`
 
-namespace $1;
+namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
 
 use Behance\Core\CommandBus;
 
@@ -101,7 +101,7 @@ snippet caclass "Command async class declaration template" b
 
 `!p snip.rv = ADOBE_HEADER`
 
-namespace $1;
+namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
 
 use Behance\Core\CommandBus;
 
@@ -129,7 +129,7 @@ snippet chclass "Command handler class declaration template" b
 
 `!p snip.rv = ADOBE_HEADER`
 
-namespace $1;
+namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
 
 use Behance\Core\CommandBus;
 use Symfony\Component\EventDispatcher;
@@ -145,6 +145,16 @@ class ${2:`!v expand('%:t:r')`} implements CommandBus\HandlerInterface {
 	}
 
 }
+endsnippet
+
+snippet construct "__construct()" b
+${1/(\w* )?\$(\w+)[^,]*(, )?/\n\tprivate $1\$_$2;/g}
+
+public function __construct(${1:$dependencies}) {
+	${1/(\w* )?\$(\w+)[^,]*(, )?/\n\t\t$this->_$2 = $$2;/g}
+
+}
+$0
 endsnippet
 
 snippet pub "Public function" b
