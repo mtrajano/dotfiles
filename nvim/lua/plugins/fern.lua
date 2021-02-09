@@ -4,6 +4,10 @@ local api = vim.api
 
 vim.g['fern#keepjumps_on_edit'] = 1
 
+-- disable netrw
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- TODO: see if this needs to be global
 function _G.Fern_Init()
   -- fix navigation keys so they work with vim-tmux-navigator

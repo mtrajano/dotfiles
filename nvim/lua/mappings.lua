@@ -26,6 +26,13 @@ u.nmap('<leader>df', ':ALEFix<CR>', {noremap=false})
 u.nmap('<leader>k', ':<C-u>CocList outline<cr>', {noremap=false})
 u.nmap('<leader>K', ':<C-u>CocList -I symbols<cr>', {noremap=false})
 
+-- Alternate file remaps
+u.nmap('<leader>ec', ':Ecommand<CR>')
+u.nmap('<leader>eh', ':Ehandler<CR>')
+u.nmap('<leader>eq', ':Equery<CR>')
+u.nmap('<leader>es', ':Esource<CR>')
+u.nmap('<leader>et', ':Etest<CR>')
+
 -- Ack remaps
 u.nmap('<leader>f', ':Ack!<space>', {silent = false})
 
