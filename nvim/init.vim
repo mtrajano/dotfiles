@@ -6,6 +6,7 @@ Plug 'Rigellute/rigel'
 
 Plug 'vim-test/vim-test'
 Plug 'benmills/vimux'
+Plug 'voldikss/vim-floaterm'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-commentary'
