@@ -1,6 +1,29 @@
-# =================
+global !p
+import datetime
+
+_adobe_comment = '''
+/*************************************************************************
+ * ADOBE CONFIDENTIAL
+ * ___________________
+ *
+ * Copyright {year} Adobe
+ * All Rights Reserved.
+ *
+ * NOTICE: All information contained herein is, and remains
+ * the property of Adobe and its suppliers, if any. The intellectual
+ * and technical concepts contained herein are proprietary to Adobe
+ * and its suppliers and are protected by all applicable intellectual
+ * property laws, including trade secret and copyright laws.
+ * Dissemination of this information or reproduction of this material
+ * is strictly forbidden unless prior written permission is obtained
+ * from Adobe.
+ *************************************************************************/
+'''
+
+ADOBE_HEADER = _adobe_comment.strip().format(year = datetime.date.today().year)
+endglobal
+
 # helpers
-# =================
 snippet vd
 var_dump($1);
 endsnippet
@@ -9,76 +32,173 @@ snippet dd
 var_dump($1);die();
 endsnippet
 
-# =================
-# methods/functions
-# =================
-snippet pubm
-public function ${1:name}(${2:args}) ${3:: void} {
+snippet class "Default class declaration template" b
+<?php
+
+`!p snip.rv = ADOBE_HEADER`
+
+namespace $1;
+
+class `!v expand('%:t:r')` {
 
 	$0
 
 }
 endsnippet
 
-snippet prom
-protected function _${1:name}(${2:args}) ${3:: void} {
+snippet qclass "Query object class declaration template" b
+<?php
+
+`!p snip.rv = ADOBE_HEADER`
+
+namespace $1;
+
+class `!v expand('%:t:r')` {
 
 	$0
 
 }
 endsnippet
 
-snippet prim
-private function _${1:name}(${2:args}) ${3:: void} {
+snippet qhclass "Query handler class declaration template" b
+<?php
+
+`!p snip.rv = ADOBE_HEADER`
+
+namespace $1;
+
+use ${1/QueryHandlers/Queries/};
+
+class `!v expand('%:t:r')` {
+
+	public function __invoke(Queries\\`!v expand('%:t:r')` $query) : array {
+
+		$0
+
+	}
+
+}
+endsnippet
+
+snippet cclass "Command class declaration template" b
+<?php
+
+`!p snip.rv = ADOBE_HEADER`
+
+namespace $1;
+
+use Behance\Core\CommandBus;
+
+class `!v expand('%:t:r')` extends CommandBus\CommandAbstract {
 
 	$0
 
 }
 endsnippet
 
-snippet construct
-public function __construct(${1:args}) {
+snippet caclass "Command async class declaration template" b
+<?php
+
+`!p snip.rv = ADOBE_HEADER`
+
+namespace $1;
+
+use Behance\Core\CommandBus;
+
+class `!v expand('%:t:r')` extends CommandBus\AsyncCommandAbstract {
 
 	$0
 
-}
-endsnippet
+	protected function _pack() : array {
 
-snippet testm
-public function test${1:Name}() : void {
+		return [];
 
-	$0
+	}
 
-}
-endsnippet
+	public static function unpack(array $packed) : CommandBus\CommandAbstract {
 
-snippet setup
-protected function setUp() : void {
+		return new static();
 
-	$0
+	}
 
 }
 endsnippet
 
-# =================
-# control flow
-# =================
-snippet foreach
-foreach (${1:iterable} as ${2:variable}) {
-	$0
+snippet chclass "Command handler class declaration template" b
+<?php
+
+`!p snip.rv = ADOBE_HEADER`
+
+namespace $1;
+
+use Behance\Core\CommandBus;
+use Symfony\Component\EventDispatcher;
+
+class ${2:`!v expand('%:t:r')`} implements CommandBus\HandlerInterface {
+
+	public function handle(CommandBus\CommandAbstract $command, CommandBus $bus, EventDispatcher\EventDispatcherInterface $event_dispatcher) {
+
+		/** @var \\${1/Handlers/Commands/}\\$2 $command */
+
+		$0
+
+	}
+
 }
 endsnippet
 
-snippet if
-if (${1:condition}) {
-	$2
+snippet pub "Public function" b
+public function ${1:name}(${2:$param}) ${3:void} {
+
+	${VISUAL}${5:return null;}
+
 }
+$0
 endsnippet
 
-snippet ife
-if (${1:condition}) {
-	$2
-} else {
-	$3
+snippet pro "Protected function" b
+protected function ${1:name}(${2:$param}) ${3:void} {
+
+	${VISUAL}${5:return null;}
+
 }
+$0
 endsnippet
+
+snippet pri "Private function" b
+private function ${1:name}(${2:$param}) ${3:void} {
+
+	${VISUAL}${5:return null;}
+
+}
+$0
+endsnippet
+
+snippet pubs "Public static function" b
+public static function ${1:name}(${2:$param}) ${3:void} {
+
+	${VISUAL}${5:return null;}
+
+}
+$0
+endsnippet
+
+snippet pros "Protected static function" b
+protected static function ${1:name}(${2:$param}) ${3:void} {
+
+	${VISUAL}${5:return null;}
+
+}
+$0
+endsnippet
+
+snippet pris "Private static function" b
+private static function ${1:name}(${2:$param}) ${3:void} {
+
+	${VISUAL}${5:return null;}
+
+}
+$0
+endsnippet
+
+

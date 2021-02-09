@@ -42,6 +42,9 @@ set undodir=$XDG_CACHE_HOME/nvim/undo
 
 set pyxversion=3
 
+" unset octal format from <C-a>/<C-x> binding
+set nrformats-=octal
+
 " =============
 " INSERT REMAPS
 " =============

@@ -7,6 +7,7 @@ local fn = vim.fn
 cmd [[ set tagfunc=CocTagFunc ]]
 
 vim.g.coc_global_extensions = {
+  'coc-ultisnips',
   'coc-tsserver',
   'coc-json',
   'coc-html',

@@ -4,7 +4,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Rigellute/rigel'
 
-Plug 'SirVer/ultisnips'
 Plug 'vim-test/vim-test'
 Plug 'benmills/vimux'
 Plug 'christoomey/vim-tmux-navigator'
@@ -13,13 +12,15 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-projectionist'
 Plug 'romainl/vim-qf'
 Plug 'moll/vim-bbye'
 Plug 'dense-analysis/ale'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-projectionist'
-
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
@@ -37,8 +38,8 @@ Plug 'lambdalisue/fern-hijack.vim'
 
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function' " Coc func object seems to be pretty hacky
-Plug 'glts/vim-textobj-comment'
 Plug 'kana/vim-textobj-entire'
+Plug 'glts/vim-textobj-comment'
 
 if has('nvim')
   Plug 'antoinemadec/FixCursorHold.nvim'
