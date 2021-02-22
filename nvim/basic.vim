@@ -84,11 +84,6 @@ nnoremap <leader><right> :vertical resize +10<cr>
 nnoremap <leader><left> :vertical resize -10<cr>
 nnoremap <leader>= <C-W>=
 
-" append to last search result
-nnoremap <leader>ra :%s/<C-r>/\zs//g<left><left>
-" prepend to last search result
-nnoremap <leader>ri :%s/\ze<C-r>///g<left><left>
-
 nnoremap <silent> <leader>/ :noh<cr>
 
 " clipboard integreation
