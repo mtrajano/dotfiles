@@ -32,6 +32,26 @@ snippet dd
 var_dump($1);die();
 endsnippet
 
+snippet logger "User logger trait" b
+use \Behance\Core\Logger\Traits\LoggerTrait;
+endsnippet
+
+snippet info "Create an info log" b
+$this->_getLogger()->info('$1');
+endsnippet
+
+snippet notice "Create an info log" b
+$this->_getLogger()->notice('$1');
+endsnippet
+
+snippet warning "Create an info log" b
+$this->_getLogger()->warning('$1');
+endsnippet
+
+snippet error "Create an error log" b
+$this->_getLogger()->error('$1');
+endsnippet
+
 snippet class "Default class declaration template" b
 <?php
 
@@ -40,6 +60,20 @@ snippet class "Default class declaration template" b
 namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
 
 class `!v expand('%:t:r')` {
+
+	$0
+
+}
+endsnippet
+
+snippet tclass "Default test class declaration template" b
+<?php
+
+`!p snip.rv = ADOBE_HEADER`
+
+namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
+
+class `!v expand('%:t:r')` extends \NetworkUnitTest {
 
 	$0
 
@@ -124,6 +158,10 @@ class `!v expand('%:t:r')` extends CommandBus\AsyncCommandAbstract {
 }
 endsnippet
 
+snippet cvar "@var extension for command handler classes" b
+/** @var \\`!v substitute(v:lua.NormalizeNamespace(expand('%:r')), '\(Command\)\?Handlers', 'Commands', '')` */
+endsnippet
+
 snippet chclass "Command handler class declaration template" b
 <?php
 
@@ -132,13 +170,13 @@ snippet chclass "Command handler class declaration template" b
 namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
 
 use Behance\Core\CommandBus;
-use Symfony\Component\EventDispatcher;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class ${2:`!v expand('%:t:r')`} implements CommandBus\HandlerInterface {
 
-	public function handle(CommandBus\CommandAbstract $command, CommandBus $bus, EventDispatcher\EventDispatcherInterface $event_dispatcher) {
+	public function handle(CommandBus\CommandAbstract $command, CommandBus $bus, EventDispatcherInterface $event_dispatcher) {
 
-		/** @var \\${1/Handlers/Commands/}\\$2 $command */
+		/** @var \\${1/Command?Handlers/Commands/}\\$2 $command */
 
 		$0
 
@@ -147,18 +185,61 @@ class ${2:`!v expand('%:t:r')`} implements CommandBus\HandlerInterface {
 }
 endsnippet
 
-snippet construct "__construct()" b
-${1/(\w* )?\$(\w+)[^,]*(, )?/\n\tprivate $1\$_$2;/g}
+snippet eclass "Enum class" b
+<?php
 
+`!p snip.rv = ADOBE_HEADER`
+
+namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
+
+use MyCLabs\Enum;
+
+/**`!p
+words = t[3].split()
+for word in words:
+	snip += ' * @method static \\%s\\%s %s()' % (t[1], t[2], word.upper())
+`
+ *
+ * @psalm-immutable
+ */
+class ${2:`!v expand('%:t:r')`} extends Enum\Enum {
+${3:enum}
+`!p
+words = t[3].split()
+snip >> 1
+for word in words:
+	snip += "const %s = '%s';" % (word.upper(), word)
+snip + ""
+`
+}
+endsnippet
+
+snippet constr "__construct()" b
+${1:`!p
+tokens = t[1].split(',')
+for var in tokens:
+	type_var = var.strip().split()
+	variable = type_var[-1] if type_var else ""
+	has_type = len(type_var) > 1
+	snip += "private %s$_%s;" % (type_var[0] + " " if has_type else "", variable[1:])
+snip += ""
+`}
 public function __construct(${1:$dependencies}) {
-	${1/(\w* )?\$(\w+)[^,]*(, )?/\n\t\t$this->_$2 = $$2;/g}
-
+`!p
+tokens = t[1].split(',')
+snip >> 1
+for var in tokens:
+	type_var = var.strip().split()
+	variable = type_var[-1] if type_var else ""
+	snip += "$this->_%s = %s;" % (variable[1:], variable)
+snip += ""
+`
 }
 $0
 endsnippet
 
 snippet pub "Public function" b
-public function ${1:name}(${2:$param}) ${3:void} {
+public function ${1:name}(${2:$param}) ${3:: void} {
 
 	${VISUAL}${5:return null;}
 
@@ -167,7 +248,7 @@ $0
 endsnippet
 
 snippet pro "Protected function" b
-protected function ${1:name}(${2:$param}) ${3:void} {
+protected function ${1:name}(${2:$param}) ${3:: void} {
 
 	${VISUAL}${5:return null;}
 
@@ -176,7 +257,7 @@ $0
 endsnippet
 
 snippet pri "Private function" b
-private function ${1:name}(${2:$param}) ${3:void} {
+private function ${1:name}(${2:$param}) ${3:: void} {
 
 	${VISUAL}${5:return null;}
 
@@ -211,4 +292,35 @@ private static function ${1:name}(${2:$param}) ${3:void} {
 $0
 endsnippet
 
+snippet regh "Register a command/query to a handler" b
+$container[$1::class] = (function(${2:Pimple\\Container $container}) : ${1/Commands/CommandHandlers/} {
+	return new ${1/Commands/CommandHandlers/}($0);
+});
+endsnippet
 
+snippet mock "Test create mock snipper" w
+$this->createMock($0);
+endsnippet
+
+snippet exo  "Test expects once" w
+expects($this->once())
+	$0
+endsnippet
+
+snippet exn  "Test expects never" w
+expects($this->never())
+	$0
+endsnippet
+
+snippet exe  "Test expects exactly" w
+expects($this->exactly($1))
+	$0
+endsnippet
+
+snippet setup "Setup method for tests" b
+protected function setUp() : void {
+
+	$0
+
+}
+endsnippet
