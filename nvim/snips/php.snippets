@@ -34,6 +34,8 @@ endsnippet
 
 snippet logger "User logger trait" b
 use \Behance\Core\Logger\Traits\LoggerTrait;
+
+const LOG_CHANNEL_DEFAULT = $0;
 endsnippet
 
 snippet info "Create an info log" b
@@ -170,11 +172,11 @@ snippet chclass "Command handler class declaration template" b
 namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
 
 use Behance\Core\CommandBus;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\EventDispatcher;
 
 class ${2:`!v expand('%:t:r')`} implements CommandBus\HandlerInterface {
 
-	public function handle(CommandBus\CommandAbstract $command, CommandBus $bus, EventDispatcherInterface $event_dispatcher) {
+	public function handle(CommandBus\CommandAbstract $command, CommandBus $bus, EventDispatcher\EventDispatcherInterface $event_dispatcher) {
 
 		/** @var \\${1/Command?Handlers/Commands/}\\$2 $command */
 

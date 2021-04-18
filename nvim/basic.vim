@@ -46,6 +46,15 @@ set pyxversion=3
 set nrformats-=octal
 
 " =============
+" ABBREVIATIONS
+" =============
+cab dotfiles ~/dotfiles
+cab behance ~/dev/behance
+cab net ~/dev/behance/be.net
+cab view ~/dev/behance/pro2-view
+cab core ~/dev/behance/core
+
+" =============
 " INSERT REMAPS
 " =============
 
@@ -63,11 +72,6 @@ nnoremap Q <nop>
 
 " resource files
 nnoremap <silent> <leader>sv :source $MYVIMRC <bar> echo "reloaded"<cr>
-
-" save/close
-nnoremap gq :q<cr>
-nnoremap <leader>w :w<cr>
-nnoremap <leader>Q :qall!<cr>
 
 nnoremap <leader>DD :profile start /tmp/temp_prof <bar> :profile func * <bar> :profile file * <cr>
 nnoremap <leader>Do :profile stop <bar> :e /tmp/temp_prof <cr>
@@ -89,6 +93,7 @@ nnoremap <silent> <leader>/ :noh<cr>
 " clipboard integreation
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
+nnoremap <leader>p "0p
 vnoremap <leader>p "0p
 
 " null register deletes
