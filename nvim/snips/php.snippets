@@ -23,12 +23,20 @@ _adobe_comment = '''
 ADOBE_HEADER = _adobe_comment.strip().format(year = datetime.date.today().year)
 endglobal
 
+snippet ns "current namespace" w
+`!v v:lua.NormalizeNamespace(expand('%:h'))`
+endsnippet
+
+snippet nsp "parent namespace" w
+`!v v:lua.NormalizeNamespace(expand('%:h:h'))`
+endsnippet
+
 # helpers
-snippet vd
+snippet vd "var_dump" w
 var_dump($1);
 endsnippet
 
-snippet dd
+snippet dd "dump and die" w
 var_dump($1);die();
 endsnippet
 
@@ -187,6 +195,7 @@ class ${2:`!v expand('%:t:r')`} implements CommandBus\HandlerInterface {
 }
 endsnippet
 
+post_jump "if snip.tabstop == 0: del snip.buffer[snip.tabstops[3].start[0]]"
 snippet eclass "Enum class" b
 <?php
 
@@ -205,7 +214,7 @@ for word in words:
  * @psalm-immutable
  */
 class ${2:`!v expand('%:t:r')`} extends Enum\Enum {
-${3:enum}
+${3:word_list}
 `!p
 words = t[3].split()
 snip >> 1
@@ -216,6 +225,7 @@ snip + ""
 }
 endsnippet
 
+pre_expand "del snip.buffer[snip.line - 1]"
 snippet constr "__construct()" b
 ${1:`!p
 tokens = t[1].split(',')
@@ -237,7 +247,50 @@ for var in tokens:
 snip += ""
 `
 }
-$0
+endsnippet
+
+pre_expand "del snip.buffer[snip.line - 1]"
+post_jump "if snip.tabstop == 0: del snip.buffer[len(snip.buffer)-2]"
+snippet gconstr "__construct() with getters" b
+${1:`!p
+tokens = t[1].split(',')
+for var in tokens:
+	type_var = var.strip().split()
+	variable = type_var[-1] if type_var else ""
+	has_type = len(type_var) > 1
+	snip += "private %s$_%s;" % (type_var[0] + " " if has_type else "", variable[1:])
+snip += ""
+`}
+public function __construct(${1:$dependencies}) {
+`!p
+tokens = t[1].split(',')
+snip >> 1
+for var in tokens:
+	type_var = var.strip().split()
+	variable = type_var[-1] if type_var else ""
+	snip += "$this->_%s = %s;" % (variable[1:], variable)
+snip += ""
+`
+}
+`!p
+tokens = t[1].split(',')
+for var in tokens:
+	type_var = var.strip().split()
+	has_type = len(type_var) > 1
+	variable = type_var[-1] if type_var else ""
+	variable_name = variable[1:]
+	variable_tokens = variable_name.split('_')
+	variable_tokens = map(lambda tok: tok[0].upper() + tok[1:] if tok else "", variable_tokens)
+	variable_camel_case = "".join(variable_tokens)
+	snip += "public function get%s()%s {" % (variable_camel_case, " : " + type_var[0] if has_type else "")
+	snip >> 1
+	snip += ""
+	snip += "return $this->_%s;" % variable_name
+	snip += ""
+	snip << 1
+	snip += "}"
+	snip += ""
+`
 endsnippet
 
 snippet pub "Public function" b

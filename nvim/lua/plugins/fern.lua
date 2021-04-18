@@ -11,8 +11,8 @@ vim.g.loaded_netrwPlugin = 1
 -- TODO: see if this needs to be global
 function _G.Fern_Init()
   -- fix navigation keys so they work with vim-tmux-navigator
+  u.buf_nmap('q', ':Bd<cr>')
   u.buf_nmap('n', 'jn')
-
   u.buf_nmap('y', '"+<Plug>(fern-action-yank:path)', {noremap = false})
   u.buf_nmap('K', '<Plug>(fern-action-new-path)', {noremap = false})
   u.buf_nmap('<BS>', '<Plug>(fern-action-leave)', {noremap = false})
