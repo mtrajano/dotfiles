@@ -16,27 +16,12 @@ u.xmap('iC', '<Plug>(coc-classobj-i)', {noremap=false}) -- ic is taken by commen
 u.omap('If', '<Plug>(coc-funcobj-i)', {noremap=false}) -- if is taken by comment  obj, this is broken due to phpls returning comment as range as well
 u.xmap('If', '<Plug>(coc-funcobj-i)', {noremap=false}) -- if is taken by comment  obj, this is broken due to phpls returning comment as range as well
 
+-- vim-textobj-function
+u.omap('af', 'aF', {noremap=false})
+u.xmap('af', 'aF', {noremap=false})
+
 -- "hunk" text objects provided by signify
 u.omap('ah', '<Plug>(signify-motion-outer-pending)', {noremap=false})
 u.xmap('ah', '<Plug>(signify-motion-outer-visual)', {noremap=false})
 u.omap('ih', '<Plug>(signify-motion-inner-pending)', {noremap=false})
 u.xmap('ih', '<Plug>(signify-motion-inner-visual)', {noremap=false})
-
--- Fixes php textobj for function
-api.nvim_exec([[
-function! FixPhpFunctionTxtObj()
-  let b:textobj_function_select = function('textobj#function#java#select')
-
-  if exists('b:undo_ftplugin')
-    let b:undo_ftplugin .= '|'
-  else
-    let b:undo_ftplugin = ''
-  endif
-  let b:undo_ftplugin .= 'unlet b:textobj_function_select'
-endfunction
-
-augroup text_obj_fixes
-  autocmd!
-  autocmd BufEnter *.php call FixPhpFunctionTxtObj()
-augroup END
-]], false)
