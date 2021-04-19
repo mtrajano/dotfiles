@@ -13,15 +13,15 @@
   },
   "library/**/Commands/*.php": {
     "alternate": [
-        "library/{dirname}/Handlers/{basename}.php",
-        "test/phpunit/unit/{dirname}/Commands/{basename}Test.php"
+        "test/phpunit/unit/{dirname}/Commands/{basename}Test.php",
+        "library/{dirname}/Handlers/{basename}.php"
       ],
     "type": "command"
   },
   "library/**/Handlers/*.php": {
     "alternate": [
-        "library/{dirname}/Commands/{basename}.php",
-        "test/phpunit/unit/{dirname}/Handlers/{basename}Test.php"
+        "test/phpunit/unit/{dirname}/Handlers/{basename}Test.php",
+        "library/{dirname}/Commands/{basename}.php"
       ],
     "type": "handler"
   },

@@ -5,5 +5,6 @@ vim.g.github_enterprise_urls = {
 }
 
 u.cnoreabbrev('Gds', 'Gdiffsplit')
-u.cnoreabbrev('Gco', 'GBranches')
+u.cnoreabbrev('Gco', 'GBranches --locals')
+u.cnoreabbrev('Gcor', 'GBranches --remotes')
 u.cnoreabbrev('Gre', 'Gread master:%')

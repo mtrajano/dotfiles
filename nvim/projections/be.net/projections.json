@@ -13,37 +13,37 @@
   },
   "library/Network/**/Commands/*.php": {
     "alternate": [
+      "test/phpunit/unit/Network/{dirname}/Commands/{basename}Test.php",
       "library/Network/{dirname}/Handlers/{basename}.php",
-      "library/Network/{dirname}/CommandHandlers/{basename}.php",
-      "test/phpunit/unit/Network/{dirname}/Commands/{basename}Test.php"
+      "library/Network/{dirname}/CommandHandlers/{basename}.php"
     ],
     "type": "command"
   },
   "library/Network/Command/Handlers/*.php": {
     "alternate": [
-      "library/Network/Command/Commands/{}.php",
-      "test/phpunit/unit/Network/Command/Handlers/{}Test.php"
+      "test/phpunit/unit/Network/Command/Handlers/{}Test.php",
+      "library/Network/Command/Commands/{}.php"
     ],
     "type": "handler"
   },
   "library/Network/**/CommandHandlers/*.php": {
     "alternate": [
-      "library/Network/{dirname}/Commands/{basename}.php",
-      "test/phpunit/unit/Network/{dirname}/CommandHandlers/{basename}Test.php"
+      "test/phpunit/unit/Network/{dirname}/CommandHandlers/{basename}Test.php",
+      "library/Network/{dirname}/Commands/{basename}.php"
     ],
     "type": "handler"
   },
   "library/Network/**/Queries/*.php": {
     "alternate": [
-      "library/Network/{dirname}/QueryHandlers/{basename}.php",
-      "test/phpunit/unit/Network/{dirname}/Queries/{basename}Test.php"
+      "test/phpunit/unit/Network/{dirname}/Queries/{basename}Test.php",
+      "library/Network/{dirname}/QueryHandlers/{basename}.php"
     ],
     "type": "query"
   },
   "library/Network/**/QueryHandlers/*.php": {
     "alternate": [
-      "library/Network/{dirname}/Queries/{basename}.php",
-      "test/phpunit/unit/Network/{dirname}/QueryHandlers/{basename}Test.php"
+      "test/phpunit/unit/Network/{dirname}/QueryHandlers/{basename}Test.php",
+      "library/Network/{dirname}/Queries/{basename}.php"
     ],
     "type": "handler"
   },
