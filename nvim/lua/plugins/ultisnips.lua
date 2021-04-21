@@ -31,6 +31,9 @@ local psr4_map_config = {
     ["application/queries"] = "Behance\\Network\\Queries\\",
     ["library/Network/"] = "Behance\\Network\\",
     ["test/phpunit/unit/Network/"] = "Behance\\Network\\"
+  },
+  ["nbd.php-dbal"] = {
+    ["src/"] = "Behance\\NBD\\Dbal\\",
   }
 }
 

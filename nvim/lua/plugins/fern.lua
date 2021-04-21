@@ -3,6 +3,7 @@ local u = require('utils')
 local api = vim.api
 
 vim.g['fern#keepjumps_on_edit'] = 1
+vim.g['fern#keepalt_on_edit'] = 1
 
 -- disable netrw
 vim.g.loaded_netrw = 1
@@ -31,4 +32,4 @@ augroup fern-custom
 augroup END
 ]], false)
 
-u.nmap('<leader>h', ':Fern . -reveal=%<cr>')
+u.nmap('<leader>h', ':keepalt Fern . -reveal=%<cr>')

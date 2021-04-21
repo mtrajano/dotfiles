@@ -46,15 +46,6 @@ set pyxversion=3
 set nrformats-=octal
 
 " =============
-" ABBREVIATIONS
-" =============
-cab dotfiles ~/dotfiles
-cab behance ~/dev/behance
-cab benet ~/dev/behance/be.net
-cab view ~/dev/behance/pro2-view
-cab core ~/dev/behance/core
-
-" =============
 " INSERT REMAPS
 " =============
 

@@ -23,6 +23,10 @@ _adobe_comment = '''
 ADOBE_HEADER = _adobe_comment.strip().format(year = datetime.date.today().year)
 endglobal
 
+snippet cn "class name" w
+`!v expand('%:t:r')`
+endsnippet
+
 snippet ns "current namespace" w
 `!v v:lua.NormalizeNamespace(expand('%:h'))`
 endsnippet
