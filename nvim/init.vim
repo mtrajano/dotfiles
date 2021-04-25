@@ -78,6 +78,7 @@ source $HOME/dotfiles/nvim/theme.vim
 source $HOME/dotfiles/nvim/plugins/coc.vim
 source $HOME/dotfiles/nvim/plugins/fzf.vim
 source $HOME/dotfiles/nvim/plugins/ultisnips.vim
+source $HOME/dotfiles/nvim/plugins/unix.vim
 
 lua require'plenary.reload'.reload_module('mappings')
 lua require'plenary.reload'.reload_module('init')

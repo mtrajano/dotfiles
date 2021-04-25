@@ -61,6 +61,9 @@ inoremap <silent> [<cr> [<cr>]<esc>O
 " disable ex-mode
 nnoremap Q <nop>
 
+" toggle quickfix
+nmap <leader>q <Plug>(qf_qf_toggle)
+
 " resource files
 nnoremap <silent> <leader>sv :source $MYVIMRC <bar> echo "reloaded"<cr>
 
