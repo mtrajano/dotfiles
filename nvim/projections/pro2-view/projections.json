@@ -13,20 +13,23 @@
   },
   "library/**/Commands/*.php": {
     "alternate": [
-        "test/phpunit/unit/{dirname}/Commands/{basename}Test.php",
-        "library/{dirname}/Handlers/{basename}.php"
-      ],
+      "test/phpunit/unit/{dirname}/Commands/{basename}Test.php",
+      "library/{dirname}/Handlers/{basename}.php"
+    ],
+    "skeleton": "~/dotfiles/nvim/skeletons/shared/command.txt",
     "type": "command"
   },
   "library/**/Handlers/*.php": {
     "alternate": [
-        "test/phpunit/unit/{dirname}/Handlers/{basename}Test.php",
-        "library/{dirname}/Commands/{basename}.php"
-      ],
+      "test/phpunit/unit/{dirname}/Handlers/{basename}Test.php",
+      "library/{dirname}/Commands/{basename}.php"
+    ],
+    "skeleton": "~/dotfiles/nvim/skeletons/shared/command_handler.txt",
     "type": "handler"
   },
   "test/phpunit/unit/*Test.php": {
     "alternate": "library/{}.php",
+    "skeleton": "~/dotfiles/nvim/skeletons/pro2-view/test.txt",
     "type": "test"
   },
   "test/phpunit/unit/Application/*Test.php": {

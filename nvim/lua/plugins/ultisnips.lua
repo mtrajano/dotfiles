@@ -60,7 +60,7 @@ end
 
 -- TODO: remove this from the global scope and out of this plugin config
 function _G.NormalizeNamespace(path)
-  for prefix, namespace in pairs(vim.g.behance_psr4_map) do
+  for prefix, namespace in pairs(vim.g.behance_psr4_map or {}) do
     if string.match(path, prefix) then
       path = path:gsub(prefix, namespace)
       path = path:gsub('/', '\\')

@@ -17,6 +17,7 @@
       "library/Network/{dirname}/Handlers/{basename}.php",
       "library/Network/{dirname}/CommandHandlers/{basename}.php"
     ],
+    "skeleton": "~/dotfiles/nvim/skeletons/shared/command.txt",
     "type": "command"
   },
   "library/Network/Command/Handlers/*.php": {
@@ -24,6 +25,7 @@
       "test/phpunit/unit/Network/Command/Handlers/{}Test.php",
       "library/Network/Command/Commands/{}.php"
     ],
+    "skeleton": "~/dotfiles/nvim/skeletons/shared/command_handler.txt",
     "type": "handler"
   },
   "library/Network/**/CommandHandlers/*.php": {
@@ -31,6 +33,7 @@
       "test/phpunit/unit/Network/{dirname}/CommandHandlers/{basename}Test.php",
       "library/Network/{dirname}/Commands/{basename}.php"
     ],
+    "skeleton": "~/dotfiles/nvim/skeletons/shared/command_handler.txt",
     "type": "handler"
   },
   "library/Network/**/Queries/*.php": {
@@ -38,6 +41,7 @@
       "test/phpunit/unit/Network/{dirname}/Queries/{basename}Test.php",
       "library/Network/{dirname}/QueryHandlers/{basename}.php"
     ],
+    "skeleton": "~/dotfiles/nvim/skeletons/shared/query.txt",
     "type": "query"
   },
   "library/Network/**/QueryHandlers/*.php": {
@@ -45,6 +49,7 @@
       "test/phpunit/unit/Network/{dirname}/QueryHandlers/{basename}Test.php",
       "library/Network/{dirname}/Queries/{basename}.php"
     ],
+    "skeleton": "~/dotfiles/nvim/skeletons/shared/query_handler.txt",
     "type": "handler"
   },
   "test/phpunit/unit/Application/*Test.php": {
@@ -57,6 +62,7 @@
   },
   "test/phpunit/unit/*Test.php": {
     "alternate": "library/{}.php",
+    "skeleton": "~/dotfiles/nvim/skeletons/be.net/test.txt",
     "type": "test"
   }
 }

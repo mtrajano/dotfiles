@@ -1,3 +1,5 @@
+require'plenary.reload'.reload_module('plugins')
+
 require'mappings'
 require'textobjs'
 
