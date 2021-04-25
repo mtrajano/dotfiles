@@ -9,6 +9,7 @@ vim.g.UltiSnipsSnippetDirectories = {
 
 local M = {}
 
+-- TODO move this out of this plugin config
 local psr4_map_config = {
   ["pro2-view"] = {
     ["application/actions/"] = "Behance\\Portfolio\\View\\Actions\\",
@@ -28,12 +29,21 @@ local psr4_map_config = {
     ["application/services/"] = "Behance\\Network\\Services\\",
     ["application/commands/"] = "Behance\\Network\\Commands\\",
     ["application/controllers/"] = "Behance\\Network\\Controllers\\",
-    ["application/queries"] = "Behance\\Network\\Queries\\",
+    ["application/queries/"] = "Behance\\Network\\Queries\\",
     ["library/Network/"] = "Behance\\Network\\",
     ["test/phpunit/unit/Network/"] = "Behance\\Network\\"
   },
   ["nbd.php-dbal"] = {
     ["src/"] = "Behance\\NBD\\Dbal\\",
+  },
+  ["image-service"] = {
+    ["library/Image/"] = "Behance\\Image\\",
+    ["library/Image"] = "Behance\\Image\\",
+    ["application/controllers/"] = "Behance\\Image\\Controllers\\",
+    ["application/queries/"] = "Behance\\Image\\Queries\\",
+    ["application/services/"] = "Behance\\Image\\Services\\",
+    ["tests/phpunit/lib/traits/"] = "Behance\\Image\\Test\\Traits\\",
+    ["tests/phpunit/"] = "Behance\\Image\\Test\\",
   }
 }
 
@@ -48,7 +58,7 @@ M.update_psr4_map = function(dir)
   end
 end
 
--- TODO: remove this from the global scope
+-- TODO: remove this from the global scope and out of this plugin config
 function _G.NormalizeNamespace(path)
   for prefix, namespace in pairs(vim.g.behance_psr4_map) do
     if string.match(path, prefix) then
