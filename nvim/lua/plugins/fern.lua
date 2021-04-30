@@ -7,10 +7,6 @@ local fn = vim.fn
 vim.g['fern#keepjumps_on_edit'] = 1
 vim.g['fern#keepalt_on_edit'] = 1
 
--- disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 local M = {}
 
 M.fern_init = function()

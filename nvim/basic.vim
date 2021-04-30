@@ -85,6 +85,7 @@ nnoremap <leader>= <C-W>=
 nnoremap <silent> <leader>/ :noh<cr>
 
 " clipboard integreation
+nnoremap Y y$
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 nnoremap <leader>p "0p

@@ -9,6 +9,7 @@ local function map(mode, lhs, rhs, opts, local_to_buf)
     unique = false,
     noremap = true,
     silent = true,
+    expr = false,
   }
 
   if opts then

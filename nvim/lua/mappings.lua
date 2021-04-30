@@ -33,9 +33,6 @@ u.nmap('<leader>eq', ':Equery<CR>')
 u.nmap('<leader>es', ':Esource<CR>')
 u.nmap('<leader>et', ':Etest<CR>')
 
--- Ack remaps
-u.nmap('<leader>f', ':Ack!<space>', {silent = false})
-
 -- Fugitive remaps
 u.nmap('<leader>gs', ':G<cr>')
 u.nmap('<leader>gd', ':Gdiff<cr>')

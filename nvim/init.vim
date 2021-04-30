@@ -81,6 +81,7 @@ source $HOME/dotfiles/nvim/plugins/ultisnips.vim
 source $HOME/dotfiles/nvim/plugins/unix.vim
 
 lua require'plenary.reload'.reload_module('mappings')
+lua require'plenary.reload'.reload_module('utils')
 lua require'plenary.reload'.reload_module('init')
 if has('nvim-0.5')
   lua require('init')
