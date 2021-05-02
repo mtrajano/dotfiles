@@ -65,6 +65,7 @@ nnoremap Q <nop>
 nmap <leader>q <Plug>(qf_qf_toggle)
 
 " resource files
+nnoremap <silent> <leader>ev :tabe $DOTFILES <bar> tcd $DOTFILES<cr>
 nnoremap <silent> <leader>sv :source $MYVIMRC <bar> echo "reloaded"<cr>
 
 nnoremap <leader>DD :profile start /tmp/temp_prof <bar> :profile func * <bar> :profile file * <cr>

@@ -34,7 +34,7 @@ u.nmap('<leader>es', ':Esource<CR>')
 u.nmap('<leader>et', ':Etest<CR>')
 
 -- Fugitive remaps
-u.nmap('<leader>gs', ':G<cr>')
+u.nmap('<leader>gg', ':G<cr>')
 u.nmap('<leader>gd', ':Gdiff<cr>')
 u.nmap('<leader>gb', ':Gblame<cr>')
 -- Merge conflict remaps
@@ -44,6 +44,8 @@ u.nmap('<leader>gl', ':diffget //3')
 u.nmap('<leader>gk', ':SignifyHunkDiff<cr>')
 u.nmap('<leader>gu', ':SignifyHunkUndo<cr>')
 u.nmap('<leader>gz', ':SignifyFold<cr>')
+-- Fzf checkout remaps
+u.nmap('<leader>go', ':GBranches --locals<cr>')
 
 -- FZF remaps
 u.nmap('<leader>l', ':Buffers<CR>')
