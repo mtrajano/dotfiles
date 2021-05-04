@@ -233,23 +233,29 @@ endsnippet
 pre_expand "del snip.buffer[snip.line - 1]"
 snippet constr "__construct()" b
 ${1:`!p
-tokens = t[1].split(',')
-for var in tokens:
-	type_var = var.strip().split()
-	variable = type_var[-1] if type_var else ""
-	has_type = len(type_var) > 1
-	snip += "private %s$_%s;" % (type_var[0] + " " if has_type else "", variable[1:])
-snip += ""
+if t[1]:
+	tokens = t[1].split(',')
+	for var in tokens:
+		type_var = var.strip().split()
+		variable = type_var[-1] if type_var else ""
+		has_type = len(type_var) > 1
+		snip += "private %s$_%s;" % (type_var[0] + " " if has_type else "", variable[1:])
+	snip += ""
+else:
+	snip.rv = ""
 `}
 public function __construct(${1:$dependencies}) {
 `!p
-tokens = t[1].split(',')
-snip >> 1
-for var in tokens:
-	type_var = var.strip().split()
-	variable = type_var[-1] if type_var else ""
-	snip += "$this->_%s = %s;" % (variable[1:], variable)
-snip += ""
+if t[1]:
+	tokens = t[1].split(',')
+	snip >> 1
+	for var in tokens:
+		type_var = var.strip().split()
+		variable = type_var[-1] if type_var else ""
+		snip += "$this->_%s = %s;" % (variable[1:], variable)
+	snip += ""
+else:
+	snip.rv = ""
 `
 }
 endsnippet
