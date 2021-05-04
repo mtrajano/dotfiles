@@ -44,14 +44,21 @@ local psr4_map_config = {
     ["application/services/"] = "Behance\\Image\\Services\\",
     ["tests/phpunit/lib/traits/"] = "Behance\\Image\\Test\\Traits\\",
     ["tests/phpunit/"] = "Behance\\Image\\Test\\",
+  },
+  ["core-http"] = {
+    ["src/"] = "Behance\\Core\\Http\\",
+    ["tests/unit/"] = "Behance\\Core\\Http\\",
+  },
+  ["core-logger"] = {
+    ["src/Logger/"] = "Behance\\Core\\Logger\\",
+    ["tests/unit/"] = "Behance\\Core\\Logger\\",
   }
 }
 
 M.update_psr4_map = function(dir)
   local head = string.match(dir, "[^/]+$")
 
-  if psr4_map_config[head] ~= nil
-  then
+  if psr4_map_config[head] ~= nil then
     vim.g.behance_psr4_map = psr4_map_config[head]
   else
     vim.g.behance_psr4_map = {}

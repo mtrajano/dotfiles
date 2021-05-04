@@ -43,6 +43,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function' " Coc func object seems to be pretty hacky
 Plug 'kana/vim-textobj-entire'
 Plug 'glts/vim-textobj-comment'
+Plug 'kana/vim-textobj-indent'
 
 if has('nvim')
   Plug 'antoinemadec/FixCursorHold.nvim'

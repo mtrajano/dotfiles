@@ -35,7 +35,7 @@ M.try_import_skeleton = function()
   print('try import_skeleton called')
   local skeleton_path = get_skeleton_path()
   if skeleton_path ~= nil then
-    cmd('0read ' .. skeleton_path)
+    cmd('keepalt 0read ' .. skeleton_path)
   end
 
   perform_substitutions()

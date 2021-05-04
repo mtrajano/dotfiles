@@ -1,0 +1,11 @@
+{
+  "src/Logger/*.php": {
+    "alternate": "tests/unit/{}Test.php",
+    "type": "source"
+  },
+  "tests/unit/*Test.php": {
+    "alternate": "src/Logger/{}.php",
+    "skeleton": "~/dotfiles/nvim/skeletons/core-logger/test.txt",
+    "type": "test"
+  }
+}
