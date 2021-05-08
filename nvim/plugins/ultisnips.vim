@@ -1,4 +1,4 @@
-function! <SID>SetPsr4Map(pwd)
+function! s:SetPsr4Map(pwd)
   lua require('plugins.ultisnips').update_psr4_map(vim.api.nvim_eval('a:pwd'))
 endfunction
 

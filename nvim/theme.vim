@@ -1,9 +1,9 @@
 colorscheme rigel
-let g:rigel_airline = 1
-let g:airline_theme='rigel'
 
+" TODO move these to colors dir
 highlight MatchParen guifg=#00ffff guibg=#002635
 highlight CursorLineNr guifg=#f08e48
+highlight ModifiedColor ctermfg=196 ctermbg=23 guifg=#c43060 guibg=#00384d term=Bold cterm=Bold gui=Bold
 
 " fzf preview window match theme
 let g:fzf_colors =

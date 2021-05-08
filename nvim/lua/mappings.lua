@@ -50,6 +50,4 @@ u.nmap('<leader>go', ':GBranches --locals<cr>')
 -- FZF remaps
 u.nmap('<leader>l', ':Buffers<CR>')
 u.nmap('<leader>j', ':Files<CR>')
-u.nmap('<leader>JJ', ':FilesAll<cr>')
-u.nmap('<leader>Jh', ':Files ~<cr>')
-u.nmap('<leader>Jd', ':Files ~/dotfiles<cr>')
+u.nmap('<leader>J', ':FilesAll<cr>')

@@ -1,6 +1,10 @@
+require'plenary.reload'.reload_module('mappings')
+require'plenary.reload'.reload_module('statusline')
+require'plenary.reload'.reload_module('utils')
 require'plenary.reload'.reload_module('plugins')
 
 require'mappings'
+require'statusline'
 require'textobjs'
 
 require'plugins.ale'

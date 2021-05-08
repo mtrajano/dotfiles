@@ -1,19 +1,40 @@
-" helpful seettings when in 'pair' mode, having someone remote viewing my
-" screen
-function! <SID>TogglePairMode(on)
-  if a:on
-    set norelativenumber
-    set mouse=a
-  else
-    set relativenumber
-    set mouse=
-  endif
+" TODO status lines functions, move these somewhere else
+function! TruncateRelativePath() abort
+  return luaeval('require("statusline").truncated_relativepath()')
 endfunction
 
-command! -nargs=0 -bang Pair call <SID>TogglePairMode(<bang>1)
+function! ALEWarningCounts() abort
+  return luaeval('require("statusline").ale_warnings()')
+endfunction
+
+function! ALEErrorCounts() abort
+  return luaeval('require("statusline").ale_errors()')
+endfunction
+
+function! LightlineModified() abort
+  return luaeval('require("statusline").lightline_modified()')
+endfunction
+
+function! s:ProfileStart(filename) abort
+  let s:profile_filename = a:filename
+
+  exec "profile start " . s:profile_filename
+  profile func *
+  profile file *
+endfunction
+
+function! s:ProfileStop() abort
+  profile stop
+  exec "edit " . s:profile_filename
+endfunction
+
+command! -nargs=0 -bang Pair call s:TogglePairMode(<bang>1)
 
 " closes out every other buffer but this one
 command! -nargs=0 On :%bd|e#|bd#
+
+command! -nargs=1 -complete=file Profile call s:ProfileStart(<f-args>)
+command! -nargs=0 -complete=file ProfileStop call s:ProfileStop()
 
 " trim trailing space on save
 function! <SID>TrimTrailingSpace()

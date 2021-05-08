@@ -68,9 +68,6 @@ nmap <leader>q <Plug>(qf_qf_toggle)
 nnoremap <silent> <leader>ev :tabe $DOTFILES <bar> tcd $DOTFILES<cr>
 nnoremap <silent> <leader>sv :source $MYVIMRC <bar> echo "reloaded"<cr>
 
-nnoremap <leader>DD :profile start /tmp/temp_prof <bar> :profile func * <bar> :profile file * <cr>
-nnoremap <leader>Do :profile stop <bar> :e /tmp/temp_prof <cr>
-
 " swap 0 and ^
 nnoremap 0 ^
 nnoremap ^ 0

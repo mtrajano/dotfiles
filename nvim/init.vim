@@ -32,8 +32,7 @@ Plug 'stsewd/fzf-checkout.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-hijack.vim'
@@ -81,8 +80,6 @@ source $HOME/dotfiles/nvim/plugins/fzf.vim
 source $HOME/dotfiles/nvim/plugins/ultisnips.vim
 source $HOME/dotfiles/nvim/plugins/unix.vim
 
-lua require'plenary.reload'.reload_module('mappings')
-lua require'plenary.reload'.reload_module('utils')
 lua require'plenary.reload'.reload_module('init')
 if has('nvim-0.5')
   lua require('init')

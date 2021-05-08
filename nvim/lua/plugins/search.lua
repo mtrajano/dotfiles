@@ -2,7 +2,7 @@ local u = require('utils')
 local fn = vim.fn
 local cmd = vim.cmd
 
-local special_chars = {'.', '{', '}', '[', ']', '-', '+', '*', '?', '^', '$'}
+local special_chars = {'.', '{', '}', '[', ']', '-', '+', '*', '?', '^', '$', '#'}
 
 -- use ripgrep for searching
 vim.g.ackprg = 'rg --vimgrep --smart-case'
@@ -28,6 +28,22 @@ local function escape_special_chars(word)
   return word
 end
 
+local function include_file_globs(filetype)
+  local filetype_to_glob = {
+    php = {"'!*Test.php'"},
+  }
+
+  local glob_param = ''
+
+  if filetype_to_glob[filetype] ~= nil then
+    for _, glob in ipairs(filetype_to_glob[filetype]) do
+      glob_param = glob_param .. ' -g ' .. glob
+    end
+  end
+
+  return glob_param
+end
+
 local function resolve_types(filetype)
   local type_overrides = {
     javascript = {'js', 'ts'},
@@ -35,6 +51,7 @@ local function resolve_types(filetype)
     typescript = {'js', 'ts'},
     typescriptreact = {'js', 'ts'},
     vue = {'js', 'ts'},
+    yaml = {'all'},
   }
 
   local search_filetypes = {filetype}
@@ -58,8 +75,7 @@ local function search_word(raw_term, opts)
   local opts = opts or {}
   local optional_params = (opts.ignored and " --no-ignore-vcs") or ""
 
-  -- TODO only append filetype if valid rg option
-  optional_params = optional_params .. resolve_types(vim.bo.filetype)
+  optional_params = optional_params .. resolve_types(vim.bo.filetype) .. include_file_globs(vim.bo.filetype)
 
   local search_term = escape_special_chars(raw_term)
   if opts.boundary then
