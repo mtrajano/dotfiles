@@ -45,6 +45,9 @@ set pyxversion=3
 " unset octal format from <C-a>/<C-x> binding
 set nrformats-=octal
 
+" delay macro rendering until it's done for better perf
+set lazyredraw
+
 " =============
 " INSERT REMAPS
 " =============

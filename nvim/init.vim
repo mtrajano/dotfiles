@@ -1,5 +1,13 @@
 let g:mapleader = "\<Space>"
 
+if v:false
+  profile start /tmp/startprof
+  profile func *
+  profile file *
+
+  map <leader>D :<C-u>profile stop <bar> edit /tmp/startprof<cr>
+endif
+
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Rigellute/rigel'
@@ -20,6 +28,7 @@ Plug 'romainl/vim-qf'
 Plug 'moll/vim-bbye'
 Plug 'dense-analysis/ale'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+Plug 'AndrewRadev/splitjoin.vim'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'

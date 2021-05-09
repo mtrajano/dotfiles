@@ -35,11 +35,13 @@ u.nmap('<leader>et', ':Etest<CR>')
 
 -- Fugitive remaps
 u.nmap('<leader>gg', ':G<cr>')
-u.nmap('<leader>gd', ':Gdiff<cr>')
-u.nmap('<leader>gb', ':Gblame<cr>')
+u.nmap('<leader>gd', ':G diff<cr>')
+u.nmap('<leader>gb', ':G blame<cr>')
+u.nmap('<leader>gl', ':G log -n 500<cr>')
 -- Merge conflict remaps
-u.nmap('<leader>gh', ':diffget //2')
-u.nmap('<leader>gl', ':diffget //3')
+-- TODO only map these when inside of a merge conflict
+-- u.nmap('<leader>gh', ':diffget //2')
+-- u.nmap('<leader>gl', ':diffget //3')
 -- Signify remaps
 u.nmap('<leader>gk', ':SignifyHunkDiff<cr>')
 u.nmap('<leader>gu', ':SignifyHunkUndo<cr>')

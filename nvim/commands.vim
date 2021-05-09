@@ -28,7 +28,18 @@ function! s:ProfileStop() abort
   exec "edit " . s:profile_filename
 endfunction
 
-command! -nargs=0 -bang Pair call s:TogglePairMode(<bang>1)
+function! s:HexifyFile(on) abort
+  if a:on
+    syntax off
+    exec '%!xxd'
+  else
+    syntax enable
+    exec '%!xxd -r'
+    edit!
+  endif
+endfunction
+
+command! -nargs=0 -bang Hex call s:HexifyFile(<bang>1)
 
 " closes out every other buffer but this one
 command! -nargs=0 On :%bd|e#|bd#

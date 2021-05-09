@@ -23,6 +23,12 @@ _adobe_comment = '''
 ADOBE_HEADER = _adobe_comment.strip().format(year = datetime.date.today().year)
 endglobal
 
+snippet php "php start tag" b
+<?php
+
+$0
+endsnippet
+
 snippet cn "class name" w
 `!v expand('%:t:r')`
 endsnippet
