@@ -1,10 +1,13 @@
 # alacritty
-ln -is alacritty $XDG_CONFIG_HOME/
+ln -is $PWD/alacritty $XDG_CONFIG_HOME/
+ln -is $PWD/kitty $XDG_CONFIG_HOME/
 
-ln -is kitty $XDG_CONFIG_HOME/
+ln -is $PWD/git/gitignore $HOME/.gitignore
+ln -is $PWD/git/gitconfig $HOME/.gitconfig
+ln -is $PWD/git/gitattributes $HOME/.gitattributes
 
 # nvim
-ln -is nvim/{ftplugin,snips,after,lua} $XDG_CONFIG_HOME/nvim
+ln -is $PWD/nvim/{ftplugin,snips,after,lua} $XDG_CONFIG_HOME/nvim
 
 # create projections
 for dir in nvim/projections/*

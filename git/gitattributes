@@ -1,0 +1,5 @@
+*.php diff=php
+*.vim diff=vim
+*.lua diff=lua
+tmux.conf diff=tmux
+*.sh diff=sh

@@ -1,0 +1,89 @@
+[user]
+  name = Mauricio Trajano
+  email = mauriciot1993@gmail.com
+
+[core]
+  excludesfile = ~/.gitignore
+  attributesfile = ~/.gitattributes
+  pager = delta
+
+[delta]
+  line-numbers = true
+  syntax-theme = Rigel
+  minus-style = "#c43060"
+  zero-style = "#e6e6dc"
+  plus-style = "#9cf087"
+  minus-emph-style = "#e6e6dc #c43060"
+  plus-emph-style = "#002635 #9cf087"
+  line-numbers-minus-style="#c43060"
+  line-numbers-zero-style="#e6e6dc"
+  line-numbers-plus-style="#9cf087"
+  file-style = "#f08e48"
+  hunk-header-style = "syntax"
+  minus-empty-line-marker-style = "syntax"
+  plus-empty-line-marker-style = "syntax"
+
+[hub]
+  host = git.corp.adobe.com
+
+[push]
+  default = current
+
+[alias]
+  a = add
+  l = log --oneline
+
+  # status
+  s = status
+  rs = restore --staged
+
+  # diff
+  d = diff
+  dc = diff --cached
+  di = !"fn() { git diff HEAD~$1; }; fn"
+
+  # branch
+  b = branch
+  bd = branch -d
+  bD = branch -D
+
+  # checkout
+  co = checkout
+  cb = checkout -b
+
+  # commit
+  cm = commit -m
+  cmu = commit -am
+  ca = commit --amend
+
+  # stash
+  st = stash
+  sp = stash pop
+
+  # push/pull
+  up = push --force origin
+  pu = pull --rebase upstream master
+
+  # MISC
+  root = rev-parse --show-toplevel
+
+[pager]
+  branch = false
+
+[interactive]
+  diffFilter = delta --color-only
+
+[diff "php"]
+  xfuncname = "((public|private|protected)( static)? function \\w+[^)]+\\)( : \\S+)?|class \\w+( extends [\\\\\\w]+)?)"
+
+[diff "vim"]
+  xfuncname = "^fu(nction)?!? \\w+]\\(\\)"
+
+[diff "lua"]
+  xfuncname = "(local function \\w+[^)]\\)|\\w+\\.[\\w\\.]+ = function[^)]+\\))"
+
+[diff "tmux"]
+  xfuncname = ""
+
+[diff "sh"]
+  xfuncname = ""

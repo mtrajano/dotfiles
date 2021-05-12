@@ -62,5 +62,6 @@ augroup END
 augroup fix_filetypes
   autocmd!
   autocmd BufEnter composer.lock setlocal ft=json
+  autocmd BufEnter gitconfig setlocal ft=gitconfig
 augroup END
 
