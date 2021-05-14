@@ -48,6 +48,9 @@ set nrformats-=octal
 " delay macro rendering until it's done for better perf
 set lazyredraw
 
+" don't continue comment on o/O operation
+set formatoptions-=o
+
 " =============
 " INSERT REMAPS
 " =============
@@ -110,3 +113,8 @@ vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " simulate insert register in terminal mode (and fzf prompt)
 tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+
+" =====================
+" HELPFUL ABBREVIATIONS
+" =====================
+inoreabbrev todo TODO

@@ -1,3 +1,6 @@
+" don't continue comment on o/O operation
+set formatoptions-=o
+
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
