@@ -8,7 +8,7 @@ if v:false
   map <leader>D :<C-u>profile stop <bar> edit /tmp/startprof<cr>
 endif
 
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin($XDG_CONFIG_HOME . '/nvim/plugged')
 
 Plug 'Rigellute/rigel'
 
@@ -81,13 +81,13 @@ endif
 
 call plug#end()
 
-source $HOME/dotfiles/nvim/basic.vim
-source $HOME/dotfiles/nvim/commands.vim
-source $HOME/dotfiles/nvim/theme.vim
-source $HOME/dotfiles/nvim/plugins/coc.vim
-source $HOME/dotfiles/nvim/plugins/fzf.vim
-source $HOME/dotfiles/nvim/plugins/ultisnips.vim
-source $HOME/dotfiles/nvim/plugins/unix.vim
+source $XDG_CONFIG_HOME/nvim/basic.vim
+source $XDG_CONFIG_HOME/nvim/commands.vim
+source $XDG_CONFIG_HOME/nvim/theme.vim
+source $XDG_CONFIG_HOME/nvim/plugins/coc.vim
+source $XDG_CONFIG_HOME/nvim/plugins/fzf.vim
+source $XDG_CONFIG_HOME/nvim/plugins/ultisnips.vim
+source $XDG_CONFIG_HOME/nvim/plugins/unix.vim
 
 lua require'plenary.reload'.reload_module('init')
 if has('nvim-0.5')
