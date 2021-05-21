@@ -4,7 +4,7 @@ if exists("b:did_ftplugin")
 endif
 let b:did_ftplugin = 1
 
-function! <SID>FixTestFormat()
+function! s:FixTestFormat()
   let l:save = winsaveview()
 
   " append :void return type to any test methods missing it
@@ -13,5 +13,4 @@ function! <SID>FixTestFormat()
   call winrestview(l:save)
 endfunction
 
-command! -nargs=0 FixTest :call <SID>FixTestFormat()
-
+command! -nargs=0 FixTest :call s:FixTestFormat()

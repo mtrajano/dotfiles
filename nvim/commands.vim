@@ -58,10 +58,3 @@ augroup formatting_fixes
   autocmd!
   autocmd BufWritePre * :call <SID>TrimTrailingSpace()
 augroup END
-
-augroup fix_filetypes
-  autocmd!
-  autocmd BufEnter composer.lock setlocal ft=json
-  autocmd BufEnter */git/config setlocal ft=gitconfig
-augroup END
-
