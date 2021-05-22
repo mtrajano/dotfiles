@@ -1,4 +1,4 @@
-local u = require('utils')
+local u = require('mt.utils')
 
 local cmd = vim.cmd
 local api = vim.api

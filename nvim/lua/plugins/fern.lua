@@ -1,4 +1,4 @@
-local u = require('utils')
+local u = require('mt.utils')
 
 local cmd = vim.cmd
 local api = vim.api
@@ -10,12 +10,16 @@ vim.g['fern#keepalt_on_edit'] = 1
 local M = {}
 
 M.fern_init = function()
-  u.buf_nmap('q', ':Bd<cr>')
-  u.buf_nmap('n', 'jn')
-  u.buf_nmap('y', '"+:lua require("plugins.fern").relative_yank()<cr>')
-  u.buf_nmap('Y', '"+<Plug>(fern-action-yank:path)', {noremap = false})
-  u.buf_nmap('K', '<Plug>(fern-action-new-path)', {noremap = false})
-  u.buf_nmap('<BS>', '<Plug>(fern-action-leave)', {noremap = false})
+  u.buf_nmap('q', ':Bd<cr>') -- quit
+  u.buf_nmap('n', ':keepjumps normal! n<cr>') -- fix next match
+  u.buf_nmap('N', ':keepjumps normal! N<cr>') -- fix prev match
+
+  u.buf_nmap('y', '"+:lua require("plugins.fern").relative_yank()<cr>') -- relative yank to clipboard
+  u.buf_nmap('Y', '"+<Plug>(fern-action-yank:path)', {noremap = false}) -- absolute yank to clipboard
+  u.buf_nmap('K', '<Plug>(fern-action-new-path)', {noremap = false}) -- new path
+  u.buf_nmap('<BS>', '<Plug>(fern-action-leave)', {noremap = false}) -- go to parent root
+  u.buf_nmap('<tab>', '-', {noremap = false}) -- tab for mark
+  u.buf_vmap('<tab>', '-', {noremap = false}) -- tab for mark
 
   -- fix navigation keys so they work with vim-tmux-navigator
   -- as some of them get overriden by the plugin

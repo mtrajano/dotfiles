@@ -1,4 +1,4 @@
-local u = require('utils')
+local u = require('mt.utils')
 
 vim.g.github_enterprise_urls = {
   "https://git.corp.adobe.com"

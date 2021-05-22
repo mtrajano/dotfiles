@@ -1,4 +1,4 @@
-local u = require('utils')
+local u = require('mt.utils')
 
 vim.g['test#strategy'] = 'floaterm'
 vim.g['test#preserve_screen'] = 0

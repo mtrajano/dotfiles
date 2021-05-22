@@ -1,4 +1,4 @@
-local u = require('utils')
+local u = require('mt.utils')
 
 -- Esc remaps
 u.cmap('kj', '<C-c>')

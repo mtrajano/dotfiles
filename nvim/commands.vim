@@ -1,18 +1,18 @@
 " TODO status lines functions, move these somewhere else
 function! TruncateRelativePath() abort
-  return luaeval('require("statusline").truncated_relativepath()')
+  return luaeval('require("mt.statusline").truncated_relativepath()')
 endfunction
 
 function! ALEWarningCounts() abort
-  return luaeval('require("statusline").ale_warnings()')
+  return luaeval('require("mt.statusline").ale_warnings()')
 endfunction
 
 function! ALEErrorCounts() abort
-  return luaeval('require("statusline").ale_errors()')
+  return luaeval('require("mt.statusline").ale_errors()')
 endfunction
 
 function! LightlineModified() abort
-  return luaeval('require("statusline").lightline_modified()')
+  return luaeval('require("mt.statusline").lightline_modified()')
 endfunction
 
 function! s:ProfileStart(filename) abort

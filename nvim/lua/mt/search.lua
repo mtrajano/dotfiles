@@ -1,4 +1,4 @@
-local u = require('utils')
+local u = require('mt.utils')
 local fn = vim.fn
 local cmd = vim.cmd
 
@@ -69,13 +69,17 @@ local function resolve_types(filetype)
 end
 
 -- @class opts
--- @field ignored   : Dont respect version control ignore files
--- @field boundary  : Add a word boundary around the search term
+-- @field ignored      : Dont respect version control ignore files
+-- @field boundary     : Add a word boundary around the search term
+-- @field include_ft   : Search within same filetype
 local function search_word(raw_term, opts)
-  local opts = opts or {}
+  opts = opts or {}
+
   local optional_params = (opts.ignored and " --no-ignore-vcs") or ""
 
-  optional_params = optional_params .. resolve_types(vim.bo.filetype) .. include_file_globs(vim.bo.filetype)
+  if opts.include_ft then
+    optional_params = optional_params .. resolve_types(vim.bo.filetype) .. include_file_globs(vim.bo.filetype)
+  end
 
   local search_term = escape_special_chars(raw_term)
   if opts.boundary then
@@ -88,16 +92,28 @@ local function search_word(raw_term, opts)
   fn.setreg('/', raw_term) -- to make highlight search term work with word boundaries
 end
 
-M.search_normal = function(include_ignored)
-  search_word(fn.expand('<cword>'), {
-    ignored=include_ignored,
-    boundary=true
-  })
+-- @class opts
+-- @field ignored      : Dont respect version control ignore files
+-- @field boundary     : Add a word boundary around the search term
+-- @field include_ft   : Search within same filetype
+M.search_normal = function(opts)
+  local default_opts = {
+    ignored = false,
+    boundary = true,
+    include_ft = true,
+  }
+
+  if opts then
+    default_opts = vim.tbl_extend('force', default_opts, opts)
+  end
+
+  search_word(fn.expand('<cword>'), default_opts)
 end
 
 M.search_visual = function()
   local line_start = fn.line("'<")
   local line_end = fn.line("'>")
+
   if (line_start ~= line_end) then
     -- TODO ? support search across multiple lines by appending "\s*\n" to each line
     print('Search should only be across a single line')
@@ -111,8 +127,8 @@ M.search_visual = function()
   end
 end
 
-u.nmap('<leader>f', ':lua require("plugins.search").search_normal(false)<cr>')
-u.vmap('<leader>f', ':lua require("plugins.search").search_visual()<cr>')
-u.nmap('<leader>F', ':lua require("plugins.search").search_normal(true)<cr>') -- use with caution
+u.nmap('<leader>f', ':lua require("mt.search").search_normal({include_ft=true})<cr>')
+u.vmap('<leader>f', ':lua require("mt.search").search_visual()<cr>')
+u.nmap('<leader>F', ':lua require("mt.search").search_normal({include_ft=false})<cr>')
 
 return M

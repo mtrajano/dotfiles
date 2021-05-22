@@ -35,6 +35,13 @@ vim.g.lightline = {
   }
 }
 
+api.nvim_exec([[
+augroup update_statusline_linters
+  autocmd!
+  autocmd User ALELintPost call lightline#update()
+augroup END
+]], false)
+
 local M = {}
 
 M.truncated_relativepath = function()
@@ -52,13 +59,13 @@ end
 M.ale_warnings = function()
   local ale_stats = fn['ale#statusline#Count'](api.nvim_get_current_buf())
 
-  return 'W' .. ale_stats.warning
+  return 'W' .. (ale_stats.warning + ale_stats.style_warning)
 end
 
 M.ale_errors = function()
   local ale_stats = fn['ale#statusline#Count'](api.nvim_get_current_buf())
 
-  return 'E' .. ale_stats.error
+  return 'E' .. (ale_stats.error + ale_stats.style_error)
 end
 
 M.lightline_modified = function()
