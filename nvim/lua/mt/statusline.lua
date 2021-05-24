@@ -9,7 +9,7 @@ vim.g.lightline = {
     left = {
       { 'mode' },
       { 'gitbranch' },
-      { 'truncated_relativepath', 'modified' },
+      { 'relativepath', 'modified' },
     },
     right = {
       { 'lineinfo' },
@@ -44,6 +44,7 @@ augroup END
 
 local M = {}
 
+-- TODO use this when less space (need to detect screen width)
 M.truncated_relativepath = function()
   local resolved_path = ''
   local buf_name = fn.expand('%:t')

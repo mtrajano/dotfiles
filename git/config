@@ -35,6 +35,7 @@
 
   # status
   s = status
+  ss = status -s
   rs = restore --staged
 
   # diff
@@ -58,6 +59,7 @@
 
   # stash
   st = stash
+  stp = stash -p
   sp = stash pop
 
   # push/pull
