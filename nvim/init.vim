@@ -53,6 +53,8 @@ Plug 'kana/vim-textobj-entire'
 Plug 'glts/vim-textobj-comment'
 Plug 'kana/vim-textobj-indent'
 
+Plug 'jiangmiao/auto-pairs'
+
 if has('nvim')
   Plug 'antoinemadec/FixCursorHold.nvim'
 endif

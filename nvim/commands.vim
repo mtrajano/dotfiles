@@ -39,6 +39,8 @@ function! s:HexifyFile(on) abort
   endif
 endfunction
 
+command! -nargs=0 GetSynName echo synIDattr(synID(line('.'), col('.'), v:true), 'name')
+
 command! -nargs=0 -bang Hex call s:HexifyFile(<bang>1)
 
 " closes out every other buffer but this one
