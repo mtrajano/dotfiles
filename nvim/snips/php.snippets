@@ -72,6 +72,7 @@ snippet error "Create an error log" b
 $this->_getLogger()->error('$1');
 endsnippet
 
+
 snippet class "Default class declaration template" b
 <?php
 
@@ -86,125 +87,6 @@ class `!v expand('%:t:r')` {
 }
 endsnippet
 
-# TODO: remove class specific snippets after skeleton plugin is fully fleshed out
-snippet tclass "Default test class declaration template" b
-<?php
-
-`!p snip.rv = ADOBE_HEADER`
-
-namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
-
-class `!v expand('%:t:r')` extends \NetworkUnitTest {
-
-	$0
-
-}
-endsnippet
-
-snippet qclass "Query object class declaration template" b
-<?php
-
-`!p snip.rv = ADOBE_HEADER`
-
-namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
-
-class `!v expand('%:t:r')` {
-
-	$0
-
-}
-endsnippet
-
-snippet qhclass "Query handler class declaration template" b
-<?php
-
-`!p snip.rv = ADOBE_HEADER`
-
-namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
-
-use ${1/QueryHandlers/Queries/};
-
-class `!v expand('%:t:r')` {
-
-	public function __invoke(Queries\\`!v expand('%:t:r')` $query) : array {
-
-		$0
-
-	}
-
-}
-endsnippet
-
-snippet cclass "Command class declaration template" b
-<?php
-
-`!p snip.rv = ADOBE_HEADER`
-
-namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
-
-use Behance\Core\CommandBus;
-
-class `!v expand('%:t:r')` extends CommandBus\CommandAbstract {
-
-	$0
-
-}
-endsnippet
-
-snippet caclass "Command async class declaration template" b
-<?php
-
-`!p snip.rv = ADOBE_HEADER`
-
-namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
-
-use Behance\Core\CommandBus;
-
-class `!v expand('%:t:r')` extends CommandBus\AsyncCommandAbstract {
-
-	$0
-
-	protected function _pack() : array {
-
-		return [];
-
-	}
-
-	public static function unpack(array $packed) : CommandBus\CommandAbstract {
-
-		return new static();
-
-	}
-
-}
-endsnippet
-
-snippet cvar "@var extension for command handler classes" b
-/** @var \\`!v substitute(v:lua.NormalizeNamespace(expand('%:r')), '\(Command\)\?Handlers', 'Commands', '')` */
-endsnippet
-
-snippet chclass "Command handler class declaration template" b
-<?php
-
-`!p snip.rv = ADOBE_HEADER`
-
-namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
-
-use Behance\Core\CommandBus;
-use Symfony\Component\EventDispatcher;
-
-class ${2:`!v expand('%:t:r')`} implements CommandBus\HandlerInterface {
-
-	public function handle(CommandBus\CommandAbstract $command, CommandBus $bus, EventDispatcher\EventDispatcherInterface $event_dispatcher) {
-
-		/** @var \\${1/Command?Handlers/Commands/}\\$2 $command */
-
-		$0
-
-	}
-
-}
-endsnippet
 
 post_jump "if snip.tabstop == 0: del snip.buffer[snip.tabstops[3].start[0]]"
 snippet eclass "Enum class" b
@@ -236,6 +118,7 @@ snip + ""
 }
 endsnippet
 
+
 pre_expand "del snip.buffer[snip.line - 1]"
 snippet constr "__construct()" b
 ${1:`!p
@@ -265,6 +148,12 @@ else:
 `
 }
 endsnippet
+
+
+snippet cvar "@var extension for command handler classes" b
+/** @var \\`!v substitute(v:lua.NormalizeNamespace(expand('%:r')), '\(Command\)\?Handlers', 'Commands', '')` */
+endsnippet
+
 
 pre_expand "del snip.buffer[snip.line - 1]"
 post_jump "if snip.tabstop == 0: del snip.buffer[len(snip.buffer)-2]"
@@ -310,6 +199,7 @@ for var in tokens:
 `
 endsnippet
 
+
 snippet pub "Public function" b
 public function ${1:name}(${2:$param}) ${3:: void} {
 
@@ -318,6 +208,7 @@ public function ${1:name}(${2:$param}) ${3:: void} {
 }
 $0
 endsnippet
+
 
 snippet pro "Protected function" b
 protected function ${1:name}(${2:$param}) ${3:: void} {
@@ -328,6 +219,7 @@ protected function ${1:name}(${2:$param}) ${3:: void} {
 $0
 endsnippet
 
+
 snippet pri "Private function" b
 private function ${1:name}(${2:$param}) ${3:: void} {
 
@@ -336,6 +228,7 @@ private function ${1:name}(${2:$param}) ${3:: void} {
 }
 $0
 endsnippet
+
 
 snippet pubs "Public static function" b
 public static function ${1:name}(${2:$param}) ${3:: void} {
@@ -346,6 +239,7 @@ public static function ${1:name}(${2:$param}) ${3:: void} {
 $0
 endsnippet
 
+
 snippet pros "Protected static function" b
 protected static function ${1:name}(${2:$param}) ${3:: void} {
 
@@ -354,6 +248,7 @@ protected static function ${1:name}(${2:$param}) ${3:: void} {
 }
 $0
 endsnippet
+
 
 snippet pris "Private static function" b
 private static function ${1:name}(${2:$param}) ${3:: void} {
@@ -364,11 +259,13 @@ private static function ${1:name}(${2:$param}) ${3:: void} {
 $0
 endsnippet
 
+
 snippet regh "Register a command/query to a handler" b
 $container[$1::class] = (function(${2:Pimple\\Container $container}) : ${1/Commands/CommandHandlers/} {
 	return new ${1/Commands/CommandHandlers/}($0);
 });
 endsnippet
+
 
 snippet mock "Test create mock snipper" w
 $this->createMock($0);
@@ -391,6 +288,14 @@ endsnippet
 
 snippet setup "Setup method for tests" b
 protected function setUp() : void {
+
+	$0
+
+}
+endsnippet
+
+snippet test "Test method" b
+public function test$1() : void {
 
 	$0
 

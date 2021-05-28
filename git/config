@@ -31,7 +31,10 @@
 
 [alias]
   a = add
-  l = log --oneline
+
+  # log
+  l = log
+  lo = log --oneline
 
   # status
   s = status

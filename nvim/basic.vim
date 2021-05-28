@@ -72,8 +72,8 @@ nnoremap Q <nop>
 nmap <leader>q <Plug>(qf_qf_toggle)
 
 " resource files
-nnoremap <silent> <leader>ev :tabe $DOTFILES <bar> tcd $DOTFILES<cr>
-nnoremap <silent> <leader>sv :source $MYVIMRC <bar> echo "reloaded"<cr>
+nnoremap <silent> <leader>ed :tabe $DOTFILES <bar> tcd $DOTFILES<cr>
+nnoremap <silent> <leader>sd :source $MYVIMRC <bar> echo "reloaded"<cr>
 
 " swap 0 and ^
 nnoremap 0 ^

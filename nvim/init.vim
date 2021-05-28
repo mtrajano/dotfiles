@@ -85,13 +85,13 @@ call plug#end()
 
 source $XDG_CONFIG_HOME/nvim/basic.vim
 source $XDG_CONFIG_HOME/nvim/commands.vim
-source $XDG_CONFIG_HOME/nvim/theme.vim
 source $XDG_CONFIG_HOME/nvim/plugins/coc.vim
 source $XDG_CONFIG_HOME/nvim/plugins/fzf.vim
 source $XDG_CONFIG_HOME/nvim/plugins/ultisnips.vim
 source $XDG_CONFIG_HOME/nvim/plugins/unix.vim
+source $XDG_CONFIG_HOME/nvim/utils/theme.vim
 
-lua require'plenary.reload'.reload_module('init')
 if has('nvim-0.5')
+  lua require'plenary.reload'.reload_module('init')
   lua require('init')
 endif
