@@ -26,11 +26,10 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-projectionist'
 Plug 'romainl/vim-qf'
 Plug 'moll/vim-bbye'
-Plug 'dense-analysis/ale'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+Plug 'dense-analysis/ale', { 'for': ['php', 'lua'] }
 Plug 'AndrewRadev/splitjoin.vim'
 
-Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips', { 'for': 'php' }
 Plug 'honza/vim-snippets'
 
 Plug 'tpope/vim-fugitive'
@@ -62,22 +61,9 @@ endif
 " remove when switch to native lsp
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" 0.4.4 plugins
-" js highlighting is handled by treesitter
-" lsp is handled by native lsp vs coc
-if !has('nvim-0.5')
-  " js highlighting
-  Plug 'yuezk/vim-js'
-  Plug 'HerringtonDarkholme/yats.vim'
-  Plug 'maxmellon/vim-jsx-pretty'
-endif
-
 if has('nvim-0.5')
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'nvim-treesitter/playground'
-  " Plug 'neovim/nvim-lspconfig'
-
-  " lua dev
   Plug 'nvim-lua/plenary.nvim'
 endif
 

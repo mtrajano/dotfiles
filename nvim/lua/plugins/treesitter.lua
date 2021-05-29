@@ -4,22 +4,17 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     "php",
     "python",
-    "javascript",
-    "typescript",
-    "tsx",
-    "vue",
-    "json",
     "lua"
   },
 
   highlight = {
     enable = true,
-    disable = {"php"}, -- breaks autoindent in php
+    disable = {}, -- breaks autoindent in php
   },
 
   indent = {
     enable = true,
-    disable = {"php"}, -- breaks autoindent in php
+    disable = {}, -- breaks autoindent in php
   },
 
   -- for debugging

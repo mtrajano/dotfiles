@@ -1,16 +1,23 @@
 local fn = vim.fn
 
+vim.g.ale_history_enabled = 0
+vim.g.ale_history_log_output = 0
+vim.g.ale_disable_lsp = 1
+vim.g.ale_linters_explicit = 1
+
+vim.g.ale_lint_on_enter = 0
+
 vim.g.ale_fixers = {
   php = {"phpcbf"}
 }
 
 vim.g.ale_linters = {
   php = {
-    'intelephense',
     'phpcs',
     'phpmd',
-    'psalm'
-  }
+    -- 'psalm'
+  },
+  lua = { 'luacheck' }
 }
 
 -- PHP
