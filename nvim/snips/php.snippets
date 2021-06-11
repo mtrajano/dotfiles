@@ -273,17 +273,14 @@ endsnippet
 
 snippet exo  "Test expects once" w
 expects($this->once())
-	$0
 endsnippet
 
 snippet exn  "Test expects never" w
 expects($this->never())
-	$0
 endsnippet
 
 snippet exe  "Test expects exactly" w
 expects($this->exactly($1))
-	$0
 endsnippet
 
 snippet setup "Setup method for tests" b
@@ -298,6 +295,144 @@ snippet test "Test method" b
 public function test$1() : void {
 
 	$0
+
+}
+endsnippet
+
+######################################################################
+# TODO remove these when skeleton templates get created even from fern
+######################################################################
+snippet class "Default class declaration template" b
+<?php
+
+`!p snip.rv = ADOBE_HEADER`
+
+namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
+
+class `!v expand('%:t:r')` {
+
+	$0
+
+}
+endsnippet
+
+# TODO: remove class specific snippets after skeleton plugin is fully fleshed out
+snippet tclass "Default test class declaration template" b
+<?php
+
+`!p snip.rv = ADOBE_HEADER`
+
+namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
+
+class `!v expand('%:t:r')` extends \NetworkUnitTest {
+
+	$0
+
+}
+endsnippet
+
+snippet qclass "Query object class declaration template" b
+<?php
+
+`!p snip.rv = ADOBE_HEADER`
+
+namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
+
+class `!v expand('%:t:r')` {
+
+	$0
+
+}
+endsnippet
+
+snippet qhclass "Query handler class declaration template" b
+snippet class "Default class declaration template" b
+<?php
+
+`!p snip.rv = ADOBE_HEADER`
+
+namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
+
+use ${1/QueryHandlers/Queries/};
+
+class `!v expand('%:t:r')` {
+
+	public function __invoke(Queries\\`!v expand('%:t:r')` $query) {
+
+		$0
+
+	}
+
+}
+endsnippet
+
+snippet cclass "Command class declaration template" b
+<?php
+
+`!p snip.rv = ADOBE_HEADER`
+
+namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
+
+use Behance\Core\CommandBus;
+
+class `!v expand('%:t:r')` extends CommandBus\CommandAbstract {
+
+	$0
+
+}
+endsnippet
+
+snippet caclass "Command async class declaration template" b
+<?php
+
+`!p snip.rv = ADOBE_HEADER`
+
+namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
+
+use Behance\Core\CommandBus;
+
+class `!v expand('%:t:r')` extends CommandBus\AsyncCommandAbstract {
+
+	$0
+
+	protected function _pack() : array {
+
+		return [];
+
+	}
+
+	public static function unpack(array $packed) : CommandBus\CommandAbstract {
+
+		return new static();
+
+	}
+
+}
+endsnippet
+
+snippet cvar "@var extension for command handler classes" b
+/** @var \\`!v substitute(v:lua.NormalizeNamespace(expand('%:r')), '\(Command\)\?Handlers', 'Commands', '')` */
+endsnippet
+
+snippet chclass "Command handler class declaration template" b
+<?php
+
+`!p snip.rv = ADOBE_HEADER`
+
+namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
+
+use Behance\Core\CommandBus;
+use Symfony\Component\EventDispatcher;
+
+class ${2:`!v expand('%:t:r')`} implements CommandBus\HandlerInterface {
+
+	public function handle(CommandBus\CommandAbstract $command, CommandBus $bus, EventDispatcher\EventDispatcherInterface $event_dispatcher) {
+
+		/** @var \\${1/Command?Handlers/Commands/}\\$2 $command */
+
+		$0
+
+	}
 
 }
 endsnippet

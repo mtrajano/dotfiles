@@ -93,6 +93,7 @@ nnoremap <silent> <leader>/ :noh<cr>
 nnoremap Y y$
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
+nnoremap <leader>Y "+y$
 nnoremap <leader>p "0p
 vnoremap <leader>p "0p
 
@@ -118,4 +119,15 @@ tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 " =====================
 " HELPFUL ABBREVIATIONS
 " =====================
+" TODO move these somewhere else
 inoreabbrev todo TODO
+inoreabbrev pgm PgM
+inoreabbrev t2e T2E
+inoreabbrev e2i E2I
+inoreabbrev esm ESM
+inoreabbrev usm USM
+inoreabbrev kb KB
+inoreabbrev mb MB
+inoreabbrev gb GB
+inoreabbrev tb TB
+inoreabbrev k12 K-12

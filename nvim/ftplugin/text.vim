@@ -1,5 +1,3 @@
-source $XDG_CONFIG_HOME/nvim/utils/spell.vim
-
 " TODO maybe this stuff should live in the spell script as well (name it something else)
 setl wrap
 setl linebreak

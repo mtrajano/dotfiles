@@ -24,7 +24,7 @@ use {{parent_namespace}}\Queries;
 
 class {{class_name}} {
 
-  public function __invoke(Queries\{{class_name}} $query) : array {
+  public function __invoke(Queries\{{class_name}} $query) {
 
 
 
