@@ -15,6 +15,7 @@ set smartcase
 set termguicolors
 
 " spacing
+set shiftround " indenting rounds to multiple of shiftwidth
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
@@ -22,7 +23,7 @@ set smartindent
 set expandtab
 
 " decrease timeout b/w remaps
-set timeoutlen=500
+set timeoutlen=1000
 
 " display realtime substitute update
 set inccommand=split
@@ -51,6 +52,10 @@ set lazyredraw
 
 " don't continue comment on o/O operation
 set formatoptions-=o
+
+" display hidden chars
+set list
+set listchars=tab:>\ ,nbsp:·
 
 " =============
 " INSERT REMAPS
@@ -115,6 +120,11 @@ vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 " simulate insert register in terminal mode (and fzf prompt)
 tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
+
+" =====================
+" HELPFUL ABBREVIATIONS
+" =====================
+cnoreabbrev tabrn TabooRename
 
 " =====================
 " HELPFUL ABBREVIATIONS

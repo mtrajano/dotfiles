@@ -9,6 +9,7 @@ vim.g.lightline = {
     left = {
       { 'mode' },
       { 'gitbranch' },
+      { 'git_additions', 'git_moditifications', 'git_removals' },
       { 'relativepath', 'modified' },
     },
     right = {
@@ -24,10 +25,16 @@ vim.g.lightline = {
   component_expand = {
     ale_warnings = 'ALEWarningCounts',
     ale_errors = 'ALEErrorCounts',
+    git_additions = 'GitAdditions',
+    git_moditifications = 'GitModitifications',
+    git_removals = 'GitRemovals',
   },
   component_type = {
     ale_warnings = 'warning',
     ale_errors = 'error',
+    git_additions = 'additions',
+    git_moditifications = 'modifications',
+    git_removals = 'removals',
   },
   component_function = {
     gitbranch = 'FugitiveHead',

@@ -28,9 +28,10 @@ Plug 'romainl/vim-qf'
 Plug 'moll/vim-bbye'
 Plug 'dense-analysis/ale', { 'for': ['php', 'lua'] }
 Plug 'AndrewRadev/splitjoin.vim'
+Plug 'gcmt/taboo.vim'
 
 Plug 'SirVer/ultisnips', { 'for': 'php' }
-Plug 'honza/vim-snippets'
+Plug 'honza/vim-snippets', { 'for': ['python', 'vim'] }
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'

@@ -1,12 +1,5 @@
 local u = require('mt.utils')
 
--- Esc remaps
-u.cmap('kj', '<C-c>')
-u.imap('kj', '<Esc>')
-u.omap('kj', '<Esc>')
-u.tmap('kj', '<Esc>')
-u.vmap('v', '<Esc>')
-
 -- Coc/Diagnostic remaps
 u.nmap('gd', '<Plug>(coc-definition)', {noremap=false})
 u.nmap('gD', ':call CocAction("jumpDefinition", v:false)<cr>')
@@ -38,6 +31,7 @@ u.nmap('<leader>gg', ':G<cr>')
 u.nmap('<leader>gd', ':G diff<cr>')
 u.nmap('<leader>gb', ':G blame<cr>')
 u.nmap('<leader>gl', ':G log -n 500<cr>')
+u.nmap('<leader>ga', ':Gw<cr>')
 -- Merge conflict remaps
 -- TODO only map these when inside of a merge conflict
 -- u.nmap('<leader>gh', ':diffget //2')

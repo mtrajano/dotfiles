@@ -11,6 +11,31 @@ function! ALEErrorCounts() abort
   return luaeval('require("mt.statusline").ale_errors()')
 endfunction
 
+function! GitAdditions() abort
+  let l:additions = sy#repo#get_stats()
+  if l:additions[0] <= 0
+    return ''
+  endif
+  return '+' . l:additions[0]
+endfunction
+
+function! GitModitifications() abort
+  let l:modifications = sy#repo#get_stats()
+  if l:modifications[1] <= 0
+    return ''
+  endif
+  return '!' . l:modifications[1]
+endfunction
+
+function! GitRemovals() abort
+  let l:removals = sy#repo#get_stats()
+  if l:removals[2] <= 0
+    return ''
+  endif
+  let l:removals = sy#repo#get_stats()
+  return '-' . l:removals[2]
+endfunction
+
 function! LightlineModified() abort
   return luaeval('require("mt.statusline").lightline_modified()')
 endfunction
@@ -60,3 +85,24 @@ augroup formatting_fixes
   autocmd!
   autocmd BufWritePre * :call <SID>TrimTrailingSpace()
 augroup END
+
+function! s:GoToResult()
+  " normal '<cr>'
+  echom "done"
+endfunction
+
+" TEST
+" TODO move this to a file specific for work scripts
+function! s:FindService()
+  " hack
+  au QuickFixCmdPost ++once echom "done"
+
+  normal "-yi'
+  let s:service = @-
+  " let s:service = escape(s:service, '.')
+
+  " echo "Ack \"\\$container['" . s:service . "'] = \" -Fs -g '*Services\\.php'"
+  execute "Ack \"\\$container['" . s:service . "'] = \" -Fs -g '*Services\\.php'"
+  " normal zz
+endfunction
+command! -nargs=0 FindService call s:FindService()

@@ -9,7 +9,7 @@ vim.g.UltiSnipsSnippetDirectories = {
 
 local M = {}
 
--- TODO move this out of this plugin config
+-- TODO move this out of this plugin config and to a work specific script
 local psr4_map_config = {
   ["pro2-view"] = {
     ["application/actions/"] = "Behance\\Portfolio\\View\\Actions\\",
