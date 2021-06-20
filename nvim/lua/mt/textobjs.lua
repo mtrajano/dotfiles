@@ -16,10 +16,6 @@ u.xmap('iC', '<Plug>(coc-classobj-i)', {noremap=false}) -- ic is taken by commen
 u.omap('If', '<Plug>(coc-funcobj-i)', {noremap=false}) -- if is taken by comment  obj, this is broken due to phpls returning comment as range as well
 u.xmap('If', '<Plug>(coc-funcobj-i)', {noremap=false}) -- if is taken by comment  obj, this is broken due to phpls returning comment as range as well
 
--- vim-textobj-function
-u.omap('af', 'aF', {noremap=false})
-u.xmap('af', 'aF', {noremap=false})
-
 -- "hunk" text objects provided by signify
 u.omap('ah', '<Plug>(signify-motion-outer-pending)', {noremap=false})
 u.xmap('ah', '<Plug>(signify-motion-outer-visual)', {noremap=false})

@@ -7,6 +7,7 @@ alias -g L="| less"
 ######
 # MISC
 ######
+alias code="open -a Visual\ Studio\ Code"
 alias ..="cd .."
 alias finder="open -a Finder"
 cloc() {
