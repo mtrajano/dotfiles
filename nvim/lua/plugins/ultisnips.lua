@@ -11,6 +11,44 @@ local M = {}
 
 -- TODO move this out of this plugin config and to a work specific script
 local psr4_map_config = {
+  ["adobe.php"] = {
+    ["src/"] = "Behance\\NBD\\",
+    ["tests/Validation/"] = "Behance\\NBD\\",
+    ["tests/lib/"] = "Behance\\NBD\\Test\\",
+  },
+  ["be.net"] = {
+    ["application/services/"] = "Behance\\Network\\Services\\",
+    ["application/commands/"] = "Behance\\Network\\Commands\\",
+    ["application/controllers/"] = "Behance\\Network\\Controllers\\",
+    ["application/queries/"] = "Behance\\Network\\Queries\\",
+    ["library/Network/"] = "Behance\\Network\\",
+    ["test/phpunit/unit/Network/"] = "Behance\\Network\\"
+  },
+  ["core-http"] = {
+    ["src/"] = "Behance\\Core\\Http\\",
+    ["tests/unit/"] = "Behance\\Core\\Http\\",
+  },
+  ["core-logger"] = {
+    ["src/Logger/"] = "Behance\\Core\\Logger\\",
+    ["tests/unit/"] = "Behance\\Core\\Logger\\",
+  },
+  ["core-queue"] = {
+    ["src/"] = "Behance\\Core\\Queue\\",
+    ["tests/unit/"] = "Behance\\Core\\Queue\\",
+    ["tests/lib/"] = "Behance\\Core\\Queue\\Test\\",
+  },
+  ["image-service"] = {
+    ["library/Image/"] = "Behance\\Image\\",
+    ["library/Image"] = "Behance\\Image\\",
+    ["application/controllers/"] = "Behance\\Image\\Controllers\\",
+    ["application/queries/"] = "Behance\\Image\\Queries\\",
+    ["application/services/"] = "Behance\\Image\\Services\\",
+    ["tests/phpunit/lib/traits/"] = "Behance\\Image\\Test\\Traits\\",
+    ["tests/phpunit/"] = "Behance\\Image\\Test\\",
+  },
+  ["nbd.php-dbal"] = {
+    ["src/"] = "Behance\\NBD\\Dbal\\",
+  },
   ["pro2-view"] = {
     ["application/actions/"] = "Behance\\Portfolio\\View\\Actions\\",
     ["application/services/"] = "Behance\\Portfolio\\View\\Services\\",
@@ -25,34 +63,6 @@ local psr4_map_config = {
     ["library/"] = "Behance\\Portfolio\\View\\",
     ["test/phpunit/unit/"] = "Behance\\Portfolio\\View\\"
   },
-  ["be.net"] = {
-    ["application/services/"] = "Behance\\Network\\Services\\",
-    ["application/commands/"] = "Behance\\Network\\Commands\\",
-    ["application/controllers/"] = "Behance\\Network\\Controllers\\",
-    ["application/queries/"] = "Behance\\Network\\Queries\\",
-    ["library/Network/"] = "Behance\\Network\\",
-    ["test/phpunit/unit/Network/"] = "Behance\\Network\\"
-  },
-  ["nbd.php-dbal"] = {
-    ["src/"] = "Behance\\NBD\\Dbal\\",
-  },
-  ["image-service"] = {
-    ["library/Image/"] = "Behance\\Image\\",
-    ["library/Image"] = "Behance\\Image\\",
-    ["application/controllers/"] = "Behance\\Image\\Controllers\\",
-    ["application/queries/"] = "Behance\\Image\\Queries\\",
-    ["application/services/"] = "Behance\\Image\\Services\\",
-    ["tests/phpunit/lib/traits/"] = "Behance\\Image\\Test\\Traits\\",
-    ["tests/phpunit/"] = "Behance\\Image\\Test\\",
-  },
-  ["core-http"] = {
-    ["src/"] = "Behance\\Core\\Http\\",
-    ["tests/unit/"] = "Behance\\Core\\Http\\",
-  },
-  ["core-logger"] = {
-    ["src/Logger/"] = "Behance\\Core\\Logger\\",
-    ["tests/unit/"] = "Behance\\Core\\Logger\\",
-  }
 }
 
 M.update_psr4_map = function(dir)

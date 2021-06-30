@@ -27,6 +27,9 @@ M.fern_init = function()
   u.buf_nmap('<C-K>', ':TmuxNavigateUp<cr>')
   u.buf_nmap('<C-J>', ':TmuxNavigateDown<cr>')
   u.buf_nmap('<C-H>', ':TmuxNavigateLeft<cr>')
+
+  u.buf_nmap('L', '<Plug>(fern-action-lcd:cursor)', {noremap = false})
+  u.buf_nmap('T', '<Plug>(fern-action-tcd:cursor)', {noremap = false})
 end
 
 M.relative_yank = function()

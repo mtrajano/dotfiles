@@ -58,15 +58,6 @@ set list
 set listchars=tab:>\ ,nbsp:·
 
 " =============
-" INSERT REMAPS
-" =============
-
-" autoindent blocks
-inoremap <silent> {<cr> {<cr>}<esc>O
-inoremap <silent> (<cr> (<cr>)<esc>O
-inoremap <silent> [<cr> [<cr>]<esc>O
-
-" =============
 " NORMAL REMAPS
 " =============
 

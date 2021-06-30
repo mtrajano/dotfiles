@@ -13,6 +13,8 @@ zstyle :compinstall filename '/Users/trajano/.config/zsh/completion.zsh'
 autoload -Uz compinit
 compinit -C
 
+compdef _git g=git
+
 zmodload -i zsh/complist
 
 # use the vi navigation keys in menu completion

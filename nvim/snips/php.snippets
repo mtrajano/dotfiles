@@ -82,6 +82,7 @@ snippet class "Default class declaration template" b
 
 `!p snip.rv = ADOBE_HEADER`
 
+
 namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
 
 class `!v expand('%:t:r')` {
@@ -341,21 +342,6 @@ endsnippet
 ######################################################################
 # TODO remove these when skeleton templates get created even from fern
 ######################################################################
-snippet class "Default class declaration template" bw
-<?php
-
-`!p snip.rv = ADOBE_HEADER`
-
-namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
-
-class `!v expand('%:t:r')` {
-
-	$0
-
-}
-endsnippet
-
-# TODO: remove class specific snippets after skeleton plugin is fully fleshed out
 snippet tclass "Default test class declaration template" b
 <?php
 
@@ -385,7 +371,6 @@ class `!v expand('%:t:r')` {
 endsnippet
 
 snippet qhclass "Query handler class declaration template" b
-snippet class "Default class declaration template" b
 <?php
 
 `!p snip.rv = ADOBE_HEADER`
