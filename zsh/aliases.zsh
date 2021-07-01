@@ -4,10 +4,16 @@
 alias -g G="| grep"
 alias -g L="| less"
 
+#############
+# APP ALIASES
+#############
+alias code="open -a Visual\ Studio\ Code"
+alias subl="open -a Sublime\ Text"
+
 ######
 # MISC
 ######
-alias code="open -a Visual\ Studio\ Code"
+alias wl="wc -l"
 alias ..="cd .."
 alias finder="open -a Finder"
 cloc() {

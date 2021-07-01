@@ -59,4 +59,16 @@ utils.contains = function(table, needle)
   return false
 end
 
+-- revert a table
+utils.revert = function(table)
+  local new_table = {}
+
+  for i = #table, 1, -1 do
+    local new_ix = #table - i + 1
+    new_table[new_ix] = table[i]
+  end
+
+  return new_table
+end
+
 return utils

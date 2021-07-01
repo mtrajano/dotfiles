@@ -106,3 +106,8 @@ function! s:FindService()
   " normal zz
 endfunction
 command! -nargs=0 FindService call s:FindService()
+
+augroup autopair_edit
+  autocmd!
+  autocmd FileType php let b:AutoPairs = AutoPairsDefine({}, ['<?', '<?php'])
+augroup END

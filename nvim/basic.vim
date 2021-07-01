@@ -61,6 +61,9 @@ set listchars=tab:>\ ,nbsp:·
 " NORMAL REMAPS
 " =============
 
+" don't jump to first match
+nnoremap * *N
+
 " disable ex-mode
 nnoremap Q <nop>
 
@@ -85,18 +88,20 @@ nnoremap <leader>= <C-W>=
 
 nnoremap <silent> <leader>/ :noh<cr>
 
+nnoremap <leader>Y ^yy
 " clipboard integreation
-nnoremap Y y$
 nnoremap <leader>y "+y
 vnoremap <leader>y "+y
-nnoremap <leader>Y "+y$
+vnoremap <leader>y "+yy
+
 nnoremap <leader>p "0p
 vnoremap <leader>p "0p
 
+nnoremap <leader>D ^D
 " null register deletes
-nnoremap <leader>x "_d
-nnoremap <leader>xx "_dd
-vnoremap <leader>x "_d
+nnoremap <leader>d "_d
+nnoremap <leader>dd "_dd
+vnoremap <leader>d "_d
 
 " =============
 " VISUAL REMAPS
@@ -104,6 +109,7 @@ vnoremap <leader>x "_d
 
 " search under selection
 vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>
+vnoremap v <esc>
 
 " ===============
 " TERMINAL REMAPS

@@ -10,6 +10,8 @@ endif
 
 call plug#begin($XDG_CONFIG_HOME . '/nvim/plugged')
 
+Plug 'mhinz/vim-startify'
+
 Plug 'Rigellute/rigel'
 
 Plug 'vim-test/vim-test'
