@@ -1,4 +1,4 @@
-" TODO: move these to a plugin
+" TODO: make these to a plugin, need to improve handling errors etc
 
 function s:newFile(filename) abort
   exec "edit %:h/" . a:filename
@@ -16,6 +16,6 @@ function s:deleteFile() abort
 endfunction
 
 " unix file helpers
-command! -nargs=1 -bang New call s:newFile(<f-args>)
+command! -nargs=1 -bang Enew call s:newFile(<f-args>)
 command! -nargs=1 -bang Cp call s:copyAndEdit(<f-args>)
 command! -nargs=0 -bang Rm call s:deleteFile()

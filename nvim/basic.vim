@@ -15,6 +15,7 @@ set smartcase
 set termguicolors
 
 " spacing
+" TODO: look into moving some of these to language specfic indents
 set shiftround " indenting rounds to multiple of shiftwidth
 set tabstop=2
 set softtabstop=2

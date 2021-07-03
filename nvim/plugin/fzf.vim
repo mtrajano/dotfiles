@@ -12,4 +12,6 @@ command! -bang -nargs=? FilesAll
       \     fzf#vim#with_preview({'source': 'fd . --type f --no-ignore --hidden'}), <bang>0)
 
 " TODO: remove preview and move to quickfix window
+" TODO: either make an abbrev or command that calls help if arg is passed
+" TODO: see if can pass filtered list to fzf
 command! -nargs=0 H :Helptags

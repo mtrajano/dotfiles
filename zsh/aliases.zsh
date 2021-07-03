@@ -13,6 +13,7 @@ alias subl="open -a Sublime\ Text"
 ######
 # MISC
 ######
+alias h=man
 alias wl="wc -l"
 alias ..="cd .."
 alias finder="open -a Finder"

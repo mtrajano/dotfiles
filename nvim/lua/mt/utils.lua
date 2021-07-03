@@ -50,7 +50,7 @@ utils.t = function(keycode)
 end
 
 utils.contains = function(table, needle)
-  for i,value in ipairs(table) do
+  for _,value in ipairs(table) do
     if (value == needle) then
       return true
     end

@@ -156,7 +156,7 @@ endsnippet
 
 
 snippet cvar "@var extension for command handler classes" b
-/** @var \\`!v substitute(v:lua.NormalizeNamespace(expand('%:r')), '\(Command\)\?Handlers', 'Commands', '')` */
+/** @var \\`!v substitute(v:lua.NormalizeNamespace(expand('%:r')), '\(Command\)\?Handlers', 'Commands', '')` $command */
 endsnippet
 
 
@@ -432,10 +432,6 @@ class `!v expand('%:t:r')` extends CommandBus\AsyncCommandAbstract {
 	}
 
 }
-endsnippet
-
-snippet cvar "@var extension for command handler classes" b
-/** @var \\`!v substitute(v:lua.NormalizeNamespace(expand('%:r')), '\(Command\)\?Handlers', 'Commands', '')` */
 endsnippet
 
 snippet chclass "Command handler class declaration template" b

@@ -1,9 +1,13 @@
 " don't continue comment on o/O operation
 set formatoptions-=o
 
+" spacing
+set shiftround " indenting rounds to multiple of shiftwidth
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
+set smartindent
+set expandtab
 
 " only folds classes inner content
 set foldlevel=1
