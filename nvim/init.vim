@@ -10,6 +10,8 @@ endif
 
 call plug#begin($XDG_CONFIG_HOME . '/nvim/plugged')
 
+" test
+Plug 'plasticboy/vim-markdown'
 Plug 'mhinz/vim-startify'
 
 Plug 'Rigellute/rigel'
@@ -57,18 +59,14 @@ Plug 'kana/vim-textobj-indent'
 
 Plug 'jiangmiao/auto-pairs'
 
-if has('nvim')
-  Plug 'antoinemadec/FixCursorHold.nvim'
-endif
+Plug 'antoinemadec/FixCursorHold.nvim'
 
 " remove when switch to native lsp
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-if has('nvim-0.5')
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  Plug 'nvim-treesitter/playground'
-  Plug 'nvim-lua/plenary.nvim'
-endif
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
+Plug 'nvim-lua/plenary.nvim'
 
 call plug#end()
 
@@ -76,7 +74,9 @@ source $XDG_CONFIG_HOME/nvim/basic.vim
 source $XDG_CONFIG_HOME/nvim/commands.vim
 source $XDG_CONFIG_HOME/nvim/utils/theme.vim
 
-if has('nvim-0.5')
-  lua require'plenary.reload'.reload_module('init')
-  lua require('init')
-endif
+lua require'plenary.reload'.reload_module('init')
+lua require('init')
+
+source $XDG_CONFIG_HOME/nvim/basic.vim
+source $XDG_CONFIG_HOME/nvim/commands.vim
+source $XDG_CONFIG_HOME/nvim/utils/theme.vim
