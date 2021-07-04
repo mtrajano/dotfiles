@@ -109,5 +109,14 @@ command! -nargs=0 FindService call s:FindService()
 
 augroup autopair_edit
   autocmd!
-  autocmd FileType php let b:AutoPairs = AutoPairsDefine({}, ['<?', '<?php'])
+  autocmd FileType php ++once let b:AutoPairs = AutoPairsDefine({}, ['<?', '<?php'])
+augroup END
+
+augroup source_commands
+  autocmd!
+  " default
+  au BufEnter * nnoremap <silent> <leader>sd :source $MYVIMRC <bar> echo "reloaded"<cr>
+
+  au BufEnter *.lua nnoremap <leader>sd :luafile %<cr>
+  au BufEnter *.vim nnoremap <leader>sd :source %<cr>
 augroup END

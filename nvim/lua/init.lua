@@ -1,8 +1,8 @@
-function _G.RELOAD(script)
+function RELOAD(script)
   require'plenary.reload'.reload_module(script)
 end
 
-function _G.P(var)
+function P(var)
   print(vim.inspect(var))
 end
 

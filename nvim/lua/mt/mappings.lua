@@ -42,3 +42,7 @@ u.nmap('<leader>go', ':GBranches --locals<cr>')
 u.nmap('<leader>l', ':Buffers<CR>')
 u.nmap('<leader>j', ':Files<CR>')
 u.nmap('<leader>J', ':FilesAll<cr>')
+
+-- splitjoin mappings
+u.nmap('<leader>sj', ':SplitjoinSplit<cr>')
+u.nmap('<leader>sk', ':SplitjoinJoin<cr>')

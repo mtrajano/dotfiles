@@ -9,12 +9,12 @@ require'nvim-treesitter.configs'.setup {
 
   highlight = {
     enable = true,
-    disable = {}, -- breaks autoindent in php
+    disable = {'php'}, -- breaks autoindent in php (relies on synId)
   },
 
   indent = {
     enable = true,
-    disable = {}, -- breaks autoindent in php
+    disable = {'php'}, -- need to investigate perf issues
   },
 
   -- for debugging
