@@ -12,7 +12,6 @@ call plug#begin($XDG_CONFIG_HOME . '/nvim/plugged')
 
 " test
 Plug 'plasticboy/vim-markdown'
-Plug 'mhinz/vim-startify'
 
 Plug 'Rigellute/rigel'
 
@@ -40,10 +39,7 @@ Plug 'honza/vim-snippets', { 'for': ['python', 'vim'] }
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'mhinz/vim-signify'
-Plug 'stsewd/fzf-checkout.vim'
-
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/gv.vim'
 
 Plug 'itchyny/lightline.vim'
 
@@ -61,12 +57,14 @@ Plug 'jiangmiao/auto-pairs'
 
 Plug 'antoinemadec/FixCursorHold.nvim'
 
-" remove when switch to native lsp
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
+" NVIM SPECIFIC
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-compe'
 
 call plug#end()
 
@@ -76,7 +74,3 @@ source $XDG_CONFIG_HOME/nvim/utils/theme.vim
 
 lua require'plenary.reload'.reload_module('init')
 lua require('init')
-
-source $XDG_CONFIG_HOME/nvim/basic.vim
-source $XDG_CONFIG_HOME/nvim/commands.vim
-source $XDG_CONFIG_HOME/nvim/utils/theme.vim

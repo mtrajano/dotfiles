@@ -109,7 +109,7 @@ command! -nargs=0 FindService call s:FindService()
 
 augroup autopair_edit
   autocmd!
-  autocmd FileType php let b:AutoPairs = AutoPairsDefine({}, ['<?', '<?php'])
+  autocmd FileType php ++once let b:AutoPairs = AutoPairsDefine({}, ['<?', '<?php'])
 augroup END
 
 augroup source_commands

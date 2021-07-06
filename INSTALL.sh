@@ -1,1 +1,1 @@
-stow --target=$XDG_CONFIG_HOME dotfiles
+stow --ignore=INSTALL.sh --target=$XDG_CONFIG_HOME dotfiles
