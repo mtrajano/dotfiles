@@ -9,6 +9,7 @@ end
 RELOAD('mt')
 RELOAD('plugins')
 
+require'mt.lsp'
 require'mt.mappings'
 require'mt.quickfix'
 require'mt.search'
@@ -16,9 +17,10 @@ require'mt.statusline'
 require'mt.textobjs'
 
 require'plugins.ale'
-require'plugins.coc'
 require'plugins.fern'
 require'plugins.fugitive'
 require'plugins.test'
 require'plugins.treesitter'
 require'plugins.ultisnips'
+
+require'plugins.telescope'
