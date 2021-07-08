@@ -1,22 +1,22 @@
 local u = require('mt.utils')
+local g = vim.g
+local o = vim.o
 local fn = vim.fn
 local cmd = vim.cmd
 
 local special_chars = {'.', '{', '}', '[', ']', '-', '+', '*', '?', '^', '$', '#'}
 
 -- use ripgrep for searching
-vim.g.ackprg = 'rg --vimgrep --smart-case'
+g.ackprg = 'rg --vimgrep --smart-case'
 
 -- use dispatch for non-blocking
-vim.g.ack_use_dispatch = 1
+g.ack_use_dispatch = 1
 
 -- use word under cursor on empty search
-vim.g.ack_use_cword_for_empty_search = 1
+g.ack_use_cword_for_empty_search = 1
 
 -- highlight searched terms
-vim.g.ackhighlight = 1
-
-u.cnoreabbrev('Ack', 'Ack!')
+g.ackhighlight = 1
 
 local M = {}
 
@@ -47,14 +47,14 @@ end
 local function resolve_types(filetype)
   local type_overrides = {
     javascript = {'js', 'ts'},
-    qf = {'all'},
+    lua = {'lua'},
+    php = {'php'},
     typescript = {'js', 'ts'},
     typescriptreact = {'js', 'ts'},
     vue = {'js', 'ts'},
-    yaml = {'all'},
   }
 
-  local search_filetypes = {filetype}
+  local search_filetypes = {'all'}
 
   if type_overrides[filetype] ~= nil then
     search_filetypes = type_overrides[filetype]
@@ -69,36 +69,38 @@ local function resolve_types(filetype)
 end
 
 -- @class opts
--- @field ignored      : Dont respect version control ignore files
+-- @field ignore      : Dont respect version control ignore files
 -- @field boundary     : Add a word boundary around the search term
 -- @field include_ft   : Search within same filetype
-local function search_word(raw_term, opts)
+local function get_search_term(raw_term, opts)
   opts = opts or {}
 
-  local optional_params = (opts.ignored and " --no-ignore-vcs") or ""
+  local optional_params = (opts.ignore and " --no-ignore-vcs") or ""
 
   if opts.include_ft then
-    optional_params = optional_params .. resolve_types(vim.bo.filetype) .. include_file_globs(vim.bo.filetype)
+    optional_params = optional_params .. resolve_types(o.filetype) .. include_file_globs(o.filetype)
   end
 
-  local search_term = escape_special_chars(raw_term)
-  if opts.boundary then
-    search_term = "'\\b" .. search_term .. "\\b'"
-  else
-    search_term = "'" .. search_term .. "'"
+  local search_term = ''
+  if raw_term then
+    search_term = escape_special_chars(raw_term)
+    if opts.boundary then
+      search_term = "'\\b" .. search_term .. "\\b'"
+    else
+      search_term = "'" .. search_term .. "'"
+    end
   end
 
-  cmd('Ack! ' .. search_term .. optional_params)
-  fn.setreg('/', raw_term) -- to make highlight search term work with word boundaries
+  return search_term .. optional_params
 end
 
 -- @class opts
--- @field ignored      : Dont respect version control ignore files
+-- @field ignore      : Dont respect version control ignore files
 -- @field boundary     : Add a word boundary around the search term
 -- @field include_ft   : Search within same filetype
 M.search_normal = function(opts)
   local default_opts = {
-    ignored = false,
+    ignore = false,
     boundary = true,
     include_ft = true,
   }
@@ -107,7 +109,11 @@ M.search_normal = function(opts)
     default_opts = vim.tbl_extend('force', default_opts, opts)
   end
 
-  search_word(fn.expand('<cword>'), default_opts)
+  local search_word = fn.expand('<cword>')
+
+  cmd('Ack!' ..  get_search_term(search_word, default_opts))
+  fn.setreg('/', search_word) -- to make highlight search term work with word boundaries
+
 end
 
 M.search_visual = function()
@@ -123,12 +129,26 @@ M.search_visual = function()
     local col_end = fn.col("'>")
     local word = string.sub(line, col_start, col_end);
 
-    search_word(word)
+    cmd('Ack!' ..  get_search_term(word))
+    fn.setreg('/', word) -- to make highlight search term work with word boundaries
   end
+end
+
+M.update_search_abbrev = function()
+  u.cnoreabbrev('ack', 'Ack!' .. get_search_term(nil, {include_ft=true})) -- TODO construct this using methods below
 end
 
 u.nmap('<leader>f', ':lua require("mt.search").search_normal({include_ft=true})<cr>')
 u.vmap('<leader>f', ':lua require("mt.search").search_visual()<cr>')
 u.nmap('<leader>F', ':lua require("mt.search").search_normal({include_ft=false})<cr>')
+u.cnoreabbrev('Ack', 'Ack!')
+u.cnoreabbrev('ack', 'Ack!') -- default, should get updated per filetype
+
+cmd [[
+augroup update_search_abbrev
+  autocmd!
+  autocmd BufEnter * lua require('mt.search').update_search_abbrev()
+augroup END
+]]
 
 return M

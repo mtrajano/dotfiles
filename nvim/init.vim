@@ -27,6 +27,7 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-obsession' " TODO look into ignore session files and creating an alias to open vim with the session
 Plug 'romainl/vim-qf'
 Plug 'moll/vim-bbye'
 Plug 'dense-analysis/ale', { 'for': ['php', 'lua'] }
@@ -71,6 +72,7 @@ call plug#end()
 source $XDG_CONFIG_HOME/nvim/basic.vim
 source $XDG_CONFIG_HOME/nvim/commands.vim
 source $XDG_CONFIG_HOME/nvim/utils/theme.vim
+source $XDG_CONFIG_HOME/nvim/work.vim
 
 lua require'plenary.reload'.reload_module('init')
 lua require('init')

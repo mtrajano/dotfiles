@@ -1,5 +1,7 @@
+local Path = require('plenary.path')
 local fn = vim.fn
 local api = vim.api
+local cmd = vim.cmd
 
 vim.g.rigel_lightline = 1
 
@@ -42,26 +44,24 @@ vim.g.lightline = {
   }
 }
 
-api.nvim_exec([[
+cmd [[
 augroup update_statusline_linters
   autocmd!
   autocmd User ALELintPost call lightline#update()
 augroup END
-]], false)
+]]
 
 local M = {}
 
 -- TODO use this when less space (need to detect screen width)
 M.truncated_relativepath = function()
   local resolved_path = ''
-  local buf_name = fn.expand('%:t')
-  local buf_dir = fn.expand('%:h')
+  local buf_path = fn.expand('%')
+  buf_path = buf_path:gsub(os.getenv('HOME'), '~')
 
-  for match in buf_dir:gmatch('[^/]+') do
-    resolved_path = resolved_path .. match:sub(1,1) .. '/'
-  end
+  local path = Path:new(buf_path)
 
-  return resolved_path .. buf_name
+  return path:shorten(1)
 end
 
 M.ale_warnings = function()
