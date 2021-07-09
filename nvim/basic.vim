@@ -1,7 +1,4 @@
 set nocompatible
-filetype plugin on
-
-syntax enable
 
 set hidden
 set noswapfile

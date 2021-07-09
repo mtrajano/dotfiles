@@ -1,11 +1,5 @@
 local utils = require('mt.utils')
 
-
-utils.nmap('[q', '<Plug>(qf_qf_previous)', {noremap = false})
-utils.nmap(']q', '<Plug>(qf_qf_next)', {noremap = false})
-utils.nmap('[l', '<Plug>(qf_loc_previous)', {noremap = false})
-utils.nmap(']l', '<Plug>(qf_loc_next)', {noremap = false})
-
 -- enable mappings to open files in different ways
 vim.g.qf_mapping_ack_style = 1
 

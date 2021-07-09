@@ -3,6 +3,7 @@
 ################
 alias -g G="| grep"
 alias -g L="| less"
+alias -g H="| head -n"
 
 #############
 # APP ALIASES
@@ -106,8 +107,8 @@ alias c=composer
 ################
 # CONFIG ALIASES
 ################
-alias ez="cd && nvim ~/.zshrc"
-alias eza="cd $XDG_CONFIG_HOME/zsh && nvim aliases.zsh"
+alias ez="nvim ~/.zshrc"
+alias eza="nvim $XDG_CONFIG_HOME/zsh/aliases.zsh"
 alias sz="source ~/.zshrc"
 alias ed="z dotfiles && nvim"
 alias eg="nvim $XDG_CONFIG_HOME/git/config"

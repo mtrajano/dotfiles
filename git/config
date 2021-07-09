@@ -32,20 +32,6 @@
 [alias]
   a = add
 
-  # log
-  l = log --oneline
-  lo = log
-
-  # status
-  s = status
-  ss = status -s
-  rs = restore --staged
-
-  # diff
-  d = diff
-  dc = diff --cached
-  di = !"fn() { git diff HEAD~$1; }; fn"
-
   # branch
   b = branch
   bd = branch -d
@@ -61,6 +47,25 @@
   cmu = commit -am
   ca = commit --amend
 
+  # diff
+  d = diff
+  dc = diff --cached
+  di = !"fn() { git diff HEAD~$1; }; fn"
+
+  # log
+  l = log --oneline
+  lo = log
+
+  # remote
+  r = remote
+  rv = remote -v
+  rrn = remote rename
+
+  # status
+  s = status
+  ss = status -s
+  rs = restore --staged
+
   # stash
   sta = stash
   stp = stash pop
@@ -74,7 +79,6 @@
   # MISC
   root = rev-parse --show-toplevel
   author = !"fn() { git log --author=$1 ${@:2}; }; fn"
-  rv = remote -v
 
 [pager]
   branch = false

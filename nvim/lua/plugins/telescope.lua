@@ -27,7 +27,3 @@ require'telescope'.setup{
     },
   }
 }
-
-u.nmap('<leader>j', ':lua require"telescope.builtin".find_files()<cr>')
-u.nmap('<leader>l', ':lua require"telescope.builtin".buffers()<cr>')
-u.nmap('<leader>H', ':lua require"telescope.builtin".help_tags()<cr>')
