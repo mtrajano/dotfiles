@@ -25,10 +25,6 @@ u.nmap('<leader>gz', ':SignifyFold<cr>')
 
 u.nmap('<leader>go', ':lua require"telescope.builtin".git_branches()<cr>')
 
-u.nmap('<leader>j', ':lua require"telescope.builtin".find_files()<cr>')
-u.nmap('<leader>l', ':lua require"telescope.builtin".buffers()<cr>')
-u.nmap('<leader>H', ':lua require"telescope.builtin".help_tags()<cr>')
-
 -- splitjoin mappings
 u.nmap('<leader>sj', ':SplitjoinSplit<cr>')
 u.nmap('<leader>sk', ':SplitjoinJoin<cr>')

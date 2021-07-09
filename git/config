@@ -44,7 +44,8 @@
 
   # commit
   cm = commit -m
-  cmu = commit -am
+  cam = commit -am
+  cum = commit -um
   ca = commit --amend
 
   # diff
@@ -60,6 +61,10 @@
   r = remote
   rv = remote -v
   rrn = remote rename
+
+  # reset
+  re = reset
+  reh = reset --hard
 
   # status
   s = status
@@ -77,6 +82,7 @@
   pu = pull --rebase upstream master
 
   # MISC
+  cp = cherry-pick
   root = rev-parse --show-toplevel
   author = !"fn() { git log --author=$1 ${@:2}; }; fn"
 

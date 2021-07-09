@@ -19,6 +19,7 @@ require'telescope'.setup{
     layout_config = {
       prompt_position = "top",
     },
+    -- TODO this needs to get updated on chdir
     prompt_prefix = get_prompt_prefix() .. '> ',
     mappings = {
       i = {
@@ -27,3 +28,8 @@ require'telescope'.setup{
     },
   }
 }
+
+u.nmap('<leader>j', ':lua require"telescope.builtin".find_files({follow=true})<cr>')
+u.nmap('<leader>J', ':lua require"telescope.builtin".find_files({follow=true, hidden=true})<cr>')
+u.nmap('<leader>l', ':lua require"telescope.builtin".buffers()<cr>')
+u.nmap('<leader>H', ':lua require"telescope.builtin".help_tags()<cr>')

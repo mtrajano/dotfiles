@@ -26,3 +26,5 @@ vim.g.ale_php_phpcbf_standard = fn.getcwd() .. '/vendor/behance/php-sniffs/Behan
 vim.g.ale_php_phpmd_ruleset = fn.getcwd() .. '/vendor/behance/phpmd-rules/phpmd.xml.dist'
 
 vim.g.ale_php_psalm_options = '--config=psalm.xml'
+
+vim.g.ale_lua_luacheck_options = '--config=' .. os.getenv('XDG_CONFIG_HOME') .. '/luacheck/.luacheckrc'
