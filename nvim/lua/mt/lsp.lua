@@ -6,6 +6,10 @@ local fn = vim.fn
 -- PHP
 ------
 require'lspconfig'.intelephense.setup{
+  -- passes client, bufnr
+  on_attach = function()
+    require "lsp_signature".on_attach()
+  end,
   init_options = {
     licenceKey = os.getenv('INTELEPHENSE_KEY')
   }
@@ -31,6 +35,10 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 require'lspconfig'.sumneko_lua.setup {
+  -- passes client, bufnr
+  on_attach = function()
+    require "lsp_signature".on_attach()
+  end,
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
   settings = {
     Lua = {
