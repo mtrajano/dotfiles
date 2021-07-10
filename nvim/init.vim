@@ -25,6 +25,7 @@ Plug 'dense-analysis/ale', { 'for': ['php', 'lua'] }
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'gcmt/taboo.vim'
 Plug 'plasticboy/vim-markdown', { 'for' : 'markdown' }
+Plug 'wsdjeg/vim-fetch'
 
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'

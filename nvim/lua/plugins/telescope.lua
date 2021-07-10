@@ -1,6 +1,7 @@
 local Path = require('plenary.path')
 local u = require('mt.utils')
 local api = vim.api
+local cmd = vim.cmd
 
 -- TODO maybe move this to utils so can be reused in different places (also
 -- used in the statusline)
@@ -33,3 +34,11 @@ u.nmap('<leader>j', ':lua require"telescope.builtin".find_files({follow=true})<c
 u.nmap('<leader>J', ':lua require"telescope.builtin".find_files({follow=true, hidden=true})<cr>')
 u.nmap('<leader>l', ':lua require"telescope.builtin".buffers()<cr>')
 u.nmap('<leader>H', ':lua require"telescope.builtin".help_tags()<cr>')
+
+local M = {}
+
+M.update_prompt = function()
+  require'telescope.config'.values.prompt_prefix = get_prompt_prefix() .. '> '
+end
+
+return M

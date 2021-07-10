@@ -120,3 +120,8 @@ augroup source_commands
   au BufEnter *.lua nnoremap <leader>sd :luafile %<cr>
   au BufEnter *.vim nnoremap <leader>sd :source %<cr>
 augroup END
+
+augroup update_prompt
+  autocmd!
+  autocmd DirChanged * lua require('plugins.telescope').update_prompt()
+augroup END
