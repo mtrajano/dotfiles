@@ -135,7 +135,7 @@ M.search_visual = function()
 end
 
 M.update_search_abbrev = function()
-  u.cnoreabbrev('ack', 'Ack!' .. get_search_term(nil, {include_ft=true})) -- TODO construct this using methods below
+  u.cnoreabbrev('ack', 'Ack!' .. get_search_term(nil, {include_ft=true}))
 end
 
 u.nmap('<leader>f', ':lua require("mt.search").search_normal({include_ft=true})<cr>')

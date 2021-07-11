@@ -135,11 +135,6 @@ cnoreabbrev tabrn TabooRename
 " =====================
 " TODO move these somewhere else
 inoreabbrev todo TODO
-inoreabbrev pgm PgM
-inoreabbrev t2e T2E
-inoreabbrev e2i E2I
-inoreabbrev esm ESM
-inoreabbrev usm USM
 inoreabbrev kb KB
 inoreabbrev mb MB
 inoreabbrev gb GB

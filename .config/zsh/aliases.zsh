@@ -14,6 +14,7 @@ alias subl="open -a Sublime\ Text"
 ######
 # MISC
 ######
+alias stow="stow --dotfiles"
 alias h=man
 alias wl="wc -l"
 alias ..="cd .."

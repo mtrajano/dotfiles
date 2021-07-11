@@ -20,7 +20,6 @@ require'telescope'.setup{
     layout_config = {
       prompt_position = "top",
     },
-    -- TODO this needs to get updated on chdir
     prompt_prefix = get_prompt_prefix() .. '> ',
     mappings = {
       i = {

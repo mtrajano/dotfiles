@@ -1,4 +1,5 @@
-" TODO status lines functions, move these somewhere else
+" TODO status lines functions, move these somewhere else or switch to
+" lualine.nvim
 function! TruncateRelativePath() abort
   return luaeval('require("mt.statusline").truncated_relativepath()')
 endfunction
@@ -90,22 +91,6 @@ function! s:GoToResult()
   " normal '<cr>'
   echom "done"
 endfunction
-
-" TEST
-" TODO move this to a file specific for work scripts
-function! s:FindService()
-  " hack
-  au QuickFixCmdPost ++once echom "done"
-
-  normal "-yi'
-  let s:service = @-
-  " let s:service = escape(s:service, '.')
-
-  " echo "Ack \"\\$container['" . s:service . "'] = \" -Fs -g '*Services\\.php'"
-  execute "Ack \"\\$container['" . s:service . "'] = \" -Fs -g '*Services\\.php'"
-  " normal zz
-endfunction
-command! -nargs=0 FindService call s:FindService()
 
 augroup autopair_edit
   autocmd!
