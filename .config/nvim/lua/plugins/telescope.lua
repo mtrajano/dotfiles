@@ -1,7 +1,7 @@
+local action = require('telescope.actions')
 local Path = require('plenary.path')
 local u = require('mt.utils')
 local api = vim.api
-local cmd = vim.cmd
 
 -- TODO maybe move this to utils so can be reused in different places (also
 -- used in the statusline)
@@ -23,7 +23,11 @@ require'telescope'.setup{
     prompt_prefix = get_prompt_prefix() .. '> ',
     mappings = {
       i = {
-        ["<esc>"] = require('telescope.actions').close,
+        ["<esc>"] = action.close,
+        ["<C-b>"] = action.preview_scrolling_up,
+        ["<C-f>"] = action.preview_scrolling_down,
+        ["<C-u>"] = false, -- overrides delete prompt
+        ["<C-d>"] = false,
       },
     },
   }

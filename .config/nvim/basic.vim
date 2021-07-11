@@ -83,17 +83,7 @@ nnoremap <leader><right> :vertical resize +10<cr>
 nnoremap <leader><left> :vertical resize -10<cr>
 nnoremap <leader>= <C-W>=
 
-nnoremap  <expr> <leader>/ <sid>ToggleHighlightForWord()
-fun! s:ToggleHighlightForWord() abort
-  if &hlsearch == 1
-    echom "hello"
-    set nohlsearch
-  else
-    echom "bye"
-    set hlsearch
-    norm *N
-  end
-endf
+nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 nnoremap <leader>Y ^yy
 " clipboard integreation

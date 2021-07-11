@@ -69,6 +69,8 @@ local M = {}
 M.hover_or_get_docs = function()
   if u.contains({'vim', 'help'}, o.filetype) then
     fn.execute('h ' .. fn.expand('<cword>'))
+  elseif u.contains({'sh', 'zsh'}, o.filetype) then
+    fn.execute('Man ' .. fn.expand('<cword>'))
   else
     vim.lsp.buf.hover()
   end
@@ -83,5 +85,6 @@ u.nmap('K', ':lua require("mt.lsp").hover_or_get_docs()<cr>')
 
 -- coming from other plugins
 u.nmap('<leader>k', ':lua require"telescope.builtin".lsp_document_symbols()<cr>')
+u.nmap('<leader>K', ':lua require"telescope.builtin".lsp_dynamic_workspace_symbols({ignore_filename = true})<cr>')
 
 return M

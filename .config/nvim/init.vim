@@ -36,7 +36,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-obsession' " TODO look into ignore session files and creating an alias to open vim with the session
 
-Plug 'SirVer/ultisnips', { 'for': 'php' }
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets', { 'for': ['python', 'vim'] }
 
 Plug 'tpope/vim-fugitive'
@@ -73,7 +73,7 @@ call plug#end()
 source $XDG_CONFIG_HOME/nvim/basic.vim
 source $XDG_CONFIG_HOME/nvim/commands.vim
 source $XDG_CONFIG_HOME/nvim/utils/theme.vim
-" source $XDG_CONFIG_HOME/nvim/work.vim
+source $XDG_CONFIG_HOME/nvim/work.vim
 
 lua require'plenary.reload'.reload_module('init')
 lua require('init')
