@@ -1,5 +1,7 @@
 set nocompatible
 
+set mouse=a
+
 set hidden
 set noswapfile
 set noerrorbells
@@ -59,9 +61,6 @@ set listchars=tab:>\ ,nbsp:·
 " NORMAL REMAPS
 " =============
 
-" don't jump to first match
-nnoremap * *N
-
 " disable ex-mode
 nnoremap Q <nop>
 
@@ -84,7 +83,17 @@ nnoremap <leader><right> :vertical resize +10<cr>
 nnoremap <leader><left> :vertical resize -10<cr>
 nnoremap <leader>= <C-W>=
 
-nnoremap <silent> <leader>/ :noh<cr>
+nnoremap  <expr> <leader>/ <sid>ToggleHighlightForWord()
+fun! s:ToggleHighlightForWord() abort
+  if &hlsearch == 1
+    echom "hello"
+    set nohlsearch
+  else
+    echom "bye"
+    set hlsearch
+    norm *N
+  end
+endf
 
 nnoremap <leader>Y ^yy
 " clipboard integreation

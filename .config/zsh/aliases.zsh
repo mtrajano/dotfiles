@@ -110,7 +110,7 @@ alias c=composer
 alias ez="nvim ~/.zshrc"
 alias eza="nvim $XDG_CONFIG_HOME/zsh/aliases.zsh"
 alias sz="source ~/.zshrc"
-alias ed="z dotfiles && nvim"
+alias ed="z dotfiles .config && nvim"
 alias eg="nvim $XDG_CONFIG_HOME/git/config"
 
 ################
@@ -136,3 +136,8 @@ pu() {
 }
 # in case still want to use phpunit
 alias phpunit="./vendor/bin/phpunit"
+
+#############
+# LUA ALIASES
+#############
+alias luamake=/Users/trajano/.cache/nvim/nlua/sumneko_lua/lua-language-server/3rd/luamake/luamake

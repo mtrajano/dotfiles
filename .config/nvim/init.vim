@@ -73,7 +73,7 @@ call plug#end()
 source $XDG_CONFIG_HOME/nvim/basic.vim
 source $XDG_CONFIG_HOME/nvim/commands.vim
 source $XDG_CONFIG_HOME/nvim/utils/theme.vim
-source $XDG_CONFIG_HOME/nvim/work.vim
+" source $XDG_CONFIG_HOME/nvim/work.vim
 
 lua require'plenary.reload'.reload_module('init')
 lua require('init')
