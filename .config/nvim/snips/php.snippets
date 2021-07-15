@@ -124,6 +124,28 @@ snip + ""
 endsnippet
 
 
+snippet sclass "Service class" b
+<?php
+
+`!p snip.rv = ADOBE_HEADER`
+
+namespace ${1:`!v v:lua.NormalizeNamespace(expand('%:h'))`};
+
+use Pimple\Container;
+use Pimple\ServiceProviderInterface;
+
+class ${2:`!v expand('%:t:r')`} extends ServiceProviderInterface {
+
+	public function register(Container $container) : void {
+
+		$0
+
+	}
+
+}
+endsnippet
+
+
 pre_expand "del snip.buffer[snip.line - 1]"
 snippet constr "__construct()" b
 ${1:`!p
@@ -264,16 +286,17 @@ private static function ${1:name}(${2:$param}) ${3:: void} {
 $0
 endsnippet
 
-
+# TODO figure out why can't use completion with this
 snippet regc "Register a command to a handler" b
-$container[$1::class] = (function (${2:Container $container}) : ${1/Commands/CommandHandlers/} {
-	return new ${1/Commands/CommandHandlers/}($0);
+$container[${1/CommandHandlers/Commands/}::class] = (function (${2:Container $container}) : $1 {
+	return new ${1}($0);
 });
 endsnippet
 
+# TODO figure out why can't use completion with this
 snippet regq "Register a query to a handler" b
-$container[$1::class] = (function (${2:Container $container}) : ${1/Queries/QueryHandlers/} {
-	return new ${1/Queries/QueryHandlers/}($0);
+$container[${1/QueryHandlers/Queries/}::class] = (function (${2:Container $container}) : $1 {
+	return new ${1}($0);
 });
 endsnippet
 
