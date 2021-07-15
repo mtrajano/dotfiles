@@ -1,3 +1,5 @@
+local u = require'mt.utils'
+
 require'compe'.setup {
   source = {
     path = true;
@@ -7,3 +9,4 @@ require'compe'.setup {
 }
 
 vim.o.completeopt = "menuone,noselect"
+u.imap('<CR>', 'compe#confirm("<CR>")', {expr=true})

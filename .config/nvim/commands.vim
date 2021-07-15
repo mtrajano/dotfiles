@@ -76,21 +76,23 @@ command! -nargs=1 -complete=file Profile call s:ProfileStart(<f-args>)
 command! -nargs=0 -complete=file ProfileStop call s:ProfileStop()
 
 " trim trailing space on save
-function! <SID>TrimTrailingSpace()
+function! s:TrimTrailingSpace()
   let l:save = winsaveview()
   keeppatterns %s/\s\+$//e
   call winrestview(l:save)
 endfunction
 
+function! s:FixMultipleNewline()
+  let l:save = winsaveview()
+  keeppatterns %s/\n\n$/\r/e
+  call winrestview(l:save)
+endfunction
+command! -nargs=0 FixMultipleNewline call s:FixMultipleNewline()
+
 augroup formatting_fixes
   autocmd!
-  autocmd BufWritePre * :call <SID>TrimTrailingSpace()
+  autocmd BufWritePre * :call s:TrimTrailingSpace()
 augroup END
-
-function! s:GoToResult()
-  " normal '<cr>'
-  echom "done"
-endfunction
 
 augroup autopair_edit
   autocmd!

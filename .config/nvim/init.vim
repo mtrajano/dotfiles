@@ -37,7 +37,7 @@ Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-obsession' " TODO look into ignore session files and creating an alias to open vim with the session
 
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets', { 'for': ['python', 'vim'] }
+Plug 'honza/vim-snippets', { 'for': ['python', 'vim', 'zsh'] }
 
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'

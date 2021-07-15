@@ -64,8 +64,13 @@ is-git-repo() {
   git rev-parse --git-dir > /dev/null 2>&1
 }
 
+
+#####
+# VIM
+#####
 alias mnvim="nvim -u ~/stow/dotfiles/nvim/minimal.vim"
 alias v=nvim
+alias vs="v -S Session.vim"
 
 ##############
 # TMUX ALIASES

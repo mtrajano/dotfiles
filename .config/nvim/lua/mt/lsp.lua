@@ -64,6 +64,14 @@ require'lspconfig'.sumneko_lua.setup {
   },
 }
 
+--------
+-- C/C++
+--------
+require'lspconfig'.clangd.setup{}
+
+------
+-- ALL
+------
 local M = {}
 
 M.hover_or_get_docs = function()
