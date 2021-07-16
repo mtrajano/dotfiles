@@ -23,8 +23,6 @@ u.nmap('<leader>gk', ':SignifyHunkDiff<cr>')
 u.nmap('<leader>gu', ':SignifyHunkUndo<cr>')
 u.nmap('<leader>gz', ':SignifyFold<cr>')
 
-u.nmap('<leader>go', ':lua require"telescope.builtin".git_branches()<cr>')
-
 -- splitjoin mappings
 u.nmap('<leader>sj', ':SplitjoinSplit<cr>')
 u.nmap('<leader>sk', ':SplitjoinJoin<cr>')

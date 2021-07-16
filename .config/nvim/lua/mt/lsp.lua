@@ -15,6 +15,12 @@ require'lspconfig'.intelephense.setup{
   }
 }
 
+
+--------
+-- JS/TS
+--------
+require'lspconfig'.tsserver.setup {}
+
 ------
 -- LUA
 ------

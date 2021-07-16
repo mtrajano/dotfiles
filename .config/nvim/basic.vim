@@ -101,6 +101,8 @@ nnoremap <leader>d "_d
 nnoremap <leader>dd "_dd
 vnoremap <leader>d "_d
 
+nnoremap <leader>, :TabooRename<space>
+
 " =============
 " VISUAL REMAPS
 " =============
@@ -115,11 +117,6 @@ vnoremap v <esc>
 
 " simulate insert register in terminal mode (and fzf prompt)
 tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
-
-" =====================
-" HELPFUL ABBREVIATIONS
-" =====================
-cnoreabbrev tabrn TabooRename
 
 " =====================
 " HELPFUL ABBREVIATIONS

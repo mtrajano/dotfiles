@@ -23,20 +23,32 @@ require'telescope'.setup{
     prompt_prefix = get_prompt_prefix() .. '> ',
     mappings = {
       i = {
-        ["<esc>"] = action.close,
-        ["<C-b>"] = action.preview_scrolling_up,
-        ["<C-f>"] = action.preview_scrolling_down,
-        ["<C-u>"] = false, -- overrides delete prompt
-        ["<C-d>"] = false,
+        ['<esc>'] = action.close,
+        ['<C-a>'] = { '<Home>', type = 'command' },
+        ['<C-e>'] = { '<End>', type = 'command' },
+        ['<C-b>'] = action.preview_scrolling_up,
+        ['<C-f>'] = action.preview_scrolling_down,
+        ['<C-u>'] = false, -- overrides delete prompt
+        ['<C-d>'] = false,
       },
     },
   }
 }
 
-u.nmap('<leader>j', ':lua require"telescope.builtin".find_files()<cr>')
-u.nmap('<leader>J', ':lua require"telescope.builtin".find_files({find_command={"fd", "-I"}, follow=true, hidden=true})<cr>')
+require("telescope").load_extension('frecency')
+require('telescope').load_extension('fzy_native')
+
+-- TODO move these out functions
+u.nmap('<leader>jj', ':lua require"telescope.builtin".find_files()<cr>')
+u.nmap('<leader>JJ', ':lua require"telescope.builtin".find_files({find_command={"fd", "--type", "f", "--no-ignore-vcs"}})<cr>') -- TODO figure out why this is so slow
+u.nmap('<leader>jl', ':lua require"telescope.builtin".find_files({cwd="vendor"})<cr>') -- TODO make this language specific, need to update prompt
+u.nmap('<leader>jd', ':lua require"telescope.builtin".find_files({cwd=os.getenv("DOTFILES")})<cr>') -- TODO need to update prompt
+u.nmap('<leader>jw', ':lua require"telescope.builtin".find_files({cwd=os.getenv("STOW_DIR") .. "/work/.config"})<cr>') -- TODO need to update prompt
 u.nmap('<leader>l', ':lua require"telescope.builtin".buffers()<cr>')
+
 u.nmap('<leader>H', ':lua require"telescope.builtin".help_tags()<cr>')
+
+u.nmap('<leader>go', ':lua require"telescope.builtin".git_branches({previewer=false})<cr>')
 
 local M = {}
 

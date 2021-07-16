@@ -14,6 +14,7 @@ M.fern_init = function()
   u.buf_nmap('n', ':keepjumps normal! n<cr>') -- fix next match
   u.buf_nmap('N', ':keepjumps normal! N<cr>') -- fix prev match
 
+  u.buf_nmap('r', '"+<Plug>(fern-action-reload:all)', {noremap = false})
   u.buf_nmap('y', '"+:lua require("plugins.fern").relative_yank()<cr>') -- relative yank to clipboard
   u.buf_nmap('Y', '"+<Plug>(fern-action-yank:path)', {noremap = false}) -- absolute yank to clipboard
   u.buf_nmap('K', '<Plug>(fern-action-new-path)', {noremap = false}) -- new path
