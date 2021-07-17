@@ -1,2 +1,2 @@
-cnoreabbrev <buffer> R Reject
-cnoreabbrev <buffer> K Keep
+nnoremap <buffer> <leader>r :Reject<space>
+nnoremap <buffer> <leader>k :Keep<space>

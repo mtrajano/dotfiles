@@ -4,8 +4,5 @@ setl wrap
 setl linebreak
 setl nolist
 
-vmap <buffer> <leader>b S*gvS*
-nmap <buffer> crb viw<leader>bE
-
 source $XDG_CONFIG_HOME/nvim/utils/spell.vim
 let g:markdown_fenced_languages = ['python', 'php', 'bash']

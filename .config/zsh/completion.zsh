@@ -1,6 +1,6 @@
 # The following lines were added by compinstall
 
-zstyle ':completion:*' completer _complete _ignored _approximate
+zstyle ':completion:*' completer _complete _ignored
 zstyle ':completion:*' file-sort access
 zstyle ':completion:*' ignore-parents parent
 zstyle ':completion:*' list-colors ''

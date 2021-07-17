@@ -14,10 +14,3 @@ function! s:FixTestFormat()
 endfunction
 
 command! -nargs=0 FixTest :call s:FixTestFormat()
-
-" TODO maybe move to a separate function/script/command so that can be shared with
-" other languages that use semicolon for statements
-inoremap ;; <c-o>:norm! mmA;<cr><c-o>`m
-
-" split join, each method call in a different line
-let g:splitjoin_php_method_chain_full = 1

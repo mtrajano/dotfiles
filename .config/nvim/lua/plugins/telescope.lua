@@ -35,11 +35,11 @@ require'telescope'.setup{
   }
 }
 
-require("telescope").load_extension('frecency')
 require('telescope').load_extension('fzy_native')
 
 -- TODO move these out functions
 u.nmap('<leader>jj', ':lua require"telescope.builtin".find_files()<cr>')
+u.nmap('<leader>jk', ':lua require("telescope").extensions.frecency.frecency()<CR>')
 u.nmap('<leader>JJ', ':lua require"telescope.builtin".find_files({find_command={"fd", "--type", "f", "--no-ignore-vcs"}})<cr>') -- TODO figure out why this is so slow
 u.nmap('<leader>jl', ':lua require"telescope.builtin".find_files({cwd="vendor"})<cr>') -- TODO make this language specific, need to update prompt
 u.nmap('<leader>jd', ':lua require"telescope.builtin".find_files({cwd=os.getenv("DOTFILES")})<cr>') -- TODO need to update prompt

@@ -16,11 +16,11 @@ require'mt.search'
 require'mt.statusline'
 require'mt.textobjs'
 
+require'plugins'
 require'plugins.ale'
 require'plugins.fern'
 require'plugins.fugitive'
 require'plugins.test'
+require'plugins.telescope'
 require'plugins.treesitter'
 require'plugins.ultisnips'
-
-require'plugins.telescope'

@@ -16,6 +16,7 @@ alias subl="open -a Sublime\ Text"
 ######
 alias stow="stow --dotfiles"
 alias h=man
+alias hf=hyperfine
 alias wl="wc -l"
 alias ..="cd .."
 alias finder="open -a Finder"

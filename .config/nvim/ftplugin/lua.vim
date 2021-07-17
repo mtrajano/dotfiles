@@ -1,3 +1,3 @@
-set includeexpr=substitute(v:fname,'\\.','/','g')
+setl includeexpr=substitute(v:fname,'\\.','/','g')
 
-nnoremap <leader>sd :luafile %<cr>
+nnoremap <buffer> <leader>sd :luafile %<cr>

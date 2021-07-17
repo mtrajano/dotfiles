@@ -61,6 +61,8 @@ set listchars=tab:>\ ,nbsp:·
 " NORMAL REMAPS
 " =============
 
+nnoremap <leader>I :PackerCompile <bar> PackerInstall<cr>
+
 " disable ex-mode
 nnoremap Q <nop>
 

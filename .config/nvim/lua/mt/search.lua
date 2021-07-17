@@ -15,9 +15,6 @@ g.ack_use_dispatch = 1
 -- use word under cursor on empty search
 g.ack_use_cword_for_empty_search = 1
 
--- highlight searched terms
-g.ackhighlight = 1
-
 local M = {}
 
 local function escape_special_chars(word)
@@ -135,14 +132,15 @@ M.search_visual = function()
 end
 
 M.update_search_abbrev = function()
-  u.cnoreabbrev('ack', 'Ack!' .. get_search_term(nil, {include_ft=true}))
+  u.cnoreabbrev('F', 'Ack!' .. get_search_term(nil, {include_ft=true}))
 end
 
 u.nmap('<leader>f', ':lua require("mt.search").search_normal({include_ft=true})<cr>')
 u.vmap('<leader>f', ':lua require("mt.search").search_visual()<cr>')
 u.nmap('<leader>F', ':lua require("mt.search").search_normal({include_ft=false})<cr>')
-u.cnoreabbrev('Ack', 'Ack!')
-u.cnoreabbrev('ack', 'Ack!') -- default, should get updated per filetype
+--TODO possibly change these to user commands
+-- u.cnoreabbrev('F!', 'Ack! -tall') -- default, should get updated per filetype
+u.cnoreabbrev('F', 'Ack!') -- default, should get updated per filetype
 
 cmd [[
 augroup update_search_abbrev
