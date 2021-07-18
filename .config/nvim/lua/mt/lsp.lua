@@ -1,25 +1,37 @@
 local u = require('mt.utils')
 local o = vim.o
 local fn = vim.fn
+local cmd = vim.cmd
+
+cmd [[
+augroup update_function_status
+  autocmd!
+  autocmd CursorHold,BufEnter <buffer> lua require'lsp-status'.update_current_function()
+augroup END
+]]
+
+local function my_attach(client)
+  require "lsp_signature".on_attach()
+  require'lsp-status'.on_attach(client)
+end
 
 ------
 -- PHP
 ------
 require'lspconfig'.intelephense.setup{
   -- passes client, bufnr
-  on_attach = function()
-    require "lsp_signature".on_attach()
-  end,
+  on_attach = my_attach,
   init_options = {
     licenceKey = os.getenv('INTELEPHENSE_KEY')
   }
 }
 
-
 --------
 -- JS/TS
 --------
-require'lspconfig'.tsserver.setup {}
+require'lspconfig'.tsserver.setup {
+  on_attach = my_attach,
+}
 
 ------
 -- LUA
@@ -42,9 +54,7 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 require'lspconfig'.sumneko_lua.setup {
   -- passes client, bufnr
-  on_attach = function()
-    require "lsp_signature".on_attach()
-  end,
+  on_attach = my_attach,
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
   settings = {
     Lua = {
@@ -73,7 +83,9 @@ require'lspconfig'.sumneko_lua.setup {
 --------
 -- C/C++
 --------
-require'lspconfig'.clangd.setup{}
+require'lspconfig'.clangd.setup {
+  on_attach = my_attach,
+}
 
 ------
 -- ALL

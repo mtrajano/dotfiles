@@ -1,3 +1,15 @@
+local u = require'mt.utils'
+
+u.nmap('<leader>I', ':PackerInstall<cr>')
+u.nmap('<leader>U', ':PackerClean<cr>')
+
+vim.cmd [[
+augroup compile_onsave
+  autocmd!
+  autocmd BufWritePost */plugins/init.lua source <afile> | PackerCompile
+augroup END
+]]
+
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
@@ -105,6 +117,7 @@ return require('packer').startup(function()
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/nvim-compe'
   use 'ray-x/lsp_signature.nvim'
+  use 'nvim-lua/lsp-status.nvim'
   use {
     'nvim-telescope/telescope-frecency.nvim',
     config = function()

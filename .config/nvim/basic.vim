@@ -24,6 +24,8 @@ set expandtab
 
 " decrease timeout b/w remaps
 set timeoutlen=1000
+" increase cursor hold frequency
+set updatetime=1000
 
 " display realtime substitute update
 set inccommand=split
@@ -60,8 +62,6 @@ set listchars=tab:>\ ,nbsp:·
 " =============
 " NORMAL REMAPS
 " =============
-
-nnoremap <leader>I :PackerCompile <bar> PackerInstall<cr>
 
 " disable ex-mode
 nnoremap Q <nop>

@@ -8,7 +8,7 @@ local function map(mode, lhs, rhs, opts, local_to_buf)
   local default_opts = {
     unique = false,
     noremap = true,
-    silent = true,
+    silent = false,
     expr = false,
   }
 
