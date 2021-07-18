@@ -23,19 +23,16 @@ require'telescope'.setup{
   }
 }
 
--- TODO see if this is working
-require('telescope').load_extension('fzy_native')
-
 local function telescope_mapping(key, method)
   u.nmap(key, string.format(':lua require"plugins.telescope".%s()<cr>', method))
 end
 
 telescope_mapping('<leader>jj', 'find_files')
 telescope_mapping('<leader>jk', 'frecency')
-telescope_mapping('<leader>JJ', 'find_all_files') -- TODO figure out why this is so slow
 telescope_mapping('<leader>jd', 'edit_dotfiles') -- TODO need to update prompt
 telescope_mapping('<leader>ji', 'edit_installed')
 telescope_mapping('<leader>jw', 'edit_work_files')
+telescope_mapping('<leader>JJ', 'find_all_files') -- TODO figure out why this is so slow
 
 telescope_mapping('<leader>l', 'buffers')
 telescope_mapping('<leader>H', 'search_help')

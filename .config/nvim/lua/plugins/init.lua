@@ -2,7 +2,15 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   use 'Rigellute/rigel'
-  use 'itchyny/lightline.vim'
+  use {
+    'hoob3rt/lualine.nvim',
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    config = function()
+      require'mt.statusline'
+    end
+  }
+
+  use 'dstein64/vim-startuptime'
 
   use 'jiangmiao/auto-pairs'
   use 'vim-test/vim-test'
@@ -55,19 +63,29 @@ return require('packer').startup(function()
 
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
-  use 'mhinz/vim-signify'
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    },
+    config = function()
+      require('gitsigns').setup()
+    end
+  }
   use 'junegunn/gv.vim'
 
   use 'lambdalisue/fern.vim'
   use 'lambdalisue/fern-hijack.vim'
 
   -- TODO try treesitter-text-objs and get rid of most of these
+  local function install_textobj(repo)
+    use { repo, requires = { 'kana/vim-textobj-user' }}
+  end
+  install_textobj('kana/vim-textobj-function')
+  install_textobj('kana/vim-textobj-entire')
+  install_textobj('glts/vim-textobj-comment')
+  install_textobj('kana/vim-textobj-indent')
   use 'wellle/targets.vim'
-  use 'kana/vim-textobj-user'
-  use 'kana/vim-textobj-function'
-  use 'kana/vim-textobj-entire'
-  use 'glts/vim-textobj-comment'
-  use 'kana/vim-textobj-indent'
 
   -- Need this until https://github.com/neovim/neovim/issues/12587 gets resolved
   use 'antoinemadec/FixCursorHold.nvim'
@@ -80,17 +98,18 @@ return require('packer').startup(function()
   use 'nvim-treesitter/playground'
   use 'nvim-lua/plenary.nvim'
   use 'nvim-lua/popup.nvim'
-  use 'nvim-telescope/telescope.nvim'
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {'kyazdani42/nvim-web-devicons', opt = true}
+  }
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/nvim-compe'
   use 'ray-x/lsp_signature.nvim'
-  use 'glepnir/lspsaga.nvim'
   use {
     'nvim-telescope/telescope-frecency.nvim',
     config = function()
-      require"telescope".load_extension("frecency")
-    end
+      require'telescope'.load_extension('frecency')
+    end,
+    requires = { 'tami5/sql.nvim' }
   }
-  use 'tami5/sql.nvim'
-  use 'nvim-telescope/telescope-fzy-native.nvim'
 end)

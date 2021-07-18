@@ -1,3 +1,7 @@
+vim.g.mapleader = " "
+
+vim.cmd [[ colorscheme rigel ]]
+
 function RELOAD(script)
   require'plenary.reload'.reload_module(script)
 end
@@ -13,7 +17,6 @@ require'mt.lsp'
 require'mt.mappings'
 require'mt.quickfix'
 require'mt.search'
-require'mt.statusline'
 require'mt.textobjs'
 
 require'plugins'
