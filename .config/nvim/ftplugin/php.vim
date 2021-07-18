@@ -14,3 +14,5 @@ function! s:FixTestFormat()
 endfunction
 
 command! -nargs=0 FixTest :call s:FixTestFormat()
+
+nnoremap <buffer> <leader>jl :lua require"telescope.builtin".find_files({cwd="vendor"})<cr>

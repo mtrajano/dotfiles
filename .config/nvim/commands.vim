@@ -98,17 +98,3 @@ augroup autopair_edit
   autocmd!
   autocmd FileType php ++once let b:AutoPairs = AutoPairsDefine({}, ['<?', '<?php'])
 augroup END
-
-augroup source_commands
-  autocmd!
-  " default
-  au BufEnter * nnoremap <silent> <leader>sd :source $MYVIMRC <bar> echo "reloaded"<cr>
-
-  au BufEnter *.lua nnoremap <leader>sd :luafile %<cr>
-  au BufEnter *.vim nnoremap <leader>sd :source %<cr>
-augroup END
-
-augroup update_prompt
-  autocmd!
-  autocmd DirChanged * lua require('plugins.telescope').update_prompt()
-augroup END
