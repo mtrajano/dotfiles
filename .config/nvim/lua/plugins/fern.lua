@@ -4,6 +4,7 @@ local cmd = vim.cmd
 local api = vim.api
 local fn = vim.fn
 
+vim.g['loaded_netrwPlugin'] = 1
 vim.g['fern#keepjumps_on_edit'] = 1
 vim.g['fern#keepalt_on_edit'] = 1
 

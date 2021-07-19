@@ -61,7 +61,8 @@ M.get_prev_diagnostic = function()
   end
 end
 
-utils.nmap('[d', ':lua require("mt.quickfix").get_prev_diagnostic()<cr>')
-utils.nmap(']d', ':lua require("mt.quickfix").get_next_diagnostic()<cr>')
+-- revisit this when replace ale with nvim-lint, mapped in lsp for now
+-- utils.nmap('[d', ':lua require("mt.quickfix").get_prev_diagnostic()<cr>')
+-- utils.nmap(']d', ':lua require("mt.quickfix").get_next_diagnostic()<cr>')
 
 return M

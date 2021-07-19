@@ -1,6 +1,6 @@
 set nocompatible
 
-set mouse=a
+set mouse=nvhr
 
 set hidden
 set noswapfile

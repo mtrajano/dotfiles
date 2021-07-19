@@ -106,3 +106,6 @@
 
 [diff "sh"]
   xfuncname = ""
+
+[pull]
+  ff = only
