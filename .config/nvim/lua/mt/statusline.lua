@@ -1,5 +1,7 @@
 require'lualine'.setup {
-  options = { theme = 'auto' },
+  options = {
+    theme = 'auto',
+  },
   sections = {
     lualine_a = {'mode'},
     lualine_b = {'branch', 'diff'},

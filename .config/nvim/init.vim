@@ -9,5 +9,4 @@ lua require('init')
 
 source $XDG_CONFIG_HOME/nvim/basic.vim
 source $XDG_CONFIG_HOME/nvim/commands.vim
-source $XDG_CONFIG_HOME/nvim/utils/theme.vim
 source $XDG_CONFIG_HOME/nvim/work.vim

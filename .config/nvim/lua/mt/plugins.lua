@@ -35,7 +35,12 @@ return require('packer').startup(function()
     end
   }
   use 'mileszs/ack.vim'
-  use 'romainl/vim-qf'
+  use {
+    'romainl/vim-qf',
+    config = function()
+      vim.g.qf_mapping_ack_style = 1
+    end
+  }
   use 'moll/vim-bbye'
   use {
     'dense-analysis/ale',
