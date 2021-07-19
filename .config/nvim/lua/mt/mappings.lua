@@ -9,7 +9,7 @@ u.nmap('<leader>es', ':Esource<CR>')
 u.nmap('<leader>et', ':Etest<CR>')
 
 -- Fugitive remaps
-u.nmap('<leader>gg', ':G<cr>')
+u.nmap('<leader>gg', ':lua require("plugins.fugitive").toggle_git_pane()<cr>', {silent=true})
 u.nmap('<leader>gd', ':G diff<cr>')
 u.nmap('<leader>gb', ':G blame<cr>')
 u.nmap('<leader>gl', ':G log -n 500<cr>')

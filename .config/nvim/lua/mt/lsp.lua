@@ -105,7 +105,7 @@ end
 -- mappings
 u.nmap('gd', ':lua vim.lsp.buf.definition()<cr>')
 u.nmap('gD', ':lua vim.lsp.buf.declaration()<cr>')
-u.nmap('gr', ':lua vim.lsp.buf.rename()<cr>')
+u.nmap('gr', ':lua require("lspsaga.rename").rename()<cr>')
 u.nmap('gR', ':lua vim.lsp.buf.references()<cr>')
 u.nmap('K', ':lua require("mt.lsp").hover_or_get_docs()<cr>')
 

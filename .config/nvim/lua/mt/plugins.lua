@@ -124,6 +124,12 @@ return require('packer').startup(function()
   use 'ray-x/lsp_signature.nvim'
   use 'nvim-lua/lsp-status.nvim'
   use {
+    'glepnir/lspsaga.nvim',
+    config = function()
+      require'lspsaga'.init_lsp_saga()
+    end
+  }
+  use {
     'nvim-telescope/telescope-frecency.nvim',
     config = function()
       require'telescope'.load_extension('frecency')
