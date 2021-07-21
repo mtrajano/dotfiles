@@ -43,8 +43,10 @@ return require('packer').startup(function()
   }
   use 'moll/vim-bbye'
   use {
-    'dense-analysis/ale',
-    ft = { 'php', 'lua' }
+    'wbthomason/nvim-lint',
+    config = function()
+      require'plugins.lint'.setup()
+    end
   }
   use {
     'AndrewRadev/splitjoin.vim',

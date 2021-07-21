@@ -40,7 +40,6 @@ REQUIRE'mt.quickfix'
 REQUIRE'mt.search'
 REQUIRE'mt.textobjs'
 
-REQUIRE'plugins.ale'
 REQUIRE'plugins.fern'
 REQUIRE'plugins.fugitive'
 REQUIRE'plugins.test'

@@ -54,6 +54,6 @@ M.relative_yank = function()
   end)
 end
 
-u.nmap('<leader>h', ':keepalt Fern . -reveal=%<cr>')
+u.nmap('<leader>hh', ':keepalt Fern . -reveal=%<cr>')
 
 return M
