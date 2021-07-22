@@ -5,6 +5,7 @@ local api = vim.api
 
 require'telescope'.setup{
   defaults = {
+    file_sorter = require'telescope.sorters'.get_fzy_sorter,
     sorting_strategy = 'ascending',
     layout_config = {
       prompt_position = "top",
@@ -20,8 +21,16 @@ require'telescope'.setup{
         ['<C-d>'] = false,
       },
     },
-  }
+  },
+  extensions = {
+        fzy_native = {
+            override_generic_sorter = false,
+            override_file_sorter = true,
+        }
+    }
 }
+
+require('telescope').load_extension('fzy_native')
 
 local function telescope_mapping(key, method)
   u.nmap(key, string.format(':lua require"plugins.telescope".%s()<cr>', method))

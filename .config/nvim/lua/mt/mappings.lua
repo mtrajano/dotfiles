@@ -1,5 +1,8 @@
 local u = require('mt.utils')
 
+-- map escape in terminal
+u.tmap('<esc>', '<C-\\><C-n>', {noremap=false})
+
 -- TODO move this to the skeleton plugin file when I make it into a plugin
 -- Alternate file remaps
 u.nmap('<leader>ec', ':Ecommand<CR>')

@@ -47,7 +47,7 @@ endfunction
 command! -nargs=0 FixMultipleNewline call s:FixMultipleNewline()
 
 " netrw open url patch
-function! s:OpenURLUnderCursor()
+function! g:OpenURLUnderCursor()
   let s:uri = expand('<cWORD>')
 
   let s:uri = substitute(s:uri, '?', '\\?', '')
@@ -59,7 +59,7 @@ function! s:OpenURLUnderCursor()
     :redraw!
   endif
 endfunction
-nnoremap gx :call s:OpenURLUnderCursor()<CR>
+nnoremap gx :call g:OpenURLUnderCursor()<CR>
 
 augroup formatting_fixes
   autocmd!

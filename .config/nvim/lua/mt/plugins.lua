@@ -22,9 +22,13 @@ return require('packer').startup(function()
     end
   }
 
-  use 'dstein64/vim-startuptime'
+  use {
+    'jiangmiao/auto-pairs',
+    config = function()
+      vim.g.AutoPairsMapSpace = 0
+    end
+  }
 
-  use 'jiangmiao/auto-pairs'
   use 'vim-test/vim-test'
   use 'benmills/vimux'
   use 'voldikss/vim-floaterm'
@@ -131,6 +135,7 @@ return require('packer').startup(function()
       require'lspsaga'.init_lsp_saga()
     end
   }
+  use { 'nvim-telescope/telescope-fzy-native.nvim' }
   use {
     'nvim-telescope/telescope-frecency.nvim',
     config = function()
