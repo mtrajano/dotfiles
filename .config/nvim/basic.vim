@@ -55,6 +55,9 @@ set lazyredraw
 " don't continue comment on o/O operation
 set formatoptions-=o
 
+" wildmenu options, don't automatically fill result
+set wildmode=longest:full
+
 " display hidden chars
 set list
 set listchars=tab:>\ ,nbsp:·

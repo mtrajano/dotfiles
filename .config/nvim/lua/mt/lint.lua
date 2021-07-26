@@ -11,7 +11,7 @@ augroup END
 local lint = require'lint'
 
 lint.linters_by_ft = {
-  php = { 'phpcs', 'phpmd', 'psalm' }
+  php = { 'be_phpcs', 'be_phpmd', 'be_psalm' }
 }
 
 local M = {}
@@ -20,7 +20,7 @@ function M.setup()
 
   -- TODO contribute these upstream
 
-  lint.linters.phpcs = {
+  lint.linters.be_phpcs = {
     cmd = './vendor/bin/phpcs',
     stdin = false, -- true if program receives content via stdin
     args = { '--report=emacs', '--warning-severity=0', '--standard=./vendor/behance/php-sniffs/Behance' },
@@ -29,7 +29,7 @@ function M.setup()
     parser = require'lint.parser'.from_errorformat('%f:%l:%c:%m') -- file:line:col: messsage
   }
 
-  lint.linters.phpmd = function()
+  lint.linters.be_phpmd = function()
     local bufname = api.nvim_buf_get_name(0)
 
     return {
@@ -44,7 +44,7 @@ function M.setup()
     }
   end
 
-  lint.linters.psalm = {
+  lint.linters.be_psalm = {
       cmd = './vendor/bin/psalm',
       stdin = false, -- true if program receives content via stdin
       append_fname = false, -- true if program receives content via stdin

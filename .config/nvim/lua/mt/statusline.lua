@@ -1,3 +1,8 @@
+local function file_percentage()
+  local percentage = vim.fn.line('.') / vim.api.nvim_buf_line_count(0)
+  return math.ceil(percentage * 100) .. '%%'
+end
+
 require'lualine'.setup {
   options = {
     theme = 'auto',
@@ -13,7 +18,7 @@ require'lualine'.setup {
     lualine_y = {
       { 'diagnostics', sources = { 'nvim_lsp', 'ale' } },
     },
-    lualine_z = { 'location' },
+    lualine_z = { 'location', file_percentage },
   },
   inactive_sections = {
     lualine_c = { 'filename' },

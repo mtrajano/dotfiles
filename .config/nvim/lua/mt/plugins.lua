@@ -23,6 +23,14 @@ return require('packer').startup(function()
   }
 
   use {
+    'wbthomason/nvim-lint',
+    config = function()
+      require'plugins.lint'.setup()
+      require'mt.lint'.setup()
+    end
+  }
+
+  use {
     'jiangmiao/auto-pairs',
     config = function()
       vim.g.AutoPairsMapSpace = 0
@@ -47,12 +55,6 @@ return require('packer').startup(function()
   }
   use 'moll/vim-bbye'
   use {
-    'wbthomason/nvim-lint',
-    config = function()
-      require'plugins.lint'.setup()
-    end
-  }
-  use {
     'AndrewRadev/splitjoin.vim',
     config = function()
       -- split join, each method call in a different line
@@ -68,7 +70,12 @@ return require('packer').startup(function()
 
   use 'tpope/vim-repeat'
   use 'tpope/vim-commentary'
-  use 'tpope/vim-dispatch'
+  use {
+    'tpope/vim-dispatch',
+    config = function()
+      vim.g.dispatch_no_tmux_dispatch = 1 -- breaks zoomed panes
+    end
+  }
   use 'tpope/vim-abolish'
   use 'tpope/vim-surround'
   use 'tpope/vim-unimpaired'

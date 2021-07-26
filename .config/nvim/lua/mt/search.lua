@@ -141,6 +141,7 @@ u.nmap('<leader>F', ':lua require("mt.search").search_normal({include_ft=false})
 --TODO possibly change these to user commands
 -- u.cnoreabbrev('F!', 'Ack! -tall') -- default, should get updated per filetype
 u.cnoreabbrev('F', 'Ack!') -- default, should get updated per filetype
+u.cnoreabbrev('Fa', 'Ack!') -- search all
 
 cmd [[
 augroup update_search_abbrev

@@ -43,6 +43,11 @@ telescope_mapping('<leader>ji', 'edit_installed')
 telescope_mapping('<leader>jw', 'edit_work_files')
 telescope_mapping('<leader>JJ', 'find_all_files') -- TODO figure out why this is so slow
 
+-- TODO create mappings for tcd, lcd, cd, delete
+telescope_mapping('<leader>hd', 'open_dotfiles')
+telescope_mapping('<leader>hi', 'open_installed')
+telescope_mapping('<leader>hs', 'open_scratch')
+
 telescope_mapping('<leader>l', 'buffers')
 telescope_mapping('<leader>H', 'search_help')
 
@@ -102,6 +107,13 @@ end
 M.search_help = function()
   require"telescope.builtin".help_tags {
     prompt_prefix = '> '
+  }
+end
+
+M.open_scratch = function()
+  require'telescope.builtin'.file_browser {
+    prompt_title = 'Sratch dir',
+    cwd = '~/dev/test'
   }
 end
 
