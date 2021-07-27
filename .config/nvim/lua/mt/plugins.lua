@@ -31,6 +31,13 @@ return require('packer').startup(function()
   }
 
   use {
+    'mhartington/formatter.nvim',
+    config = function()
+      require'mt.format'
+    end
+  }
+
+  use {
     'jiangmiao/auto-pairs',
     config = function()
       vim.g.AutoPairsMapSpace = 0

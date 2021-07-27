@@ -14,7 +14,7 @@ require'telescope'.setup{
       i = {
         ['<esc>'] = action.close,
         ['<C-a>'] = { '<Home>', type = 'command' },
-        ['<C-e>'] = { '<End>', type = 'command' },
+        ['<C-e>'] = { '<End>', type = 'command' }, -- TODO need to fix this, appending can no longer clear previous text
         ['<C-b>'] = action.preview_scrolling_up,
         ['<C-f>'] = action.preview_scrolling_down,
         ['<C-u>'] = false, -- overrides delete prompt
@@ -118,14 +118,14 @@ M.open_scratch = function()
 end
 
 M.git_branches = function()
-  require"telescope.builtin".git_branches {
+  require'telescope.builtin'.git_branches {
     prompt_prefix = 'branches> ',
     previewer=false,
   }
 end
 
 M.frecency = function()
-  require("telescope").extensions.frecency.frecency()
+  require'telescope'.extensions.frecency.frecency()
 end
 
 return M

@@ -32,13 +32,6 @@ command! -nargs=0 On :%bd|e#|bd#
 command! -nargs=1 -complete=file Profile call s:ProfileStart(<f-args>)
 command! -nargs=0 -complete=file ProfileStop call s:ProfileStop()
 
-" trim trailing space on save
-function! s:TrimTrailingSpace()
-  let l:save = winsaveview()
-  keeppatterns %s/\s\+$//e
-  call winrestview(l:save)
-endfunction
-
 function! s:FixMultipleNewline()
   let l:save = winsaveview()
   keeppatterns %s/\n\n$/\r/e
@@ -60,13 +53,3 @@ function! g:OpenURLUnderCursor()
   endif
 endfunction
 nnoremap gx :call g:OpenURLUnderCursor()<CR>
-
-augroup formatting_fixes
-  autocmd!
-  autocmd BufWritePre * :call s:TrimTrailingSpace()
-augroup END
-
-augroup autopair_edit
-  autocmd!
-  autocmd FileType php ++once let b:AutoPairs = AutoPairsDefine({}, ['<?', '<?php'])
-augroup END

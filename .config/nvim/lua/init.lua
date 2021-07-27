@@ -29,6 +29,7 @@ RELOAD('mt.mappings')
 RELOAD('mt.quickfix')
 RELOAD('mt.search')
 RELOAD('mt.textobjs')
+RELOAD('mt.format')
 
 RELOAD('plugins')
 

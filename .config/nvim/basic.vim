@@ -1,6 +1,7 @@
 set nocompatible
 
 set mouse=nvhr
+set clipboard=unnamedplus
 
 set hidden
 set noswapfile
