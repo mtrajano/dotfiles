@@ -4,7 +4,7 @@ local cmd = vim.cmd
 cmd [[
 augroup run_linter
   autocmd!
-  autocmd BufEnter,BufWritePost $HOME/dev/behance/* lua require('mt.lint').lint(vim.fn.expand('<amatch>'))
+  autocmd BufEnter,BufWritePost * lua require('mt.lint').lint(vim.fn.expand('<amatch>'))
 augroup END
 ]]
 
@@ -30,8 +30,7 @@ function M.setup()
     local pattern = [[([^:]+):(%d+):(%d+): (%l+) %- (.+)]]
     local groups = { 'file', 'line', 'start_col', 'severity', 'message' }
 
-    table.insert(args, 1, '-n')
-    table.insert(args, 1, '--report=emacs')
+    vim.list_extend(args, {'-n', '--report=emacs'})
 
     return {
       cmd = './vendor/bin/phpcs',
@@ -64,10 +63,7 @@ function M.setup()
 
   local function psalm(args)
 
-    -- TODO change this to extend
-    table.insert(args, 1, '-m')
-    table.insert(args, 1, '--show-snippet=false')
-    table.insert(args, 1, '--no-suggestions')
+    vim.list_extend(args, {'-m', '--show-snippet=false', '--no-suggestions'})
 
     local pattern = [[(%u+): %a+ %- ([^:]+):(%d+):(%d+) %- (.+)]]
     local groups = { 'severity', 'file', 'line', 'start_col', 'message' }

@@ -6,4 +6,3 @@ augroup filetypedetect
   au! BufRead,BufNewFile */git/config     setfiletype gitconfig
   au! BufRead,BufNewFile *.snippets       setfiletype snippets
 augroup END
-

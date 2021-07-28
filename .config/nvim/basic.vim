@@ -57,7 +57,7 @@ set lazyredraw
 set formatoptions-=o
 
 " wildmenu options, don't automatically fill result
-set wildmode=longest:full
+set wildmode=longest:full,list:full
 
 " display hidden chars
 set list
