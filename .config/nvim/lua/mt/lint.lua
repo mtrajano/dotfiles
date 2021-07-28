@@ -4,7 +4,7 @@ local cmd = vim.cmd
 cmd [[
 augroup run_linter
   autocmd!
-  autocmd BufEnter,BufWritePost <buffer> lua require('lint').try_lint()
+  autocmd BufEnter,BufWritePost $HOME/dev/behance/* lua require('mt.lint').lint(vim.fn.expand('<amatch>'))
 augroup END
 ]]
 
@@ -16,45 +16,81 @@ lint.linters_by_ft = {
 
 local M = {}
 
+function M.lint(file)
+  -- TODO generalize this if it grows
+  if not file:match('/vendor/') then
+    require'lint'.try_lint()
+  end
+end
+
 function M.setup()
 
   -- TODO contribute these upstream
+  local function phpcs(args)
+    local pattern = [[([^:]+):(%d+):(%d+): (%l+) %- (.+)]]
+    local groups = { 'file', 'line', 'start_col', 'severity', 'message' }
 
-  lint.linters.be_phpcs = {
-    cmd = './vendor/bin/phpcs',
-    stdin = false, -- true if program receives content via stdin
-    args = { '--report=emacs', '--warning-severity=0', '--standard=./vendor/behance/php-sniffs/Behance' },
-    stream = 'stdout', -- ('stdout' | 'stderr')
-    ignore_exitcode = true, -- phpcs exits with non 0 exit code
-    parser = require'lint.parser'.from_errorformat('%f:%l:%c:%m') -- file:line:col: messsage
-  }
-
-  lint.linters.be_phpmd = function()
-    local bufname = api.nvim_buf_get_name(0)
+    table.insert(args, 1, '-n')
+    table.insert(args, 1, '--report=emacs')
 
     return {
-      cmd = './vendor/bin/phpmd',
+      cmd = './vendor/bin/phpcs',
       stdin = false, -- true if program receives content via stdin
-      append_fname = false, -- true if program receives content via stdin
-      args = { bufname, 'text', './vendor/behance/phpmd-rules/phpmd.xml.dist' },
+      args = args,
       stream = 'stdout', -- ('stdout' | 'stderr')
-      ignore_exitcode = true, -- phpmd exists with non 0 exit code
-      -- TODO look into excluding whitespace before message
-      parser = require'lint.parser'.from_errorformat('%f:%l%m') -- file:line: messsage
+      ignore_exitcode = true, -- phpcs exits with non 0 exit code
+      parser = require'lint.parser'.from_pattern(pattern, groups, nil, { ['source'] = 'phpcs' }) -- file:line:col: messsage
     }
   end
 
-  lint.linters.be_psalm = {
+  local function phpmd(args)
+    return function()
+      local bufname = api.nvim_buf_get_name(0)
+      table.insert(args, 1, bufname)
+
+      return {
+        cmd = './vendor/bin/phpmd',
+        stdin = false, -- true if program receives content via stdin
+        append_fname = false, -- true if program receives content via stdin
+        args = args,
+        stream = 'stdout', -- ('stdout' | 'stderr')
+        ignore_exitcode = true, -- phpmd exists with non 0 exit code
+        -- TODO need to be able to have nullable col to convert this to a
+        -- pattern (it currently requires a start_col)
+        parser = require'lint.parser'.from_errorformat('%f:%l%m') -- file:line: messsage
+      }
+    end
+  end
+
+  local function psalm(args)
+
+    -- TODO change this to extend
+    table.insert(args, 1, '-m')
+    table.insert(args, 1, '--show-snippet=false')
+    table.insert(args, 1, '--no-suggestions')
+
+    local pattern = [[(%u+): %a+ %- ([^:]+):(%d+):(%d+) %- (.+)]]
+    local groups = { 'severity', 'file', 'line', 'start_col', 'message' }
+
+    return {
       cmd = './vendor/bin/psalm',
       stdin = false, -- true if program receives content via stdin
       append_fname = false, -- true if program receives content via stdin
-      args = { '--config=psalm' },
+      args = args,
       stream = 'stdout', -- ('stdout' | 'stderr')
       ignore_exitcode = true,
-      -- TODO look into excluding whitespace before message
-      parser = require'lint.parser'.from_errorformat('%f:%l:%c:%t\\ -\\ %m') -- file:line:col:type - message
+      parser = require'lint.parser'.from_pattern(pattern, groups, nil, { ['source'] = 'psalm' }) -- file:line:col: messsage
+    }
+  end
 
-  }
+  lint.linters.phpcs = phpcs({ '--standard=PSR12' })
+  lint.linters.be_phpcs = phpcs({ '--warning-severity=0', '--standard=./vendor/behance/php-sniffs/Behance' })
+
+  lint.linters.phpmd = phpmd({ 'text', 'unusedcode,controversial' })
+  lint.linters.be_phpmd = phpmd({ 'text', './vendor/behance/phpmd-rules/phpmd.xml.dist' })
+
+  lint.linters.psalm = psalm({})
+  lint.linters.be_psalm = psalm({ '--config=psalm' })
 
 end
 

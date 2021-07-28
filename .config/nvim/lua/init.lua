@@ -26,18 +26,19 @@ function REQUIRE(module)
 end
 
 RELOAD('mt.mappings')
-RELOAD('mt.quickfix')
 RELOAD('mt.search')
 RELOAD('mt.textobjs')
+RELOAD('mt.lint')
 RELOAD('mt.format')
 
 RELOAD('plugins')
+RELOAD('swagger')
 
+REQUIRE('swagger')
 REQUIRE'mt.plugins'
 
 REQUIRE'mt.lsp' -- TODO shoudn't reload this again
 REQUIRE'mt.mappings'
-REQUIRE'mt.quickfix'
 REQUIRE'mt.search'
 REQUIRE'mt.textobjs'
 

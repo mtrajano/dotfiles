@@ -23,9 +23,8 @@ return require('packer').startup(function()
   }
 
   use {
-    'wbthomason/nvim-lint',
+    'mfussenegger/nvim-lint',
     config = function()
-      require'plugins.lint'.setup()
       require'mt.lint'.setup()
     end
   }
