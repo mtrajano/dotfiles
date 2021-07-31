@@ -24,6 +24,6 @@ use Behance\Core\CommandBus;
 
 class {{class_name}} extends CommandBus\CommandAbstract {
 
-
+  $0
 
 }

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php
 
 /*************************************************************************
  * ADOBE CONFIDENTIAL
@@ -20,8 +20,10 @@
 
 namespace {{namespace}};
 
-class RunnerTest extends \PHPUnit\Framework\TestCase {
+use Behance\Core\Logger\Test;
 
+class {{class_name}} extends Test\BaseTest {
 
+  $0
 
 }

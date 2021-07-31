@@ -20,8 +20,10 @@
 
 namespace {{namespace}};
 
-class {{class_name}} {
+use Behance\Portfolio\View\Test\Abstracts\BaseTestAbstract;
 
+class {{class_name}} extends BaseTestAbstract {
 
+  $0
 
 }

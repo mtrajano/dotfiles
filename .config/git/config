@@ -51,7 +51,7 @@
   # diff
   d = diff
   dc = diff --cached
-  di = !"fn() { git diff HEAD~$1; }; fn"
+  di = !"fn() { git diff HEAD~$1 ${@:2}; }; fn"
 
   # log
   l = log --oneline

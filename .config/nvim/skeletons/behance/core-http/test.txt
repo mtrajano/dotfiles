@@ -24,6 +24,6 @@ use Behance\Core\Http\Test;
 
 class {{class_name}} extends Test\BaseTest {
 
-
+  $0
 
 }

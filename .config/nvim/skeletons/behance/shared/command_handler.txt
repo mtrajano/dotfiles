@@ -20,13 +20,16 @@
 
 namespace {{namespace}};
 
-use {{parent_namespace}}\Queries;
+use Behance\Core\CommandBus;
+use Symfony\Component\EventDispatcher;
 
-class {{class_name}} {
+class {{class_name}} implements CommandBus\HandlerInterface {
 
-  public function __invoke(Queries\{{class_name}} $query) {
+  public function handle(CommandBus\CommandAbstract $command, CommandBus $bus, EventDispatcher\EventDispatcherInterface $event_dispatcher) {
 
+    /** @var \{{parent_namespace}}\Commands\{{class_name}} $command */
 
+    $0
 
   }
 

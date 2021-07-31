@@ -1,0 +1,10 @@
+<?php
+
+namespace {{namespace}}
+
+use Mtrajano\LaravelSwagger\Tests\TestCase;
+
+class {{class_name}} extends TestCase
+{
+    $0
+}

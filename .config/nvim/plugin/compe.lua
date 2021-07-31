@@ -2,9 +2,10 @@ local u = require'mt.utils'
 
 require'compe'.setup {
   source = {
-    path = true;
-    nvim_lsp = true;
-    ultisnips = true;
+    path = true,
+    nvim_lsp = true,
+    ultisnips = true,
+    buffer = true,
   },
 }
 
