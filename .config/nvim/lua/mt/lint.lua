@@ -1,3 +1,4 @@
+local fn = vim.fn
 local api = vim.api
 local cmd = vim.cmd
 
@@ -10,8 +11,19 @@ augroup END
 
 local lint = require'lint'
 
+local php_linters = {}
+if fn.executable('./vendor/bin/phpcs') == 1 then
+  table.insert(php_linters, 'be_phpcs')
+end
+if fn.executable('./vendor/bin/phpmd') == 1 then
+  table.insert(php_linters, 'be_phpmd')
+end
+if fn.executable('./vendor/bin/psalm') == 1 then
+  table.insert(php_linters, 'be_psalm')
+end
+
 lint.linters_by_ft = {
-  php = { 'be_phpcs', 'be_phpmd', 'be_psalm' }
+  php = php_linters,
 }
 
 local M = {}
@@ -62,7 +74,6 @@ function M.setup()
   end
 
   local function psalm(args)
-
     vim.list_extend(args, {'-m', '--show-snippet=false', '--no-suggestions'})
 
     local pattern = [[(%u+): %a+ %- ([^:]+):(%d+):(%d+) %- (.+)]]
