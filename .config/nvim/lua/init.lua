@@ -10,8 +10,8 @@ function RELOAD(script)
   require'plenary.reload'.reload_module(script)
 end
 
-function P(var)
-  print(vim.inspect(var))
+function P(...)
+  print(vim.inspect(...))
 end
 
 -- TODO see if this can be integrated with vimscript's profiling

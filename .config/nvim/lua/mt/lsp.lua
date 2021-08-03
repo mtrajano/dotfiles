@@ -3,6 +3,8 @@ local o = vim.o
 local fn = vim.fn
 local cmd = vim.cmd
 
+local lspconfig = require'lspconfig'
+
 cmd [[
 augroup update_function_status
   autocmd!
@@ -18,7 +20,7 @@ end
 ------
 -- PHP
 ------
-require'lspconfig'.intelephense.setup{
+lspconfig.intelephense.setup{
   -- passes client, bufnr
   on_attach = my_attach,
   init_options = {
@@ -29,7 +31,7 @@ require'lspconfig'.intelephense.setup{
 --------
 -- JS/TS
 --------
-require'lspconfig'.tsserver.setup {
+lspconfig.tsserver.setup {
   on_attach = my_attach,
 }
 
@@ -52,38 +54,48 @@ local sumneko_binary = sumneko_root_path.."/bin/"..system_name.."/lua-language-s
 local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
-require'lspconfig'.sumneko_lua.setup {
-  -- passes client, bufnr
-  on_attach = my_attach,
-  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-        -- Setup your lua path
-        path = runtime_path,
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = {'vim', 'use'},
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file("", true),
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
+
+local luadev = require("lua-dev").setup({
+  library = {
+    vimruntime = true, -- runtime path
+    types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
+    plugins = true,
+  },
+  lspconfig = {
+    -- passes client, bufnr
+    on_attach = my_attach,
+    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"};
+    settings = {
+      Lua = {
+        runtime = {
+          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+          version = 'LuaJIT',
+          -- Setup your lua path
+          path = runtime_path,
+        },
+        diagnostics = {
+          -- Get the language server to recognize the `vim` global
+          globals = {'vim', 'use'},
+        },
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = vim.api.nvim_get_runtime_file("", true),
+        },
+        -- Do not send telemetry data containing a randomized but unique identifier
+        telemetry = {
+          enable = false,
+        },
       },
     },
-  },
-}
+  }
+})
+
+lspconfig.sumneko_lua.setup(luadev)
 
 --------
 -- C/C++
 --------
-require'lspconfig'.clangd.setup {
+lspconfig.clangd.setup {
   on_attach = my_attach,
 }
 

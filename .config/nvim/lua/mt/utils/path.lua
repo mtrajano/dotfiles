@@ -15,7 +15,6 @@ function M.normalize_php_namespace(path)
   return ''
 end
 
-
 -- TODO have this be done automatically by reading composer.json
 local psr4_map_config = {
   ['laravel-swagger'] = {

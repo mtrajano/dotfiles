@@ -134,6 +134,7 @@ return require('packer').startup(function()
   use 'nvim-treesitter/playground'
   use 'nvim-lua/plenary.nvim'
   use 'nvim-lua/popup.nvim'
+  use 'folke/lua-dev.nvim'
   use {
     'nvim-telescope/telescope.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true}

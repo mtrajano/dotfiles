@@ -110,6 +110,14 @@ vnoremap <leader>d "_d
 nnoremap <leader>, :TabooRename<space>
 
 " =============
+" INSERT REMAPS
+" =============
+" overrides copy character below
+inoremap <C-e> <C-o>$
+" overrides insert last character
+inoremap <C-a> <C-o>^
+
+" =============
 " VISUAL REMAPS
 " =============
 

@@ -53,3 +53,13 @@ function! g:OpenURLUnderCursor()
   endif
 endfunction
 nnoremap gx :call g:OpenURLUnderCursor()<CR>
+
+" fix lsp virtual text highlighting
+augroup fix_highlight
+  au!
+  au ColorScheme rigel call s:FixRigelTheme()
+augroup END
+
+function! s:FixRigelTheme()
+  hi LspDiagnosticsVirtualTextError guifg=#c43060 ctermfg=167 guibg=#002635 ctermbg=235 gui=NONE cterm=NONE
+endf

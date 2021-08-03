@@ -23,4 +23,8 @@ augroup update_namespace_map
   au!
   au DirChanged * lua require('mt.utils.path').update_psr4_map(vim.fn.getcwd())
 augroup END
+
+augroup adjust_pairs
+  au!
+  au FileType php ++once let b:AutoPairs = AutoPairsDefine({}, ['<?', '<?php'])
 augroup END
