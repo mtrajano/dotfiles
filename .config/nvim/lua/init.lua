@@ -34,17 +34,17 @@ RELOAD('mt.format')
 RELOAD('plugins')
 RELOAD('swagger')
 
-REQUIRE('swagger')
-REQUIRE'mt.plugins'
+require 'swagger'
+require 'mt.plugins'
 
-REQUIRE'mt.lsp' -- TODO shoudn't reload this again
-REQUIRE'mt.mappings'
-REQUIRE'mt.search'
-REQUIRE'mt.textobjs'
+require 'mt.lsp' -- TODO shoudn't reload this again
+require 'mt.mappings'
+require 'mt.search'
+require 'mt.textobjs'
 
-REQUIRE'plugins.fern'
-REQUIRE'plugins.fugitive'
-REQUIRE'plugins.test'
-REQUIRE'plugins.telescope'
-REQUIRE'plugins.treesitter'
-REQUIRE'plugins.ultisnips'
+require 'plugins.fern'
+require 'plugins.fugitive'
+require 'plugins.test'
+require 'plugins.telescope'
+require 'plugins.treesitter'
+require 'plugins.ultisnips'

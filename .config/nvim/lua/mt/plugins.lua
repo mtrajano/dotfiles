@@ -6,7 +6,7 @@ u.nmap('<leader>U', ':PackerClean<cr>')
 vim.cmd [[
 augroup compile_onsave
   autocmd!
-  autocmd BufWritePost */plugins/init.lua source <afile> | PackerCompile
+  autocmd BufWritePost */mt/plugins.lua source <afile> | PackerCompile
 augroup END
 ]]
 

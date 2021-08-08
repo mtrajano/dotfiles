@@ -109,6 +109,9 @@ vnoremap <leader>d "_d
 
 nnoremap <leader>, :TabooRename<space>
 
+" select last pasted
+nnoremap gp `[v`]
+
 " =============
 " INSERT REMAPS
 " =============
