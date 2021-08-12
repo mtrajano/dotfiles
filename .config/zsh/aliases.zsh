@@ -14,6 +14,7 @@ alias subl="open -a Sublime\ Text"
 ######
 # MISC
 ######
+alias ssh="kitty +kitten ssh"
 alias stow="stow --dotfiles"
 alias h=man
 alias hf=hyperfine

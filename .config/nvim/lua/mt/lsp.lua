@@ -35,6 +35,10 @@ lspconfig.tsserver.setup {
   on_attach = my_attach,
 }
 
+lspconfig.vuels.setup {
+  on_attach = my_attach,
+}
+
 ------
 -- LUA
 ------

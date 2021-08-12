@@ -84,11 +84,6 @@ nnoremap ^ 0
 " last buffer/window
 nnoremap <leader><space> <C-^>
 
-" split remaps
-nnoremap <leader><right> :vertical resize +10<cr>
-nnoremap <leader><left> :vertical resize -10<cr>
-nnoremap <leader>= <C-W>=
-
 nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 nnoremap Y y$

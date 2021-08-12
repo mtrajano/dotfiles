@@ -110,8 +110,13 @@ return require('packer').startup(function()
   }
   use 'junegunn/gv.vim'
 
-  use 'lambdalisue/fern.vim'
-  use 'lambdalisue/fern-hijack.vim'
+  use {
+    'tamago324/lir.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'kyazdani42/nvim-web-devicons',
+    }
+  }
 
   -- TODO try treesitter-text-objs and get rid of most of these
   local function install_textobj(repo)
