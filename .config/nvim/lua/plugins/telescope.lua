@@ -37,7 +37,6 @@ local function telescope_mapping(key, method)
 end
 
 telescope_mapping('<leader>jj', 'find_files')
-telescope_mapping('<leader>jk', 'frecency')
 telescope_mapping('<leader>jd', 'edit_dotfiles') -- TODO need to update prompt
 telescope_mapping('<leader>ji', 'edit_installed')
 telescope_mapping('<leader>jw', 'edit_work_files')
@@ -122,10 +121,6 @@ M.git_branches = function()
     prompt_prefix = 'branches> ',
     previewer=false,
   }
-end
-
-M.frecency = function()
-  require'telescope'.extensions.frecency.frecency()
 end
 
 return M

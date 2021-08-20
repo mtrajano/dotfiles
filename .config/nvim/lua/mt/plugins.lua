@@ -118,6 +118,13 @@ return require('packer').startup(function()
     }
   }
 
+  use {
+    'folke/todo-comments.nvim',
+    config = function()
+      require 'todo-comments'.setup {}
+    end
+  }
+
   -- TODO try treesitter-text-objs and get rid of most of these
   local function install_textobj(repo)
     use { repo, requires = { 'kana/vim-textobj-user' }}
@@ -128,10 +135,11 @@ return require('packer').startup(function()
   install_textobj('kana/vim-textobj-indent')
   use 'wellle/targets.vim'
 
+  -- NVIM SPECIFIC
+
   -- Need this until https://github.com/neovim/neovim/issues/12587 gets resolved
   use 'antoinemadec/FixCursorHold.nvim'
 
-  -- NVIM SPECIFIC
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate'
@@ -155,11 +163,4 @@ return require('packer').startup(function()
     end
   }
   use { 'nvim-telescope/telescope-fzy-native.nvim' }
-  use {
-    'nvim-telescope/telescope-frecency.nvim',
-    config = function()
-      require'telescope'.load_extension('frecency')
-    end,
-    requires = { 'tami5/sql.nvim' }
-  }
 end)
