@@ -83,10 +83,12 @@ return require('packer').startup(function()
     end
   }
   use 'tpope/vim-abolish'
-  use 'tpope/vim-surround'
   use 'tpope/vim-unimpaired'
   use 'tpope/vim-projectionist'
   use 'tpope/vim-obsession'
+  use 'tpope/vim-surround'
+  -- adds dsf and csf to vim-surround
+  use 'AndrewRadev/dsf.vim'
 
   use {
     'SirVer/ultisnips',
