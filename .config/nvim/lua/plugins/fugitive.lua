@@ -13,7 +13,11 @@ u.cnoreabbrev('Gco', 'GBranches --locals')
 u.cnoreabbrev('Gcor', 'GBranches --remotes')
 u.cnoreabbrev('Gre', 'Gread master:%')
 u.cnoreabbrev('Glo', 'G log -n 500')
-u.cnoreabbrev('Glink', 'GBrowse')
+u.cnoreabbrev('Gbr', 'GBrowse')
+
+api.nvim_exec([[
+  command! -nargs=1 Browse silent exec '!open -a "Brave Browser"' shellescape(<q-args>)
+]], false)
 
 local M = {}
 
