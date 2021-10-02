@@ -4,8 +4,13 @@ local M = {}
 function M.normalize_php_namespace(path)
   for prefix, namespace in pairs(vim.g.namespace_map or {}) do
     if string.match(path, prefix) then
-      path = path:gsub(prefix, namespace)
-      path = path:gsub('/', '\\')
+      local pwd = vim.fn.getcwd()
+      pwd = pwd:gsub("%p", "%%%1") -- remove special characters
+
+      path = path:gsub(pwd, '') -- remove pwd from file
+      path = path:gsub('^/*(.-)/*$', '%1')-- trim any /
+      path = path:gsub(prefix, namespace) -- sub with composer namespace
+      path = path:gsub('/', '\\') -- replace / with \
 
       return path
     end
@@ -18,8 +23,8 @@ end
 -- TODO have this be done automatically by reading composer.json
 local psr4_map_config = {
   ['laravel-swagger'] = {
-    ['src/'] = 'Mtrajano\\LaravelSwagger\\', 
-    ['tests/unit/'] = 'Mtrajano\\LaravelSwagger\\', 
+    ['src/'] = 'Mtrajano\\LaravelSwagger\\',
+    ['tests/unit/'] = 'Mtrajano\\LaravelSwagger\\',
   }
 }
 
