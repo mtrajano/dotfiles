@@ -83,7 +83,7 @@
 
   # MISC
   cp = cherry-pick
-  root = rev-parse --show-toplevel
+  root = !"fn() { git -C ${1:-.} rev-parse --show-toplevel; }; fn"
   author = !"fn() { git log --author=$1 ${@:2}; }; fn"
 
 [pager]

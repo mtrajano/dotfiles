@@ -121,7 +121,6 @@ inoremap <C-a> <C-o>^
 
 " search under selection
 vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>
-vnoremap v <esc>
 
 " ===============
 " TERMINAL REMAPS
