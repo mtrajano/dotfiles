@@ -13,6 +13,8 @@ augroup END
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
+  use 'vim-scripts/ReplaceWithRegister'
+
   use 'Rigellute/rigel'
   use {
     'hoob3rt/lualine.nvim',

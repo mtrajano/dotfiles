@@ -1,4 +1,5 @@
 local action = require('telescope.actions')
+local action_state = require('telescope.actions.state')
 local Path = require('plenary.path')
 local u = require('mt.utils')
 local o = vim.o
@@ -52,9 +53,10 @@ custom_mapping('<leader>jj', 'git_files')
 custom_mapping('<leader>jf', 'find_files')
 custom_mapping('<leader>jd', 'edit_dotfiles')
 custom_mapping('<leader>ji', 'edit_installed')
+custom_mapping('<leader>jv', 'edit_vendor')
 custom_mapping('<leader>jw', 'edit_work_files')
 custom_mapping('<leader>jb', 'edit_benet')
-custom_mapping('<leader>jv', 'edit_view')
+custom_mapping('<leader>jp', 'edit_view')
 custom_mapping('<leader>JJ', 'find_all_files') -- TODO figure out why this is so slow
 
 -- TODO: create mappings for tcd, lcd, cd, delete
@@ -122,14 +124,15 @@ M.open_dotfiles = function()
   })
 end
 
+-- TODO: move this to utils or see if it's needed
+local function relative_path(path)
+  return string.format('%s/%s', fn.getcwd(), path)
+end
+
 -- TODO: check this command on files that don't meed the file type
 -- TODO: have this work with certain projects instead of file types
 local function get_installed_cwd()
   local ft = o.filetype
-
-  local function relative_path(path)
-    return string.format('%s/%s', fn.getcwd(), path)
-  end
 
   local package_paths = {
     php = relative_path('vendor'),
@@ -173,6 +176,13 @@ M.edit_view = function()
   require'telescope.builtin'.find_files {
     prompt_title = 'Pro2 View',
     cwd = os.getenv("HOME") .. "/dev/behance/pro2-view",
+  }
+end
+
+M.edit_vendor = function()
+  require'telescope.builtin'.find_files {
+    prompt_title = 'Vendor Files',
+    cwd = relative_path('vendor'),
   }
 end
 

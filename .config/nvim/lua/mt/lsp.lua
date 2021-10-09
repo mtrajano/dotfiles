@@ -131,7 +131,7 @@ u.nmap('[D', ':lua vim.lsp.diagnostic.goto_prev({severity="Error"})<cr>')
 u.nmap(']D', ':lua vim.lsp.diagnostic.goto_next({severity="Error"})<cr>')
 
 -- coming from other plugins
-u.nmap('<leader>k', ':lua require"telescope.builtin".lsp_document_symbols()<cr>')
-u.nmap('<leader>K', ':lua require"telescope.builtin".lsp_dynamic_workspace_symbols({ignore_filename = true})<cr>')
+u.nmap('<leader>k', ':lua require"telescope.builtin".lsp_document_symbols({ignore_filename = false})<cr>', {silent=true})
+u.nmap('<leader>K', ':lua require"telescope.builtin".lsp_dynamic_workspace_symbols({ignore_filename = true})<cr>', {silent=true})
 
 return M

@@ -95,7 +95,7 @@ end
 -- @field ignore      : Dont respect version control ignore files
 -- @field boundary     : Add a word boundary around the search term
 -- @field include_ft   : Search within same filetype
-M.search_normal = function(opts)
+function get_search_opts(opts)
   local default_opts = {
     ignore = false,
     boundary = true,
@@ -106,19 +106,35 @@ M.search_normal = function(opts)
     default_opts = vim.tbl_extend('force', default_opts, opts)
   end
 
+  return default_opts
+end
+
+-- @class opts
+-- @field ignore      : Dont respect version control ignore files
+-- @field boundary     : Add a word boundary around the search term
+-- @field include_ft   : Search within same filetype
+M.search_normal = function(opts)
+  opts = get_search_opts(opts)
+
   local search_word = fn.expand('<cword>')
 
-  cmd('Ack!' ..  get_search_term(search_word, default_opts))
+  cmd('Ack!' ..  get_search_term(search_word, opts))
   fn.setreg('/', search_word) -- to make highlight search term work with word boundaries
 
 end
 
-M.search_visual = function()
+-- @class opts
+-- @field ignore      : Dont respect version control ignore files
+-- @field boundary     : Add a word boundary around the search term
+-- @field include_ft   : Search within same filetype
+M.search_visual = function(opts)
+  opts = get_search_opts(opts)
+
   local line_start = fn.line("'<")
   local line_end = fn.line("'>")
 
   if (line_start ~= line_end) then
-    -- TODO ? support search across multiple lines by appending "\s*\n" to each line
+    -- TODO: ? support search across multiple lines by appending "\s*\n" to each line
     print('Search should only be across a single line')
   else
     local line = fn.getline(line_start)
@@ -126,7 +142,7 @@ M.search_visual = function()
     local col_end = fn.col("'>")
     local word = string.sub(line, col_start, col_end);
 
-    cmd('Ack!' ..  get_search_term(word))
+    cmd('Ack!' ..  get_search_term(word, opts))
     fn.setreg('/', word) -- to make highlight search term work with word boundaries
   end
 end
@@ -136,8 +152,9 @@ M.update_search_abbrev = function()
 end
 
 u.nmap('<leader>f', ':lua require("mt.search").search_normal({include_ft=true})<cr>')
-u.vmap('<leader>f', ':lua require("mt.search").search_visual()<cr>')
+u.vmap('<leader>f', ':lua require("mt.search").search_visual({include_ft=true, boundary=false})<cr>')
 u.nmap('<leader>F', ':lua require("mt.search").search_normal({include_ft=false})<cr>')
+u.vmap('<leader>F', ':lua require("mt.search").search_visual({include_ft=false, boundary=false})<cr>')
 --TODO possibly change these to user commands
 -- u.cnoreabbrev('F!', 'Ack! -tall') -- default, should get updated per filetype
 u.cnoreabbrev('F', 'Ack!') -- default, should get updated per filetype
