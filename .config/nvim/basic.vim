@@ -93,8 +93,11 @@ nnoremap <leader>y "+y
 vnoremap <leader>y "+y
 vnoremap <leader>y "+yy
 
-nnoremap <leader>p "0p
-vnoremap <leader>p "0p
+nnoremap <leader>P "0p
+vnoremap <leader>P "0p
+nmap <Leader>p  <Plug>ReplaceWithRegisterOperator
+nmap <Leader>pp <Plug>ReplaceWithRegisterLine
+xmap <Leader>p  <Plug>ReplaceWithRegisterVisual
 
 nnoremap <leader>D ^D
 " null register deletes
