@@ -39,6 +39,13 @@ lspconfig.vuels.setup {
   on_attach = my_attach,
 }
 
+---------
+-- PYTHON
+---------
+lspconfig.pylsp.setup {
+  on_attach = my_attach,
+}
+
 ------
 -- LUA
 ------
