@@ -63,6 +63,9 @@ set wildmode=longest:full,list:full
 set list
 set listchars=tab:>\ ,nbsp:·
 
+" open quickfix result in last window
+set switchbuf=uselast
+
 " =============
 " NORMAL REMAPS
 " =============
