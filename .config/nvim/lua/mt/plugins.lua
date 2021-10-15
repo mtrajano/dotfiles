@@ -70,10 +70,6 @@ return require('packer').startup(function()
     end
   }
   use 'gcmt/taboo.vim'
-  use {
-    'plasticboy/vim-markdown',
-    ft = { 'markdown' }
-  }
   use 'wsdjeg/vim-fetch'
 
   use 'tpope/vim-repeat'
@@ -138,6 +134,13 @@ return require('packer').startup(function()
   install_textobj('glts/vim-textobj-comment')
   install_textobj('kana/vim-textobj-indent')
   use 'wellle/targets.vim'
+
+  -- for writing
+  use 'dkarter/bullets.vim'
+  use {
+    'plasticboy/vim-markdown',
+    ft = { 'markdown' }
+  }
 
   -- NVIM SPECIFIC
 
