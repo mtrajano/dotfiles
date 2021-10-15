@@ -119,6 +119,11 @@ M.search_normal = function(opts)
   local search_word = fn.expand('<cword>')
 
   cmd('Ack!' ..  get_search_term(search_word, opts))
+
+  if opts.boundary then
+    search_word = '\\<' .. search_word .. '\\>'
+  end
+
   fn.setreg('/', search_word) -- to make highlight search term work with word boundaries
 
 end
@@ -143,6 +148,11 @@ M.search_visual = function(opts)
     local word = string.sub(line, col_start, col_end);
 
     cmd('Ack!' ..  get_search_term(word, opts))
+
+    if opts.boundary then
+      search_word = '\\<' .. search_word .. '\\>'
+    end
+
     fn.setreg('/', word) -- to make highlight search term work with word boundaries
   end
 end
@@ -151,10 +161,10 @@ M.update_search_abbrev = function()
   u.cnoreabbrev('F', 'Ack!' .. get_search_term(nil, {include_ft=true}))
 end
 
-u.nmap('<leader>f', ':lua require("mt.search").search_normal({include_ft=true})<cr>')
-u.vmap('<leader>f', ':lua require("mt.search").search_visual({include_ft=true, boundary=false})<cr>')
-u.nmap('<leader>F', ':lua require("mt.search").search_normal({include_ft=false})<cr>')
-u.vmap('<leader>F', ':lua require("mt.search").search_visual({include_ft=false, boundary=false})<cr>')
+u.nmap('<leader>F', ':lua require("mt.search").search_normal({include_ft=true})<cr>')
+u.vmap('<leader>F', ':lua require("mt.search").search_visual({include_ft=true, boundary=false})<cr>')
+u.nmap('<leader>f', ':lua require("mt.search").search_normal({include_ft=false})<cr>')
+u.vmap('<leader>f', ':lua require("mt.search").search_visual({include_ft=false, boundary=false})<cr>')
 --TODO possibly change these to user commands
 -- u.cnoreabbrev('F!', 'Ack! -tall') -- default, should get updated per filetype
 u.cnoreabbrev('F', 'Ack!') -- default, should get updated per filetype
