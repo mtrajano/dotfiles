@@ -32,7 +32,7 @@ set updatetime=1000
 set inccommand=split
 
 " horizontal/vertical cursor padding, move cursor 1 line at a time
-set sidescrolloff=3
+set sidescrolloff=10
 set sidescroll=1
 set scrolloff=3
 set scrolljump=1
