@@ -6,27 +6,30 @@ cmd [[
 augroup run_linter
   autocmd!
   autocmd BufEnter,BufWritePost * lua require('mt.lint').lint(vim.fn.expand('<amatch>'))
+  autocmd DirChanged * lua require('mt.lint').update_linters()
 augroup END
 ]]
 
 local lint = require'lint'
 
-local php_linters = {}
-if fn.executable('./vendor/bin/phpcs') == 1 then
-  table.insert(php_linters, 'be_phpcs')
-end
-if fn.executable('./vendor/bin/phpmd') == 1 then
-  table.insert(php_linters, 'be_phpmd')
-end
-if fn.executable('./vendor/bin/psalm') == 1 then
-  table.insert(php_linters, 'be_psalm')
-end
-
-lint.linters_by_ft = {
-  php = php_linters,
-}
-
 local M = {}
+
+function M.update_linters()
+  local php_linters = {}
+  if fn.executable('./vendor/bin/phpcs') == 1 then
+    table.insert(php_linters, 'be_phpcs')
+  end
+  if fn.executable('./vendor/bin/phpmd') == 1 then
+    table.insert(php_linters, 'be_phpmd')
+  end
+  if fn.executable('./vendor/bin/psalm') == 1 then
+    table.insert(php_linters, 'be_psalm')
+  end
+
+  lint.linters_by_ft = {
+    php = php_linters,
+  }
+end
 
 function M.lint(file)
   -- TODO generalize this if it grows
@@ -100,5 +103,7 @@ function M.setup()
   lint.linters.be_psalm = psalm({ '--config=psalm' })
 
 end
+
+M.update_linters()
 
 return M
