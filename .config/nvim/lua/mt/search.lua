@@ -4,7 +4,7 @@ local o = vim.o
 local fn = vim.fn
 local cmd = vim.cmd
 
-local special_chars = {'.', '{', '}', '[', ']', '-', '+', '*', '?', '^', '$', '#'}
+local special_chars = {'.', '{', '}', '[', ']', '(', ')', '-', '+', '*', '?', '^', '$', '#'}
 
 -- use ripgrep for searching
 g.ackprg = 'rg --vimgrep --smart-case'
@@ -139,8 +139,17 @@ M.search_visual = function(opts)
   local line_end = fn.line("'>")
 
   if (line_start ~= line_end) then
-    -- TODO: ? support search across multiple lines by appending "\s*\n" to each line
-    print('Search should only be across a single line')
+    -- TODO: Need to fix handling back slashes (need to escape them)
+    local search_term = ''
+    while line_start <= line_end do
+      local line = fn.getline(line_start)
+      line_start = line_start + 1
+      search_term = search_term .. "\\n" .. line
+    end
+
+    search_term = search_term:gsub('^\\n', '')
+
+    cmd('Ack! --multiline ' ..  get_search_term(search_term, opts))
   else
     local line = fn.getline(line_start)
     local col_start = fn.col("'<")
