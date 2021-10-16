@@ -6,8 +6,9 @@ local lir = require 'lir'
 
 local cmd = vim.cmd
 
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
+-- Need to load the netrw plugin for the vim-markdown gx mapping
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaded_netrwPlugin = 1
 
 
 lir.setup {

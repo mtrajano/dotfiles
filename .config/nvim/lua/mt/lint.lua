@@ -12,6 +12,10 @@ augroup END
 
 local lint = require'lint'
 
+lint.linters_by_ft = {
+  markdown = { 'proselint' }
+}
+
 local M = {}
 
 function M.update_linters()
@@ -26,9 +30,7 @@ function M.update_linters()
     table.insert(php_linters, 'be_psalm')
   end
 
-  lint.linters_by_ft = {
-    php = php_linters,
-  }
+  lint.linters_by_ft['php'] = php_linters
 end
 
 function M.lint(file)
@@ -93,6 +95,18 @@ function M.setup()
     }
   end
 
+  local function proselint()
+    local pattern = [[([^:]+):(%d+):(%d+): (.+)]]
+    local groups = { 'file', 'line', 'start_col', 'message' }
+
+    return {
+      cmd = 'proselint',
+      stdin = false, -- true if program receives content via stdin
+      stream = 'stdout', -- ('stdout' | 'stderr')
+      parser = require'lint.parser'.from_pattern(pattern, groups, nil, { ['source'] = 'psalm' }) -- file:line:col: messsage
+    }
+  end
+
   lint.linters.phpcs = phpcs({ '--standard=PSR12' })
   lint.linters.be_phpcs = phpcs({ '--warning-severity=0', '--standard=./vendor/behance/php-sniffs/Behance' })
 
@@ -101,6 +115,8 @@ function M.setup()
 
   lint.linters.psalm = psalm({})
   lint.linters.be_psalm = psalm({ '--config=psalm' })
+
+  lint.linters.proselint = proselint()
 
 end
 

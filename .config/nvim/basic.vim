@@ -70,6 +70,10 @@ set switchbuf=uselast
 " NORMAL REMAPS
 " =============
 
+" TODO: remove when install vim-pencil
+nnoremap <buffer> j gj
+nnoremap <buffer> k gk
+
 " disable ex-mode
 nnoremap Q <nop>
 
@@ -86,8 +90,6 @@ nnoremap ^ 0
 
 " last buffer/window
 nnoremap <leader><space> <C-^>
-
-nnoremap <silent> <leader>/ :nohlsearch<cr>
 
 nnoremap Y y$
 nnoremap <leader>Y ^yy
