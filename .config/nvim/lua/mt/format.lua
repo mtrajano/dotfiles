@@ -3,12 +3,11 @@ local api = vim.api
 local cmd = vim.cmd
 local fn = vim.fn
 
--- TODO look into these autocommands
 cmd [[
 augroup formatting_fixes
   autocmd!
   autocmd BufWritePre * lua require'mt.format'.trim_space()
-  autocmd BufWritePre *.php Format
+  autocmd BufWritePost *.py silent FormatWrite
 augroup END
 ]]
 
@@ -31,13 +30,12 @@ local function trim_trailing_whitespace()
   cmd [[ keeppatterns %s/\s\+$//e ]]
 end
 
--- TODO see if this can be added to the list of formatters below
--- TODO see if this can be run asynchronously in a temp buffer
+-- TODO: see if this can be added to the list of formatters below
 function M.trim_space()
   local view = fn.winsaveview()
 
+  -- ensure_final_newline()
   trim_trailing_whitespace()
-  ensure_final_newline()
 
   fn.winrestview(view)
 end
@@ -59,11 +57,17 @@ local function phpcs()
   }
 end
 
+local function black()
+  return {
+    exe = 'black',
+    stdin = false,
+  }
+end
+
 require'formatter'.setup({
-  logging = false,
   filetype = {
-    php = {
-      phpcs,
+    python = {
+      black
     }
   }
 })
