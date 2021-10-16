@@ -125,6 +125,7 @@ M.open_dotfiles = function()
 end
 
 -- TODO: move this to utils or see if it's needed
+-- TODO: plenary path probably does this
 local function relative_path(path)
   return string.format('%s/%s', fn.getcwd(), path)
 end

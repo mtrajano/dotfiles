@@ -72,6 +72,7 @@ return require('packer').startup(function()
   use 'gcmt/taboo.vim'
   use 'wsdjeg/vim-fetch'
 
+  use 'tpope/vim-scriptease'
   use 'tpope/vim-repeat'
   use 'tpope/vim-commentary'
   use {
