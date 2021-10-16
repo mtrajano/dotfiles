@@ -4,7 +4,10 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = {
     "php",
     "python",
-    "lua"
+    "lua",
+    "tsx",
+    "typescript",
+    "vue"
   },
 
   highlight = {
