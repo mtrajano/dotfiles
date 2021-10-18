@@ -66,6 +66,11 @@ set listchars=tab:>\ ,nbsp:·
 " open quickfix result in last window
 set switchbuf=uselast
 
+" find nested files
+set path+=**
+" TODO: move this to php config file
+set wildignore+=vendor/**,.git/**,node_modules/**
+
 " =============
 " NORMAL REMAPS
 " =============

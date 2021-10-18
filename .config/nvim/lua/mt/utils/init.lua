@@ -49,6 +49,7 @@ utils.t = function(keycode)
   return api.nvim_replace_termcodes(keycode, true, true, true)
 end
 
+-- TODO: replace these with vim.tbl_contains
 utils.contains = function(table, needle)
   for _,value in ipairs(table) do
     if (value == needle) then
