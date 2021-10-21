@@ -89,7 +89,6 @@ return require('packer').startup(function()
 
   use {
     'SirVer/ultisnips',
-    ft = { 'php', 'python', 'vim', 'zsh', 'markdown' }
   }
   use {
     'honza/vim-snippets',

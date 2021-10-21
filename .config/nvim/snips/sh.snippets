@@ -1,0 +1,20 @@
+snippet bang "shebang" b
+#!/usr/bin/env bash
+endsnippet
+
+
+snippet case "case statement" b
+case ${1:expression} in
+
+	${2:pattern})
+		$0
+		;;
+
+esac
+endsnippet
+
+snippet func "function" b
+function ${1:name} {
+	$0
+}
+endsnippet

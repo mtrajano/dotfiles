@@ -190,7 +190,7 @@ end
 M.edit_benet = function()
   require'telescope.builtin'.find_files {
     prompt_title = 'Be.net',
-    cwd = os.getenv("HOME") .. "/dev/behance/be.net",
+    cwd = os.getenv('HOME') .. "/dev/behance/be.net",
   }
 end
 
