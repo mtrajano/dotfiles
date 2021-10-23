@@ -6,7 +6,7 @@ vim.g.UltiSnipsJumpForwardTrigger = '<tab>'
 vim.g.UltiSnipsJumpBackwardTrigge = '<s-tab>'
 
 vim.g.UltiSnipsSnippetDirectories = {
-  os.getenv('HOME') .. '/.config/nvim/snips'
+  os.getenv('DOTFILES') .. '/nvim/snips'
 }
 
 function _G.NormalizeNamespace(path)

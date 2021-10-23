@@ -32,6 +32,7 @@ utils.omap = function(lhs, rhs, override_opts) map('o', lhs, rhs, override_opts)
 utils.tmap = function(lhs, rhs, override_opts) map('t', lhs, rhs, override_opts) end
 utils.cmap = function(lhs, rhs, override_opts) map('c', lhs, rhs, override_opts) end
 
+-- TODO: merge these into the ones above with a {buffer = true option}
 utils.buf_nmap = function(lhs, rhs, override_opts) map('n', lhs, rhs, override_opts, true) end
 utils.buf_imap = function(lhs, rhs, override_opts) map('i', lhs, rhs, override_opts, true) end
 utils.buf_vmap = function(lhs, rhs, override_opts) map('v', lhs, rhs, override_opts, true) end

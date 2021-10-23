@@ -1,0 +1,28 @@
+# TODO see if can reduce duplication (maybe have a global today object)
+snippet idate "iso date" b
+${0:`!p
+import datetime
+snip.rv = datetime.date.today().isoformat()
+`}
+endsnippet
+
+snippet cdate "common date" b
+${0:`!p
+import datetime
+snip.rv = datetime.date.today().strftime('%m/%d/%Y')
+`}
+endsnippet
+
+snippet fdate "format date" b
+${0:`!p
+import datetime
+snip.rv = datetime.date.today().strftime('%B %m, %Y')
+`}
+endsnippet
+
+snippet wdate "weekday" b
+${0:`!p
+import datetime
+snip.rv = datetime.date.today().strftime('%A')
+`}
+endsnippet

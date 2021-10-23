@@ -38,6 +38,8 @@ return require('packer').startup(function()
     end
   }
 
+  use 'vimwiki/vimwiki'
+
   use {
     'jiangmiao/auto-pairs',
     config = function()

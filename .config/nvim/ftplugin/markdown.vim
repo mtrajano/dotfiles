@@ -1,3 +1,4 @@
+" TODO: replace these with vim-pencil
 setlocal wrap
 
 " wrap on whole words
