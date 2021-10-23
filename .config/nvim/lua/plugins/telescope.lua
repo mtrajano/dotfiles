@@ -57,6 +57,7 @@ custom_mapping('<leader>jv', 'edit_vendor')
 custom_mapping('<leader>jw', 'edit_work_files')
 custom_mapping('<leader>jb', 'edit_benet')
 custom_mapping('<leader>jp', 'edit_view')
+custom_mapping('<leader>jr', 'edit_runtime')
 custom_mapping('<leader>JJ', 'find_all_files') -- TODO figure out why this is so slow
 
 -- TODO: create mappings for tcd, lcd, cd, delete
@@ -64,13 +65,14 @@ custom_mapping('<leader>hd', 'open_dotfiles')
 custom_mapping('<leader>hi', 'open_installed')
 custom_mapping('<leader>hs', 'open_scratch')
 
-custom_mapping('<leader>l', 'buffers')
+custom_mapping('<leader>jl', 'buffers')
 custom_mapping('<leader>H', 'search_help')
-
-custom_mapping('<leader>go', 'git_branches')
-
 builtin_mapping('<leader>cc', 'commands')
--- u.nmap('<leader>cc', ':lua require"telescope.builtin".commands()<cr>')
+builtin_mapping('<leader>jo', 'oldfiles')
+
+-- extensions
+u.nmap('<leader>to', ':TodoTelescope<cr>')
+custom_mapping('<leader>go', 'git_branches')
 
 -- TODO: maybe move this to utils so can be reused in different places (also
 -- used in the statusline)
@@ -192,6 +194,17 @@ M.edit_benet = function()
     prompt_title = 'Be.net',
     cwd = os.getenv('HOME') .. "/dev/behance/be.net",
   }
+end
+
+M.edit_runtime = function()
+  require'telescope.builtin'.find_files {
+    prompt_title = 'Runtime',
+    cwd = os.getenv('VIMRUNTIME'),
+  }
+end
+
+M.oldfiles = function()
+  require'telescope.builtin'.oldfiles {}
 end
 
 M.buffers = function()

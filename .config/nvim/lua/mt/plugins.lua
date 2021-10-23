@@ -121,7 +121,11 @@ return require('packer').startup(function()
   use {
     'folke/todo-comments.nvim',
     config = function()
-      require 'todo-comments'.setup {}
+      require 'todo-comments'.setup {
+        -- keywords = {
+        --   TEST = { icon = " ", color = "warning" },
+        -- }
+      }
     end
   }
 

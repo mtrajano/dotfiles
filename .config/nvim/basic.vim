@@ -145,8 +145,12 @@ tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 " =====================
 " HELPFUL ABBREVIATIONS
 " =====================
+" TODO: move these to the TODO plugin
+inoreabbrev todo: TODO:
+inoreabbrev note: NOTE:
+inoreabbrev test: TEST:
+
 " TODO move these somewhere else
-inoreabbrev todo TODO
 inoreabbrev kb KB
 inoreabbrev mb MB
 inoreabbrev gb GB
