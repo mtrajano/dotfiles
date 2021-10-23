@@ -10,3 +10,10 @@ E2I
 config
 T1
 cpu
+todo
+lua
+Neovim
+TreeSitter
+quickfix
+nvim
+lsp

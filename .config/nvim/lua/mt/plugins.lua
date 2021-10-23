@@ -158,6 +158,7 @@ return require('packer').startup(function()
     requires = {'kyazdani42/nvim-web-devicons', opt = true}
   }
   use 'neovim/nvim-lspconfig'
+  -- TODO: needs to migrated to nvim-cmp since this package is deprecated (https://github.com/hrsh7th/nvim-compe)
   use 'hrsh7th/nvim-compe'
   use 'ray-x/lsp_signature.nvim'
   use 'nvim-lua/lsp-status.nvim'
