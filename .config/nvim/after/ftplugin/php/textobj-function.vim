@@ -6,7 +6,10 @@ function! s:select_a()
   if getline('.') =~# '}'
     normal! k
   endif
+
   normal! ]M$
+  normal! j
+
   let e = getpos('.')
 
   normal! [m
@@ -17,9 +20,9 @@ function! s:select_a()
     normal! [*
   endif
 
-  normal! k
-
   let b = getpos('.')
+
+  normal! ]M
 
   if 1 < e[1] - b[1]  " is there some code?
     return ['V', b, e]
