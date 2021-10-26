@@ -13,11 +13,12 @@ endfunction
 
 function! s:HexifyFile(on) abort
   if a:on
-    syntax off
     exec '%!xxd'
+    let s:last_ft = &ft
+    setlocal ft=xxd
   else
-    syntax enable
     exec '%!xxd -r'
+    exec 'setlocal ft=' . s:last_ft
     edit!
   endif
 endfunction

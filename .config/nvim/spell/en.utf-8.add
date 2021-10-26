@@ -17,3 +17,6 @@ TreeSitter
 quickfix
 nvim
 lsp
+VSCode
+backend
+Grafana

@@ -74,20 +74,21 @@ return require('packer').startup(function()
   use 'gcmt/taboo.vim'
   use 'wsdjeg/vim-fetch'
 
-  use 'tpope/vim-scriptease'
+  use 'tpope/vim-surround'
   use 'tpope/vim-repeat'
+  use 'tpope/vim-projectionist'
   use 'tpope/vim-commentary'
+  use 'tpope/vim-unimpaired'
+  use 'tpope/vim-abolish'
+  use 'tpope/vim-speeddating'
+  use 'tpope/vim-obsession'
+  use 'tpope/vim-scriptease'
   use {
     'tpope/vim-dispatch',
     config = function()
       vim.g.dispatch_no_tmux_dispatch = 1 -- breaks zoomed panes
     end
   }
-  use 'tpope/vim-abolish'
-  use 'tpope/vim-unimpaired'
-  use 'tpope/vim-projectionist'
-  use 'tpope/vim-obsession'
-  use 'tpope/vim-surround'
 
   use {
     'SirVer/ultisnips',

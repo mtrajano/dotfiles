@@ -43,6 +43,13 @@ browse() {
   fi
 }
 
+ranger() {
+  if [ -z "$RANGER_LEVEL" ]; then
+    command ranger "$@"
+  else
+    exit
+  fi
+}
 alias r=ranger
 
 ############
@@ -69,6 +76,45 @@ is-git-repo() {
   git rev-parse --git-dir > /dev/null 2>&1
 }
 
+#############
+# K8S ALIASES
+#############
+# see: https://wiki.corp.adobe.com/pages/viewpage.action?spaceKey=ethos&title=Using+Kubectl+for+Ethos+Namespace+Access
+k() {
+
+  namespace=$2
+  if [[ -z $namespace ]]; then
+    echo "missing namespace"
+    return
+  fi
+
+  case $1 in
+
+    ls|list)
+      kubectl --namespace $namespace get pods;;
+
+    info)
+      pod=$3
+      if [[ -z $pod ]]; then
+        echo "pod is missing"
+        return
+      fi
+      kubectl --namespace $namespace describe pods/$pod;;
+
+    logs)
+      pod=$3
+      if [[ -z $pod ]]; then
+        echo "pod is missing"
+        return
+      fi
+      container=$4
+      if [[ -z $container ]]; then
+        echo "container is missing"
+        return
+      fi
+      kubectl --namespace $namespace logs -f pods/$pod -c $container;;
+  esac
+}
 
 #####
 # VIM

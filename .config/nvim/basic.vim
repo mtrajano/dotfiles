@@ -156,3 +156,5 @@ inoreabbrev mb MB
 inoreabbrev gb GB
 inoreabbrev tb TB
 inoreabbrev k12 K-12
+
+inoreabbrev vscode VSCode
