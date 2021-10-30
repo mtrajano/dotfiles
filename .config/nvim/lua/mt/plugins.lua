@@ -178,5 +178,5 @@ return require('packer').startup(function()
       require'lspsaga'.init_lsp_saga()
     end
   }
-  use { 'nvim-telescope/telescope-fzy-native.nvim' }
+  use 'folke/trouble.nvim'
 end)

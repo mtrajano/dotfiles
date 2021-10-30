@@ -62,5 +62,10 @@ augroup fix_highlight
 augroup END
 
 function! s:FixRigelTheme()
-  hi LspDiagnosticsVirtualTextError guifg=#c43060 ctermfg=167 guibg=#002635 ctermbg=235 gui=NONE cterm=NONE
+  hi link LspDiagnosticsVirtualTextError ErrorMsg
+
+  hi link TroubleSignError ErrorMsg
+  hi link TroubleTextError ErrorMsg
+  hi link TroubleSignError ErrorMsg
+  hi link TroubleTextError ErrorMsg
 endf

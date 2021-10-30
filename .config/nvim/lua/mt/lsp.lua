@@ -133,10 +133,10 @@ u.nmap('gr', ':lua require("lspsaga.rename").rename()<cr>')
 u.nmap('gR', ':lua vim.lsp.buf.references()<cr>')
 u.nmap('K', ':lua require("mt.lsp").hover_or_get_docs()<cr>')
 
-u.nmap('[d', ':lua vim.lsp.diagnostic.goto_prev()<cr>')
-u.nmap(']d', ':lua vim.lsp.diagnostic.goto_next()<cr>')
-u.nmap('[D', ':lua vim.lsp.diagnostic.goto_prev({severity="Error"})<cr>')
-u.nmap(']D', ':lua vim.lsp.diagnostic.goto_next({severity="Error"})<cr>')
+u.nmap('[D', ':lua vim.lsp.diagnostic.goto_prev()<cr>')
+u.nmap(']D', ':lua vim.lsp.diagnostic.goto_next()<cr>')
+u.nmap('[d', ':lua vim.lsp.diagnostic.goto_prev({severity="Error"})<cr>')
+u.nmap(']d', ':lua vim.lsp.diagnostic.goto_next({severity="Error"})<cr>')
 
 -- coming from other plugins
 u.nmap('<leader>k', ':lua require"telescope.builtin".lsp_document_symbols({ignore_filename = false, symbol_width = 35})<cr>', {silent=true})
