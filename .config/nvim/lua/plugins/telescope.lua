@@ -1,5 +1,4 @@
 local action = require('telescope.actions')
-local action_state = require('telescope.actions.state')
 local Path = require('plenary.path')
 local u = require('mt.utils')
 local o = vim.o

@@ -72,7 +72,8 @@ end
 local function get_search_term(raw_term, opts)
   opts = opts or {}
 
-  local optional_params = (opts.ignore and " --no-ignore-vcs") or ""
+  local optional_params = (opts.ignore and ' --no-ignore-vcs') or ''
+  optional_params = optional_params .. ((opts.boundary and ' --word-regexp') or '')
 
   if opts.include_ft then
     optional_params = optional_params .. resolve_types(o.filetype) .. include_file_globs(o.filetype)
@@ -81,11 +82,6 @@ local function get_search_term(raw_term, opts)
   local search_term = ''
   if raw_term then
     search_term = escape_special_chars(raw_term)
-    if opts.boundary then
-      search_term = "'\\b" .. search_term .. "\\b'"
-    else
-      search_term = "'" .. search_term .. "'"
-    end
   end
 
   return search_term .. optional_params
@@ -95,7 +91,7 @@ end
 -- @field ignore      : Dont respect version control ignore files
 -- @field boundary     : Add a word boundary around the search term
 -- @field include_ft   : Search within same filetype
-function get_search_opts(opts)
+local function get_search_opts(opts)
   local default_opts = {
     ignore = false,
     boundary = true,
@@ -159,6 +155,7 @@ M.search_visual = function(opts)
     cmd('Ack!' ..  get_search_term(word, opts))
 
     if opts.boundary then
+      local search_word = ''
       search_word = '\\<' .. search_word .. '\\>'
     end
 
