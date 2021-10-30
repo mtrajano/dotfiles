@@ -67,7 +67,7 @@ custom_mapping('<leader>hd', 'open_dotfiles')
 custom_mapping('<leader>hi', 'open_installed')
 custom_mapping('<leader>hs', 'open_scratch')
 
-custom_mapping('<leader>jl', 'buffers')
+custom_mapping('<leader>l', 'buffers')
 custom_mapping('<leader>H', 'search_help')
 builtin_mapping('<leader>cc', 'commands')
 builtin_mapping('<leader>jo', 'oldfiles')
@@ -211,7 +211,6 @@ end
 
 M.buffers = function()
   require'telescope.builtin'.buffers({
-    sort_lastused = true,
     sort_mru = true,
   })
 end
