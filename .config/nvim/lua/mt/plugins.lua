@@ -44,6 +44,7 @@ return require('packer').startup(function()
     'jiangmiao/auto-pairs',
     config = function()
       vim.g.AutoPairsMapSpace = 0
+      vim.g.AutoPairsMultilineClose = 0
     end
   }
 
