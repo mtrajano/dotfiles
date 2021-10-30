@@ -36,6 +36,7 @@ set sidescrolloff=10
 set sidescroll=1
 set scrolloff=3
 set scrolljump=1
+set scroll=10
 
 " natural split positions
 set splitbelow

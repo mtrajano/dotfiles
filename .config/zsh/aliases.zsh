@@ -63,12 +63,34 @@ alias lh="ls -lh"
 #############
 # GIT ALIASES
 #############
-g() {
+function g {
   if [[ $# == 0 ]]; then
     git status -sb
   else
     git $@
   fi
+}
+
+function gwt {
+  command=$1
+  shift
+  case $command in
+    list)
+      git worktree list;;
+    add)
+      dir=$(git root | xargs basename)
+      branch=$1
+      git worktree add ../$dir-$branch $branch;;
+      # echo "git worktree add -b ../$dir-$branch $branch";;
+    co)
+      dir=$(git root | xargs basename)
+      branch=$1
+      cd ../$dir-$branch;;
+    rm)
+      dir=$(git root | xargs basename)
+      branch=$1
+      git worktree remove ../$dir-$branch;;
+  esac
 }
 alias lg=lazygit
 
@@ -80,7 +102,7 @@ is-git-repo() {
 # K8S ALIASES
 #############
 # see: https://wiki.corp.adobe.com/pages/viewpage.action?spaceKey=ethos&title=Using+Kubectl+for+Ethos+Namespace+Access
-k() {
+function k {
 
   namespace=$2
   if [[ -z $namespace ]]; then

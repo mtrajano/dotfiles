@@ -5,6 +5,7 @@ local cmd = vim.cmd
 
 local lspconfig = require'lspconfig'
 
+-- TODO: see if this is needed, seems to be done automatically
 cmd [[
 augroup update_function_status
   autocmd!

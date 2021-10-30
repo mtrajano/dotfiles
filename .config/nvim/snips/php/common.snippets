@@ -166,6 +166,7 @@ $this->getMockBuilder($1)$0
 	->getMock();
 endsnippet
 
+# assertion snips
 snippet asame "Assert Same" b
 $this->assertSame($0);
 endsnippet
@@ -190,6 +191,7 @@ snippet aiof "Assert Instance Of" b
 $this->assertInstanceOf($1, $2);
 endsnippet
 
+# expect snips
 snippet exo  "Test expects once" w
 expects($this->once())
 endsnippet
@@ -200,6 +202,19 @@ endsnippet
 
 snippet exe  "Test expects exactly" w
 expects($this->exactly($1))
+endsnippet
+
+snippet ee  "expectException" w
+$this->expectException($0);
+endsnippet
+
+snippet eem  "expectExceptionMessage" w
+$this->expectExceptionMessage($0);
+endsnippet
+
+# will snips
+snippet wte  "willThrowException" w
+->willThrowException($0)
 endsnippet
 
 snippet setup "Setup method for tests" b

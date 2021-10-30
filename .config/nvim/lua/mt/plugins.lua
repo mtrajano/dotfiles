@@ -142,6 +142,7 @@ return require('packer').startup(function()
   use 'wellle/targets.vim'
 
   -- for writing
+  use 'preservim/vim-pencil'
   use 'dkarter/bullets.vim'
   use {
     'plasticboy/vim-markdown',
@@ -161,6 +162,7 @@ return require('packer').startup(function()
   use 'nvim-lua/plenary.nvim'
   use 'nvim-lua/popup.nvim'
   use 'folke/lua-dev.nvim'
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use {
     'nvim-telescope/telescope.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true}

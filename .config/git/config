@@ -34,6 +34,7 @@
 
   # branch
   b = branch
+  br = branch -r # remote branches
   bd = branch -d
   bD = branch -D
   bm = branch -m
@@ -44,9 +45,7 @@
 
   # commit
   cm = commit -m
-  cam = commit -am
-  cum = commit -um
-  ca = commit --amend
+  ca = commit --amend --no-edit
 
   # diff
   d = diff
@@ -66,13 +65,15 @@
   re = reset
   reh = reset --hard
 
+  res = restore --staged # same as a co -- .
+
   # status
   s = status
   ss = status -s
-  rs = restore --staged
 
   # stash
   sta = stash
+  stA = stash apply # pop changes and leave on stack
   stp = stash pop
   stl = stash list
   sts = stash show -p
@@ -83,6 +84,7 @@
 
   # MISC
   cp = cherry-pick
+  wt = worktree
   root = !"fn() { git -C ${1:-.} rev-parse --show-toplevel; }; fn"
   author = !"fn() { git log --author=$1 ${@:2}; }; fn"
 
