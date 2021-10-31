@@ -43,7 +43,7 @@ require'telescope'.setup{
 require('telescope').load_extension('fzf')
 
 local function custom_mapping(key, method)
-  u.nmap(key, string.format(':lua require"plugins.telescope".%s()<cr>', method))
+  u.nmap(key, string.format(':lua require"mt.telescope".%s()<cr>', method))
 end
 
 local function builtin_mapping(key, method)
@@ -127,8 +127,7 @@ M.open_dotfiles = function()
   })
 end
 
--- TODO: move this to utils or see if it's needed
--- TODO: plenary path probably does this
+-- TODO: replace this with plenary.path
 local function relative_path(path)
   return string.format('%s/%s', fn.getcwd(), path)
 end
@@ -231,6 +230,13 @@ M.git_branches = function()
   require'telescope.builtin'.git_branches {
     prompt_prefix = 'branches> ',
     previewer=false,
+  }
+end
+
+M.lsp_references = function()
+  require'telescope.builtin'.lsp_references {
+    entry_maker = require'mt.telescope.entry_makers'.file_with_linenumbers,
+    layout_strategy = 'vertical',
   }
 end
 

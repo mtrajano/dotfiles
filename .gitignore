@@ -1,4 +1,5 @@
 **/.DS_Store
 .config/nvim/plugin/packer_compiled.lua
+.config/nvim/scratch/
 .config/tmux/plugins/
 .config/zsh/plugins/

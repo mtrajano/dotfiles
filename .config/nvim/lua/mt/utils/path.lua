@@ -7,6 +7,7 @@ function M.normalize_php_namespace(path)
       local pwd = vim.fn.getcwd()
       pwd = pwd:gsub("%p", "%%%1") -- remove special characters
 
+      -- TODO: replace this woth plenary.path
       path = path:gsub(pwd, '') -- remove pwd from file
       path = path:gsub('^/*(.-)/*$', '%1')-- trim any /
       path = path:gsub(prefix, namespace) -- sub with composer namespace
