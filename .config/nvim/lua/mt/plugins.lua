@@ -1,8 +1,5 @@
 local u = require'mt.utils'
 
-u.nmap('<leader>I', ':PackerInstall<cr>')
-u.nmap('<leader>U', ':PackerClean<cr>')
-
 vim.cmd [[
 augroup compile_onsave
   autocmd!
@@ -14,6 +11,7 @@ return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
   use 'vim-scripts/ReplaceWithRegister'
+  use 'ojroques/vim-oscyank'
 
   use 'Rigellute/rigel'
   use {

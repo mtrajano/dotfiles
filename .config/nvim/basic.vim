@@ -1,7 +1,6 @@
 set nocompatible
 
 set mouse=nvhr
-set clipboard=unnamedplus
 
 set hidden
 set noswapfile
@@ -99,10 +98,6 @@ nnoremap <leader><space> <C-^>
 
 nnoremap Y y$
 nnoremap <leader>Y ^yy
-" clipboard integreation
-nnoremap <leader>y "+y
-vnoremap <leader>y "+y
-vnoremap <leader>y "+yy
 
 nnoremap <leader>P "0p
 vnoremap <leader>P "0p
