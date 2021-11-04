@@ -7,7 +7,7 @@ local cmd = vim.cmd
 local special_chars = {'.', '{', '}', '[', ']', '(', ')', '-', '+', '*', '?', '^', '$', '#'}
 
 -- use ripgrep for searching
-g.ackprg = 'rg --vimgrep --smart-case'
+g.ackprg = 'rg --vimgrep --smart-case --color never'
 
 -- use dispatch for non-blocking
 g.ack_use_dispatch = 1
@@ -69,6 +69,7 @@ end
 -- @field ignore      : Dont respect version control ignore files
 -- @field boundary     : Add a word boundary around the search term
 -- @field include_ft   : Search within same filetype
+-- @field include_cwd   : Append the present working directory to the search
 local function get_search_term(raw_term, opts)
   opts = opts or {}
 
@@ -84,18 +85,26 @@ local function get_search_term(raw_term, opts)
     search_term = escape_special_chars(raw_term)
   end
 
-  return search_term .. optional_params
+  local search = search_term .. optional_params
+
+  if opts.include_cwd then
+    search = search .. ' ' .. fn.getcwd()
+  end
+
+  return search
 end
 
 -- @class opts
 -- @field ignore      : Dont respect version control ignore files
 -- @field boundary     : Add a word boundary around the search term
 -- @field include_ft   : Search within same filetype
+-- @field include_cwd   : Append the present working directory to the search
 local function get_search_opts(opts)
   local default_opts = {
     ignore = false,
     boundary = true,
     include_ft = true,
+    include_cwd = true,
   }
 
   if opts then
@@ -109,6 +118,7 @@ end
 -- @field ignore      : Dont respect version control ignore files
 -- @field boundary     : Add a word boundary around the search term
 -- @field include_ft   : Search within same filetype
+-- @field include_cwd   : Append the present working directory to the search
 M.search_normal = function(opts)
   opts = get_search_opts(opts)
 
@@ -128,6 +138,7 @@ end
 -- @field ignore      : Dont respect version control ignore files
 -- @field boundary     : Add a word boundary around the search term
 -- @field include_ft   : Search within same filetype
+-- @field include_cwd   : Append the present working directory to the search
 M.search_visual = function(opts)
   opts = get_search_opts(opts)
 
@@ -164,7 +175,7 @@ M.search_visual = function(opts)
 end
 
 M.update_search_abbrev = function()
-  u.cnoreabbrev('F', 'Ack!' .. get_search_term(nil, {include_ft=true}))
+  u.cnoreabbrev('F', 'Ack!' .. get_search_term(nil, {include_ft=true, include_cwd=false}))
 end
 
 u.nmap('<leader>F', ':lua require("mt.search").search_normal({include_ft=true})<cr>')

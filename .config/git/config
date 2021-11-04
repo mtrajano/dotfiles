@@ -55,6 +55,7 @@
   # log
   l = log --oneline
   lo = log
+  lsm = !"fn() { git log --grep=\"$1\"; }; fn" # log search messages
 
   # remote
   r = remote
@@ -77,6 +78,8 @@
   stp = stash pop
   stl = stash list
   sts = stash show -p
+  std = stash drop
+  stC = stash clear
 
   # push/pull
   up = push --force origin
