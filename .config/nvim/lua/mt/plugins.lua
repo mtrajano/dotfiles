@@ -176,5 +176,12 @@ return require('packer').startup(function()
       require'lspsaga'.init_lsp_saga()
     end
   }
-  use 'folke/trouble.nvim'
+  use {
+    'folke/trouble.nvim',
+    config = function()
+      require("trouble").setup {
+        auto_fold = true,
+      }
+    end
+  }
 end)

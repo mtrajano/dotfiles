@@ -105,12 +105,6 @@ nmap <Leader>p  <Plug>ReplaceWithRegisterOperator
 nmap <Leader>pp <Plug>ReplaceWithRegisterLine
 xmap <Leader>p  <Plug>ReplaceWithRegisterVisual
 
-nnoremap <leader>D ^D
-" null register deletes
-nnoremap <leader>d "_d
-nnoremap <leader>dd "_dd
-vnoremap <leader>d "_d
-
 nnoremap <leader>, :TabooRename<space>
 
 " select last pasted
@@ -139,8 +133,15 @@ vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>
 tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 
 " =====================
-" HELPFUL ABBREVIATIONS
+" COMMAND ABBREVIATIONS
 " =====================
+
+cnoreabbrev bd Bd
+cnoreabbrev bw Bw
+
+" ====================
+" INSERT ABBREVIATIONS
+" ====================
 " TODO: move these to the TODO plugin
 inoreabbrev todo: TODO:
 inoreabbrev note: NOTE:
