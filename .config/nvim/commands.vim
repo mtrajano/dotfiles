@@ -27,9 +27,6 @@ command! -nargs=0 GetSynName echo synIDattr(synID(line('.'), col('.'), v:true), 
 
 command! -nargs=0 -bang Hex call s:HexifyFile(<bang>1)
 
-" closes out every other buffer but this one
-command! -nargs=0 On :%bd|e#|bd#
-
 command! -nargs=1 -complete=file Profile call s:ProfileStart(<f-args>)
 command! -nargs=0 -complete=file ProfileStop call s:ProfileStop()
 

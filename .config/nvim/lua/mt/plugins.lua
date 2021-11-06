@@ -1,5 +1,3 @@
-local u = require'mt.utils'
-
 vim.cmd [[
 augroup compile_onsave
   autocmd!
@@ -106,7 +104,8 @@ return require('packer').startup(function()
     },
     config = function()
       require('gitsigns').setup()
-    end
+    end,
+    event = 'VimEnter *',
   }
   use 'junegunn/gv.vim'
 
@@ -122,11 +121,12 @@ return require('packer').startup(function()
     'folke/todo-comments.nvim',
     config = function()
       require 'todo-comments'.setup {
-        -- keywords = {
-        --   TEST = { icon = " ", color = "warning" },
-        -- }
+        keywords = {
+          TEST = { icon = " ", color = "warning" },
+        }
       }
-    end
+    end,
+    cmd = { 'TodoTelescope' }
   }
 
   -- TODO try treesitter-text-objs and get rid of most of these
@@ -174,7 +174,8 @@ return require('packer').startup(function()
     'glepnir/lspsaga.nvim',
     config = function()
       require'lspsaga'.init_lsp_saga()
-    end
+    end,
+    cmd = { 'Lspsaga' }
   }
   use {
     'folke/trouble.nvim',
@@ -182,6 +183,7 @@ return require('packer').startup(function()
       require("trouble").setup {
         auto_fold = true,
       }
-    end
+    end,
+    cmd = { 'TroubleToggle' }
   }
 end)
