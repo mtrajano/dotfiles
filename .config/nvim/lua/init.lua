@@ -28,24 +28,17 @@ end
 RELOAD('mt.mappings')
 RELOAD('mt.search')
 RELOAD('mt.textobjs')
-RELOAD('mt.lint')
 RELOAD('mt.format')
-RELOAD('mt.telescope')
 
-RELOAD('plugins')
 RELOAD('swagger')
 
 require 'swagger'
 require 'mt.plugins'
 
-require 'mt.lsp' -- TODO shoudn't reload this again
 require 'mt.mappings'
 require 'mt.search'
 require 'mt.textobjs'
-require 'mt.telescope'
 
 require 'plugins.fugitive'
-require 'plugins.lir'
 require 'plugins.test'
-require 'plugins.treesitter'
 require 'plugins.ultisnips'

@@ -2,6 +2,8 @@ if v:false
   profile start /tmp/startprof
   profile func *
   profile file *
+
+  luafile $HOME/dev/profiler.nvim/lua/profiler.lua
 endif
 
 lua require'plenary.reload'.reload_module('init')

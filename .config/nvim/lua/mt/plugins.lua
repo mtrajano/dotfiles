@@ -8,7 +8,6 @@ augroup END
 return require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
-  use 'vim-scripts/ReplaceWithRegister'
   use 'ojroques/vim-oscyank'
 
   use 'Rigellute/rigel'
@@ -44,7 +43,10 @@ return require('packer').startup(function()
     end
   }
 
-  use 'vim-test/vim-test'
+  use {
+    'vim-test/vim-test',
+    cmd = { 'TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit' }
+  }
   use 'benmills/vimux'
   use 'voldikss/vim-floaterm'
   use {
@@ -53,7 +55,10 @@ return require('packer').startup(function()
       vim.g.tmux_navigator_disable_when_zoomed = 1
     end
   }
-  use 'mileszs/ack.vim'
+  use {
+    'mileszs/ack.vim',
+    cmd = 'Ack'
+  }
   use {
     'romainl/vim-qf',
     config = function()
@@ -82,6 +87,8 @@ return require('packer').startup(function()
   use 'tpope/vim-scriptease'
   use {
     'tpope/vim-dispatch',
+    cmd = {'Dispatch', 'Make', 'Focus', 'Start'},
+    opt = true,
     config = function()
       vim.g.dispatch_no_tmux_dispatch = 1 -- breaks zoomed panes
     end
@@ -105,16 +112,17 @@ return require('packer').startup(function()
     config = function()
       require('gitsigns').setup()
     end,
-    event = 'VimEnter *',
   }
-  use 'junegunn/gv.vim'
 
   use {
     'tamago324/lir.nvim',
     requires = {
       'nvim-lua/plenary.nvim',
       'kyazdani42/nvim-web-devicons',
-    }
+    },
+    config = function()
+      require 'plugins.lir'
+    end
   }
 
   use {
@@ -125,8 +133,7 @@ return require('packer').startup(function()
           TEST = { icon = " ", color = "warning" },
         }
       }
-    end,
-    cmd = { 'TodoTelescope' }
+    end
   }
 
   -- TODO try treesitter-text-objs and get rid of most of these
@@ -154,7 +161,10 @@ return require('packer').startup(function()
 
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate'
+    run = ':TSUpdate',
+    config = function()
+      require 'plugins.treesitter'
+    end
   }
   use 'nvim-treesitter/playground'
   use 'nvim-lua/plenary.nvim'
@@ -163,9 +173,19 @@ return require('packer').startup(function()
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use {
     'nvim-telescope/telescope.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    event = 'VimEnter *',
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    config = function()
+      require 'mt.telescope'
+    end
   }
-  use 'neovim/nvim-lspconfig'
+  use {
+    'neovim/nvim-lspconfig',
+    event = 'VimEnter *',
+    config = function()
+      require 'mt.lsp'
+    end
+  }
   -- TODO: needs to migrated to nvim-cmp since this package is deprecated (https://github.com/hrsh7th/nvim-compe)
   use 'hrsh7th/nvim-compe'
   use 'ray-x/lsp_signature.nvim'
