@@ -2,12 +2,13 @@ require'nvim-treesitter.configs'.setup {
 
   -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   ensure_installed = {
-    "php",
-    "python",
-    "lua",
-    "tsx",
-    "typescript",
-    "vue"
+    'php',
+    'python',
+    'lua',
+    'tsx',
+    'typescript',
+    'vue',
+    'json',
   },
 
   highlight = {
