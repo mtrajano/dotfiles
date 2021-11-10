@@ -16,7 +16,7 @@ u.cnoreabbrev('Glo', 'G log -n 500')
 u.cnoreabbrev('Gbr', 'GBrowse')
 
 api.nvim_exec([[
-  command! -nargs=1 Browse silent exec '!open -a "Brave Browser"' shellescape(<q-args>)
+  command! -nargs=1 Browse exec '!open -a "Brave Browser"' fnameescape(<q-args>)
 ]], false)
 
 local M = {}
