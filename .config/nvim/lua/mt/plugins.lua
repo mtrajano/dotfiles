@@ -19,18 +19,33 @@ return require('packer').startup(function()
     end
   }
 
+  use { 'lukas-reineke/indent-blankline.nvim',
+    config = function()
+      require('indent_blankline').setup {
+          char = '|',
+          char_highlight_list = {
+              'IndentBlanklineIndent1', -- defined in rigel overrides
+              -- 'IndentBlanklineIndent2', -- TEST: emphasize every other line
+          },
+          buftype_exclude = {'terminal', 'nofile', 'help', 'markdown', 'vimwiki', 'text', 'fugitive' }
+      }
+    end
+  }
+
   use {
     'mfussenegger/nvim-lint',
     config = function()
       require'mt.lint'.setup()
-    end
+    end,
+    ft = { 'markdown', 'php' }
   }
 
   use {
     'mhartington/formatter.nvim',
     config = function()
       require'mt.format'
-    end
+    end,
+    ft='php'
   }
 
   use 'vimwiki/vimwiki'
@@ -63,18 +78,21 @@ return require('packer').startup(function()
     'romainl/vim-qf',
     config = function()
       vim.g.qf_mapping_ack_style = 1
-    end
+    end,
+    ft = 'qf'
   }
-  use 'moll/vim-bbye'
+  use {
+    'moll/vim-bbye',
+    cmd = { 'Bd', 'Bw', 'Bdelete', 'Bwipeout' }
+  }
   use {
     'AndrewRadev/splitjoin.vim',
     config = function()
       -- split join, each method call in a different line
       vim.g.splitjoin_php_method_chain_full = 1
-    end
+    end,
+    cmd = { 'SplitjoinSplit', 'SplitjoinJoin' }
   }
-  use 'gcmt/taboo.vim'
-  use 'wsdjeg/vim-fetch'
 
   use 'tpope/vim-surround'
   use 'tpope/vim-repeat'
@@ -83,8 +101,14 @@ return require('packer').startup(function()
   use 'tpope/vim-unimpaired'
   use 'tpope/vim-abolish'
   use 'tpope/vim-speeddating'
-  use 'tpope/vim-obsession'
-  use 'tpope/vim-scriptease'
+  use {
+    'tpope/vim-obsession',
+    cmd = 'Obsession'
+  }
+  use {
+    'tpope/vim-scriptease',
+    cmd = 'Messages'
+  }
   use {
     'tpope/vim-dispatch',
     cmd = {'Dispatch', 'Make', 'Focus', 'Start'},
@@ -133,7 +157,13 @@ return require('packer').startup(function()
           TEST = { icon = " ", color = "warning" },
         }
       }
-    end
+      require('mt.utils').nmap('<leader>to', ':TodoTelescope<cr>')
+    end,
+    requires = {
+      'nvim-telescope/telescope.nvim',
+    },
+    cmd = 'TodoTelescope',
+    keys = '<leader>to',
   }
 
   -- TODO try treesitter-text-objs and get rid of most of these
@@ -143,15 +173,17 @@ return require('packer').startup(function()
   install_textobj('kana/vim-textobj-function')
   install_textobj('kana/vim-textobj-entire')
   install_textobj('glts/vim-textobj-comment')
-  install_textobj('kana/vim-textobj-indent')
   use 'wellle/targets.vim'
 
   -- for writing
   use 'preservim/vim-pencil'
-  use 'dkarter/bullets.vim'
+  use {
+    'dkarter/bullets.vim',
+    ft = { 'nofile', 'text', 'markdown', 'vimwiki' }
+  }
   use {
     'plasticboy/vim-markdown',
-    ft = { 'markdown' }
+    ft = { 'markdown', 'vimwiki' }
   }
 
   -- NVIM SPECIFIC
@@ -164,30 +196,54 @@ return require('packer').startup(function()
     run = ':TSUpdate',
     config = function()
       require 'plugins.treesitter'
-    end
+    end,
+    ft = { 'python', 'lua', 'tsx', 'typescript', 'vue', 'json' }
   }
-  use 'nvim-treesitter/playground'
+  use {
+    'nvim-treesitter/playground',
+    cmd = 'TSPlaygroundToggle'
+  }
   use 'nvim-lua/plenary.nvim'
   use 'nvim-lua/popup.nvim'
   use 'folke/lua-dev.nvim'
+
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use {
     'nvim-telescope/telescope.nvim',
-    event = 'VimEnter *',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
     config = function()
       require 'mt.telescope'
-    end
+    end,
+    cmd = 'Telescope',
+    module = 'telescope.builtin',
+    keys = {
+      {'n', '<leader>j'},
+      {'n', '<leader>l'},
+    }
   }
+
   use {
     'neovim/nvim-lspconfig',
-    event = 'VimEnter *',
     config = function()
       require 'mt.lsp'
-    end
+    end,
   }
   -- TODO: needs to migrated to nvim-cmp since this package is deprecated (https://github.com/hrsh7th/nvim-compe)
-  use 'hrsh7th/nvim-compe'
+  use {
+    'hrsh7th/nvim-compe',
+    config = function()
+      require'mt.utils'.imap('<CR>', 'compe#confirm("<CR>")', {expr=true})
+
+      require'compe'.setup {
+        source = {
+          path = true,
+          nvim_lsp = true,
+          ultisnips = true,
+          buffer = true,
+        },
+      }
+    end
+  }
   use 'ray-x/lsp_signature.nvim'
   use 'nvim-lua/lsp-status.nvim'
   use {
@@ -202,6 +258,7 @@ return require('packer').startup(function()
     config = function()
       require("trouble").setup {
         auto_fold = true,
+        auto_close = true,
       }
     end,
     cmd = { 'TroubleToggle' }

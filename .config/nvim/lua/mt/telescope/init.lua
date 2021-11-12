@@ -71,10 +71,6 @@ custom_mapping('<leader>H', 'search_help')
 builtin_mapping('<leader>cc', 'commands')
 builtin_mapping('<leader>jo', 'oldfiles')
 
--- extensions
-u.nmap('<leader>to', ':TodoTelescope<cr>')
-custom_mapping('<leader>go', 'git_branches')
-
 -- TODO: maybe move this to utils so can be reused in different places (also
 -- used in the statusline)
 local function shorten_path(path)
@@ -223,13 +219,6 @@ M.open_scratch = function()
   require'telescope.builtin'.file_browser {
     prompt_title = 'Sratch dir',
     cwd = '~/dev/test'
-  }
-end
-
-M.git_branches = function()
-  require'telescope.builtin'.git_branches {
-    prompt_prefix = 'branches> ',
-    previewer=false,
   }
 end
 

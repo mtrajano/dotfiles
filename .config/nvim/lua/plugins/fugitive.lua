@@ -2,6 +2,8 @@ local u = require('mt.utils')
 local api = vim.api
 local cmd = vim.cmd
 
+u.nmap('<leader>go', '<cmd>Telescope git_branches previewer=false<cr>')
+
 vim.g.github_enterprise_urls = {
   "https://git.corp.adobe.com"
 }

@@ -63,6 +63,6 @@ function! s:FixRigelTheme()
 
   hi link TroubleSignError ErrorMsg
   hi link TroubleTextError ErrorMsg
-  hi link TroubleSignError ErrorMsg
-  hi link TroubleTextError ErrorMsg
+  hi IndentBlanklineIndent1 guifg=#2d4853 gui=nocombine
+  hi IndentBlanklineIndent2 guifg=#32515d gui=bold
 endf

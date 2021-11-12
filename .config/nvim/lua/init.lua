@@ -30,9 +30,10 @@ RELOAD('mt.search')
 RELOAD('mt.textobjs')
 RELOAD('mt.format')
 
-RELOAD('swagger')
+-- TODO: should only load this if in that directory
+-- RELOAD('swagger')
 
-require 'swagger'
+-- require 'swagger'
 require 'mt.plugins'
 
 require 'mt.mappings'

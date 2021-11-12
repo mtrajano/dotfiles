@@ -30,6 +30,10 @@ set updatetime=1000
 " display realtime substitute update
 set inccommand=split
 
+" popup menu
+set completeopt=menuone,noselect
+set pumheight=20
+
 " horizontal/vertical cursor padding, move cursor 1 line at a time
 set sidescrolloff=10
 set sidescroll=1
@@ -105,8 +109,6 @@ nmap <Leader>p  <Plug>ReplaceWithRegisterOperator
 nmap <Leader>pp <Plug>ReplaceWithRegisterLine
 xmap <Leader>p  <Plug>ReplaceWithRegisterVisual
 
-nnoremap <leader>, :TabooRename<space>
-
 " select last pasted
 nnoremap gp `[v`]
 
@@ -155,3 +157,5 @@ inoreabbrev tb TB
 inoreabbrev k12 K-12
 
 inoreabbrev vscode VSCode
+inoreabbrev unretriable unretryable
+inoreabbrev Unretriable Unretryable
