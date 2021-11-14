@@ -6,7 +6,6 @@ local fn = vim.fn
 cmd [[
 augroup formatting_fixes
   autocmd!
-  autocmd BufWritePre * lua require'mt.format'.trim_space()
   autocmd BufWritePost *.py silent FormatWrite
 augroup END
 ]]
@@ -24,20 +23,6 @@ local function ensure_final_newline()
       api.nvim_buf_set_lines(0, -2, -1, false, {})
     end
   until line ~= ""
-end
-
-local function trim_trailing_whitespace()
-  cmd [[ keeppatterns %s/\s\+$//e ]]
-end
-
--- TODO: see if this can be added to the list of formatters below
-function M.trim_space()
-  local view = fn.winsaveview()
-
-  -- ensure_final_newline()
-  trim_trailing_whitespace()
-
-  fn.winrestview(view)
 end
 
 local function phpcs()

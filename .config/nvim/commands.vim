@@ -66,3 +66,15 @@ function! s:FixRigelTheme()
   hi IndentBlanklineIndent1 guifg=#2d4853 gui=nocombine
   hi IndentBlanklineIndent2 guifg=#32515d gui=bold
 endf
+
+" trim trailing space on save
+function! s:TrimTrailingSpace()
+  let l:save = winsaveview()
+  keeppatterns %s/\s\+$//e
+  call winrestview(l:save)
+endfunction
+
+augroup formatting_fixes
+  autocmd!
+  autocmd BufWritePre * :call s:TrimTrailingSpace()
+augroup END
