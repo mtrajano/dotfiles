@@ -27,7 +27,6 @@ end
 
 RELOAD('mt.mappings')
 RELOAD('mt.search')
-RELOAD('mt.textobjs')
 RELOAD('mt.format')
 
 -- TODO: should only load this if in that directory
@@ -38,7 +37,6 @@ require 'mt.plugins'
 
 require 'mt.mappings'
 require 'mt.search'
-require 'mt.textobjs'
 
 require 'plugins.fugitive'
 require 'plugins.test'

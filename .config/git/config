@@ -19,7 +19,6 @@
   line-numbers-zero-style="#e6e6dc"
   line-numbers-plus-style="#9cf087"
   file-style = "#f08e48"
-  hunk-header-style = "syntax"
   minus-empty-line-marker-style = "syntax"
   plus-empty-line-marker-style = "syntax"
 

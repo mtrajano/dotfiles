@@ -137,6 +137,7 @@ u.nmap('[D', ':lua vim.lsp.diagnostic.goto_prev()<cr>')
 u.nmap(']D', ':lua vim.lsp.diagnostic.goto_next()<cr>')
 u.nmap('[d', ':lua vim.lsp.diagnostic.goto_prev({severity="Error"})<cr>')
 u.nmap(']d', ':lua vim.lsp.diagnostic.goto_next({severity="Error"})<cr>')
+u.nmap('<leader>da', ':lua vim.lsp.buf.code_action()<cr>')
 u.nmap('<leader>dd', ':Trouble<cr>')
 
 -- coming from other plugins

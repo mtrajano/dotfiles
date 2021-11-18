@@ -167,28 +167,28 @@ $this->getMockBuilder($1)$0
 endsnippet
 
 # assertion snips
-snippet asame "Assert Same" b
-$this->assertSame($0);
+snippet as "Assert Same" b
+assertSame($0);
 endsnippet
 
-snippet aequals "Assert Equals" b
-$this->assertEquals($0);
+snippet ae "Assert Equals" b
+assertEquals($0);
 endsnippet
 
-snippet anull "Assert Null" b
-$this->assertNull($0);
+snippet an "Assert Null" b
+assertNull($0);
 endsnippet
 
-snippet atrue "Assert True" b
-$this->assertTrue($0);
+snippet at "Assert True" b
+assertTrue($0);
 endsnippet
 
-snippet afalse "Assert False" b
-$this->assertFalse($0);
+snippet af "Assert False" b
+assertFalse($0);
 endsnippet
 
-snippet aiof "Assert Instance Of" b
-$this->assertInstanceOf($1, $2);
+snippet aof "Assert Instance Of" b
+assertInstanceOf($1, $2);
 endsnippet
 
 # expect snips
@@ -205,11 +205,11 @@ expects($this->exactly($1))
 endsnippet
 
 snippet ee  "expectException" w
-$this->expectException($0);
+expectException($0);
 endsnippet
 
 snippet eem  "expectExceptionMessage" w
-$this->expectExceptionMessage($0);
+expectExceptionMessage($0);
 endsnippet
 
 # will snips

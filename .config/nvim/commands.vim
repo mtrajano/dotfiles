@@ -52,21 +52,6 @@ function! g:OpenURLUnderCursor()
 endfunction
 nnoremap gx :call g:OpenURLUnderCursor()<CR>
 
-" fix lsp virtual text highlighting
-augroup fix_highlight
-  au!
-  au ColorScheme rigel call s:FixRigelTheme()
-augroup END
-
-function! s:FixRigelTheme()
-  hi link LspDiagnosticsVirtualTextError ErrorMsg
-
-  hi link TroubleSignError ErrorMsg
-  hi link TroubleTextError ErrorMsg
-  hi IndentBlanklineIndent1 guifg=#2d4853 gui=nocombine
-  hi IndentBlanklineIndent2 guifg=#32515d gui=bold
-endf
-
 " trim trailing space on save
 function! s:TrimTrailingSpace()
   let l:save = winsaveview()

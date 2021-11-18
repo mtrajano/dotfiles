@@ -24,8 +24,7 @@ return require('packer').startup(function()
       require('indent_blankline').setup {
           char = '|',
           char_highlight_list = {
-              'IndentBlanklineIndent1', -- defined in rigel overrides
-              -- 'IndentBlanklineIndent2', -- TEST: emphasize every other line
+              'IndentBlanklineIndent', -- defined in rigel overrides
           },
           buftype_exclude = {'terminal', 'nofile', 'help', 'markdown', 'vimwiki', 'text', 'fugitive' }
       }
@@ -79,7 +78,6 @@ return require('packer').startup(function()
     config = function()
       vim.g.qf_mapping_ack_style = 1
     end,
-    ft = 'qf'
   }
   use {
     'moll/vim-bbye',
@@ -161,9 +159,7 @@ return require('packer').startup(function()
     end,
     requires = {
       'nvim-telescope/telescope.nvim',
-    },
-    cmd = 'TodoTelescope',
-    keys = '<leader>to',
+    }
   }
 
   -- TODO try treesitter-text-objs and get rid of most of these
@@ -201,7 +197,7 @@ return require('packer').startup(function()
   }
   use {
     'nvim-treesitter/playground',
-    cmd = 'TSPlaygroundToggle'
+    cmd = { 'TSPlaygroundToggle', 'TSHighlightCapturesUnderCursor' }
   }
   use 'nvim-lua/plenary.nvim'
   use 'nvim-lua/popup.nvim'

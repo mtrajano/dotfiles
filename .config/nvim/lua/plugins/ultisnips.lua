@@ -2,8 +2,8 @@ local Path = require'mt.utils.path'
 
 vim.g.UltiSnipsExpandTrigger = '<C-j>'
 vim.g.UltiSnipsListSnippets = '<c-s>'
-vim.g.UltiSnipsJumpForwardTrigger = '<C-n>'
-vim.g.UltiSnipsJumpBackwardTrigge = '<C-p>'
+vim.g.UltiSnipsJumpForwardTrigger = '<C-j>'
+vim.g.UltiSnipsJumpBackwardTrigge = '<C-k>'
 
 vim.g.UltiSnipsSnippetDirectories = {
   os.getenv('DOTFILES') .. '/nvim/snips'

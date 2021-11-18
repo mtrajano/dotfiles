@@ -70,6 +70,9 @@ set listchars=tab:>\ ,nbsp:·
 " open quickfix result in last window
 set switchbuf=uselast
 
+" NOTE: also fixes the blanklines highlight issue
+set colorcolumn=120
+
 " find nested files
 set path+=**
 " TODO: move this to php config file
@@ -103,11 +106,8 @@ nnoremap <leader><space> <C-^>
 nnoremap Y y$
 nnoremap <leader>Y ^yy
 
-nnoremap <leader>P "0p
-vnoremap <leader>P "0p
-nmap <Leader>p  <Plug>ReplaceWithRegisterOperator
-nmap <Leader>pp <Plug>ReplaceWithRegisterLine
-xmap <Leader>p  <Plug>ReplaceWithRegisterVisual
+nnoremap <leader>p "0p
+vnoremap <leader>p "0p
 
 " select last pasted
 nnoremap gp `[v`]
@@ -144,12 +144,12 @@ cnoreabbrev bw Bw
 " ====================
 " INSERT ABBREVIATIONS
 " ====================
-" TODO: move these to the TODO plugin
 inoreabbrev todo: TODO:
 inoreabbrev note: NOTE:
 inoreabbrev test: TEST:
+inoreabbrev fixme: FIXME:
 
-" TODO move these somewhere else
+" TODO: move these somewhere else
 inoreabbrev kb KB
 inoreabbrev mb MB
 inoreabbrev gb GB

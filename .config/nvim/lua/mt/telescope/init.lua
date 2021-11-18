@@ -13,7 +13,6 @@ end
 
 require'telescope'.setup{
   defaults = {
-    file_sorter = require'telescope.sorters'.get_fzy_sorter,
     sorting_strategy = 'ascending',
     layout_config = {
       prompt_position = "top",
@@ -27,6 +26,8 @@ require'telescope'.setup{
         ['<C-f>'] = action.preview_scrolling_down,
         ['<C-u>'] = false, -- overrides delete prompt
         ['<C-d>'] = false,
+        ["<C-j>"] = action.cycle_history_next,
+        ["<C-k>"] = action.cycle_history_prev,
       },
     },
   },
@@ -53,13 +54,14 @@ end
 custom_mapping('<leader>jj', 'git_files')
 custom_mapping('<leader>jf', 'find_files')
 custom_mapping('<leader>jd', 'edit_dotfiles')
-custom_mapping('<leader>ji', 'edit_installed')
+custom_mapping('<leader>ji', 'edit_installed') -- TODO: delete this
 custom_mapping('<leader>jv', 'edit_vendor')
 custom_mapping('<leader>jw', 'edit_work_files')
-custom_mapping('<leader>jb', 'edit_benet')
-custom_mapping('<leader>jp', 'edit_view')
+custom_mapping('<leader>jb', 'edit_behance')
+custom_mapping('<leader>jp', 'edit_packer')
 custom_mapping('<leader>jr', 'edit_runtime')
 custom_mapping('<leader>JJ', 'find_all_files') -- TODO figure out why this is so slow
+custom_mapping('<leader>jn', 'edit_node_modules')
 
 -- TODO: create mappings for tcd, lcd, cd, delete
 custom_mapping('<leader>hd', 'open_dotfiles')
@@ -84,6 +86,7 @@ local M = {}
 
 M.git_files = function()
   local options = {
+    debounce = 50,
     prompt_prefix = shorten_path(fn.getcwd()) .. '> ',
     cwd = fn.getcwd(),
   }
@@ -149,6 +152,7 @@ local function get_installed_cwd_display()
   return shorten_path(get_installed_cwd())
 end
 
+-- TODO: delete this
 M.edit_installed = function()
   require'telescope.builtin'.find_files {
     prompt_title = 'Installed Packages',
@@ -171,10 +175,10 @@ M.edit_work_files = function()
   }
 end
 
-M.edit_view = function()
+M.edit_packer = function()
   require'telescope.builtin'.find_files {
     prompt_title = 'Pro2 View',
-    cwd = os.getenv("HOME") .. "/dev/behance/pro2-view",
+    cwd = os.getenv("XDG_DATA_HOME") .. "/nvim/site/pack/packer",
   }
 end
 
@@ -185,10 +189,10 @@ M.edit_vendor = function()
   }
 end
 
-M.edit_benet = function()
+M.edit_behance = function()
   require'telescope.builtin'.find_files {
-    prompt_title = 'Be.net',
-    cwd = os.getenv('HOME') .. "/dev/behance/be.net",
+    prompt_title = 'Behance',
+    cwd = os.getenv('HOME') .. "/dev/behance",
   }
 end
 
@@ -196,6 +200,13 @@ M.edit_runtime = function()
   require'telescope.builtin'.find_files {
     prompt_title = 'Runtime',
     cwd = os.getenv('VIMRUNTIME'),
+  }
+end
+
+M.edit_node_modules = function()
+  require'telescope.builtin'.find_files {
+    prompt_title = 'Node Modules',
+    cwd = relative_path('node_modules'),
   }
 end
 
