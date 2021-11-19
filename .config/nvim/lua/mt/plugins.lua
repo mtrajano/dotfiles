@@ -47,6 +47,10 @@ return require('packer').startup(function()
     ft='php'
   }
 
+  use {
+    'mbbill/undotree',
+  }
+
   use 'vimwiki/vimwiki'
 
   use {
