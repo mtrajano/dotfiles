@@ -14,7 +14,7 @@ function P(...)
   print(vim.inspect(...))
 end
 
--- TODO see if this can be integrated with vimscript's profiling
+-- TODO: see if this can be integrated with vimscript's profiling
 function REQUIRE(module)
   local start
   if should_profile then start = loop.hrtime() end

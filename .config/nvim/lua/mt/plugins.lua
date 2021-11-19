@@ -162,7 +162,7 @@ return require('packer').startup(function()
     }
   }
 
-  -- TODO try treesitter-text-objs and get rid of most of these
+  -- TODO: try treesitter-text-objs and get rid of most of these
   local function install_textobj(repo)
     use { repo, requires = { 'kana/vim-textobj-user' }}
   end
@@ -252,6 +252,12 @@ return require('packer').startup(function()
   use {
     'folke/trouble.nvim',
     config = function()
+      vim.cmd [[
+        hi link TroubleSignError LspDiagnosticsSignError
+        hi link TroubleTextError LspDiagnosticsDefaultError
+        hi link TroubleTextWarning LspDiagnosticsSignWarning
+        hi link TroubleTextWarning LspDiagnosticsDefaultWarning
+      ]]
       require("trouble").setup {
         auto_fold = true,
         auto_close = true,

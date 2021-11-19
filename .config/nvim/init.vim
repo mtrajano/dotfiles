@@ -6,16 +6,19 @@ if v:false
   luafile $HOME/dev/profiler.nvim/lua/profiler.lua
 endif
 
+" TODO: figure out where to put this
+function s:FixColors() abort
+  hi IndentBlanklineIndent guifg=#2d4853 gui=nocombine
+endf
+
+augroup fix_color
+  autocmd!
+  autocmd ColorScheme rigel call s:FixColors()
+augroup END
+
 lua require'plenary.reload'.reload_module('init')
 lua require('init')
 
 source $XDG_CONFIG_HOME/nvim/basic.vim
 source $XDG_CONFIG_HOME/nvim/commands.vim
 source $XDG_CONFIG_HOME/nvim/work.vim
-
-" TODO: figure out where to put these
-hi IndentBlanklineIndent guifg=#2d4853 gui=nocombine
-hi link TroubleSignError LspDiagnosticsSignError
-hi link TroubleTextError LspDiagnosticsDefaultError
-hi link TroubleTextWarning LspDiagnosticsSignWarning
-hi link TroubleTextWarning LspDiagnosticsDefaultWarning
