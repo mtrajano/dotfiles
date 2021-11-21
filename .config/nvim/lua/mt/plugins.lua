@@ -109,7 +109,10 @@ return require('packer').startup(function()
   }
   use {
     'tpope/vim-scriptease',
-    cmd = 'Messages'
+    cmd = 'Messages',
+    keys = {
+      {'n', 'zS'}
+    }
   }
   use {
     'tpope/vim-dispatch',
@@ -228,21 +231,17 @@ return require('packer').startup(function()
       require 'mt.lsp'
     end,
   }
-  -- TODO: needs to migrated to nvim-cmp since this package is deprecated (https://github.com/hrsh7th/nvim-compe)
   use {
-    'hrsh7th/nvim-compe',
+    'hrsh7th/nvim-cmp',
     config = function()
-      require'mt.utils'.imap('<CR>', 'compe#confirm("<CR>")', {expr=true})
-
-      require'compe'.setup {
-        source = {
-          path = true,
-          nvim_lsp = true,
-          ultisnips = true,
-          buffer = true,
-        },
-      }
-    end
+      require'plugins.cmp'
+    end,
+    requires = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'quangnguyen30192/cmp-nvim-ultisnips',
+    },
   }
   use 'ray-x/lsp_signature.nvim'
   use 'nvim-lua/lsp-status.nvim'
@@ -259,7 +258,7 @@ return require('packer').startup(function()
       vim.cmd [[
         hi link TroubleSignError LspDiagnosticsSignError
         hi link TroubleTextError LspDiagnosticsDefaultError
-        hi link TroubleTextWarning LspDiagnosticsSignWarning
+        hi link TroubleSignWarning LspDiagnosticsSignWarning
         hi link TroubleTextWarning LspDiagnosticsDefaultWarning
       ]]
       require("trouble").setup {

@@ -70,7 +70,7 @@ end
 -- @field boundary     : Add a word boundary around the search term
 -- @field include_ft   : Search within same filetype
 -- @field include_cwd   : Append the present working directory to the search
-local function get_search_term(raw_term, opts)
+local function get_search_args(raw_term, opts)
   opts = opts or {}
 
   local optional_params = (opts.ignore and ' --no-ignore-vcs') or ''
@@ -104,6 +104,7 @@ local function get_search_opts(opts)
     ignore = false,
     boundary = true,
     include_ft = true,
+    -- TODO: change this to include_root, path should be git root
     include_cwd = true,
   }
 
@@ -124,7 +125,7 @@ M.search_normal = function(opts)
 
   local search_word = fn.expand('<cword>')
 
-  cmd('Ack!' ..  get_search_term(search_word, opts))
+  cmd('Ack!' ..  get_search_args(search_word, opts))
 
   if opts.boundary then
     search_word = '\\<' .. search_word .. '\\>'
@@ -156,14 +157,14 @@ M.search_visual = function(opts)
 
     search_term = search_term:gsub('^\\n', '')
 
-    cmd('Ack! --multiline ' ..  get_search_term(search_term, opts))
+    cmd('Ack! --multiline ' ..  get_search_args(search_term, opts))
   else
     local line = fn.getline(line_start)
     local col_start = fn.col("'<")
     local col_end = fn.col("'>")
     local word = string.sub(line, col_start, col_end);
 
-    cmd('Ack!' ..  get_search_term(word, opts))
+    cmd('Ack!' ..  get_search_args(word, opts))
 
     if opts.boundary then
       local search_word = ''
@@ -175,7 +176,7 @@ M.search_visual = function(opts)
 end
 
 M.update_search_abbrev = function()
-  u.cnoreabbrev('F', 'Ack!' .. get_search_term(nil, {include_ft=true, include_cwd=false}))
+  u.cnoreabbrev('F', 'Ack!' .. get_search_args(nil, {include_ft=true, include_cwd=false}))
 end
 
 u.nmap('<leader>F', ':lua require("mt.search").search_normal({include_ft=true})<cr>')
