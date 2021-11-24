@@ -85,7 +85,6 @@ return require('packer').startup(function()
   }
   use {
     'moll/vim-bbye',
-    cmd = { 'Bd', 'Bw', 'Bdelete', 'Bwipeout' }
   }
   use {
     'AndrewRadev/splitjoin.vim',

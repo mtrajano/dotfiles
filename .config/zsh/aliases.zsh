@@ -159,9 +159,8 @@ tks() {
   done
 }
 
-# if no arguments attaches to the selected session
-# if argument loads tmuxp config if it exists, else creates/attatches
-# to a tmux session
+# if no arguments attaches to the selected session using fzf
+# if there is an argument creates/attatches to the given tmux session
 ta() {
   if [[ $# == 0 ]]; then
     if [[ -z $TMUX ]]; then
@@ -170,11 +169,7 @@ ta() {
       tmux switch -t $(tmux list-sessions -F '#{session_name}' | fzf)
     fi
   else
-    if [[ $(tmuxp ls | grep -w $1) ]]; then
-      tmuxp load -y $1
-    else
-      tmux new-session -As $1
-    fi
+    tmux new-session -As $1
   fi
 }
 
