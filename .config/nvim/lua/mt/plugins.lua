@@ -102,10 +102,8 @@ return require('packer').startup(function()
   use 'tpope/vim-unimpaired'
   use 'tpope/vim-abolish'
   use 'tpope/vim-speeddating'
-  use {
-    'tpope/vim-obsession',
-    cmd = 'Obsession'
-  }
+  use 'tpope/vim-obsession'
+
   use {
     'tpope/vim-scriptease',
     cmd = 'Messages',
