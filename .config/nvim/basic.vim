@@ -1,5 +1,8 @@
 set nocompatible
 
+" TEST: map S to NOP until get used to cc
+nnoremap S <NOP>
+
 set mouse=nvhr
 
 set hidden
@@ -147,6 +150,7 @@ cnoreabbrev bw Bw
 inoreabbrev todo: TODO:
 inoreabbrev note: NOTE:
 inoreabbrev test: TEST:
+inoreabbrev hack: TEST:
 inoreabbrev fixme: FIXME:
 
 " TODO: move these somewhere else

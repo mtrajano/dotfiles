@@ -8,12 +8,15 @@ endif
 
 " TODO: figure out where to put this
 function s:FixColors() abort
-  hi IndentBlanklineIndent guifg=#2d4853 gui=nocombine
+  hi IndentBlanklineIndent guifg=#393d4e gui=nocombine
+  hi GitSignsAdd guifg=#73daca " TODO: look into using tokyonight named colors
+  hi GitSignsChange guifg=#2ac3de " TODO: look into using tokyonight named colors
+  hi GitSignsDelete guifg=#f7768e " TODO: look into using tokyonight named colors
 endf
 
 augroup fix_color
   autocmd!
-  autocmd ColorScheme rigel call s:FixColors()
+  autocmd ColorScheme tokyonight call s:FixColors()
 augroup END
 
 lua require'plenary.reload'.reload_module('init')

@@ -10,7 +10,7 @@ return require('packer').startup(function()
 
   use 'ojroques/vim-oscyank'
 
-  use 'Rigellute/rigel'
+  use 'folke/tokyonight.nvim'
   use {
     'hoob3rt/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
@@ -197,7 +197,7 @@ return require('packer').startup(function()
     config = function()
       require 'plugins.treesitter'
     end,
-    ft = { 'python', 'lua', 'tsx', 'typescript', 'vue', 'json' }
+    ft = { 'python', 'lua', 'tsx', 'typescript', 'vue', 'json', 'cpp' }
   }
   use {
     'nvim-treesitter/playground',
@@ -214,12 +214,6 @@ return require('packer').startup(function()
     config = function()
       require 'mt.telescope'
     end,
-    cmd = 'Telescope',
-    module = 'telescope.builtin',
-    keys = {
-      {'n', '<leader>j'},
-      {'n', '<leader>l'},
-    }
   }
 
   use {
@@ -253,10 +247,10 @@ return require('packer').startup(function()
     'folke/trouble.nvim',
     config = function()
       vim.cmd [[
-        hi link TroubleSignError LspDiagnosticsSignError
-        hi link TroubleTextError LspDiagnosticsDefaultError
-        hi link TroubleSignWarning LspDiagnosticsSignWarning
-        hi link TroubleTextWarning LspDiagnosticsDefaultWarning
+        hi link TroubleSignError DiagnosticSignError
+        hi link TroubleTextError DiagnosticError
+        hi link TroubleSignWarning DiagnosticSignWarning
+        hi link TroubleTextWarning DiagnosticWarning
       ]]
       require("trouble").setup {
         auto_fold = true,

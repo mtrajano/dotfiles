@@ -4,7 +4,8 @@ local loop = vim.loop
 
 vim.g.mapleader = " "
 
-vim.cmd [[ colorscheme rigel ]]
+vim.g.tokyonight_style = "night"
+vim.cmd [[ colorscheme tokyonight ]]
 
 function RELOAD(script)
   require'plenary.reload'.reload_module(script)
