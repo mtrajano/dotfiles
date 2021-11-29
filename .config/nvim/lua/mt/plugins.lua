@@ -96,6 +96,7 @@ return require('packer').startup(function()
   }
 
   use 'tpope/vim-surround'
+  use 'tpope/vim-sleuth' -- automatically detect space issues
   use 'tpope/vim-repeat'
   use 'tpope/vim-projectionist'
   use 'tpope/vim-commentary'
