@@ -14,6 +14,7 @@ cmp.setup({
     ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ['<ESC>'] = cmp.mapping({
       i = cmp.mapping.abort(), -- TODO: see if this should be:
+    }),
     ['<C-e>'] = cmp.mapping({
       i = cmp.mapping.abort(), -- TODO: see if this should be something else
       c = cmp.mapping.close(),
