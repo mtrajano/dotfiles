@@ -14,21 +14,6 @@ u.nmap('<leader>eq', ':Equery<CR>')
 u.nmap('<leader>es', ':Esource<CR>')
 u.nmap('<leader>et', ':Etest<CR>')
 
--- Fugitive remaps
-u.nmap('<leader>gg', ':lua require("plugins.fugitive").toggle_git_pane()<cr>', {silent=true})
-u.nmap('<leader>gd', ':G diff<cr>')
-u.nmap('<leader>gb', ':G blame<cr>')
-u.nmap('<leader>gl', ':G log -n 500<cr>')
-u.nmap('<leader>ga', ':Gw<cr>')
--- Merge conflict remaps
--- TODO only map these when inside of a merge conflict
--- u.nmap('<leader>gh', ':diffget //2')
--- u.nmap('<leader>gl', ':diffget //3')
--- Signify remaps
-u.nmap('<leader>gk', ':SignifyHunkDiff<cr>')
-u.nmap('<leader>gu', ':SignifyHunkUndo<cr>')
-u.nmap('<leader>gz', ':SignifyFold<cr>')
-
 -- splitjoin mappings
 u.nmap('<leader>sj', ':SplitjoinSplit<cr>')
 u.nmap('<leader>sk', ':SplitjoinJoin<cr>')

@@ -28,7 +28,7 @@ command! -nargs=0 GetSynName echo synIDattr(synID(line('.'), col('.'), v:true), 
 command! -nargs=0 -bang Hex call s:HexifyFile(<bang>1)
 
 command! -nargs=1 -complete=file Profile call s:ProfileStart(<f-args>)
-command! -nargs=0 -complete=file ProfileStop call s:ProfileStop()
+command! -nargs=0 ProfileStop call s:ProfileStop()
 
 function! s:FixMultipleNewline()
   let l:save = winsaveview()

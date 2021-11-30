@@ -129,6 +129,7 @@ return require('packer').startup(function()
     ft = { 'python', 'vim', 'zsh' }
   }
 
+  use 'sindrets/diffview.nvim'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
   use {
@@ -238,11 +239,14 @@ return require('packer').startup(function()
   use 'ray-x/lsp_signature.nvim'
   use 'nvim-lua/lsp-status.nvim'
   use {
-    'glepnir/lspsaga.nvim',
+    'tami5/lspsaga.nvim',
     config = function()
-      require'lspsaga'.init_lsp_saga()
+      require'lspsaga'.init_lsp_saga {
+        code_action_prompt = {
+          enable = false
+        }
+      }
     end,
-    cmd = { 'Lspsaga' }
   }
   use {
     'folke/trouble.nvim',
@@ -256,6 +260,13 @@ return require('packer').startup(function()
       require("trouble").setup {
         auto_fold = true,
         auto_close = true,
+        signs = {
+          error = "",
+          warning = "",
+          hint = "",
+          information = "",
+          other = "﫠",
+        },
       }
     end,
     cmd = { 'TroubleToggle' }

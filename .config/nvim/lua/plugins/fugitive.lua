@@ -2,6 +2,20 @@ local u = require('mt.utils')
 local api = vim.api
 local cmd = vim.cmd
 
+u.nmap('<leader>gg', ':lua require("plugins.fugitive").toggle_git_pane()<cr>', {silent=true})
+u.nmap('<leader>gd', ':DiffviewOpen<cr>')
+u.nmap('<leader>gf', ':DiffviewFileHistory<cr>')
+u.nmap('<leader>gb', ':G blame<cr>')
+u.nmap('<leader>gl', ':G log -n 500<cr>')
+u.nmap('<leader>ga', ':Gw<cr>')
+-- Merge conflict remaps
+-- TODO only map these when inside of a merge conflict
+-- u.nmap('<leader>gh', ':diffget //2')
+-- u.nmap('<leader>gl', ':diffget //3')
+-- Signify remaps
+u.nmap('<leader>gk', ':SignifyHunkDiff<cr>')
+u.nmap('<leader>gu', ':SignifyHunkUndo<cr>')
+u.nmap('<leader>gz', ':SignifyFold<cr>')
 u.nmap('<leader>go', '<cmd>Telescope git_branches previewer=false<cr>')
 
 vim.g.github_enterprise_urls = {

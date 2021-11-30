@@ -14,17 +14,16 @@ cmp.setup({
     ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
     ['<ESC>'] = cmp.mapping({
       i = cmp.mapping.abort(), -- TODO: see if this should be:
+    ['<C-e>'] = cmp.mapping({
+      i = cmp.mapping.abort(), -- TODO: see if this should be something else
       c = cmp.mapping.close(),
     }),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   },
   sources = cmp.config.sources({
     { name = 'path' },
-    { name = 'nvim_lsp' },
+    { name = 'nvim_lsp', max_item_count = 10 }, -- NOTE: this seems very noisy
     { name = 'ultisnips' },
-  },
-  {
-    { name = 'buffer' }, -- NOTE: this seems very noisy
-  }
-  )
+    { name = 'buffer', max_item_count = 5 },
+  })
 })

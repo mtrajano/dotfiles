@@ -5,6 +5,14 @@ local cmd = vim.cmd
 
 local lspconfig = require'lspconfig'
 
+-- TODO: move this
+vim.cmd [[
+  sign define LspDiagnosticsSignError text= texthl=LspDiagnosticsSignError linehl= numhl=
+  sign define LspDiagnosticsSignWarning text= texthl=LspDiagnosticsSignWarning linehl= numhl=
+  sign define LspDiagnosticsSignInformation text= texthl=LspDiagnosticsSignInformation linehl= numhl=
+  sign define LspDiagnosticsSignHint text= texthl=LspDiagnosticsSignHint linehl= numhl=
+]]
+
 -- TODO: see if this is needed, seems to be done automatically
 cmd [[
 augroup update_function_status
@@ -122,7 +130,7 @@ M.hover_or_get_docs = function()
   elseif u.contains({'sh', 'zsh'}, o.filetype) then
     fn.execute('Man ' .. fn.expand('<cword>'))
   else
-    vim.lsp.buf.hover()
+    vim.cmd [[Lspsaga hover_doc]]
   end
 end
 
@@ -137,7 +145,7 @@ u.nmap('[D', ':lua vim.lsp.diagnostic.goto_prev()<cr>')
 u.nmap(']D', ':lua vim.lsp.diagnostic.goto_next()<cr>')
 u.nmap('[d', ':lua vim.lsp.diagnostic.goto_prev({severity_limit="Warning"})<cr>')
 u.nmap(']d', ':lua vim.lsp.diagnostic.goto_next({severity_limit="Warning"})<cr>')
-u.nmap('<leader>da', ':lua vim.lsp.buf.code_action()<cr>')
+u.nmap('<leader>da', ':Lspsaga code_action<cr>')
 u.nmap('<leader>dd', ':Trouble<cr>')
 
 -- coming from other plugins
