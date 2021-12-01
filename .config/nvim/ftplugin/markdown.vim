@@ -7,8 +7,3 @@ setlocal nolist
 
 source $XDG_CONFIG_HOME/nvim/utils/spell.vim
 let g:markdown_fenced_languages = ['python', 'php', 'bash']
-
-" temporary, TODO: figure out why vim-markdown syntax file isn't loading
-augroup load_markdown_syntax
-  autocmd VimEnter *.md ++once edit
-augroup END
