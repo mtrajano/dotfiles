@@ -13,14 +13,6 @@ vim.cmd [[
   sign define LspDiagnosticsSignHint text= texthl=LspDiagnosticsSignHint linehl= numhl=
 ]]
 
--- TODO: see if this is needed, seems to be done automatically
-cmd [[
-augroup update_function_status
-  autocmd!
-  autocmd CursorHold,BufEnter <buffer> lua require'lsp-status'.update_current_function()
-augroup END
-]]
-
 local function my_attach(client)
   require "lsp_signature".on_attach()
   require'lsp-status'.on_attach(client)
