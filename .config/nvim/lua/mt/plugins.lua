@@ -199,7 +199,6 @@ return require('packer').startup(function()
     config = function()
       require 'plugins.treesitter'
     end,
-    ft = { 'python', 'lua', 'tsx', 'typescript', 'vue', 'json', 'cpp' }
   }
   use {
     'nvim-treesitter/playground',
