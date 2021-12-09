@@ -148,6 +148,7 @@ alias vs="v -S Session.vim"
 ##############
 # TMUX ALIASES
 ##############
+alias vpane="tmux capture-pane -p -S - | v -"
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 alias t=tmux
 
