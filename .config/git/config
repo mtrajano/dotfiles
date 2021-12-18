@@ -44,7 +44,8 @@
 
   # commit
   cm = commit -m
-  ca = commit --amend --no-edit
+  ce = commit --amend --no-edit
+  ca = commit --amend
 
   # diff
   d = diff

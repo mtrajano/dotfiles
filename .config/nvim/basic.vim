@@ -30,11 +30,8 @@ set timeoutlen=1000
 " increase cursor hold frequency
 set updatetime=1000
 
-" display realtime substitute update
-set inccommand=split
-
 " popup menu
-set completeopt=menuone,noselect
+set completeopt=menu,menuone,noselect
 set pumheight=20
 
 " horizontal/vertical cursor padding, move cursor 1 line at a time
@@ -106,7 +103,6 @@ nnoremap ^ 0
 " last buffer/window
 nnoremap <leader><space> <C-^>
 
-nnoremap Y y$
 nnoremap <leader>Y ^yy
 
 nnoremap <leader>p "0p

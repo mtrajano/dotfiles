@@ -11,6 +11,11 @@ alias -g H="| head -n"
 alias code="open -a Visual\ Studio\ Code"
 alias subl="open -a Sublime\ Text"
 
+###############
+# GNU OVERRIDES
+###############
+alias sed=gsed
+
 ######
 # MISC
 ######

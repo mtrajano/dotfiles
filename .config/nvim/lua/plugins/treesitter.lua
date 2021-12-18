@@ -23,7 +23,11 @@ require'nvim-treesitter.configs'.setup {
 
   indent = {
     enable = true,
-    disable = {'php'}, -- need to investigate perf issues
+    disable = {
+      'php', -- need to investigate perf issues
+      'python', -- seems to be broken
+      'cpp', -- seems to be broken
+    },
   },
 
   -- for debugging

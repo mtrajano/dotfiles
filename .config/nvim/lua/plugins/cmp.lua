@@ -15,7 +15,7 @@ cmp.setup({
       i = cmp.mapping.abort(), -- TODO: see if this should be something else
       c = cmp.mapping.close(),
     }),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }), -- have to hover over selection to apply
   },
   sources = cmp.config.sources({
     { name = 'path' },

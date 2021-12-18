@@ -16,7 +16,7 @@ require'lualine'.setup {
     },
     lualine_x = {},
     lualine_y = {
-      { 'diagnostics', sources = { 'nvim_lsp' } },
+      { 'diagnostics', sources = { 'nvim_diagnostic' } },
     },
     lualine_z = { 'location', file_percentage },
   },
