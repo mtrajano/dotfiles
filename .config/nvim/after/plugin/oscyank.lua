@@ -7,3 +7,5 @@ else
   u.nmap('<leader>y', '"+y')
   u.vmap('<leader>y', '"+y')
 end
+
+u.nmap('<leader>Y', '<leader>y$', { noremap = false })

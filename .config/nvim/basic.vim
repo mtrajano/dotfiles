@@ -103,8 +103,6 @@ nnoremap ^ 0
 " last buffer/window
 nnoremap <leader><space> <C-^>
 
-nnoremap <leader>Y ^yy
-
 nnoremap <leader>p "0p
 vnoremap <leader>p "0p
 
