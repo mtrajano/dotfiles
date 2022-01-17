@@ -125,6 +125,9 @@ inoremap <C-a> <C-o>^
 vnoremap * y/\V<C-R>=escape(@",'/\')<CR><CR>
 vnoremap . :norm .<CR>
 
+vnoremap > >gv
+vnoremap < <gv
+
 " ===============
 " TERMINAL REMAPS
 " ===============
