@@ -182,6 +182,7 @@ return require('packer').startup(function()
 
   -- for writing
   use 'preservim/vim-pencil'
+  use { 'junegunn/goyo.vim' }
   use {
     'dkarter/bullets.vim',
     ft = { 'nofile', 'text', 'markdown', 'vimwiki' }

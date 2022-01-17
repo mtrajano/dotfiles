@@ -5,3 +5,7 @@ vnoremap <buffer> <leader>k :Keep<cr>
 
 " close quickfix on enter
 nmap <buffer> <cr> O
+
+" easy quickfix navigation
+nnoremap <silent> <buffer> <C-o> :cold<cr>
+nnoremap <silent> <buffer> <C-i> :cnew<cr>
