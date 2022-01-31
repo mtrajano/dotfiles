@@ -239,7 +239,14 @@ return require('packer').startup(function()
       'quangnguyen30192/cmp-nvim-ultisnips',
     },
   }
-  use 'ray-x/lsp_signature.nvim'
+  use {
+    'ray-x/lsp_signature.nvim',
+    config = function()
+      require'lsp_signature'.setup {
+        toggle_key = '<C-k>'
+      }
+    end
+  }
   use 'nvim-lua/lsp-status.nvim'
   use {
     'tami5/lspsaga.nvim',
