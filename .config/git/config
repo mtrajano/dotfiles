@@ -57,6 +57,9 @@
   lo = log
   lsm = !"fn() { git log --grep=\"$1\"; }; fn" # log search messages
 
+  # rebase
+  rr = rebase --continue
+
   # remote
   r = remote
   rv = remote -v
