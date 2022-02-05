@@ -243,7 +243,7 @@ return require('packer').startup(function()
     'ray-x/lsp_signature.nvim',
     config = function()
       require'lsp_signature'.setup {
-        toggle_key = '<C-k>'
+        toggle_key = '<C-K>'
       }
     end
   }

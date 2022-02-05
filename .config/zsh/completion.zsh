@@ -13,6 +13,8 @@ zstyle :compinstall filename '/Users/trajano/.config/zsh/completion.zsh'
 autoload -Uz compinit
 compinit -C
 
+autoload zmv
+
 compdef _git g=git
 
 zmodload -i zsh/complist
