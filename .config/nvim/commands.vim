@@ -63,5 +63,5 @@ endfunction
 
 augroup formatting_fixes
   autocmd!
-  autocmd BufWritePre * :call s:TrimTrailingSpace()
+  autocmd BufWritePre * call s:TrimTrailingSpace()
 augroup END

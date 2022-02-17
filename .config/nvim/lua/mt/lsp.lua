@@ -128,8 +128,8 @@ end
 -- mappings
 u.nmap('gd', ':lua vim.lsp.buf.definition()<cr>')
 u.nmap('gD', ':lua vim.lsp.buf.declaration()<cr>')
-u.nmap('gr', ':Lspsaga rename<cr>')
-u.nmap('gR', ':lua require"mt.telescope".lsp_references()<cr>')
+u.nmap('gR', ':Lspsaga rename<cr>')
+u.nmap('gr', ':lua require"mt.telescope".lsp_references()<cr>')
 u.nmap('gi', ':lua vim.lsp.buf.implementation()<cr>')
 
 u.nmap('K', ':lua require("mt.lsp").hover_or_get_docs()<cr>')

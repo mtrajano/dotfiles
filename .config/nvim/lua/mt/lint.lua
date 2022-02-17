@@ -103,7 +103,7 @@ function M.setup()
       cmd = 'proselint',
       stdin = false, -- true if program receives content via stdin
       stream = 'stdout', -- ('stdout' | 'stderr')
-      parser = require'lint.parser'.from_pattern(pattern, groups, nil, { ['source'] = 'psalm' }) -- file:line:col: messsage
+      parser = require'lint.parser'.from_pattern(pattern, groups, nil, { ['source'] = 'proselint' }) -- file:line:col: messsage
     }
   end
 

@@ -66,7 +66,6 @@ custom_mapping('<leader>jn', 'edit_node_modules')
 -- TODO: create mappings for tcd, lcd, cd, delete
 custom_mapping('<leader>hd', 'open_dotfiles')
 custom_mapping('<leader>hi', 'open_installed')
-custom_mapping('<leader>hs', 'open_scratch')
 
 custom_mapping('<leader>l', 'buffers')
 custom_mapping('<leader>H', 'search_help')

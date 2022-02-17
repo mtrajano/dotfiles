@@ -39,7 +39,7 @@ return require('packer').startup(function()
     config = function()
       require'mt.lint'.setup()
     end,
-    ft = { 'markdown', 'php' }
+    ft = { 'markdown' }
   }
 
   use {
@@ -159,12 +159,8 @@ return require('packer').startup(function()
   use {
     'folke/todo-comments.nvim',
     config = function()
-      require 'todo-comments'.setup {
-        keywords = {
-          TEST = { icon = " ", color = "warning" },
-        }
-      }
-      require('mt.utils').nmap('<leader>to', ':TodoTelescope<cr>')
+      require'todo-comments'.setup {}
+      require'mt.utils'.nmap('<leader>to', ':TodoTelescope<cr>')
     end,
     requires = {
       'nvim-telescope/telescope.nvim',
@@ -191,6 +187,8 @@ return require('packer').startup(function()
     'plasticboy/vim-markdown',
     ft = { 'markdown', 'vimwiki' }
   }
+  use 'godlygeek/tabular'
+
 
   -- NVIM SPECIFIC
 
