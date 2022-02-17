@@ -69,8 +69,9 @@ custom_mapping('<leader>hi', 'open_installed')
 
 custom_mapping('<leader>l', 'buffers')
 custom_mapping('<leader>H', 'search_help')
-builtin_mapping('<leader>cc', 'commands')
+builtin_mapping('<leader>jc', 'commands')
 builtin_mapping('<leader>jo', 'oldfiles')
+builtin_mapping('<leader>jl', 'resume')
 
 -- TODO: maybe move this to utils so can be reused in different places (also
 -- used in the statusline)
