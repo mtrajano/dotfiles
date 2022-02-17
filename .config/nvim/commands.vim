@@ -61,7 +61,7 @@ function! s:TrimTrailingSpace()
   call winrestview(l:save)
 endfunction
 
-augroup formatting_fixes
+augroup trim_trailing_spaces
   autocmd!
   autocmd BufWritePre * call s:TrimTrailingSpace()
 augroup END
