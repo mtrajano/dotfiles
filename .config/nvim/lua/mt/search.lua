@@ -51,7 +51,7 @@ local function resolve_types(filetype)
     vue = {'js', 'ts'},
   }
 
-  local search_filetypes = {'all'}
+  local search_filetypes = {}
 
   if type_overrides[filetype] ~= nil then
     search_filetypes = type_overrides[filetype]
