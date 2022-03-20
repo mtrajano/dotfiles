@@ -226,7 +226,8 @@ return require('packer').startup(function(use)
   }
 
   use {
-    'neovim/nvim-lspconfig',
+    'williamboman/nvim-lsp-installer',
+    requires = { 'neovim/nvim-lspconfig' },
     config = function()
       require 'mt.lsp'
     end,
