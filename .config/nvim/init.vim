@@ -19,9 +19,7 @@ augroup fix_color
   autocmd ColorScheme tokyonight call s:FixColors()
 augroup END
 
-lua require'plenary.reload'.reload_module('init')
 lua require('init')
 
 source $XDG_CONFIG_HOME/nvim/basic.vim
 source $XDG_CONFIG_HOME/nvim/commands.vim
-source $XDG_CONFIG_HOME/nvim/work.vim
