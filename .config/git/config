@@ -9,7 +9,6 @@
 
 [delta]
   line-numbers = true
-  syntax-theme = Rigel
   minus-style = "#c43060"
   zero-style = "#e6e6dc"
   plus-style = "#9cf087"
@@ -120,3 +119,5 @@
 
 [pull]
   ff = only
+[init]
+	defaultBranch = main
