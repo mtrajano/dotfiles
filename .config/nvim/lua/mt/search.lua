@@ -4,7 +4,7 @@ local o = vim.o
 local fn = vim.fn
 local cmd = vim.cmd
 
-local special_chars = {'.', '{', '}', '[', ']', '(', ')', '-', '+', '*', '?', '^', '$', '#'}
+local special_chars = {'.', '{', '}', '[', ']', '(', ')', '-', '+', '*', '?', '^', '$', '#', '-'}
 
 -- use ripgrep for searching
 g.ackprg = 'rg --vimgrep --smart-case --color never'
