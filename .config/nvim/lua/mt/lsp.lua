@@ -20,6 +20,17 @@ lsp_installer.on_server_ready(function(server)
     }
   end
 
+  if server.name == "tsserver" then
+    opts.on_attach = function (client)
+      require "lsp_signature".on_attach()
+      require'lsp-status'.on_attach(client)
+
+      -- use null-ls for formatting
+      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.document_range_formatting = false
+    end
+  end
+
   if server.name == "sumneko_lua" then
     local runtime_path = vim.split(package.path, ';')
     table.insert(runtime_path, "lua/?.lua")
