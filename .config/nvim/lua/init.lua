@@ -41,4 +41,3 @@ require 'mt.search'
 
 require 'plugins.fugitive'
 require 'plugins.test'
-require 'plugins.ultisnips'

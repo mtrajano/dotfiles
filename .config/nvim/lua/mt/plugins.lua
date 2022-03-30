@@ -122,7 +122,10 @@ return require('packer').startup(function(use)
   }
 
   use {
-    'SirVer/ultisnips',
+    'L3MON4D3/LuaSnip',
+    config = function()
+      require'plugins.luasnip'
+    end
   }
   use {
     'honza/vim-snippets',
@@ -232,7 +235,7 @@ return require('packer').startup(function(use)
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
-      'quangnguyen30192/cmp-nvim-ultisnips',
+      'saadparwaiz1/cmp_luasnip',
     },
   }
   use {

@@ -1,0 +1,103 @@
+# helpers
+snippet vd var_dump
+	var_dump($1);
+
+snippet dd dump and die
+	var_dump($1);die();
+
+snippet pub Public function
+	public function ${1:name}(${2:$param}) ${3:: void} {
+
+		${VISUAL}${5:return null;}
+
+	}
+	$0
+
+snippet pro Protected function
+	protected function ${1:name}(${2:$param}) ${3:: void} {
+
+		${VISUAL}${5:return null;}
+
+	}
+	$0
+
+snippet pri Private function
+	private function ${1:name}(${2:$param}) ${3:: void} {
+
+		${VISUAL}${5:return null;}
+
+	}
+	$0
+
+snippet pubs Public static function
+	public static function ${1:name}(${2:$param}) ${3:: void} {
+
+		${VISUAL}${5:return null;}
+
+	}
+	$0
+
+snippet pros Protected static function
+	protected static function ${1:name}(${2:$param}) ${3:: void} {
+
+		${VISUAL}${5:return null;}
+
+	}
+	$0
+
+snippet pris Private static function
+	private static function ${1:name}(${2:$param}) ${3:: void} {
+
+		${VISUAL}${5:return null;}
+
+	}
+	$0
+
+###############
+# TEST SNIPPE
+###############
+snippet mock Test create mock
+	$this->createMock($1);
+
+snippet mockb Test create mock builder
+	$this->getMockBuilder($1)$0
+	->getMock();
+
+# assertion snips
+snippet as Assert Same
+	assertSame($1);
+
+snippet ae Assert Equals
+	assertEquals($1);
+
+snippet an Assert Null
+	assertNull($1);
+
+snippet at Assert True
+	assertTrue($1);
+
+snippet af Assert False
+	assertFalse($1);
+
+snippet aiof Assert Instance Of
+	assertInstanceOf($1, $2);
+
+# expect snips
+snippet exo Test expects once
+	expects($this->once())
+
+snippet exn Test expects never
+	expects($this->never())
+
+snippet exe Test expects exactly
+	expects($this->exactly($1))
+
+snippet ee expectException
+	expectException($1);
+
+snippet eem expectExceptionMessage
+	expectExceptionMessage($1);
+
+# will snips
+snippet wte willThrowException
+	->willThrowException($1)

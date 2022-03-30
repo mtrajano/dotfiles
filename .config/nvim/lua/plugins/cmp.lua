@@ -4,7 +4,7 @@ cmp.setup({
   snippet = {
     -- REQUIRED - you must specify a snippet engine
     expand = function(args)
-      vim.fn["UltiSnips#Anon"](args.body)
+      vim.fn["luasnip"](args.body)
     end,
   },
   mapping = {
@@ -20,7 +20,7 @@ cmp.setup({
   sources = cmp.config.sources({
     { name = 'path' },
     { name = 'nvim_lsp', max_item_count = 10 }, -- NOTE: this seems very noisy
-    { name = 'ultisnips' },
+    { name = 'luasnip' },
     { name = 'buffer', max_item_count = 5 },
   })
 })
