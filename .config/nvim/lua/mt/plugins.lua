@@ -62,6 +62,16 @@ return require('packer').startup(function(use)
   }
 
   use {
+    'andymass/vim-matchup',
+    config = function()
+      vim.g.matchup_matchpref = {
+        html = { tagnameonly = 1 },
+        liquid = { tagnameonly = 1 },
+      }
+    end
+  }
+
+  use {
     'vim-test/vim-test',
     cmd = { 'TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit' }
   }
