@@ -4,6 +4,10 @@ local loop = vim.loop
 
 vim.g.mapleader = " "
 
+-- TODO: load this early since some things will depend on plugins being
+-- installed, packer is bootstrapped
+require 'mt.plugins'
+
 vim.g.tokyonight_style = "night"
 vim.cmd [[ colorscheme tokyonight ]]
 
@@ -34,7 +38,6 @@ RELOAD('mt.format')
 -- RELOAD('swagger')
 
 -- require 'swagger'
-require 'mt.plugins'
 
 require 'mt.mappings'
 require 'mt.search'

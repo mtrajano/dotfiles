@@ -63,10 +63,6 @@ custom_mapping('<leader>jr', 'edit_runtime')
 custom_mapping('<leader>JJ', 'find_all_files') -- TODO figure out why this is so slow
 custom_mapping('<leader>jn', 'edit_node_modules')
 
--- TODO: create mappings for tcd, lcd, cd, delete
-custom_mapping('<leader>hd', 'open_dotfiles')
-custom_mapping('<leader>hi', 'open_installed')
-
 custom_mapping('<leader>l', 'buffers')
 custom_mapping('<leader>H', 'search_help')
 builtin_mapping('<leader>jc', 'commands')
@@ -112,15 +108,7 @@ end
 
 M.edit_dotfiles = function()
   require"telescope.builtin".find_files({
-    cwd = os.getenv("DOTFILES"),
-    prompt_title =' Dotfiles',
-    prompt_prefix = 'dotfiles> '
-  })
-end
-
-M.open_dotfiles = function()
-  require"telescope.builtin".file_browser({
-    cwd = os.getenv("DOTFILES"),
+    cwd = tostring(Path:new({ os.getenv("HOME"), 'dotfiles/.config' })),
     prompt_title =' Dotfiles',
     prompt_prefix = 'dotfiles> '
   })
@@ -157,14 +145,6 @@ M.edit_installed = function()
   require'telescope.builtin'.find_files {
     prompt_title = 'Installed Packages',
     prompt_prefix = string.format('%s> ', get_installed_cwd_display()),
-    cwd = get_installed_cwd(),
-  }
-end
-
-M.open_installed = function()
-  require'telescope.builtin'.file_browser {
-    prompt_title = 'Installed Packages',
-    prompt_prefix = 'Packages> ',
     cwd = get_installed_cwd(),
   }
 end
@@ -223,13 +203,6 @@ end
 M.search_help = function()
   require'telescope.builtin'.help_tags {
     prompt_prefix = 'help tags> '
-  }
-end
-
-M.open_scratch = function()
-  require'telescope.builtin'.file_browser {
-    prompt_title = 'Sratch dir',
-    cwd = '~/dev/test'
   }
 end
 
