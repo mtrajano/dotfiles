@@ -18,10 +18,6 @@ u.nmap('<leader>gu', ':SignifyHunkUndo<cr>')
 u.nmap('<leader>gz', ':SignifyFold<cr>')
 u.nmap('<leader>go', '<cmd>Telescope git_branches previewer=false<cr>')
 
-vim.g.github_enterprise_urls = {
-  "https://git.corp.adobe.com"
-}
-
 u.cnoreabbrev('Gds', 'Gdiffsplit')
 u.cnoreabbrev('Gvs', 'Gvsplit')
 u.cnoreabbrev('Gvsm', 'Gvsplit master:%')

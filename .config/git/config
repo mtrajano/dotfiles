@@ -22,7 +22,7 @@
   plus-empty-line-marker-style = "syntax"
 
 [hub]
-  host = git.corp.adobe.com
+  host = github.com
 
 [push]
   default = current
