@@ -137,10 +137,8 @@ return require('packer').startup(function(use)
       require'plugins.luasnip'
     end
   }
-  use {
-    'honza/vim-snippets',
-    ft = { 'python', 'vim', 'zsh' }
-  }
+  use 'honza/vim-snippets'
+
 
   use 'sindrets/diffview.nvim'
   use 'tpope/vim-fugitive'

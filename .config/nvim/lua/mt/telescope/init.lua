@@ -67,6 +67,7 @@ custom_mapping('<leader>l', 'buffers')
 custom_mapping('<leader>H', 'search_help')
 builtin_mapping('<leader>:', 'commands')
 builtin_mapping('<leader>jo', 'oldfiles')
+builtin_mapping('<leader>jq', 'quickfix')
 builtin_mapping('<leader>jl', 'resume')
 
 -- TODO: maybe move this to utils so can be reused in different places (also
@@ -192,6 +193,10 @@ end
 
 M.oldfiles = function()
   require'telescope.builtin'.oldfiles {}
+end
+
+M.quickfix = function()
+  require'telescope.builtin'.quickfix {}
 end
 
 M.buffers = function()
