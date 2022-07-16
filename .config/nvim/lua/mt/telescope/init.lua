@@ -65,7 +65,7 @@ custom_mapping('<leader>jn', 'edit_node_modules')
 
 custom_mapping('<leader>l', 'buffers')
 custom_mapping('<leader>H', 'search_help')
-builtin_mapping('<leader>jc', 'commands')
+builtin_mapping('<leader>:', 'commands')
 builtin_mapping('<leader>jo', 'oldfiles')
 builtin_mapping('<leader>jl', 'resume')
 
