@@ -65,6 +65,7 @@ custom_mapping('<leader>jn', 'edit_node_modules')
 
 custom_mapping('<leader>l', 'buffers')
 custom_mapping('<leader>H', 'search_help')
+builtin_mapping('<leader>M', 'man_pages')
 builtin_mapping('<leader>:', 'commands')
 builtin_mapping('<leader>jo', 'oldfiles')
 builtin_mapping('<leader>jq', 'quickfix')
@@ -208,6 +209,12 @@ end
 M.search_help = function()
   require'telescope.builtin'.help_tags {
     prompt_prefix = 'help tags> '
+  }
+end
+
+M.man_pages = function()
+  require'telescope.builtin'.man_pages {
+    prompt_prefix = 'man pages> '
   }
 end
 

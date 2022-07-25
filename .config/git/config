@@ -37,6 +37,13 @@
   bD = branch -D
   bm = branch -m
 
+  # bisect
+  bs = bisect
+  bss = bisect start
+  bsg = bisect good
+  bsb = bisect bad
+  bsr = bisect reset
+
   # checkout
   co = checkout
   cb = checkout -b
