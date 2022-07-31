@@ -1,19 +1,26 @@
-#!/bin/sh
+#!/bin/bash
 
 set -x
 
-_add_xdg_vars() {
-  echo "" >> ~/.bashrc
-  echo export XDG_CONFIG_HOME='"$HOME/.config"' >> ~/.bashrc
-  echo export XDG_CACHE_HOME='"$HOME/.cache"' >> ~/.bashrc
-  echo export XDG_DATA_HOME='"$HOME/.local/share"' >> ~/.bashrc
-  source ~/.bashrc
+_change_zsh_dir() {
+  echo "export ZDOTDIR=\"$HOME/dotfiles/.config/zsh/\"" > "$HOME/.zshenv"
 }
 
 _install_mac() {
   echo "Installing dependencies on Mac OS X"
 
-  brew install brave-browser kitty rg fd zsh ranger
+  # core packages
+  brew install \
+    brave-browser \
+    kitty \
+    rg \
+    fd \
+    zsh \
+    ranger \
+    htop \
+    git-delta \
+    # reference packages
+    tldr
 
   # build neovim
   xcode-select --install
@@ -23,11 +30,21 @@ _install_mac() {
 _install_linux() {
   sudo pacman -Syu
   sudo pacman -S yay
-  
-  yay -S make brave-browser kitty rg fd zsh ranger xclip
-  
+
+  yay -S make brave-browser \
+    kitty \
+    rg \
+    fd \
+    zsh \
+    ranger \
+    xclip \
+    htop \
+    git-delta \
+    # reference packages
+    tldr
+
   mkdir -p ~/src
-  
+
   # build neovim
   yay -S base-devel cmake unzip ninja tree-sitter curl
 }
@@ -38,16 +55,16 @@ _change_default_shell() {
 
 _install_deps() {
   case "$(uname -s)" in
-  
+
      Darwin)
        _install_mac
        ;;
-  
+
      Linux)
        _install_linux
        _change_default_shell
        ;;
-  
+
      *)
        echo 'Not supported'
        exit 1
@@ -64,6 +81,8 @@ _install_neovim() {
     sudo make install
   fi
 }
+
+[[ -z "$ZDOTDIR" ]] && _change_zsh_dir
 
 _install_deps
 _install_neovim

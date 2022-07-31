@@ -142,6 +142,9 @@ tnoremap <expr> <C-R> '<C-\><C-N>"'.nr2char(getchar()).'pi'
 cnoreabbrev bd Bd
 cnoreabbrev bw Bw
 
+nnoremap <leader>bd :Bd<cr>
+nnoremap <leader>bw :Bw<cr>
+
 " ====================
 " INSERT ABBREVIATIONS
 " ====================
