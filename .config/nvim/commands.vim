@@ -53,15 +53,3 @@ function! g:OpenURLUnderCursor()
   endif
 endfunction
 nnoremap gx :call g:OpenURLUnderCursor()<CR>
-
-" trim trailing space on save
-function! s:TrimTrailingSpace()
-  let l:save = winsaveview()
-  keeppatterns %s/\s\+$//e
-  call winrestview(l:save)
-endfunction
-
-augroup trim_trailing_spaces
-  autocmd!
-  autocmd BufWritePre * call s:TrimTrailingSpace()
-augroup END
