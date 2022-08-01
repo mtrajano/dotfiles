@@ -107,6 +107,7 @@ u.nmap('K', ':lua require("mt.lsp").hover_or_get_docs()<cr>')
 u.nmap('<C-f>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>')
 u.nmap('<C-b>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>')
 
+-- TODO: replace these with lsp-saga
 u.nmap('[D', ':lua vim.diagnostic.goto_prev()<cr>')
 u.nmap(']D', ':lua vim.diagnostic.goto_next()<cr>')
 u.nmap('[d', ':lua vim.diagnostic.goto_prev({severity_limit="Warning"})<cr>')
