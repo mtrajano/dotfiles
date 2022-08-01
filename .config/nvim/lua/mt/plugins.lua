@@ -72,12 +72,6 @@ return require('packer').startup(function(use)
   }
 
   use {
-    'vim-test/vim-test',
-    cmd = { 'TestNearest', 'TestFile', 'TestSuite', 'TestLast', 'TestVisit' }
-  }
-  use 'benmills/vimux'
-  use 'voldikss/vim-floaterm'
-  use {
     'christoomey/vim-tmux-navigator',
     config = function()
       vim.g.tmux_navigator_disable_when_zoomed = 1
