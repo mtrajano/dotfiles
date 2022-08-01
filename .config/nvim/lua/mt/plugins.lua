@@ -23,6 +23,7 @@ return require('packer').startup(function(use)
   use 'lewis6991/impatient.nvim'
 
   use 'ojroques/vim-oscyank'
+  use 'tversteeg/registers.nvim'
 
   use 'folke/tokyonight.nvim'
   use {
@@ -36,7 +37,6 @@ return require('packer').startup(function(use)
   use { 'lukas-reineke/indent-blankline.nvim',
     config = function()
       require('indent_blankline').setup {
-          char = '|',
           char_highlight_list = {
               'IndentBlanklineIndent', -- defined in rigel overrides
           },
@@ -94,6 +94,10 @@ return require('packer').startup(function(use)
   }
   use {
     'moll/vim-bbye',
+    config = function()
+      vim.keymap.set('n', '<leader>bd', vim.cmd.Bd)
+      vim.keymap.set('n', '<leader>bw', vim.cmd.Bw)
+    end
   }
   use {
     'AndrewRadev/splitjoin.vim',
@@ -175,6 +179,14 @@ return require('packer').startup(function(use)
 
       require'todo-comments'.setup {}
       require'mt.utils'.nmap('<leader>to', ':TodoTelescope<cr>')
+
+      vim.cmd.inoreabbrev('bug:', 'BUG:')
+      vim.cmd.inoreabbrev('todo:', 'TODO:')
+      vim.cmd.inoreabbrev('note:', 'NOTE:')
+      vim.cmd.inoreabbrev('test:', 'TEST:')
+      vim.cmd.inoreabbrev('hack:', 'HACK:')
+      vim.cmd.inoreabbrev('fixme:', 'FIXME:')
+
     end,
     requires = {
       'nvim-telescope/telescope.nvim',
