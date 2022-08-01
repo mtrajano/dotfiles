@@ -33,11 +33,6 @@ end
 require('mt.mappings')
 require('mt.search')
 
--- TODO: should only load this if in that directory
--- RELOAD('swagger')
-
--- require 'swagger'
-
 require 'mt.options'
 require 'mt.mappings'
 require 'mt.search'

@@ -22,15 +22,16 @@ local function toggle_git_pane()
   if git_pane_winr then
     api.nvim_win_close(git_pane_winr, false)
   else
-    cmd [[ Git ]]
+    cmd.Git()
   end
 end
 
 vim.keymap.set('n', '<leader>gg', toggle_git_pane, {silent=true})
 vim.keymap.set('n', '<leader>gd', cmd.DiffviewOpen)
 vim.keymap.set('n', '<leader>gf', cmd.DiffviewFileHistory)
-vim.keymap.set('n', '<leader>gb', function() cmd.G('blame') end)
-vim.keymap.set('n', '<leader>gl', function() cmd.G('log -n 500') end)
+vim.keymap.set('n', '<leader>gb', function() cmd.Git('blame') end)
+vim.keymap.set('n', '<leader>gl', function() cmd.Git('log -n 500') end)
+vim.keymap.set('n', '<leader>gr', function() cmd.Gread('master:%') end)
 vim.keymap.set('n', '<leader>gs', cmd.Gw)
 
 -- Merge conflict remaps

@@ -1,7 +1,12 @@
+-- TODO: move this to a directory for personal dev
+-- A more useful gx that adapts to the file pattern it matches with
+
 local search_providers = {
   -- TODO: need to encode spaces and other chars
   google = 'https://www.google.com/search?q=%s',
   duckduckgo = 'https://duckduckgo.com/?q=%s',
+  -- bing
+  -- yahoo
 }
 
 local function setup(opts)
@@ -18,12 +23,11 @@ end
 -- NOTE: remove this setup code after done testing
 setup({search_provider = 'google'})
 
--- TODO: move this to a directory for personal dev
--- A more useful gx that adapts to the file pattern it matches with
 local function map_uri(possible_uri)
   local file = vim.fn.expand('%:t')
   local extension = vim.fn.expand('%:e')
 
+  -- TODO: need to come up with some way of ft/file patterns
   if file == 'plugins.lua' or file == 'tmux.conf' then
     possible_uri = vim.api.nvim_get_current_line()
     possible_uri = vim.fn.trim(possible_uri)
@@ -52,6 +56,6 @@ vim.keymap.set('n', 'gx', function()
   print('opening: ' .. possible_uri)
 
   if possible_uri:match('^https://.+$') ~= nil then
-    vim.fn.jobstart('open ' .. possible_uri)
+    vim.fn.jobstart('open ' .. possible_uri) -- TODO: see if these needs to be xdg_open for linux
   end
 end, { desc = 'Custom open link' })

@@ -22,12 +22,7 @@ function M.normalize_php_namespace(path)
 end
 
 -- TODO have this be done automatically by reading composer.json
-local psr4_map_config = {
-  ['laravel-swagger'] = {
-    ['src/'] = 'Mtrajano\\LaravelSwagger\\',
-    ['tests/unit/'] = 'Mtrajano\\LaravelSwagger\\',
-  }
-}
+local psr4_map_config = {}
 
 function M.update_psr4_map(path)
   local project = path:match('/dev/(.+)')
