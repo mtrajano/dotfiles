@@ -156,6 +156,7 @@ alias sz="source $XDG_CONFIG_HOME/zsh/.zshrc"
 alias ed="z dotfiles .config && nvim"
 alias eg="nvim $XDG_CONFIG_HOME/git/config"
 alias er="nvim $XDG_CONFIG_HOME/ranger/rc.conf"
+alias et="nvim $XDG_CONFIG_HOME/tmux/tmux.conf"
 
 ################
 # DOCKER ALIASES
