@@ -1,4 +1,3 @@
-local u = require 'mt.utils'
 local actions = require 'lir.actions'
 local mark_actions = require 'lir.mark.actions'
 local clipboard_actions = require 'lir.clipboard.actions'
@@ -22,7 +21,6 @@ lir.setup {
 
     ['yy'] = clipboard_actions.copy,
     ['dd'] = clipboard_actions.cut,
-    -- ['x'] = clipboard_actions.cut,
     ['p'] = clipboard_actions.paste,
 
     ['t'] = actions.tabedit,
@@ -57,4 +55,10 @@ lir.setup {
   }
 }
 
-u.nmap('<leader>hh', ':edit %:h<cr>')
+vim.keymap.set('n', '<leader>hh', function()
+  if (vim.fn.expand('%') == '') then
+    vim.cmd.edit('.')
+  else
+    vim.cmd.edit('%:h')
+  end
+end, { desc = 'Open lir file explorer' })
