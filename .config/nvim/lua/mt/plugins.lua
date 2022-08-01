@@ -1,9 +1,14 @@
-vim.cmd [[
-augroup compile_onsave
-  autocmd!
-  autocmd BufWritePost */mt/plugins.lua source <afile> | PackerCompile
-augroup END
-]]
+vim.api.nvim_create_autocmd('BufWritePost', {
+  group = vim.api.nvim_create_augroup('compile_onsave', {
+    clear = true,
+  }),
+  pattern = '*/mt/plugins.lua',
+  callback = function()
+    vim.cmd.source('<afile>')
+    vim.cmd.PackerCompile()
+  end
+})
+
 
 local fn = vim.fn
 local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'

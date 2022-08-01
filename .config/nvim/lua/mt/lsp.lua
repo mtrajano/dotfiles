@@ -4,6 +4,7 @@ local fn = vim.fn
 
 local lsp_installer = require("nvim-lsp-installer")
 
+-- TODO: https://github.com/williamboman/nvim-lsp-installer/discussions/636
 lsp_installer.on_server_ready(function(server)
   local function my_attach(client)
     require "lsp_signature".on_attach()

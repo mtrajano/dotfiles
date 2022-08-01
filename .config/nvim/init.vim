@@ -22,4 +22,3 @@ augroup END
 lua require('init')
 
 source $XDG_CONFIG_HOME/nvim/basic.vim
-source $XDG_CONFIG_HOME/nvim/commands.vim
