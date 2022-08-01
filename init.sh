@@ -50,7 +50,7 @@ _install_linux() {
 }
 
 _change_default_shell() {
-  sudo usermod --shell /bin/local/zsh $(whoami)
+  sudo usermod --shell /bin/local/zsh "$(whoami)"
 }
 
 _install_deps() {
@@ -73,10 +73,10 @@ _install_deps() {
 }
 
 _install_neovim() {
-  if [[ ! -f "~/src/neovim" ]]
+  if [[ ! -f "$HOME/src/neovim" ]]
   then
     git clone git@github.com:neovim/neovim.git ~/src/neovim
-    cd ~/src/neovim
+    cd ~/src/neovim || exit
     make CMAKE_BUILD_TYPE=RelWithDebInfo
     sudo make install
   fi

@@ -41,6 +41,7 @@ RELOAD('mt.format')
 
 require 'mt.mappings'
 require 'mt.search'
+require 'mt.commands'
 
 require 'plugins.fugitive'
 require 'plugins.test'

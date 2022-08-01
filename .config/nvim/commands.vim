@@ -38,18 +38,3 @@ function! s:FixMultipleNewline()
   call winrestview(l:save)
 endfunction
 command! -nargs=0 FixMultipleNewline call s:FixMultipleNewline()
-
-" netrw open url patch
-function! g:OpenURLUnderCursor()
-  let s:uri = expand('<cWORD>')
-
-  let s:uri = substitute(s:uri, '?', '\\?', '')
-  let s:uri = substitute(s:uri, '&', '\\&', 'g')
-  let s:uri = shellescape(s:uri, 1)
-
-  if s:uri != ''
-    silent exec "!open '".s:uri."'"
-    :redraw!
-  endif
-endfunction
-nnoremap gx :call g:OpenURLUnderCursor()<CR>
