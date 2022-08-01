@@ -8,7 +8,7 @@ vim.g.mapleader = " "
 -- installed, packer is bootstrapped
 require 'mt.plugins'
 
-vim.g.tokyonight_style = "night"
+vim.g.tokyonight_style = 'night'
 vim.cmd [[ colorscheme tokyonight ]]
 
 function RELOAD(script)
@@ -19,7 +19,7 @@ function P(...)
   print(vim.inspect(...))
 end
 
--- TODO: see if this can be integrated with vimscript's profiling
+-- TODO: see if this is still needed
 function REQUIRE(module)
   local start
   if should_profile then start = loop.hrtime() end
@@ -42,5 +42,3 @@ require 'mt.options'
 require 'mt.mappings'
 require 'mt.search'
 require 'mt.commands'
-
-require 'plugins.fugitive'

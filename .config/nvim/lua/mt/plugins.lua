@@ -27,9 +27,6 @@ return require('packer').startup(function(use)
   use {
     'hoob3rt/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
-    config = function()
-      require'mt.statusline'
-    end
   }
 
   use { 'lukas-reineke/indent-blankline.nvim',
@@ -43,12 +40,7 @@ return require('packer').startup(function(use)
     end
   }
 
-  use {
-    'jose-elias-alvarez/null-ls.nvim',
-    config = function()
-      require'plugins.null-ls'
-    end
-  }
+  use 'jose-elias-alvarez/null-ls.nvim'
 
   use {
     'mbbill/undotree',
@@ -132,12 +124,8 @@ return require('packer').startup(function(use)
     end
   }
 
-  use {
-    'L3MON4D3/LuaSnip',
-    config = function()
-      require'plugins.luasnip'
-    end
-  }
+  use 'L3MON4D3/LuaSnip'
+
   use 'honza/vim-snippets'
 
 
@@ -148,10 +136,7 @@ return require('packer').startup(function(use)
     'lewis6991/gitsigns.nvim',
     requires = {
       'nvim-lua/plenary.nvim'
-    },
-    config = function()
-      require'plugins.gitsigns'
-    end,
+    }
   }
 
   use {
@@ -159,10 +144,7 @@ return require('packer').startup(function(use)
     requires = {
       'nvim-lua/plenary.nvim',
       'kyazdani42/nvim-web-devicons',
-    },
-    config = function()
-      require 'plugins.lir'
-    end
+    }
   }
 
   use {
@@ -222,9 +204,6 @@ return require('packer').startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
-    config = function()
-      require 'plugins.treesitter'
-    end,
   }
   use {
     'nvim-treesitter/playground',
@@ -252,9 +231,6 @@ return require('packer').startup(function(use)
   }
   use {
     'hrsh7th/nvim-cmp',
-    config = function()
-      require'plugins.cmp'
-    end,
     requires = {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',

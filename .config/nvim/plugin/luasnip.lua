@@ -10,6 +10,7 @@ end
 local luasnip = prequire('luasnip')
 local cmp = prequire("cmp")
 
+-- TODO: is this still neded?
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end

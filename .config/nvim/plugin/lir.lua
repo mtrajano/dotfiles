@@ -10,7 +10,6 @@ local cmd = vim.cmd
 -- vim.g.loaded_netrw = 1
 -- vim.g.loaded_netrwPlugin = 1
 
-
 lir.setup {
   show_hidden_files = false,
   devicons_enable = true,
@@ -19,11 +18,11 @@ lir.setup {
 
     ['l'] = actions.edit,
     ['h'] = actions.up,
-    ['d'] = actions.delete,
     ['r'] = actions.rename,
 
-    ['y'] = clipboard_actions.copy,
-    ['x'] = clipboard_actions.cut,
+    ['yy'] = clipboard_actions.copy,
+    ['dd'] = clipboard_actions.cut,
+    -- ['x'] = clipboard_actions.cut,
     ['p'] = clipboard_actions.paste,
 
     ['t'] = actions.tabedit,
