@@ -113,7 +113,13 @@ return require('packer').startup(function(use)
     }
   }
 
-  use 'tpope/vim-surround' -- TODO: look into surround.nvim and create custom surround funcitons
+  use {
+    'kylechui/nvim-surround',
+    config = function()
+      require("nvim-surround").setup({})
+    end
+  }
+
   use 'tpope/vim-sleuth' -- automatically detect space issues
   use 'tpope/vim-repeat'
   use {

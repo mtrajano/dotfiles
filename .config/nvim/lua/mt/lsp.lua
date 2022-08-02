@@ -1,4 +1,3 @@
-local u = require('mt.utils')
 local o = vim.o
 local fn = vim.fn
 
@@ -72,51 +71,47 @@ lsp_installer.on_server_ready(function(server)
   server:setup(opts)
 end)
 
--- TODO: move this or see if it's still necessary
+-- define diagnostics signs
 vim.cmd [[
-  sign define LspDiagnosticsSignError text= texthl=LspDiagnosticsSignError linehl= numhl=
-  sign define LspDiagnosticsSignWarning text= texthl=LspDiagnosticsSignWarning linehl= numhl=
-  sign define LspDiagnosticsSignInformation text= texthl=LspDiagnosticsSignInformation linehl= numhl=
-  sign define LspDiagnosticsSignHint text= texthl=LspDiagnosticsSignHint linehl= numhl=
+  sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=
+  sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=
+  sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=
+  sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=
 ]]
 
 
-------
--- ALL
-------
-local M = {}
-
-M.hover_or_get_docs = function()
-  if u.contains({'vim', 'help'}, o.filetype) then
-    fn.execute('h ' .. fn.expand('<cword>'))
-  elseif u.contains({'sh', 'zsh'}, o.filetype) then
-    fn.execute('Man ' .. fn.expand('<cword>'))
+----------
+-- KEYMAPS
+----------
+local function hover_or_get_docs()
+  if vim.tbl_contains({'vim', 'help'}, o.filetype) then
+    vim.cmd.help(fn.expand('<cword>'))
+  elseif vim.tbl_contains({'sh', 'zsh'}, o.filetype) then
+    vim.cmd.Man(fn.expand('<cword>'))
   else
     vim.cmd [[Lspsaga hover_doc]]
   end
 end
 
 -- mappings
-u.nmap('gd', ':lua vim.lsp.buf.definition()<cr>')
-u.nmap('gD', ':lua vim.lsp.buf.declaration()<cr>')
-u.nmap('gR', ':Lspsaga rename<cr>')
-u.nmap('gr', ':lua require"mt.telescope".lsp_references()<cr>')
-u.nmap('gi', ':lua vim.lsp.buf.implementation()<cr>')
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc='definition' })
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc='declaration' })
+vim.keymap.set('n', 'gR', function() vim.cmd.Lspsaga('rename') end)
+vim.keymap.set('n', 'gr', require"mt.telescope".lsp_references, { desc = 'lsp_references' })
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc='implementation' })
 
-u.nmap('K', ':lua require("mt.lsp").hover_or_get_docs()<cr>')
-u.nmap('<C-f>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(1)<CR>')
-u.nmap('<C-b>', '<cmd>lua require("lspsaga.action").smart_scroll_with_saga(-1)<CR>')
+vim.keymap.set('n', 'K', hover_or_get_docs, { desc = 'hover_or_get_docs' })
+vim.keymap.set('n', '<C-f>', function() require("lspsaga.action").smart_scroll_with_saga(1) end)
+vim.keymap.set('n', '<C-b>', function() require("lspsaga.action").smart_scroll_with_saga(-1) end)
 
 -- TODO: replace these with lsp-saga
-u.nmap('[D', ':lua vim.diagnostic.goto_prev()<cr>')
-u.nmap(']D', ':lua vim.diagnostic.goto_next()<cr>')
-u.nmap('[d', ':lua vim.diagnostic.goto_prev({severity_limit="Warning"})<cr>')
-u.nmap(']d', ':lua vim.diagnostic.goto_next({severity_limit="Warning"})<cr>')
-u.nmap('<leader>da', ':Lspsaga code_action<cr>')
-u.nmap('<leader>dd', ':Trouble<cr>')
+vim.keymap.set('n', '[D', vim.diagnostic.goto_prev, { desc = 'diagnostic goto_prev all' })
+vim.keymap.set('n', ']D', vim.diagnostic.goto_next, { desc = 'diagnostic goto_next all' })
+vim.keymap.set('n', '[d', function() vim.diagnostic.goto_prev({severity_limit="Warning"}) end)
+vim.keymap.set('n', ']d', function() vim.diagnostic.goto_next({severity_limit="Warning"}) end)
+vim.keymap.set('n', '<leader>da', function() vim.cmd.Lspsaga('code_action') end)
+vim.keymap.set('n', '<leader>dd', vim.cmd.Trouble, { desc = 'Trouble' })
 
 -- coming from other plugins
-u.nmap('<leader>k', ':lua require"telescope.builtin".lsp_document_symbols({ignore_filename = false, symbol_width = 35})<cr>', {silent=true})
-u.nmap('<leader>K', ':lua require"telescope.builtin".lsp_dynamic_workspace_symbols({ignore_filename = false, previewer = false, show_line = true})<cr>', {silent=true})
-
-return M
+vim.keymap.set('n', '<leader>k', function() require"telescope.builtin".lsp_document_symbols({ignore_filename = false, symbol_width = 35}) end, {silent=true})
+vim.keymap.set('n', '<leader>K', function() require"telescope.builtin".lsp_dynamic_workspace_symbols({ignore_filename = false, previewer = false, show_line = true}) end, {silent=true})
