@@ -9,6 +9,9 @@ disable('S', 'map S to NOP until get used to cc')
 disable('s', 'map s to NOP until get used to cl')
 disable('Q', 'disable ex-mode (can be mapped)')
 
+-- map escape in terminal
+vim.keymap.set('t', '<esc>', '<C-\\><C-n>')
+
 opt.swapfile = false
 opt.number = true
 opt.relativenumber = true

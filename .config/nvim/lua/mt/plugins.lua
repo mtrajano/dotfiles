@@ -44,6 +44,9 @@ return require('packer').startup(function(use)
 
   use {
     'mbbill/undotree',
+    config = function()
+      vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc='UndotreeToggle' })
+    end
   }
 
   use 'vimwiki/vimwiki'
@@ -70,6 +73,11 @@ return require('packer').startup(function(use)
     'christoomey/vim-tmux-navigator',
     config = function()
       vim.g.tmux_navigator_disable_when_zoomed = 1
+
+      vim.keymap.set('n', '<C-L>', vim.cmd.TmuxNavigateRight, { desc='TmuxNavigateRight' })
+      vim.keymap.set('n', '<C-K>', vim.cmd.TmuxNavigateUp, { desc='TmuxNavigateUp' })
+      vim.keymap.set('n', '<C-J>', vim.cmd.TmuxNavigateDown, { desc='TmuxNavigateDown' })
+      vim.keymap.set('n', '<C-H>', vim.cmd.TmuxNavigateLeft, { desc='TmuxNavigateLeft' })
     end
   }
   use {
@@ -94,14 +102,27 @@ return require('packer').startup(function(use)
     config = function()
       -- split join, each method call in a different line
       vim.g.splitjoin_php_method_chain_full = 1
+
+      vim.keymap.set('n', '<leader>sj', vim.cmd.SplitjoinSplit, { desc='SplitjoinSplit' })
+      vim.keymap.set('n', '<leader>sk', vim.cmd.SplitjoinJoin, { desc='SplitjoinJoin' })
     end,
-    cmd = { 'SplitjoinSplit', 'SplitjoinJoin' }
+    cmd = { 'SplitjoinSplit', 'SplitjoinJoin' },
+    keys = {
+      {'n', '<leader>sj'},
+      {'n', '<leader>sk'},
+    }
   }
 
-  use 'tpope/vim-surround'
+  use 'tpope/vim-surround' -- TODO: look into surround.nvim and create custom surround funcitons
   use 'tpope/vim-sleuth' -- automatically detect space issues
   use 'tpope/vim-repeat'
-  use 'tpope/vim-projectionist'
+  use {
+    'tpope/vim-projectionist',
+    config = function()
+      vim.keymap.set('n', '<leader>es', vim.cmd.Esource, { desc='Esource' })
+      vim.keymap.set('n', '<leader>et', vim.cmd.Etest, { desc='Etest' })
+    end
+  }
   use 'tpope/vim-commentary'
   use 'tpope/vim-unimpaired'
   use 'tpope/vim-abolish'
@@ -112,8 +133,12 @@ return require('packer').startup(function(use)
     'tpope/vim-scriptease',
     cmd = 'Messages',
     keys = {
-      {'n', 'zS'}
-    }
+      {'n', 'zS'},
+      {'n', '<leader>m'},
+    },
+    config = function()
+      vim.keymap.set('n', '<leader>m', vim.cmd.Messages, { desc = 'Messages' })
+    end
   }
   use {
     'tpope/vim-dispatch',

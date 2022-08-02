@@ -1,11 +1,7 @@
-local u = require('mt.utils')
-
 if os.getenv('SSH_CONNECTION') then
-  u.nmap('<leader>y', '<Plug>OSCYank', { noremap = false })
-  u.vmap('<leader>y', ':OSCYank<cr>', { noremap = false })
+  vim.keymap.set({ 'n', 'v' }, '<leader>y', '<Plug>OSCYank', { remap = true, desc = 'OscYank' })
 else
-  u.nmap('<leader>y', '"+y')
-  u.vmap('<leader>y', '"+y')
+  vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y')
 end
 
-u.nmap('<leader>Y', '<leader>y$', { noremap = false })
+vim.keymap.set('n', '<leader>Y', '<leader>y$', { remap = true })

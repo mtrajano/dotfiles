@@ -30,9 +30,5 @@ function REQUIRE(module)
   end
 end
 
-require('mt.mappings')
-require('mt.search')
-
 require 'mt.options'
-require 'mt.mappings'
 require 'mt.search'
