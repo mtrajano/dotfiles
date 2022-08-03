@@ -9,33 +9,50 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   end
 })
 
-local install_path = vim.fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  packer_bootstrap = vim.fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+  packer_bootstrap = vim.fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
+    install_path })
 end
 
 return require('packer').startup(function(use)
 
   use 'wbthomason/packer.nvim'
 
+  use 'folke/tokyonight.nvim'
+
+  use 'dstein64/vim-startuptime'
   use 'lewis6991/impatient.nvim'
 
-  use 'ojroques/vim-oscyank'
   use 'tversteeg/registers.nvim'
+  use 'ojroques/vim-oscyank'
 
-  use 'folke/tokyonight.nvim'
   use {
     'hoob3rt/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+  }
+
+  ------
+  -- LSP
+  ------
+  use {
+    'williamboman/mason.nvim',
+    requires = {
+      'williamboman/mason-lspconfig.nvim',
+      'neovim/nvim-lspconfig',
+    },
+    config = function()
+      require 'mt.lsp'
+    end
   }
 
   use { 'lukas-reineke/indent-blankline.nvim',
     config = function()
       require('indent_blankline').setup {
-          char_highlight_list = {
-              'IndentBlanklineIndent', -- defined in rigel overrides
-          },
-          buftype_exclude = {'terminal', 'nofile', 'help', 'markdown', 'vimwiki', 'text', 'fugitive' }
+        char_highlight_list = {
+          'IndentBlanklineIndent', -- defined in rigel overrides
+        },
+        buftype_exclude = { 'terminal', 'nofile', 'help', 'markdown', 'vimwiki', 'text', 'fugitive' }
       }
     end
   }
@@ -45,7 +62,7 @@ return require('packer').startup(function(use)
   use {
     'mbbill/undotree',
     config = function()
-      vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc='UndotreeToggle' })
+      vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'UndotreeToggle' })
     end
   }
 
@@ -74,10 +91,10 @@ return require('packer').startup(function(use)
     config = function()
       vim.g.tmux_navigator_disable_when_zoomed = 1
 
-      vim.keymap.set('n', '<C-L>', vim.cmd.TmuxNavigateRight, { desc='TmuxNavigateRight' })
-      vim.keymap.set('n', '<C-K>', vim.cmd.TmuxNavigateUp, { desc='TmuxNavigateUp' })
-      vim.keymap.set('n', '<C-J>', vim.cmd.TmuxNavigateDown, { desc='TmuxNavigateDown' })
-      vim.keymap.set('n', '<C-H>', vim.cmd.TmuxNavigateLeft, { desc='TmuxNavigateLeft' })
+      vim.keymap.set('n', '<C-L>', vim.cmd.TmuxNavigateRight, { desc = 'TmuxNavigateRight' })
+      vim.keymap.set('n', '<C-K>', vim.cmd.TmuxNavigateUp, { desc = 'TmuxNavigateUp' })
+      vim.keymap.set('n', '<C-J>', vim.cmd.TmuxNavigateDown, { desc = 'TmuxNavigateDown' })
+      vim.keymap.set('n', '<C-H>', vim.cmd.TmuxNavigateLeft, { desc = 'TmuxNavigateLeft' })
     end
   }
   use {
@@ -103,13 +120,13 @@ return require('packer').startup(function(use)
       -- split join, each method call in a different line
       vim.g.splitjoin_php_method_chain_full = 1
 
-      vim.keymap.set('n', '<leader>sj', vim.cmd.SplitjoinSplit, { desc='SplitjoinSplit' })
-      vim.keymap.set('n', '<leader>sk', vim.cmd.SplitjoinJoin, { desc='SplitjoinJoin' })
+      vim.keymap.set('n', '<leader>sj', vim.cmd.SplitjoinSplit, { desc = 'SplitjoinSplit' })
+      vim.keymap.set('n', '<leader>sk', vim.cmd.SplitjoinJoin, { desc = 'SplitjoinJoin' })
     end,
     cmd = { 'SplitjoinSplit', 'SplitjoinJoin' },
     keys = {
-      {'n', '<leader>sj'},
-      {'n', '<leader>sk'},
+      { 'n', '<leader>sj' },
+      { 'n', '<leader>sk' },
     }
   }
 
@@ -125,8 +142,8 @@ return require('packer').startup(function(use)
   use {
     'tpope/vim-projectionist',
     config = function()
-      vim.keymap.set('n', '<leader>es', vim.cmd.Esource, { desc='Esource' })
-      vim.keymap.set('n', '<leader>et', vim.cmd.Etest, { desc='Etest' })
+      vim.keymap.set('n', '<leader>es', vim.cmd.Esource, { desc = 'Esource' })
+      vim.keymap.set('n', '<leader>et', vim.cmd.Etest, { desc = 'Etest' })
     end
   }
   use 'tpope/vim-commentary'
@@ -139,8 +156,8 @@ return require('packer').startup(function(use)
     'tpope/vim-scriptease',
     cmd = 'Messages',
     keys = {
-      {'n', 'zS'},
-      {'n', '<leader>m'},
+      { 'n', 'zS' },
+      { 'n', '<leader>m' },
     },
     config = function()
       vim.keymap.set('n', '<leader>m', vim.cmd.Messages, { desc = 'Messages' })
@@ -148,7 +165,7 @@ return require('packer').startup(function(use)
   }
   use {
     'tpope/vim-dispatch',
-    cmd = {'Dispatch', 'Make', 'Focus', 'Start'},
+    cmd = { 'Dispatch', 'Make', 'Focus', 'Start' },
     opt = true,
     config = function()
       vim.g.dispatch_no_tmux_dispatch = 1 -- breaks zoomed panes
@@ -185,10 +202,10 @@ return require('packer').startup(function(use)
       local hl = require("todo-comments.highlight")
       local highlight_win = hl.highlight_win
       hl.highlight_win = function(win, force)
-              pcall(highlight_win, win, force)
+        pcall(highlight_win, win, force)
       end
 
-      require'todo-comments'.setup {}
+      require 'todo-comments'.setup {}
 
       vim.cmd.inoreabbrev('bug:', 'BUG:')
       vim.cmd.inoreabbrev('todo:', 'TODO:')
@@ -205,8 +222,9 @@ return require('packer').startup(function(use)
 
   -- TODO: try treesitter-text-objs and get rid of most of these
   local function install_textobj(repo)
-    use { repo, requires = { 'kana/vim-textobj-user' }}
+    use { repo, requires = { 'kana/vim-textobj-user' } }
   end
+
   install_textobj('kana/vim-textobj-function')
   install_textobj('kana/vim-textobj-entire')
   install_textobj('glts/vim-textobj-comment')
@@ -226,9 +244,7 @@ return require('packer').startup(function(use)
   use 'godlygeek/tabular'
 
 
-  -- NVIM SPECIFIC
-
-  -- Need this until https://github.com/neovim/neovim/issues/12587 gets resolved
+  -- NOTE: need this until https://github.com/neovim/neovim/issues/12587 gets resolved
   use 'antoinemadec/FixCursorHold.nvim'
 
   use {
@@ -243,22 +259,15 @@ return require('packer').startup(function(use)
   use 'nvim-lua/popup.nvim'
   use 'folke/lua-dev.nvim'
 
-  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use {
     'nvim-telescope/telescope.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function()
       require 'mt.telescope'
     end,
   }
 
-  use {
-    'williamboman/nvim-lsp-installer',
-    requires = { 'neovim/nvim-lspconfig' },
-    config = function()
-      require 'mt.lsp'
-    end,
-  }
   use {
     'hrsh7th/nvim-cmp',
     requires = {
@@ -271,7 +280,7 @@ return require('packer').startup(function(use)
   use {
     'ray-x/lsp_signature.nvim',
     config = function()
-      require'lsp_signature'.setup {
+      require 'lsp_signature'.setup {
         toggle_key = '<C-K>'
       }
     end
@@ -311,7 +320,7 @@ return require('packer').startup(function(use)
     cmd = { 'TroubleToggle' }
   }
 
-	-- Automatically set up your configuration after cloning packer.nvim
+  -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
     require('packer').sync()
