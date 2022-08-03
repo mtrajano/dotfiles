@@ -4,8 +4,8 @@ local loop = vim.loop
 
 vim.g.mapleader = " "
 
--- TODO: load this early since some things will depend on plugins being
--- installed, packer is bootstrapped
+-- TODO: remove when plugin config was moved into autoload folders
+-- TODO: move any custom plugins to personal dev folder
 require 'mt.plugins'
 
 vim.g.tokyonight_style = 'night'
@@ -19,7 +19,7 @@ function P(...)
   print(vim.inspect(...))
 end
 
--- TODO: see if this is still needed
+-- require with profiling wrapped
 function REQUIRE(module)
   local start
   if should_profile then start = loop.hrtime() end

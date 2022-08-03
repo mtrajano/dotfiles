@@ -1,7 +1,5 @@
 local action = require('telescope.actions')
 local Path = require('plenary.path')
-local u = require('mt.utils')
-local o = vim.o
 local fn = vim.fn
 
 local developing = false
@@ -44,23 +42,20 @@ require'telescope'.setup{
 require('telescope').load_extension('fzf')
 
 local function custom_mapping(key, method)
-  u.nmap(key, string.format(':lua require"mt.telescope".%s()<cr>', method))
+  vim.keymap.set('n', key, string.format(':lua require"mt.telescope".%s()<cr>', method))
 end
 
 local function builtin_mapping(key, method)
-  u.nmap(key, string.format(':lua require"telescope.builtin".%s()<cr>', method))
+  vim.keymap.set('n', key, string.format(':lua require"telescope.builtin".%s()<cr>', method))
 end
 
 custom_mapping('<leader>jj', 'git_files')
 custom_mapping('<leader>jf', 'find_files')
 custom_mapping('<leader>jd', 'edit_dotfiles')
-custom_mapping('<leader>ji', 'edit_installed') -- TODO: delete this
 custom_mapping('<leader>jv', 'edit_vendor')
-custom_mapping('<leader>jw', 'edit_work_files')
 custom_mapping('<leader>jb', 'edit_behance')
 custom_mapping('<leader>jp', 'edit_packer')
 custom_mapping('<leader>jr', 'edit_runtime')
-custom_mapping('<leader>JJ', 'find_all_files') -- TODO figure out why this is so slow
 custom_mapping('<leader>jn', 'edit_node_modules')
 
 custom_mapping('<leader>l', 'buffers')
@@ -71,8 +66,6 @@ builtin_mapping('<leader>jo', 'oldfiles')
 builtin_mapping('<leader>jq', 'quickfix')
 builtin_mapping('<leader>jl', 'resume')
 
--- TODO: maybe move this to utils so can be reused in different places (also
--- used in the statusline)
 local function shorten_path(path)
   path = fn.fnamemodify(path, ':~')
   path = Path:new(path)
@@ -119,42 +112,6 @@ end
 -- TODO: replace this with plenary.path
 local function relative_path(path)
   return string.format('%s/%s', fn.getcwd(), path)
-end
-
--- TODO: check this command on files that don't meed the file type
--- TODO: have this work with certain projects instead of file types
-local function get_installed_cwd()
-  local ft = o.filetype
-
-  local package_paths = {
-    php = relative_path('vendor'),
-    javascript = relative_path('node_modules'),
-    vue = relative_path('node_modules'),
-    lua = os.getenv("XDG_DATA_HOME") .. "/nvim/site/pack/packer",
-    vim = os.getenv("XDG_DATA_HOME") .. "/nvim/site/pack/packer",
-    help = os.getenv("XDG_DATA_HOME") .. "/nvim/site/pack/packer",
-  }
-
-  return package_paths[ft] or fn.getcwd()
-end
-
-local function get_installed_cwd_display()
-  return shorten_path(get_installed_cwd())
-end
-
--- TODO: delete this
-M.edit_installed = function()
-  require'telescope.builtin'.find_files {
-    prompt_title = 'Installed Packages',
-    prompt_prefix = string.format('%s> ', get_installed_cwd_display()),
-    cwd = get_installed_cwd(),
-  }
-end
-
-M.edit_work_files = function()
-  require'telescope.builtin'.find_files {
-    cwd = os.getenv("STOW_DIR") .. "/work/.config",
-  }
 end
 
 M.edit_packer = function()

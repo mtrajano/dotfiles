@@ -189,7 +189,6 @@ return require('packer').startup(function(use)
       end
 
       require'todo-comments'.setup {}
-      require'mt.utils'.nmap('<leader>to', ':TodoTelescope<cr>')
 
       vim.cmd.inoreabbrev('bug:', 'BUG:')
       vim.cmd.inoreabbrev('todo:', 'TODO:')

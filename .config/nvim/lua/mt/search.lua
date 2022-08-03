@@ -1,4 +1,3 @@
-local u = require('mt.utils')
 local g = vim.g
 local o = vim.o
 local fn = vim.fn
@@ -176,17 +175,17 @@ M.search_visual = function(opts)
 end
 
 M.update_search_abbrev = function()
-  u.cnoreabbrev('F', 'Ack!' .. get_search_args(nil, {include_ft=true, include_cwd=false}))
+  vim.cmd.cnoreabbrev('F', 'Ack!' .. get_search_args(nil, {include_ft=true, include_cwd=false}))
 end
 
-u.nmap('<leader>F', ':lua require("mt.search").search_normal({include_ft=true})<cr>')
-u.vmap('<leader>F', ':lua require("mt.search").search_visual({include_ft=true, boundary=false})<cr>')
-u.nmap('<leader>f', ':lua require("mt.search").search_normal({include_ft=false})<cr>')
-u.vmap('<leader>f', ':lua require("mt.search").search_visual({include_ft=false, boundary=false})<cr>')
---TODO possibly change these to user commands
--- u.cnoreabbrev('F!', 'Ack! -tall') -- default, should get updated per filetype
-u.cnoreabbrev('F', 'Ack!') -- default, should get updated per filetype
-u.cnoreabbrev('Fa', 'Ack!') -- search all
+vim.keymap.set('n', '<leader>F', ':lua require("mt.search").search_normal({include_ft=true})<cr>')
+vim.keymap.set('v', '<leader>F', ':lua require("mt.search").search_visual({include_ft=true, boundary=false})<cr>')
+vim.keymap.set('n', '<leader>f', ':lua require("mt.search").search_normal({include_ft=false})<cr>')
+vim.keymap.set('v', '<leader>f', ':lua require("mt.search").search_visual({include_ft=false, boundary=false})<cr>')
+
+--TODO: possibly change these to user commands
+vim.cmd.cnoreabbrev('F', 'Ack!') -- default, should get updated per filetype
+vim.cmd.cnoreabbrev('Fa', 'Ack!') -- search all
 
 cmd [[
 augroup update_search_abbrev
