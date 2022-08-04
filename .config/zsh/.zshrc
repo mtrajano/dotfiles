@@ -23,6 +23,9 @@ path=(
 # local builds
 "$HOME/bin"
 
+# ruby installed by homebrew
+"/usr/local/opt/ruby/bin"
+
 $path
 
 # TODO: figure out what I'm using RVM for and remove it if not needed

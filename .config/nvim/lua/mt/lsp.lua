@@ -70,15 +70,24 @@ vim.keymap.set('n', '<C-b>', function()
   require('lspsaga.action').smart_scroll_with_saga(-1)
 end)
 
--- TODO: replace these with lsp-saga
-vim.keymap.set('n', '[D', vim.diagnostic.goto_prev, { desc = 'diagnostic goto_prev all' })
-vim.keymap.set('n', ']D', vim.diagnostic.goto_next, { desc = 'diagnostic goto_next all' })
+-- jump to diagnostics
+vim.keymap.set('n', '[D', function()
+  require('lspsaga.diagnostic').goto_prev()
+end, { desc = 'Diagnostic go to prev' })
+vim.keymap.set('n', ']D', function()
+  require('lspsaga.diagnostic').goto_next()
+end, { desc = 'Diagnostic go to next' })
 vim.keymap.set('n', '[d', function()
-  vim.diagnostic.goto_prev { severity_limit = 'Warning' }
-end)
+  require('lspsaga.diagnostic').goto_prev {
+    severity = { min = vim.diagnostic.severity.WARN },
+  }
+end, { desc = 'Diagnostic go to prev warning+' })
 vim.keymap.set('n', ']d', function()
-  vim.diagnostic.goto_next { severity_limit = 'Warning' }
-end)
+  require('lspsaga.diagnostic').goto_next {
+    severity = { min = vim.diagnostic.severity.WARN },
+  }
+end, { desc = 'Diagnostic go to next warning+' })
+
 vim.keymap.set('n', '<leader>da', function()
   vim.cmd.Lspsaga('code_action')
 end)

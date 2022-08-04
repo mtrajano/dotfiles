@@ -34,10 +34,6 @@ require('nvim-treesitter.configs').setup {
     },
   },
 
-  fold = {
-    disable = { 'lua' },
-  },
-
   -- for debugging
   playground = {
     enable = true,
