@@ -1,3 +1,4 @@
+# TODO: move this to .zshenv
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
@@ -5,7 +6,10 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export TERM="xterm-kitty"
 
 export EDITOR="nvim"
-bindkey -e #NOTE: needed since the editor variable above sets zle's keymap to viins
+bindkey "^N" down-line-or-history
+bindkey "^P" up-line-or-history
+
+# TODO: create a widget and create a mapping to surround like behavior, map to s like nvim
 
 # n node manager
 export N_PREFIX="$HOME/bin/n"

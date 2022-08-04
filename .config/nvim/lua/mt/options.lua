@@ -5,6 +5,7 @@ local function disable(key, reason)
   vim.keymap.set('n', key, '<NOP>', { desc = reason })
 end
 
+-- NOTE: currently testing these keys with nvim-surround
 disable('S', 'map S to NOP until get used to cc')
 disable('s', 'map s to NOP until get used to cl')
 disable('Q', 'disable ex-mode (can be mapped)')
@@ -39,7 +40,7 @@ opt.updatetime = 1000
 -- popup menu
 -- o.completeopt = 'menu,menuone,noselect'
 opt.completeopt = { 'menu', 'menuone', 'noselect' }
-opt.pumheight=20
+opt.pumheight = 20
 
 -- horizontal/vertical cursor padding, move cursor 1 line at a time
 opt.sidescrolloff = 10

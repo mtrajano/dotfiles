@@ -6,26 +6,25 @@ vim.api.nvim_create_autocmd('BufWritePost', {
   callback = function()
     vim.cmd.source('<afile>')
     vim.cmd.PackerCompile()
-  end
+  end,
 })
 
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  packer_bootstrap = vim.fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim',
-    install_path })
+  packer_bootstrap =
+    vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
 end
 
 return require('packer').startup(function(use)
+  use('wbthomason/packer.nvim')
 
-  use 'wbthomason/packer.nvim'
+  use('folke/tokyonight.nvim')
 
-  use 'folke/tokyonight.nvim'
+  use('dstein64/vim-startuptime')
+  use('lewis6991/impatient.nvim')
 
-  use 'dstein64/vim-startuptime'
-  use 'lewis6991/impatient.nvim'
-
-  use 'tversteeg/registers.nvim'
-  use 'ojroques/vim-oscyank'
+  use('tversteeg/registers.nvim')
+  use('ojroques/vim-oscyank')
 
   use {
     'hoob3rt/lualine.nvim',
@@ -42,38 +41,38 @@ return require('packer').startup(function(use)
       'neovim/nvim-lspconfig',
     },
     config = function()
-      require 'mt.lsp'
-    end
+      require('mt.lsp')
+    end,
   }
 
-  use { 'lukas-reineke/indent-blankline.nvim',
+  use {
+    'lukas-reineke/indent-blankline.nvim',
     config = function()
       require('indent_blankline').setup {
         char_highlight_list = {
           'IndentBlanklineIndent', -- defined in rigel overrides
         },
-        buftype_exclude = { 'terminal', 'nofile', 'help', 'markdown', 'vimwiki', 'text', 'fugitive' }
+        buftype_exclude = { 'terminal', 'nofile', 'help', 'markdown', 'vimwiki', 'text', 'fugitive' },
       }
-    end
+    end,
   }
 
-  use 'jose-elias-alvarez/null-ls.nvim'
+  use('jose-elias-alvarez/null-ls.nvim')
 
   use {
     'mbbill/undotree',
     config = function()
       vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'UndotreeToggle' })
-    end
+    end,
   }
 
-  use 'vimwiki/vimwiki'
+  use('vimwiki/vimwiki')
 
   use {
-    'jiangmiao/auto-pairs',
+    'windwp/nvim-autopairs',
     config = function()
-      vim.g.AutoPairsMapSpace = 0
-      vim.g.AutoPairsMultilineClose = 0
-    end
+      require('nvim-autopairs').setup()
+    end,
   }
 
   use {
@@ -83,7 +82,7 @@ return require('packer').startup(function(use)
         html = { tagnameonly = 1 },
         liquid = { tagnameonly = 1 },
       }
-    end
+    end,
   }
 
   use {
@@ -95,11 +94,11 @@ return require('packer').startup(function(use)
       vim.keymap.set('n', '<C-K>', vim.cmd.TmuxNavigateUp, { desc = 'TmuxNavigateUp' })
       vim.keymap.set('n', '<C-J>', vim.cmd.TmuxNavigateDown, { desc = 'TmuxNavigateDown' })
       vim.keymap.set('n', '<C-H>', vim.cmd.TmuxNavigateLeft, { desc = 'TmuxNavigateLeft' })
-    end
+    end,
   }
   use {
     'mileszs/ack.vim',
-    cmd = 'Ack'
+    cmd = 'Ack',
   }
   use {
     'romainl/vim-qf',
@@ -112,7 +111,7 @@ return require('packer').startup(function(use)
     config = function()
       vim.keymap.set('n', '<leader>bd', vim.cmd.Bd)
       vim.keymap.set('n', '<leader>bw', vim.cmd.Bw)
-    end
+    end,
   }
   use {
     'AndrewRadev/splitjoin.vim',
@@ -127,30 +126,38 @@ return require('packer').startup(function(use)
     keys = {
       { 'n', '<leader>sj' },
       { 'n', '<leader>sk' },
-    }
+    },
   }
 
   use {
     'kylechui/nvim-surround',
     config = function()
-      require("nvim-surround").setup({})
-    end
+      require('nvim-surround').setup {
+        keymaps = {
+          -- NOTE: testing surround with these keys, s and S should be <NOP>
+          normal = 's',
+          normal_cur = 'ss',
+          normal_line = 'S',
+          normal_cur_line = 'SS',
+        },
+      }
+    end,
   }
 
-  use 'tpope/vim-sleuth' -- automatically detect space issues
-  use 'tpope/vim-repeat'
+  use('tpope/vim-sleuth') -- automatically detect space issues
+  use('tpope/vim-repeat')
   use {
     'tpope/vim-projectionist',
     config = function()
       vim.keymap.set('n', '<leader>es', vim.cmd.Esource, { desc = 'Esource' })
       vim.keymap.set('n', '<leader>et', vim.cmd.Etest, { desc = 'Etest' })
-    end
+    end,
   }
-  use 'tpope/vim-commentary'
-  use 'tpope/vim-unimpaired'
-  use 'tpope/vim-abolish'
-  use 'tpope/vim-speeddating'
-  use 'tpope/vim-obsession'
+  use('tpope/vim-commentary')
+  use('tpope/vim-unimpaired')
+  use('tpope/vim-abolish')
+  use('tpope/vim-speeddating')
+  use('tpope/vim-obsession')
 
   use {
     'tpope/vim-scriptease',
@@ -161,7 +168,7 @@ return require('packer').startup(function(use)
     },
     config = function()
       vim.keymap.set('n', '<leader>m', vim.cmd.Messages, { desc = 'Messages' })
-    end
+    end,
   }
   use {
     'tpope/vim-dispatch',
@@ -169,22 +176,21 @@ return require('packer').startup(function(use)
     opt = true,
     config = function()
       vim.g.dispatch_no_tmux_dispatch = 1 -- breaks zoomed panes
-    end
+    end,
   }
 
-  use 'L3MON4D3/LuaSnip'
+  use('L3MON4D3/LuaSnip')
 
-  use 'honza/vim-snippets'
+  use('honza/vim-snippets')
 
-
-  use 'sindrets/diffview.nvim'
-  use 'tpope/vim-fugitive'
-  use 'tpope/vim-rhubarb'
+  use('sindrets/diffview.nvim')
+  use('tpope/vim-fugitive')
+  use('tpope/vim-rhubarb')
   use {
     'lewis6991/gitsigns.nvim',
     requires = {
-      'nvim-lua/plenary.nvim'
-    }
+      'nvim-lua/plenary.nvim',
+    },
   }
 
   use {
@@ -192,20 +198,20 @@ return require('packer').startup(function(use)
     requires = {
       'nvim-lua/plenary.nvim',
       'kyazdani42/nvim-web-devicons',
-    }
+    },
   }
 
   use {
     'folke/todo-comments.nvim',
     config = function()
       -- HACK: #104 Invalid in command-line window
-      local hl = require("todo-comments.highlight")
+      local hl = require('todo-comments.highlight')
       local highlight_win = hl.highlight_win
       hl.highlight_win = function(win, force)
         pcall(highlight_win, win, force)
       end
 
-      require 'todo-comments'.setup {}
+      require('todo-comments').setup {}
 
       vim.cmd.inoreabbrev('bug:', 'BUG:')
       vim.cmd.inoreabbrev('todo:', 'TODO:')
@@ -213,11 +219,10 @@ return require('packer').startup(function(use)
       vim.cmd.inoreabbrev('test:', 'TEST:')
       vim.cmd.inoreabbrev('hack:', 'HACK:')
       vim.cmd.inoreabbrev('fixme:', 'FIXME:')
-
     end,
     requires = {
       'nvim-telescope/telescope.nvim',
-    }
+    },
   }
 
   -- TODO: try treesitter-text-objs and get rid of most of these
@@ -228,24 +233,23 @@ return require('packer').startup(function(use)
   install_textobj('kana/vim-textobj-function')
   install_textobj('kana/vim-textobj-entire')
   install_textobj('glts/vim-textobj-comment')
-  use 'wellle/targets.vim'
+  use('wellle/targets.vim')
 
   -- for writing
-  use 'preservim/vim-pencil'
+  use('preservim/vim-pencil')
   use { 'junegunn/goyo.vim' }
   use {
     'dkarter/bullets.vim',
-    ft = { 'nofile', 'text', 'markdown', 'vimwiki' }
+    ft = { 'nofile', 'text', 'markdown', 'vimwiki' },
   }
   use {
     'plasticboy/vim-markdown',
-    ft = { 'markdown', 'vimwiki' }
+    ft = { 'markdown', 'vimwiki' },
   }
-  use 'godlygeek/tabular'
-
+  use('godlygeek/tabular')
 
   -- NOTE: need this until https://github.com/neovim/neovim/issues/12587 gets resolved
-  use 'antoinemadec/FixCursorHold.nvim'
+  use('antoinemadec/FixCursorHold.nvim')
 
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -253,18 +257,18 @@ return require('packer').startup(function(use)
   }
   use {
     'nvim-treesitter/playground',
-    cmd = { 'TSPlaygroundToggle', 'TSHighlightCapturesUnderCursor' }
+    cmd = { 'TSPlaygroundToggle', 'TSHighlightCapturesUnderCursor' },
   }
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-lua/popup.nvim'
-  use 'folke/lua-dev.nvim'
+  use('nvim-lua/plenary.nvim')
+  use('nvim-lua/popup.nvim')
+  use('folke/lua-dev.nvim')
 
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use {
     'nvim-telescope/telescope.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
     config = function()
-      require 'mt.telescope'
+      require('mt.telescope')
     end,
   }
 
@@ -280,44 +284,45 @@ return require('packer').startup(function(use)
   use {
     'ray-x/lsp_signature.nvim',
     config = function()
-      require 'lsp_signature'.setup {
-        toggle_key = '<C-K>'
+      require('lsp_signature').setup {
+        toggle_key = '<C-K>',
       }
-    end
+    end,
   }
-  use 'nvim-lua/lsp-status.nvim'
+  use('nvim-lua/lsp-status.nvim')
   use {
-    'tami5/lspsaga.nvim',
+    'glepnir/lspsaga.nvim',
+    branch = 'main',
     config = function()
-      require'lspsaga'.init_lsp_saga {
-        code_action_prompt = {
-          enable = false
-        }
+      local saga = require('lspsaga')
+
+      saga.init_lsp_saga {
+        -- your configuration
       }
     end,
   }
   use {
     'folke/trouble.nvim',
     config = function()
-      vim.cmd [[
+      vim.cmd([[
         hi link TroubleSignError DiagnosticSignError
         hi link TroubleTextError DiagnosticError
         hi link TroubleSignWarning DiagnosticSignWarning
         hi link TroubleTextWarning DiagnosticWarning
-      ]]
-      require("trouble").setup {
+      ]])
+      require('trouble').setup {
         auto_fold = true,
         auto_close = true,
         signs = {
-          error = "",
-          warning = "",
-          hint = "",
-          information = "",
-          other = "﫠",
+          error = '',
+          warning = '',
+          hint = '',
+          information = '',
+          other = '﫠',
         },
       }
     end,
-    cmd = { 'TroubleToggle' }
+    cmd = { 'TroubleToggle' },
   }
 
   -- Automatically set up your configuration after cloning packer.nvim

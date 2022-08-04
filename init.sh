@@ -11,6 +11,7 @@ _install_mac() {
 
   # core packages
   brew install \
+    stow \ # for dotfiles, TODO: look at better solution for dotfile management
     brave-browser \
     kitty \
     rg \
@@ -32,6 +33,7 @@ _install_linux() {
   sudo pacman -S yay
 
   yay -S make brave-browser \
+    stow \ # for dotfiles, TODO: look at better solution for dotfile management
     kitty \
     rg \
     fd \
