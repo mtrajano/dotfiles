@@ -1,4 +1,8 @@
-require'nvim-treesitter.configs'.setup {
+-- test
+vim.cmd([[ set foldmethod=expr ]])
+vim.cmd([[ set foldexpr=nvim_treesitter#foldexpr() ]])
+
+require('nvim-treesitter.configs').setup {
 
   -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   ensure_installed = {
@@ -18,7 +22,7 @@ require'nvim-treesitter.configs'.setup {
 
   highlight = {
     enable = true,
-    disable = {'php'}, -- breaks autoindent in php (relies on synId)
+    disable = { 'php' }, -- breaks autoindent in php (relies on synId)
   },
 
   indent = {
@@ -30,12 +34,15 @@ require'nvim-treesitter.configs'.setup {
     },
   },
 
+  fold = {
+    disable = { 'lua' },
+  },
+
   -- for debugging
   playground = {
     enable = true,
     disable = {},
     updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-    persist_queries = false -- Whether the query persists across vim sessions
-  }
-
+    persist_queries = false, -- Whether the query persists across vim sessions
+  },
 }
