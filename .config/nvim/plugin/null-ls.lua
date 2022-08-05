@@ -10,6 +10,7 @@ null_ls.setup {
     null_ls.builtins.code_actions.proselint,
     null_ls.builtins.diagnostics.shellcheck,
     null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.prettierd,
   },
   on_attach = function(client, bufnr)
     -- format on save

@@ -4,16 +4,16 @@ local fn = vim.fn
 
 local developing = false
 if developing then
-  RELOAD 'telescope'
-  RELOAD 'plenary'
-  RELOAD 'popup'
+  RELOAD('telescope')
+  RELOAD('plenary')
+  RELOAD('popup')
 end
 
-require'telescope'.setup{
+require('telescope').setup {
   defaults = {
     sorting_strategy = 'ascending',
     layout_config = {
-      prompt_position = "top",
+      prompt_position = 'top',
     },
     mappings = {
       i = {
@@ -24,19 +24,19 @@ require'telescope'.setup{
         ['<C-f>'] = action.preview_scrolling_down,
         ['<C-u>'] = false, -- overrides delete prompt
         ['<C-d>'] = false,
-        ["<C-j>"] = action.cycle_history_next,
-        ["<C-k>"] = action.cycle_history_prev,
+        ['<C-j>'] = action.cycle_history_next,
+        ['<C-k>'] = action.cycle_history_prev,
       },
     },
   },
   extensions = {
     fzf = {
-      fuzzy = true,                    -- false will only do exact matching
-      override_generic_sorter = true,  -- override the generic sorter
-      override_file_sorter = true,     -- override the file sorter
-      case_mode = "ignore_case",        -- or "ignore_case" or "respect_case"
-    }
-  }
+      fuzzy = true, -- false will only do exact matching
+      override_generic_sorter = true, -- override the generic sorter
+      override_file_sorter = true, -- override the file sorter
+      case_mode = 'ignore_case', -- or "ignore_case" or "respect_case"
+    },
+  },
 }
 
 require('telescope').load_extension('fzf')
@@ -82,7 +82,10 @@ M.git_files = function()
     cwd = fn.getcwd(),
   }
 
-  require'telescope.builtin'.git_files(options)
+  local ok = pcall(require('telescope.builtin').git_files, options)
+  if not ok then
+    M.find_files()
+  end
 end
 
 M.find_files = function()
@@ -91,22 +94,22 @@ M.find_files = function()
     cwd = fn.getcwd(),
   }
 
-  require'telescope.builtin'.find_files(options)
+  require('telescope.builtin').find_files(options)
 end
 
 M.find_all_files = function()
-  require'telescope.builtin'.find_files({
-    find_command = {"fd", "--type", "f", "--no-ignore-vcs"},
-    hidden = true
-  })
+  require('telescope.builtin').find_files {
+    find_command = { 'fd', '--type', 'f', '--no-ignore-vcs' },
+    hidden = true,
+  }
 end
 
 M.edit_dotfiles = function()
-  require"telescope.builtin".find_files({
-    cwd = tostring(Path:new({ os.getenv("HOME"), 'dotfiles/.config' })),
-    prompt_title =' Dotfiles',
-    prompt_prefix = 'dotfiles> '
-  })
+  require('telescope.builtin').find_files {
+    cwd = tostring(Path:new { os.getenv('HOME'), 'dotfiles/.config' }),
+    prompt_title = ' Dotfiles',
+    prompt_prefix = 'dotfiles> ',
+  }
 end
 
 -- TODO: replace this with plenary.path
@@ -115,69 +118,69 @@ local function relative_path(path)
 end
 
 M.edit_packer = function()
-  require'telescope.builtin'.find_files {
+  require('telescope.builtin').find_files {
     prompt_title = 'Pro2 View',
-    cwd = os.getenv("XDG_DATA_HOME") .. "/nvim/site/pack/packer",
+    cwd = os.getenv('XDG_DATA_HOME') .. '/nvim/site/pack/packer',
   }
 end
 
 M.edit_vendor = function()
-  require'telescope.builtin'.find_files {
+  require('telescope.builtin').find_files {
     prompt_title = 'Vendor Files',
     cwd = relative_path('vendor'),
   }
 end
 
 M.edit_behance = function()
-  require'telescope.builtin'.find_files {
+  require('telescope.builtin').find_files {
     prompt_title = 'Behance',
-    cwd = os.getenv('HOME') .. "/dev/behance",
+    cwd = os.getenv('HOME') .. '/dev/behance',
   }
 end
 
 M.edit_runtime = function()
-  require'telescope.builtin'.find_files {
+  require('telescope.builtin').find_files {
     prompt_title = 'Runtime',
     cwd = os.getenv('VIMRUNTIME'),
   }
 end
 
 M.edit_node_modules = function()
-  require'telescope.builtin'.find_files {
+  require('telescope.builtin').find_files {
     prompt_title = 'Node Modules',
     cwd = relative_path('node_modules'),
   }
 end
 
 M.oldfiles = function()
-  require'telescope.builtin'.oldfiles {}
+  require('telescope.builtin').oldfiles {}
 end
 
 M.quickfix = function()
-  require'telescope.builtin'.quickfix {}
+  require('telescope.builtin').quickfix {}
 end
 
 M.buffers = function()
-  require'telescope.builtin'.buffers({
+  require('telescope.builtin').buffers {
     sort_mru = true,
-  })
+  }
 end
 
 M.search_help = function()
-  require'telescope.builtin'.help_tags {
-    prompt_prefix = 'help tags> '
+  require('telescope.builtin').help_tags {
+    prompt_prefix = 'help tags> ',
   }
 end
 
 M.man_pages = function()
-  require'telescope.builtin'.man_pages {
-    prompt_prefix = 'man pages> '
+  require('telescope.builtin').man_pages {
+    prompt_prefix = 'man pages> ',
   }
 end
 
 M.lsp_references = function()
-  require'telescope.builtin'.lsp_references {
-    entry_maker = require'mt.telescope.entry_makers'.file_with_linenumbers,
+  require('telescope.builtin').lsp_references {
+    entry_maker = require('mt.telescope.entry_makers').file_with_linenumbers,
     layout_strategy = 'vertical',
   }
 end

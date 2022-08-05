@@ -8,6 +8,7 @@ require('mason-lspconfig').setup {
     'tsserver',
     'sumneko_lua',
     'bashls',
+    'jsonls',
   },
 }
 
@@ -26,6 +27,10 @@ lspconfig.intelephense.setup {
 }
 
 lspconfig.tsserver.setup {
+  on_attach = my_attach,
+}
+
+lspconfig.jsonls.setup {
   on_attach = my_attach,
 }
 
