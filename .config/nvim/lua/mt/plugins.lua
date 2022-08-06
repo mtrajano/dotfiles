@@ -45,6 +45,15 @@ return require('packer').startup(function(use)
     end,
   }
 
+  ------------
+  -- DEBUGGING
+  ------------
+  use {
+    'jbyuki/one-small-step-for-vimkind',
+    'mfussenegger/nvim-dap',
+    'rcarriga/nvim-dap-ui',
+  }
+
   use {
     'lukas-reineke/indent-blankline.nvim',
     config = function()

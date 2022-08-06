@@ -12,6 +12,7 @@ disable('Q', 'disable ex-mode (can be mapped)')
 
 -- map escape in terminal
 vim.keymap.set('t', '<esc>', '<C-\\><C-n>')
+vim.keymap.set('n', '<esc>', ':noh<cr><esc>', { silent = true })
 
 opt.swapfile = false
 opt.number = true

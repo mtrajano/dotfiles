@@ -96,7 +96,6 @@ end, { desc = 'Diagnostic go to next warning+' })
 vim.keymap.set('n', '<leader>da', function()
   vim.cmd.Lspsaga('code_action')
 end)
-vim.keymap.set('n', '<leader>dd', vim.cmd.Trouble, { desc = 'Trouble' })
 
 -- coming from other plugins
 vim.keymap.set('n', '<leader>k', function()
