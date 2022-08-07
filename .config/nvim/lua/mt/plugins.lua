@@ -119,7 +119,13 @@ return require('packer').startup(function(use)
     'moll/vim-bbye',
     config = function()
       vim.keymap.set('n', '<leader>bd', vim.cmd.Bd)
+      vim.keymap.set('n', '<leader>bD', function()
+        vim.cmd.Bd { bang = true }
+      end)
       vim.keymap.set('n', '<leader>bw', vim.cmd.Bw)
+      vim.keymap.set('n', '<leader>bW', function()
+        vim.cmd.Bw { bang = true }
+      end)
     end,
   }
   use {
