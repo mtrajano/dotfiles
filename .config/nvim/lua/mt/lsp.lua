@@ -61,7 +61,7 @@ end
 -- mappings
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'definition' })
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'declaration' })
-vim.keymap.set('n', 'gR', function()
+vim.keymap.set('n', 'R', function()
   vim.cmd.Lspsaga('rename')
 end)
 vim.keymap.set('n', 'gr', require('mt.telescope').lsp_references, { desc = 'lsp_references' })

@@ -33,10 +33,11 @@ opt.shiftwidth = 2
 opt.smartindent = true
 opt.expandtab = true
 
+-- NOTE: keeping these low for which-key
 -- decrease timeout b/w remaps
-opt.timeoutlen = 1000
+opt.timeoutlen = 500
 -- increase cursor hold frequency
-opt.updatetime = 1000
+opt.updatetime = 500
 
 -- popup menu
 -- o.completeopt = 'menu,menuone,noselect'

@@ -1,4 +1,5 @@
 -- TODO: move this to a directory for personal dev
+-- TODO: get this working with Tree-sitter!
 -- A more useful gx that adapts to the file pattern it matches with
 
 local search_providers = {

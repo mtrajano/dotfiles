@@ -2,7 +2,9 @@ local should_profile = false
 
 local loop = vim.loop
 
-vim.g.mapleader = " "
+vim.g.mapleader = ' '
+
+vim.env.PACKER_PATH = vim.env.XDG_DATA_HOME .. '/nvim/site/pack/packer'
 
 -- TODO: remove when plugin config was moved into autoload folders
 -- TODO: move any custom plugins to personal dev folder

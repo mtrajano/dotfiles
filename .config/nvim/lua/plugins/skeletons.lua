@@ -19,17 +19,25 @@ local function escape_slashes(string)
 end
 
 local function normalize_namespace(path)
-  local normalized_path = require'mt.utils.path'.normalize_php_namespace(path)
+  local normalized_path = require('mt.utils.path').normalize_php_namespace(path)
 
   return escape_slashes(normalized_path)
 end
 
 local function perform_substitutions()
   local subs_table = {
-    ['{{year}}'] = function() return os.date('%Y') end,
-    ['{{namespace}}'] = function() return normalize_namespace(fn.expand('%:h')) end,
-    ['{{parent_namespace}}'] = function() return normalize_namespace(fn.expand('%:h:h')) end,
-    ['{{class_name}}'] = function() return fn.expand('%:t:r') end
+    ['{{year}}'] = function()
+      return os.date('%Y')
+    end,
+    ['{{namespace}}'] = function()
+      return normalize_namespace(fn.expand('%:h'))
+    end,
+    ['{{parent_namespace}}'] = function()
+      return normalize_namespace(fn.expand('%:h:h'))
+    end,
+    ['{{class_name}}'] = function()
+      return fn.expand('%:t:r')
+    end,
   }
 
   for sub, action in pairs(subs_table) do
@@ -55,6 +63,6 @@ M.try_import_skeleton = function()
 end
 
 -- manually import skeleton
-cmd [[ command! -nargs=0 SI lua require('plugins.skeletons').try_import_skeleton() ]]
+cmd([[ command! -nargs=0 SI lua require('plugins.skeletons').try_import_skeleton() ]])
 
 return M

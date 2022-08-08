@@ -100,8 +100,9 @@
   wt = worktree
   root = !"fn() { git -C ${1:-.} rev-parse --show-toplevel; }; fn"
   author = !"fn() { git log --author=$1 ${@:2}; }; fn"
-  wip = !"fn() { git add . && git commit -m 'WIP' }; fn"
+  wip = !"fn() { git add . && git commit -m 'WIP'; }; fn"
   wop = reset HEAD~1
+  search = !"fn() { git grep $1 $(git rev-list --all); }; fn"
 
 [pager]
   branch = false
