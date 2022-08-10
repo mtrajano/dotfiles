@@ -20,6 +20,7 @@ _install_mac() {
     ranger \
     htop \
     git-delta \
+    gh \
     # reference packages
     tldr
 
@@ -42,6 +43,7 @@ _install_linux() {
     xclip \
     htop \
     git-delta \
+    gh \
     # reference packages
     tldr
 

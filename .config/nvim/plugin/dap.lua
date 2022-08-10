@@ -1,3 +1,4 @@
+-- TODO: look into changing the sign for the point where the debugger currently is in, also make it green
 local dap = require('dap')
 local dapui = require('dapui')
 
