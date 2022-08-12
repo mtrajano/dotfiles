@@ -53,7 +53,6 @@ custom_mapping('<leader>jj', 'git_files')
 custom_mapping('<leader>jf', 'find_files')
 custom_mapping('<leader>jd', 'edit_dotfiles')
 custom_mapping('<leader>jv', 'edit_vendor')
-custom_mapping('<leader>jb', 'edit_behance')
 custom_mapping('<leader>jp', 'edit_packer')
 custom_mapping('<leader>jr', 'edit_runtime')
 custom_mapping('<leader>jn', 'edit_node_modules')
@@ -119,7 +118,7 @@ end
 
 M.edit_packer = function()
   require('telescope.builtin').find_files {
-    prompt_title = 'Pro2 View',
+    prompt_title = 'Packer',
     cwd = os.getenv('XDG_DATA_HOME') .. '/nvim/site/pack/packer',
   }
 end
@@ -128,13 +127,6 @@ M.edit_vendor = function()
   require('telescope.builtin').find_files {
     prompt_title = 'Vendor Files',
     cwd = relative_path('vendor'),
-  }
-end
-
-M.edit_behance = function()
-  require('telescope.builtin').find_files {
-    prompt_title = 'Behance',
-    cwd = os.getenv('HOME') .. '/dev/behance',
   }
 end
 

@@ -1,8 +1,9 @@
 local opt = vim.opt
 local cmd = vim.cmd
+local keymap = vim.keymap
 
 local function disable(key, reason)
-  vim.keymap.set('n', key, '<NOP>', { desc = reason })
+  keymap.set('n', key, '<NOP>', { desc = reason })
 end
 
 -- NOTE: currently testing these keys with nvim-surround
@@ -11,8 +12,15 @@ disable('s', 'map s to NOP until get used to cl')
 disable('Q', 'disable ex-mode (can be mapped)')
 
 -- map escape in terminal
-vim.keymap.set('t', '<esc>', '<C-\\><C-n>')
-vim.keymap.set('n', '<esc>', ':noh<cr><esc>', { silent = true })
+keymap.set('t', '<esc>', '<C-\\><C-n>')
+keymap.set('n', '<esc>', ':noh<cr><esc>', { silent = true })
+
+-- TODO: move these util keymaps somewhere else
+keymap.set('n', 'gp', '`[v`]') -- select last pasted
+keymap.set('n', '<leader><space>', '<C-^>') -- last buffer/window
+keymap.set('n', '<leader>q', '<Plug>(qf_qf_toggle)', { remap = true }) -- toggle quickfix
+keymap.set('v', '*', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]]) -- search under selection
+keymap.set('v', '.', ':norm .<CR>')
 
 opt.swapfile = false
 opt.number = true
@@ -25,7 +33,6 @@ opt.smartcase = true
 opt.termguicolors = true
 
 -- spacing
--- TODO: look into moving some of these to language specfic indents
 opt.shiftround = true -- indenting rounds to multiple of shiftwidth
 opt.tabstop = 2
 opt.softtabstop = 2
@@ -33,14 +40,13 @@ opt.shiftwidth = 2
 opt.smartindent = true
 opt.expandtab = true
 
+opt.textwidth = 120
+
 -- NOTE: keeping these low for which-key
--- decrease timeout b/w remaps
-opt.timeoutlen = 500
--- increase cursor hold frequency
-opt.updatetime = 500
+opt.timeoutlen = 500 -- decrease timeout b/w remaps
+opt.updatetime = 500 -- increase cursor hold frequency
 
 -- popup menu
--- o.completeopt = 'menu,menuone,noselect'
 opt.completeopt = { 'menu', 'menuone', 'noselect' }
 opt.pumheight = 20
 
@@ -83,3 +89,13 @@ cmd.inoreabbrev('kb', 'KB')
 cmd.inoreabbrev('mb', 'MB')
 cmd.inoreabbrev('gb', 'GB')
 cmd.inoreabbrev('tb', 'TB')
+
+-- TODO: eventually move these to mt.filetype
+vim.filetype.add {
+  filename = {
+    ['.env'] = 'env',
+  },
+}
+
+-- TODO: move these to lua, also need autogroup
+-- vim.cmd([[au TextYankPost * silent! lua vim.highlight.on_yank {on_visual=false}]])

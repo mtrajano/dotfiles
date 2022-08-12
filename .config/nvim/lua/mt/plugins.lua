@@ -16,6 +16,8 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 return require('packer').startup(function(use)
+  -- TODO: LOOK INTO LAZY LOADING A LOT OF THESE
+  -- NEED TO MOVE PLUGIN CONFIGS OUTSIDE OF AUTOLOADED /PLUGIN DIR
   use('wbthomason/packer.nvim')
 
   use('folke/tokyonight.nvim')
@@ -57,9 +59,11 @@ return require('packer').startup(function(use)
   use {
     'lukas-reineke/indent-blankline.nvim',
     config = function()
+      -- TODO: see if this can be created using colors/utils from tokyonight theme
+      vim.api.nvim_set_hl(0, 'IndentBlanklineIndent', { fg = '#393d4e' })
       require('indent_blankline').setup {
         char_highlight_list = {
-          'IndentBlanklineIndent', -- defined in rigel overrides
+          'IndentBlanklineIndent',
         },
         buftype_exclude = { 'terminal', 'nofile', 'help', 'markdown', 'vimwiki', 'text', 'fugitive' },
       }
@@ -134,13 +138,13 @@ return require('packer').startup(function(use)
       -- split join, each method call in a different line
       vim.g.splitjoin_php_method_chain_full = 1
 
-      vim.keymap.set('n', '<leader>sj', vim.cmd.SplitjoinSplit, { desc = 'SplitjoinSplit' })
-      vim.keymap.set('n', '<leader>sk', vim.cmd.SplitjoinJoin, { desc = 'SplitjoinJoin' })
+      vim.keymap.set('n', '<leader>ss', vim.cmd.SplitjoinSplit, { desc = 'SplitjoinSplit' })
+      vim.keymap.set('n', '<leader>sj', vim.cmd.SplitjoinJoin, { desc = 'SplitjoinJoin' })
     end,
     cmd = { 'SplitjoinSplit', 'SplitjoinJoin' },
     keys = {
+      { 'n', '<leader>ss' },
       { 'n', '<leader>sj' },
-      { 'n', '<leader>sk' },
     },
   }
 
@@ -270,6 +274,7 @@ return require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
   }
+  use('windwp/nvim-ts-autotag')
   use {
     'nvim-treesitter/playground',
     cmd = { 'TSPlaygroundToggle', 'TSHighlightCapturesUnderCursor' },

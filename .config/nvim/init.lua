@@ -1,3 +1,5 @@
+require('impatient')
+
 local should_profile = false
 
 local loop = vim.loop
