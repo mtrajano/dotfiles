@@ -10,6 +10,7 @@ end, {
 require('nvim-surround').buffer_setup {
   surrounds = {
     ['F'] = {
+      -- TODO: look at the other actions
       add = { 'function() ', ' end' },
     },
     ['P'] = {

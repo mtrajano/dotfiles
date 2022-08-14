@@ -3,51 +3,70 @@
 set -x
 
 _change_zsh_dir() {
-  echo "export ZDOTDIR=\"$HOME/dotfiles/.config/zsh/\"" > "$HOME/.zshenv"
+  [[ -z "$ZDOTDIR" ]] && echo "export ZDOTDIR=\"$HOME/dotfiles/.config/zsh/\"" > "$HOME/.zshenv"
 }
 
 _install_mac() {
-  echo "Installing dependencies on Mac OS X"
 
-  # core packages
+  echo "Intalling Homebrew"
+  command -v brew > /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  echo "Installing dependencies on Mac OS X"
   brew install \
-    stow \ # for dotfiles, TODO: look at better solution for dotfile management
+    stow \
     brave-browser \
     kitty \
+    tmux \
     rg \
     fd \
+    fzf \
     zsh \
-    ranger \
     htop \
     git-delta \
+    git \
     gh \
-    # reference packages
-    tldr
+    tldr \
+    zoxide
 
-  # build neovim
-  xcode-select --install
+  # for neovim
   brew install ninja libtool automake cmake pkg-config gettext curl
+
+  case "$(uname -m)" in
+
+     arm64) # m1 chip
+       # install rosetta
+       /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+       ;;
+
+     x86_64) # intel based mac chip
+       ;;
+
+  esac
+}
+
+_config_mac() {
+  defaults write -g InitialKeyRepeat -int 12 # normal minimum is 15 (225 ms)
+  defaults write -g KeyRepeat -int 2 # normal minimum is 2 (30 ms)
 }
 
 _install_linux() {
   sudo pacman -Syu
   sudo pacman -S yay
 
+  # TODO: need to update these packages, see how to keep a list with same named packages
   yay -S make brave-browser \
-    stow \ # for dotfiles, TODO: look at better solution for dotfile management
+    stow \
     kitty \
     rg \
     fd \
     zsh \
-    ranger \
     xclip \
     htop \
+    tmux \
     git-delta \
+    git \
     gh \
-    # reference packages
     tldr
-
-  mkdir -p ~/src
 
   # build neovim
   yay -S base-devel cmake unzip ninja tree-sitter curl
@@ -62,6 +81,7 @@ _install_deps() {
 
      Darwin)
        _install_mac
+       _config_mac
        ;;
 
      Linux)
@@ -82,13 +102,18 @@ _install_neovim() {
     git clone git@github.com:neovim/neovim.git ~/src/neovim
     cd ~/src/neovim || exit
     make CMAKE_BUILD_TYPE=RelWithDebInfo
-    sudo make install
+    sudo make install # todo: this should probably have ~/bin as the install dir
   fi
 }
 
-[[ -z "$ZDOTDIR" ]] && _change_zsh_dir
+
+mkdir -p ~/src ~/bin
 
 _install_deps
+_change_zsh_dir
 _install_neovim
 
-ln -s ~/dotfiles/.config/* ~/.config/
+# TODO: LOOK INTO THIS AS IT'S CURRENTLY DELETING .CONFIG
+# rm "$HOME/.config"
+# TODO: this should be done with stow or another dotfile manager
+# ln -s ~/dotfiles/.config/* ~/.config/

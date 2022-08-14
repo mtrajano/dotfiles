@@ -18,7 +18,9 @@ eval "$(zoxide init zsh)"
 
 # export PATHS
 path=(
-  # node package manager
+"/opt/homebrew/bin"
+"/opt/homebrew/sbin"
+# node package manager
 "$N_PREFIX/bin"
 # local builds
 "$HOME/bin"

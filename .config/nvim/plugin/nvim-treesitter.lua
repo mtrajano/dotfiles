@@ -1,4 +1,4 @@
--- test
+-- TODO: start with buffers unfolded
 vim.cmd([[ set foldmethod=expr ]])
 vim.cmd([[ set foldexpr=nvim_treesitter#foldexpr() ]])
 
