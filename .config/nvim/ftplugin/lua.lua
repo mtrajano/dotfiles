@@ -8,10 +8,13 @@ end, {
 })
 
 require('nvim-surround').buffer_setup {
-  delimiters = {
-    pairs = {
-      ['F'] = { 'function() ', ' end' },
-      ['P'] = { 'P(', ')' },
+  surrounds = {
+    ['F'] = {
+      add = { 'function() ', ' end' },
+    },
+    ['P'] = {
+      -- TODO: look at the other actions
+      add = { 'P(', ')' }
     },
   },
 }
