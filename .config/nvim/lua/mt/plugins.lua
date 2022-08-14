@@ -33,6 +33,17 @@ return require('packer').startup(function(use)
     'hoob3rt/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
   }
+  use {
+    'kevinhwang91/nvim-ufo',
+    requires = 'kevinhwang91/promise-async',
+    config = function()
+      require('ufo').setup {
+        provider_selector = function()
+          return { 'treesitter', 'indent' }
+        end,
+      }
+    end,
+  }
 
   ------
   -- LSP
@@ -152,15 +163,7 @@ return require('packer').startup(function(use)
   use {
     'kylechui/nvim-surround',
     config = function()
-      require('nvim-surround').setup {
-        keymaps = {
-          -- NOTE: testing surround with these keys, s and S should be <NOP>
-          normal = 's',
-          normal_cur = 'ss',
-          normal_line = 'S',
-          normal_cur_line = 'SS',
-        },
-      }
+      require('nvim-surround').setup()
     end,
   }
 

@@ -81,6 +81,9 @@ opt.colorcolumn = { 120 }
 opt.path = opt.path + { '**' }
 opt.wildignore = opt.wildignore + { 'vendor/**', '.git/**', 'node_modules/**' }
 
+-- start with folds open
+opt.foldlevelstart = 99
+
 -- ====================
 -- INSERT ABBREVIATIONS
 -- ====================
