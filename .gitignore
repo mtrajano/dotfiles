@@ -7,3 +7,4 @@
 # TODO: look into moving these files to another dir
 /.config/zsh/.zcompdump
 /.config/zsh/.zsh_history
+/.config/spotify-tui/

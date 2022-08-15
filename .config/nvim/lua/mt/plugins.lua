@@ -59,6 +59,26 @@ return require('packer').startup(function(use)
     end,
   }
 
+  -- NOTE: in case want to lazy load [https://github.com/nvim-neorg/neorg#-installation]
+  use {
+    'nvim-neorg/neorg',
+    config = function()
+      require('neorg').setup {
+        load = {
+          ['core.defaults'] = {},
+          ['core.norg.dirman'] = {
+            config = {
+              workspaces = {
+                dev = '~/notes/dev',
+              },
+            },
+          },
+        },
+      }
+    end,
+    requires = 'nvim-lua/plenary.nvim',
+  }
+
   ------------
   -- DEBUGGING
   ------------
@@ -163,7 +183,11 @@ return require('packer').startup(function(use)
   use {
     'kylechui/nvim-surround',
     config = function()
-      require('nvim-surround').setup()
+      require('nvim-surround').setup {
+        aliases = {
+          ['c'] = '`', -- inline code block, should this be moved to markdown/norg specific?
+        },
+      }
     end,
   }
 

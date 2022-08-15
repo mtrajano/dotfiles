@@ -20,6 +20,7 @@ require('nvim-treesitter.configs').setup {
     'vue',
     'html',
     'markdown',
+    'norg',
   },
 
   highlight = {

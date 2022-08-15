@@ -55,7 +55,7 @@ custom_mapping('<leader>jd', 'edit_dotfiles')
 custom_mapping('<leader>jv', 'edit_vendor')
 custom_mapping('<leader>jp', 'edit_packer')
 custom_mapping('<leader>jr', 'edit_runtime')
-custom_mapping('<leader>jn', 'edit_node_modules')
+custom_mapping('<leader>jn', 'edit_notes')
 
 custom_mapping('<leader>l', 'buffers')
 custom_mapping('<leader>H', 'search_help')
@@ -137,10 +137,10 @@ M.edit_runtime = function()
   }
 end
 
-M.edit_node_modules = function()
+M.edit_notes = function()
   require('telescope.builtin').find_files {
-    prompt_title = 'Node Modules',
-    cwd = relative_path('node_modules'),
+    prompt_title = 'Notes',
+    cwd = tostring(Path:new { os.getenv('HOME'), 'notes' }),
   }
 end
 
