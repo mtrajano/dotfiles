@@ -2,13 +2,18 @@ local o = vim.o
 local fn = vim.fn
 
 require('mason').setup()
-require('mason-lspconfig').setup {
+require('mason-tool-installer').setup {
   ensure_installed = {
+    -- lsp
     'intelephense',
-    'tsserver',
-    'sumneko_lua',
-    'bashls',
-    'jsonls',
+    'typescript-language-server',
+    'lua-language-server',
+    'bash-language-server',
+    'json-lsp',
+
+    'shellcheck',
+    'stylua',
+    'proselint',
   },
 }
 

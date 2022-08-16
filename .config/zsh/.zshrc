@@ -21,6 +21,9 @@ path=(
 # ruby installed by homebrew
 "/usr/local/opt/ruby/bin"
 
+# TODO: find a better location for pip installs
+'$HOME/Library/Python/3.8/bin'
+
 $path
 
 # TODO: figure out what I'm using RVM for and remove it if not needed

@@ -105,7 +105,8 @@ end
 
 M.edit_dotfiles = function()
   require('telescope.builtin').find_files {
-    cwd = tostring(Path:new { os.getenv('HOME'), 'dotfiles/.config' }),
+    cwd = tostring(Path:new { os.getenv('HOME'), 'dotfiles' }),
+    search_dirs = { '.config', 'init.sh' },
     prompt_title = ' Dotfiles',
     prompt_prefix = 'dotfiles> ',
   }

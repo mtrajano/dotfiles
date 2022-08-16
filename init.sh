@@ -12,7 +12,7 @@ _install_mac() {
   command -v brew > /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
   echo "Installing dependencies on Mac OS X"
-  # TODO: look into moving these to a packages file
+  # TODO: look into moving these to a packages file and organizing list
   brew install \
     stow \
     brave-browser \
@@ -28,7 +28,9 @@ _install_mac() {
     gh \
     tldr \
     zoxide \
-    node
+    node \
+    php \
+    composer
 
 
   # for spotify
