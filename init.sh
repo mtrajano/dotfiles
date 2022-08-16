@@ -27,7 +27,9 @@ _install_mac() {
     git \
     gh \
     tldr \
-    zoxide
+    zoxide \
+    node
+
 
   # for spotify
   brew install spotify spotifyd

@@ -11,17 +11,10 @@ bindkey "^P" up-line-or-history
 
 # TODO: create a widget and create a mapping to surround like behavior, map to s like nvim
 
-# n node manager
-export N_PREFIX="$HOME/bin/n"
-
-eval "$(zoxide init zsh)"
-
 # export PATHS
 path=(
 "/opt/homebrew/bin"
 "/opt/homebrew/sbin"
-# node package manager
-"$N_PREFIX/bin"
 # local builds
 "$HOME/bin"
 
@@ -35,6 +28,8 @@ $path
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 # "$HOME/.rvm/bin"
   )
+
+eval "$(zoxide init zsh)"
 
 # extra configuration
 source "$XDG_CONFIG_HOME/zsh/completion.zsh"
