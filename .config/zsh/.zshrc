@@ -11,18 +11,22 @@ bindkey "^P" up-line-or-history
 
 # TODO: create a widget and create a mapping to surround like behavior, map to s like nvim
 
+export DYLD_LIBRARY_PATH="/opt/homebrew/lib/:$DYLD_LIBRARY_PATH"
+
 # export PATHS
 path=(
+# local builds
+"$HOME/bin" # TODO: decide between this and .local/bin
+"$HOME/.local/bin"
+
 "/opt/homebrew/bin"
 "/opt/homebrew/sbin"
-# local builds
-"$HOME/bin"
 
 # ruby installed by homebrew
 "/usr/local/opt/ruby/bin"
 
 # TODO: find a better location for pip installs
-'$HOME/Library/Python/3.8/bin'
+"$HOME/Library/Python/3.8/bin"
 
 $path
 

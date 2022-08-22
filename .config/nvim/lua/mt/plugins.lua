@@ -30,6 +30,13 @@ return require('packer').startup(function(use)
   use('ojroques/vim-oscyank')
 
   use {
+    'folke/which-key.nvim',
+    config = function()
+      require('which-key').setup()
+    end,
+  }
+
+  use {
     'hoob3rt/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
   }

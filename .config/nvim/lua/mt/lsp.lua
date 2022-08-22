@@ -10,6 +10,7 @@ require('mason-tool-installer').setup {
     'lua-language-server',
     'bash-language-server',
     'json-lsp',
+    'pyright',
 
     'shellcheck',
     'stylua',

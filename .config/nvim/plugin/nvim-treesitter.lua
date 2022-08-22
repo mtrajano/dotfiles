@@ -1,4 +1,4 @@
--- TODO: start with buffers unfolded
+-- TODO: this shouldn't always be `expr`, for example vim files with markers
 vim.cmd([[ set foldmethod=expr ]])
 vim.cmd([[ set foldexpr=nvim_treesitter#foldexpr() ]])
 
@@ -29,12 +29,7 @@ require('nvim-treesitter.configs').setup {
   },
 
   indent = {
-    enable = true,
-    disable = {
-      'php', -- need to investigate perf issues
-      'python', -- seems to be broken
-      'cpp', -- seems to be broken
-    },
+    enable = false, -- still seems to be pretty buggy
   },
 
   -- for debugging

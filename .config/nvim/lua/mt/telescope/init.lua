@@ -55,7 +55,7 @@ custom_mapping('<leader>jd', 'edit_dotfiles')
 custom_mapping('<leader>jv', 'edit_vendor')
 custom_mapping('<leader>jp', 'edit_packer')
 custom_mapping('<leader>jr', 'edit_runtime')
-custom_mapping('<leader>jn', 'edit_notes')
+custom_mapping('<leader>n', 'edit_notes') -- NOTE: experimental, seems really common
 
 custom_mapping('<leader>l', 'buffers')
 custom_mapping('<leader>H', 'search_help')

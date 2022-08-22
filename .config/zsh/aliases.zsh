@@ -186,3 +186,8 @@ alias phpunit="./vendor/bin/phpunit"
 # LUA ALIASES
 #############
 alias luamake=/Users/trajano/.cache/nvim/nlua/sumneko_lua/lua-language-server/3rd/luamake/luamake
+
+################
+# PYTHON ALIASES
+################
+alias pyenv="virtualenv -p python3"
