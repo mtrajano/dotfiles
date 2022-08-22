@@ -1,9 +1,13 @@
+-- TODO: see if this can be converted to a proper plugin
+-- TODO: send these to telescope instead of quickfix
+-- TODO: input for search path with the cwd as the default
+-- TODO: remove ack dep
 local g = vim.g
 local o = vim.o
 local fn = vim.fn
 local cmd = vim.cmd
 
-local special_chars = {'.', '{', '}', '[', ']', '(', ')', '-', '+', '*', '?', '^', '$', '#', '-'}
+local special_chars = { '.', '{', '}', '[', ']', '(', ')', '-', '+', '*', '?', '^', '$', '#', '-' }
 
 -- use ripgrep for searching
 g.ackprg = 'rg --vimgrep --smart-case --color never'
@@ -13,8 +17,6 @@ g.ack_use_dispatch = 1
 
 -- use word under cursor on empty search
 g.ack_use_cword_for_empty_search = 1
-
-local M = {}
 
 local function escape_special_chars(word)
   for _, val in ipairs(special_chars) do
@@ -26,7 +28,7 @@ end
 
 local function include_file_globs(filetype)
   local filetype_to_glob = {
-    php = {"'!*Test.php'"},
+    php = { "'!*Test.php'" },
   }
 
   local glob_param = ''
@@ -42,12 +44,12 @@ end
 
 local function resolve_types(filetype)
   local type_overrides = {
-    javascript = {'js', 'ts'},
-    lua = {'lua'},
-    php = {'php'},
-    typescript = {'js', 'ts'},
-    typescriptreact = {'js', 'ts'},
-    vue = {'js', 'ts'},
+    javascript = { 'js', 'ts' },
+    lua = { 'lua' },
+    php = { 'php' },
+    typescript = { 'js', 'ts' },
+    typescriptreact = { 'js', 'ts' },
+    vue = { 'js', 'ts' },
   }
 
   local search_filetypes = {}
@@ -119,19 +121,18 @@ end
 -- @field boundary     : Add a word boundary around the search term
 -- @field include_ft   : Search within same filetype
 -- @field include_cwd   : Append the present working directory to the search
-M.search_normal = function(opts)
+local function search_normal(opts)
   opts = get_search_opts(opts)
 
   local search_word = fn.expand('<cword>')
 
-  cmd('Ack!' ..  get_search_args(search_word, opts))
+  cmd('Ack!' .. get_search_args(search_word, opts))
 
   if opts.boundary then
     search_word = '\\<' .. search_word .. '\\>'
   end
 
   fn.setreg('/', search_word) -- to make highlight search term work with word boundaries
-
 end
 
 -- @class opts
@@ -139,31 +140,31 @@ end
 -- @field boundary     : Add a word boundary around the search term
 -- @field include_ft   : Search within same filetype
 -- @field include_cwd   : Append the present working directory to the search
-M.search_visual = function(opts)
+local function search_visual(opts)
   opts = get_search_opts(opts)
 
   local line_start = fn.line("'<")
   local line_end = fn.line("'>")
 
-  if (line_start ~= line_end) then
+  if line_start ~= line_end then
     -- TODO: Need to fix handling back slashes (need to escape them)
     local search_term = ''
     while line_start <= line_end do
       local line = fn.getline(line_start)
       line_start = line_start + 1
-      search_term = search_term .. "\\n" .. line
+      search_term = search_term .. '\\n' .. line
     end
 
     search_term = search_term:gsub('^\\n', '')
 
-    cmd('Ack! --multiline ' ..  get_search_args(search_term, opts))
+    cmd('Ack! --multiline ' .. get_search_args(search_term, opts))
   else
     local line = fn.getline(line_start)
     local col_start = fn.col("'<")
     local col_end = fn.col("'>")
-    local word = string.sub(line, col_start, col_end);
+    local word = string.sub(line, col_start, col_end)
 
-    cmd('Ack!' ..  get_search_args(word, opts))
+    cmd('Ack!' .. get_search_args(word, opts))
 
     if opts.boundary then
       local search_word = ''
@@ -174,24 +175,28 @@ M.search_visual = function(opts)
   end
 end
 
-M.update_search_abbrev = function()
-  vim.cmd.cnoreabbrev('F', 'Ack!' .. get_search_args(nil, {include_ft=true, include_cwd=false}))
-end
-
-vim.keymap.set('n', '<leader>F', ':lua require("mt.search").search_normal({include_ft=true})<cr>')
-vim.keymap.set('v', '<leader>F', ':lua require("mt.search").search_visual({include_ft=true, boundary=false})<cr>')
-vim.keymap.set('n', '<leader>f', ':lua require("mt.search").search_normal({include_ft=false})<cr>')
-vim.keymap.set('v', '<leader>f', ':lua require("mt.search").search_visual({include_ft=false, boundary=false})<cr>')
+vim.keymap.set('n', '<leader>F', function()
+  search_normal { include_ft = true }
+end)
+vim.keymap.set('v', '<leader>F', function()
+  search_visual { include_ft = true, boundary = false }
+end)
+vim.keymap.set('n', '<leader>f', function()
+  search_normal { include_ft = false }
+end)
+vim.keymap.set('v', '<leader>f', function()
+  search_visual { include_ft = false, boundary = false }
+end)
 
 --TODO: possibly change these to user commands
-vim.cmd.cnoreabbrev('F', 'Ack!') -- default, should get updated per filetype
-vim.cmd.cnoreabbrev('Fa', 'Ack!') -- search all
+vim.cmd.cnoreabbrev('FF', 'Ack!') -- default, should get updated per filetype
+vim.cmd.cnoreabbrev('F', 'Ack!') -- search all
 
-cmd [[
-augroup update_search_abbrev
-  autocmd!
-  autocmd BufEnter * lua require('mt.search').update_search_abbrev()
-augroup END
-]]
-
-return M
+local group = vim.api.nvim_create_augroup('update_search_abbrev', { clear = true })
+vim.api.nvim_create_autocmd('BufEnter', {
+  group = group,
+  pattern = '*',
+  callback = function()
+    vim.cmd.cnoreabbrev('FF', 'Ack!' .. get_search_args(nil, { include_ft = true, include_cwd = false }))
+  end,
+})
