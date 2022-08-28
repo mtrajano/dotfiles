@@ -39,6 +39,9 @@ return require('packer').startup(function(use)
   use {
     'hoob3rt/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+    config = function()
+      require('mt.plugins.lualine')
+    end,
   }
   use {
     'kevinhwang91/nvim-ufo',
@@ -67,22 +70,11 @@ return require('packer').startup(function(use)
     end,
   }
 
-  -- NOTE: in case want to lazy load [https://github.com/nvim-neorg/neorg#-installation]
   use {
     'nvim-neorg/neorg',
+    after = 'nvim-treesitter',
     config = function()
-      require('neorg').setup {
-        load = {
-          ['core.defaults'] = {},
-          ['core.norg.dirman'] = {
-            config = {
-              workspaces = {
-                dev = '~/notes/dev',
-              },
-            },
-          },
-        },
-      }
+      require('mt.plugins.neorg')
     end,
     requires = 'nvim-lua/plenary.nvim',
   }
@@ -91,9 +83,14 @@ return require('packer').startup(function(use)
   -- DEBUGGING
   ------------
   use {
-    'jbyuki/one-small-step-for-vimkind',
     'mfussenegger/nvim-dap',
-    'rcarriga/nvim-dap-ui',
+    requires = {
+      'jbyuki/one-small-step-for-vimkind',
+      'rcarriga/nvim-dap-ui',
+    },
+    config = function()
+      require('mt.plugins.dap')
+    end,
   }
 
   use {
@@ -239,13 +236,21 @@ return require('packer').startup(function(use)
   use('honza/vim-snippets')
 
   use('sindrets/diffview.nvim')
-  use('tpope/vim-fugitive')
+  use {
+    'tpope/vim-fugitive',
+    config = function()
+      require('mt.plugins.fugitive')
+    end,
+  }
   use('tpope/vim-rhubarb')
   use {
     'lewis6991/gitsigns.nvim',
     requires = {
       'nvim-lua/plenary.nvim',
     },
+    config = function()
+      require('mt.plugins.gitsigns')
+    end,
   }
 
   use {
@@ -296,9 +301,6 @@ return require('packer').startup(function(use)
       vim.cmd.inoreabbrev('hack:', 'HACK:')
       vim.cmd.inoreabbrev('fixme:', 'FIXME:')
     end,
-    requires = {
-      'nvim-telescope/telescope.nvim',
-    },
   }
 
   -- TODO: try treesitter-text-objs and get rid of most of these
@@ -306,7 +308,6 @@ return require('packer').startup(function(use)
     use { repo, requires = { 'kana/vim-textobj-user' } }
   end
 
-  install_textobj('kana/vim-textobj-function')
   install_textobj('kana/vim-textobj-entire')
   install_textobj('glts/vim-textobj-comment')
   use('wellle/targets.vim')
@@ -330,7 +331,11 @@ return require('packer').startup(function(use)
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
+    config = function()
+      require'mt.plugins.nvim-treesitter'
+    end
   }
+  use('nvim-treesitter/nvim-treesitter-textobjects')
   use('windwp/nvim-ts-autotag')
   use {
     'nvim-treesitter/playground',
