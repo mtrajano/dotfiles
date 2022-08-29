@@ -21,6 +21,8 @@ return require('packer').startup(function(use)
   -- NEED TO MOVE PLUGIN CONFIGS OUTSIDE OF AUTOLOADED /PLUGIN DIR
   use('wbthomason/packer.nvim')
 
+  use('nanotee/zoxide.vim')
+
   use('folke/tokyonight.nvim')
 
   use('dstein64/vim-startuptime')
