@@ -23,6 +23,13 @@ return require('packer').startup(function(use)
 
   use('nanotee/zoxide.vim')
 
+  use {
+    'ggandor/leap.nvim',
+    config = function()
+      require('leap').set_default_keymaps()
+    end,
+  }
+
   use('folke/tokyonight.nvim')
 
   use('dstein64/vim-startuptime')

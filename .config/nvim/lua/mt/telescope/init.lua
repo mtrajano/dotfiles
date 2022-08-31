@@ -55,7 +55,7 @@ custom_mapping('<leader>jd', 'edit_dotfiles')
 custom_mapping('<leader>jv', 'edit_vendor')
 custom_mapping('<leader>jp', 'edit_packer')
 custom_mapping('<leader>jr', 'edit_runtime')
-custom_mapping('<leader>n', 'edit_notes') -- NOTE: experimental, seems really common
+custom_mapping('<leader>jn', 'edit_notes')
 
 custom_mapping('<leader>l', 'buffers')
 custom_mapping('<leader>H', 'search_help')
@@ -105,7 +105,7 @@ end
 
 M.edit_dotfiles = function()
   require('telescope.builtin').find_files {
-    cwd = tostring(Path:new { os.getenv('HOME'), 'dotfiles' }),
+    cwd = tostring(Path:new { vim.loop.os_homedir(), 'dotfiles' }),
     search_dirs = { '.config', 'init.sh' },
     prompt_title = ' Dotfiles',
     prompt_prefix = 'dotfiles> ',
@@ -141,7 +141,7 @@ end
 M.edit_notes = function()
   require('telescope.builtin').find_files {
     prompt_title = 'Notes',
-    cwd = tostring(Path:new { os.getenv('HOME'), 'notes' }),
+    cwd = tostring(Path:new { vim.loop.os_homedir(), 'notes' }),
   }
 end
 

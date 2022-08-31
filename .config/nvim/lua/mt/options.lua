@@ -6,9 +6,6 @@ local function disable(key, reason)
   keymap.set('n', key, '<NOP>', { desc = reason })
 end
 
--- NOTE: currently testing these keys with nvim-surround
-disable('S', 'map S to NOP until get used to cc')
-disable('s', 'map s to NOP until get used to cl')
 disable('Q', 'disable ex-mode (can be mapped)')
 
 -- map escape in terminal
