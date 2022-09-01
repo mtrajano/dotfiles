@@ -30,8 +30,14 @@ _install_mac() {
     zoxide \
     node \
     php \
-    composer
+    composer \
+    jq
 
+  # enable fzf keybindinds
+  $(brew --prefix)/opt/fzf/install
+
+  # install nvm
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
   # for spotify
   brew install spotify spotifyd

@@ -35,6 +35,10 @@ $path
 # "$HOME/.rvm/bin"
   )
 
+export NVM_DIR="$XDG_DATA_HOME/nvm"
+  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 eval "$(zoxide init zsh)"
 
 # extra configuration
@@ -44,3 +48,5 @@ source "$XDG_CONFIG_HOME/zsh/aliases.zsh"
 
 # TODO: see what this is needed for
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
