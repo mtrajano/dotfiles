@@ -103,6 +103,7 @@
   wip = !"fn() { git add . && git commit -m 'WIP'; }; fn"
   wop = reset HEAD~1
   search = !"fn() { git grep $1 $(git rev-list --all); }; fn"
+  ignore = !"fn() { nvim $(git root)/.gitignore; }; fn"
 
 [pager]
   branch = false

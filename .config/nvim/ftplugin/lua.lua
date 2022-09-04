@@ -15,9 +15,7 @@ require('nvim-surround').buffer_setup {
     },
     ['P'] = {
       -- TODO: look at the other actions
-      add = { 'P(', ')' }
+      add = { 'P(', ')' },
     },
   },
 }
-
-vim.keymap.set('n', '<leader>dd', require('osv').run_this, { buffer = true, desc = 'Start debugging lua file' })

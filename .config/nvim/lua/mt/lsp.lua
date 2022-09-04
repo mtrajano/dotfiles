@@ -38,6 +38,28 @@ lspconfig.tsserver.setup {
 
 lspconfig.jsonls.setup {
   on_attach = my_attach,
+  -- TODO: see if can get key suggestions/autocomplete and complain about incorrect keys
+  settings = {
+    json = {
+      schemas = {
+        {
+          fileMatch = { 'manifest.json' },
+          url = 'https://json.schemastore.org/chrome-manifest',
+        },
+        {
+          fileMatch = { 'package.json' },
+          url = 'https://json.schemastore.org/package',
+        },
+      },
+      validate = {
+        enable = true,
+      },
+    },
+  },
+}
+
+lspconfig.clangd.setup {
+  on_attach = my_attach,
 }
 
 local luadev = require('lua-dev').setup {}
