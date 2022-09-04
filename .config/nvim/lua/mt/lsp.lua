@@ -42,9 +42,14 @@ lspconfig.tsserver.setup {
   on_attach = my_attach,
 }
 
+--Enable (broadcasting) snippet capability for completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
 lspconfig.jsonls.setup {
+  capabilities = capabilities,
   on_attach = my_attach,
-  -- TODO: see if can get key suggestions/autocomplete and complain about incorrect keys
+  -- TODO: see if can complain about incorrect keys
   settings = {
     json = {
       schemas = {
