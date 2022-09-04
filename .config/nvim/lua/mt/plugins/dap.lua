@@ -14,6 +14,8 @@ require('dapui').setup {
   },
 }
 
+-- TODO: see if this is working
+-- TODO: set keymappings to jump into designated window
 -- automatically open and close dapui based on dap events
 dap.listeners.after.event_initialized['dapui_config'] = function()
   dapui.open()
@@ -24,6 +26,9 @@ end
 dap.listeners.before.event_exited['dapui_config'] = function()
   dapui.close()
 end
+
+-- TODO: need to look at this mapping as it should be file specific
+vim.keymap.set('n', '<leader>dd', require('osv').launch, { buffer = true, desc = 'Start debugging lua file' })
 
 vim.keymap.set('n', '<leader>dc', require('dap').continue)
 vim.keymap.set('n', '<leader>dn', require('dap').step_over)

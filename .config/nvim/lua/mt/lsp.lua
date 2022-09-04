@@ -1,6 +1,12 @@
 local o = vim.o
 local fn = vim.fn
 
+local debug = false
+
+if debug then
+  vim.lsp.set_log_level('TRACE')
+end
+
 require('mason').setup()
 require('mason-tool-installer').setup {
   ensure_installed = {
@@ -126,6 +132,7 @@ vim.keymap.set('n', '<leader>da', function()
 end)
 
 -- coming from other plugins
+-- TODO: look into replacing these with a plugin that looks at the project symbols like tagbar
 vim.keymap.set('n', '<leader>k', function()
   require('telescope.builtin').lsp_document_symbols { ignore_filename = false, symbol_width = 35 }
 end, { silent = true })

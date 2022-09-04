@@ -94,13 +94,14 @@ return require('packer').startup(function(use)
   use {
     'mfussenegger/nvim-dap',
     requires = {
-      'jbyuki/one-small-step-for-vimkind',
       'rcarriga/nvim-dap-ui',
     },
     config = function()
       require('mt.plugins.dap')
     end,
   }
+
+  use('jbyuki/one-small-step-for-vimkind')
 
   use {
     'lukas-reineke/indent-blankline.nvim',
@@ -116,7 +117,12 @@ return require('packer').startup(function(use)
     end,
   }
 
-  use('jose-elias-alvarez/null-ls.nvim')
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    config = function()
+      require('mt.plugins.null-ls')
+    end,
+  }
 
   use {
     'mbbill/undotree',
@@ -292,7 +298,7 @@ return require('packer').startup(function(use)
   }
 
   use {
-    'folke/todo-comments.nvim',
+    'B4mbus/todo-comments.nvim',
     config = function()
       -- HACK: #104 Invalid in command-line window
       local hl = require('todo-comments.highlight')
@@ -341,8 +347,8 @@ return require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = function()
-      require'mt.plugins.nvim-treesitter'
-    end
+      require('mt.plugins.nvim-treesitter')
+    end,
   }
   use('nvim-treesitter/nvim-treesitter-textobjects')
   use('windwp/nvim-ts-autotag')
@@ -371,6 +377,9 @@ return require('packer').startup(function(use)
       'hrsh7th/cmp-path',
       'saadparwaiz1/cmp_luasnip',
     },
+    config = function()
+      require('mt.plugins.nvim-cmp')
+    end,
   }
   use {
     'ray-x/lsp_signature.nvim',

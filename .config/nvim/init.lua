@@ -1,9 +1,5 @@
 require('impatient')
 
-vim.keymap.set('n', '<leader>sd', function()
-  vim.cmd.source(os.getenv('MYVIMRC'))
-end)
-
 local should_profile = false
 
 local loop = vim.loop

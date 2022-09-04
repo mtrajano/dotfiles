@@ -49,8 +49,8 @@ local function builtin_mapping(key, method)
   vim.keymap.set('n', key, string.format(':lua require"telescope.builtin".%s()<cr>', method))
 end
 
-custom_mapping('<leader>jj', 'git_files')
-custom_mapping('<leader>jf', 'find_files')
+custom_mapping('<leader>jj', 'find_files')
+custom_mapping('<leader>jg', 'git_files')
 custom_mapping('<leader>jd', 'edit_dotfiles')
 custom_mapping('<leader>jv', 'edit_vendor')
 custom_mapping('<leader>jp', 'edit_packer')
@@ -91,6 +91,9 @@ M.find_files = function()
   local options = {
     prompt_prefix = shorten_path(fn.getcwd()) .. '> ',
     cwd = fn.getcwd(),
+    find_command = function()
+      return { 'fd', '-t', 'f' }
+    end,
   }
 
   require('telescope.builtin').find_files(options)
@@ -138,6 +141,7 @@ M.edit_runtime = function()
   }
 end
 
+-- TODO: move this to the neorg config
 M.edit_notes = function()
   require('telescope.builtin').find_files {
     prompt_title = 'Notes',
