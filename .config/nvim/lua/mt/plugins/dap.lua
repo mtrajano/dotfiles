@@ -28,7 +28,7 @@ dap.listeners.before.event_exited['dapui_config'] = function()
 end
 
 -- TODO: need to look at this mapping as it should be file specific
-vim.keymap.set('n', '<leader>dd', require('osv').launch, { buffer = true, desc = 'Start debugging lua file' })
+vim.keymap.set('n', '<leader>dd', require('osv').launch, { desc = 'Start debugging lua file' })
 
 vim.keymap.set('n', '<leader>dc', require('dap').continue)
 vim.keymap.set('n', '<leader>dn', require('dap').step_over)
