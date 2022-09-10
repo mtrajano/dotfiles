@@ -21,6 +21,7 @@ require('nvim-treesitter.configs').setup {
     'html',
     'markdown',
     'norg',
+    'fennel', -- for plugins/config writter in fennel
   },
 
   highlight = {

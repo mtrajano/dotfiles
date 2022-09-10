@@ -26,6 +26,7 @@ require('mason-tool-installer').setup {
 
 local lspconfig = require('lspconfig')
 
+-- TODO: see if theres a way to do this once insead of having to call it on every clients setup
 local function my_attach(client)
   require('lsp_signature').on_attach()
   require('lsp-status').on_attach(client)

@@ -250,7 +250,20 @@ return require('packer').startup(function(use)
 
   use('honza/vim-snippets')
 
-  use('sindrets/diffview.nvim')
+  use {
+    'sindrets/diffview.nvim',
+    config = function()
+      local actions = require('diffview.actions')
+      vim.keymap.set('n', '<leader>D', vim.cmd.DiffviewOpen)
+      require('diffview').setup {
+        keymaps = {
+          file_panel = {
+            ['s'] = actions.toggle_stage_entry, -- Stage / unstage the selected entry.
+          },
+        },
+      }
+    end,
+  }
   use {
     'tpope/vim-fugitive',
     config = function()
@@ -290,7 +303,8 @@ return require('packer').startup(function(use)
           },
         },
       }
-      vim.keymap.set('n', '<leader>kk', function()
+      -- TODO: look into this mapping
+      vim.keymap.set('n', '<C-p>', function()
         vim.cmd.Neotree { 'toggle', 'current', 'reveal_force_cwd' }
       end)
       -- TODO: set keymaping for running in a new tab lua require("neo-tree").paste_default_config()
@@ -389,7 +403,12 @@ return require('packer').startup(function(use)
       }
     end,
   }
-  use('nvim-lua/lsp-status.nvim')
+  use {
+    'j-hui/fidget.nvim',
+    config = function()
+      require('fidget').setup()
+    end,
+  }
   use {
     'glepnir/lspsaga.nvim',
     branch = 'main',

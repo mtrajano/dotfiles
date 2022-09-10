@@ -25,7 +25,7 @@ function P(...)
 end
 
 -- require with profiling wrapped
-function REQUIRE(module)
+function PROFILE(module)
   local start
   if should_profile then
     start = loop.hrtime()
