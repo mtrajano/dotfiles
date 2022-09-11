@@ -45,7 +45,6 @@ eval "$(zoxide init zsh)"
 source "$XDG_CONFIG_HOME/zsh/completion.zsh"
 source "$XDG_CONFIG_HOME/zsh/aliases.zsh"
 
-
 # TODO: see what this is needed for
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 

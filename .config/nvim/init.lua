@@ -30,7 +30,9 @@ function PROFILE(module)
   if should_profile then
     start = loop.hrtime()
   end
+
   require(module)
+
   if should_profile then
     local time = (loop.hrtime() - start) / 1000000
     P(string.format('Loading %s took %s msec', module, time))

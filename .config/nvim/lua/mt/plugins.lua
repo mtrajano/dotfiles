@@ -87,6 +87,13 @@ return require('packer').startup(function(use)
     end,
     requires = 'nvim-lua/plenary.nvim',
   }
+  use {
+    'simrat39/symbols-outline.nvim',
+    config = function()
+      require('symbols-outline').setup()
+      vim.keymap.set('n', '<leader>o', vim.cmd.SymbolsOutline)
+    end,
+  }
 
   ------------
   -- DEBUGGING

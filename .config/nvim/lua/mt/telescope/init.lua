@@ -88,6 +88,9 @@ M.git_files = function()
 end
 
 M.find_files = function()
+  if vim.fn.getcwd() == '/Users/mtrajano/dotfiles' then
+    return M.edit_dotfiles()
+  end
   local options = {
     prompt_prefix = shorten_path(fn.getcwd()) .. '> ',
     cwd = fn.getcwd(),
