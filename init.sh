@@ -31,7 +31,8 @@ _install_mac() {
     node \
     php \
     composer \
-    jq
+    jq \
+    lazygit
 
   # enable fzf keybindinds
   $(brew --prefix)/opt/fzf/install
