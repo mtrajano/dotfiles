@@ -1,7 +1,5 @@
 vim.api.nvim_create_autocmd('BufWritePost', {
-  group = vim.api.nvim_create_augroup('compile_onsave', {
-    clear = true,
-  }),
+  group = vim.api.nvim_create_augroup('compile_onsave', { clear = true }),
   pattern = '*/mt/plugins.lua',
   callback = function()
     vim.cmd.source('<afile>')
@@ -85,7 +83,7 @@ return require('packer').startup(function(use)
     config = function()
       require('mt.plugins.neorg')
     end,
-    requires = 'nvim-lua/plenary.nvim',
+    requires = { 'nvim-lua/plenary.nvim', 'nvim-neorg/neorg-telescope' },
   }
   use {
     'simrat39/symbols-outline.nvim',
@@ -113,6 +111,7 @@ return require('packer').startup(function(use)
   use {
     'lukas-reineke/indent-blankline.nvim',
     config = function()
+      -- TODO: need to move this out of here because it needs to be set every time $MYVIMRC reloads
       -- TODO: see if this can be created using colors/utils from tokyonight theme
       vim.api.nvim_set_hl(0, 'IndentBlanklineIndent', { fg = '#393d4e' })
       require('indent_blankline').setup {
@@ -181,14 +180,14 @@ return require('packer').startup(function(use)
   use {
     'moll/vim-bbye',
     config = function()
-      vim.keymap.set('n', '<leader>bd', vim.cmd.Bd)
+      vim.keymap.set('n', '<leader>bd', vim.cmd.Bd, { desc = 'Bufferdelete' })
       vim.keymap.set('n', '<leader>bD', function()
         vim.cmd.Bd { bang = true }
-      end)
-      vim.keymap.set('n', '<leader>bw', vim.cmd.Bw)
+      end, { desc = 'Bufferdelete force' })
+      vim.keymap.set('n', '<leader>bw', vim.cmd.Bw, { desc = 'Bufferwipeout' })
       vim.keymap.set('n', '<leader>bW', function()
         vim.cmd.Bw { bang = true }
-      end)
+      end, { desc = 'Bufferwipeout force' })
     end,
   }
   use {
@@ -261,7 +260,7 @@ return require('packer').startup(function(use)
     'sindrets/diffview.nvim',
     config = function()
       local actions = require('diffview.actions')
-      vim.keymap.set('n', '<leader>D', vim.cmd.DiffviewOpen)
+      vim.keymap.set('n', '<leader>D', vim.cmd.DiffviewOpen, { desc = 'DiffviewOpen' })
       require('diffview').setup {
         keymaps = {
           file_panel = {
@@ -372,6 +371,12 @@ return require('packer').startup(function(use)
     end,
   }
   use('nvim-treesitter/nvim-treesitter-textobjects')
+  use {
+    'nvim-treesitter/nvim-treesitter-context',
+    config = function()
+      require('treesitter-context').setup()
+    end,
+  }
   use('windwp/nvim-ts-autotag')
   use {
     'nvim-treesitter/playground',

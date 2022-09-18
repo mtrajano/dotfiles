@@ -25,11 +25,11 @@ require('mason-tool-installer').setup {
 }
 
 local lspconfig = require('lspconfig')
+local lsp_signature = require('lsp_signature')
 
 -- TODO: see if theres a way to do this once insead of having to call it on every clients setup
 local function my_attach(client)
-  require('lsp_signature').on_attach()
-  require('lsp-status').on_attach(client)
+  lsp_signature.on_attach()
 end
 
 lspconfig.intelephense.setup {
@@ -103,17 +103,19 @@ vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'definition' })
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'declaration' })
 vim.keymap.set('n', 'R', function()
   vim.cmd.Lspsaga('rename')
-end)
+end, { desc = 'Saga rename' })
 vim.keymap.set('n', 'gr', require('mt.telescope').lsp_references, { desc = 'lsp_references' })
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = 'implementation' })
 
+-- NOTE: Cool looks like pressing this twice moves us to the hover window but is hard to get out of
+-- TODO: Create a keymap to leave the floating window easier? <esc> or q are possibilities, probably contribute usptream?
 vim.keymap.set('n', 'K', hover_or_get_docs, { desc = 'hover_or_get_docs' })
 vim.keymap.set('n', '<C-f>', function()
   require('lspsaga.action').smart_scroll_with_saga(1)
-end)
+end, { desc = 'LspSaga scroll down' })
 vim.keymap.set('n', '<C-b>', function()
   require('lspsaga.action').smart_scroll_with_saga(-1)
-end)
+end, { desc = 'LspSaga scroll up' })
 
 -- jump to diagnostics
 vim.keymap.set('n', '[D', function()
@@ -135,10 +137,9 @@ end, { desc = 'Diagnostic go to next warning+' })
 
 vim.keymap.set('n', '<leader>da', function()
   vim.cmd.Lspsaga('code_action')
-end)
+end, { desc = 'Code action' })
 
 -- coming from other plugins
--- TODO: look into replacing these with a plugin that looks at the project symbols like tagbar
 vim.keymap.set('n', '<leader>k', function()
   require('telescope.builtin').lsp_document_symbols { ignore_filename = false, symbol_width = 35 }
 end, { silent = true })

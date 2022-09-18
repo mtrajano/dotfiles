@@ -5,6 +5,7 @@ require('neorg').setup {
       config = {
         workspaces = {
           dev = '~/notes/dev',
+          pontal = '~/notes/pontal',
         },
       },
     },

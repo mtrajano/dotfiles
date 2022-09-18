@@ -175,18 +175,19 @@ local function search_visual(opts)
   end
 end
 
+-- TODO: make a prefix with custom directories to search for, <leader>ff is cwd
 vim.keymap.set('n', '<leader>F', function()
   search_normal { include_ft = true }
-end)
+end, { desc = 'Ack search in file' })
 vim.keymap.set('v', '<leader>F', function()
   search_visual { include_ft = true, boundary = false }
 end)
 vim.keymap.set('n', '<leader>f', function()
   search_normal { include_ft = false }
-end)
+end, { desc = 'Ack search all' })
 vim.keymap.set('v', '<leader>f', function()
   search_visual { include_ft = false, boundary = false }
-end)
+end, { desc = 'Ack search selected' })
 
 --TODO: possibly change these to user commands
 vim.cmd.cnoreabbrev('FF', 'Ack!') -- default, should get updated per filetype
