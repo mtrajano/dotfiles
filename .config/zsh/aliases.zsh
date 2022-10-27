@@ -191,3 +191,5 @@ alias luamake=/Users/trajano/.cache/nvim/nlua/sumneko_lua/lua-language-server/3r
 # PYTHON ALIASES
 ################
 alias pyenv="virtualenv -p python3"
+
+alias nvim_install="make distclean && make CMAKE_BUILD_TYPE=Release && make CMAKE_INSTALL_PREFIX=$HOME/local/nvim install"

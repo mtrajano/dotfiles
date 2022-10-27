@@ -74,8 +74,17 @@ lspconfig.clangd.setup {
   on_attach = my_attach,
 }
 
-local luadev = require('lua-dev').setup {}
-lspconfig.sumneko_lua.setup(luadev)
+require("neodev").setup {}
+-- example to setup sumneko and enable call snippets
+lspconfig.sumneko_lua.setup({
+  settings = {
+    Lua = {
+      completion = {
+        callSnippet = "Replace"
+      }
+    }
+  }
+})
 
 -- define diagnostics signs
 vim.cmd([[

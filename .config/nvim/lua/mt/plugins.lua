@@ -11,7 +11,7 @@ local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.n
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   -- TODO: how can I alert when this command fails?
   packer_bootstrap =
-    vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
+  vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
 end
 
 return require('packer').startup(function(use)
@@ -136,8 +136,6 @@ return require('packer').startup(function(use)
       vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'UndotreeToggle' })
     end,
   }
-
-  use('vimwiki/vimwiki')
 
   use {
     'windwp/nvim-autopairs',
@@ -384,7 +382,7 @@ return require('packer').startup(function(use)
   }
   use('nvim-lua/plenary.nvim')
   use('nvim-lua/popup.nvim')
-  use('folke/lua-dev.nvim')
+  use('folke/neodev.nvim')
 
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
   use {
@@ -402,6 +400,7 @@ return require('packer').startup(function(use)
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'saadparwaiz1/cmp_luasnip',
+      'hrsh7th/cmp-cmdline', -- TODO: looks like it breaks when native_menu is set, look into: https://github.com/hrsh7th/nvim-cmp/issues/1059
     },
     config = function()
       require('mt.plugins.nvim-cmp')
