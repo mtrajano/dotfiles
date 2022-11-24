@@ -39,5 +39,10 @@ function PROFILE(module)
   end
 end
 
+vim.api.nvim_create_autocmd('TextYankPost', {
+  command = 'silent! lua vim.highlight.on_yank()',
+  group = vim.api.nvim_create_augroup('highlight_on_yank', {}),
+})
+
 require('mt.options')
 require('mt.search')
