@@ -111,14 +111,8 @@ return require('packer').startup(function(use)
   use {
     'lukas-reineke/indent-blankline.nvim',
     config = function()
-      -- TODO: need to move this out of here because it needs to be set every time $MYVIMRC reloads
-      -- TODO: see if this can be created using colors/utils from tokyonight theme
-      vim.api.nvim_set_hl(0, 'IndentBlanklineIndent', { fg = '#393d4e' })
-      require('indent_blankline').setup {
-        char_highlight_list = {
-          'IndentBlanklineIndent',
-        },
-        buftype_exclude = { 'terminal', 'nofile', 'help', 'markdown', 'vimwiki', 'text', 'fugitive' },
+      require('ibl').setup {
+        exclude = { filetypes = { 'terminal', 'nofile', 'help', 'markdown', 'vimwiki', 'text', 'fugitive' } },
       }
     end,
   }
