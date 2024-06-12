@@ -316,15 +316,9 @@ return require('packer').startup(function(use)
   }
 
   use {
-    'B4mbus/todo-comments.nvim',
+    'folke/todo-comments.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
     config = function()
-      -- HACK: #104 Invalid in command-line window
-      local hl = require('todo-comments.highlight')
-      local highlight_win = hl.highlight_win
-      hl.highlight_win = function(win, force)
-        pcall(highlight_win, win, force)
-      end
-
       require('todo-comments').setup {}
 
       vim.cmd.inoreabbrev('bug:', 'BUG:')
