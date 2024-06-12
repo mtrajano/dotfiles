@@ -421,16 +421,16 @@ return require('packer').startup(function(use)
     end,
   }
   use {
-    'glepnir/lspsaga.nvim',
-    branch = 'main',
+    'nvimdev/lspsaga.nvim',
     config = function()
-      local saga = require('lspsaga')
-
-      saga.init_lsp_saga {
-        -- your configuration
-      }
+      require('lspsaga').setup {}
     end,
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter', -- optional
+      'nvim-tree/nvim-web-devicons',     -- optional
+    },
   }
+
   use {
     'folke/trouble.nvim',
     config = function()

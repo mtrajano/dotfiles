@@ -128,20 +128,16 @@ end, { desc = 'LspSaga scroll up' })
 
 -- jump to diagnostics
 vim.keymap.set('n', '[D', function()
-  require('lspsaga.diagnostic').goto_prev()
+  require('lspsaga.diagnostic'):goto_prev()
 end, { desc = 'Diagnostic go to prev' })
 vim.keymap.set('n', ']D', function()
-  require('lspsaga.diagnostic').goto_next()
+  require('lspsaga.diagnostic'):goto_next()
 end, { desc = 'Diagnostic go to next' })
 vim.keymap.set('n', '[d', function()
-  require('lspsaga.diagnostic').goto_prev {
-    severity = { min = vim.diagnostic.severity.WARN },
-  }
+  require('lspsaga.diagnostic'):goto_prev { severity = vim.diagnostic.severity.WARN }
 end, { desc = 'Diagnostic go to prev warning+' })
 vim.keymap.set('n', ']d', function()
-  require('lspsaga.diagnostic').goto_next {
-    severity = { min = vim.diagnostic.severity.WARN },
-  }
+  require('lspsaga.diagnostic'):goto_next { severity = vim.diagnostic.severity.WARN }
 end, { desc = 'Diagnostic go to next warning+' })
 
 vim.keymap.set('n', '<leader>da', function()
