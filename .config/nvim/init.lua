@@ -1,4 +1,4 @@
-require('impatient')
+vim.loader.enable()
 
 local should_profile = false
 

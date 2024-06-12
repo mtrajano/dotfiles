@@ -11,15 +11,13 @@ local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.n
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   -- TODO: how can I alert when this command fails?
   packer_bootstrap =
-  vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
+      vim.fn.system { 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path }
 end
 
 return require('packer').startup(function(use)
   -- TODO: LOOK INTO LAZY LOADING A LOT OF THESE
   -- NEED TO MOVE PLUGIN CONFIGS OUTSIDE OF AUTOLOADED /PLUGIN DIR
   use('wbthomason/packer.nvim')
-
-  use('nanotee/zoxide.vim')
 
   use {
     'ggandor/leap.nvim',
@@ -31,7 +29,6 @@ return require('packer').startup(function(use)
   use('folke/tokyonight.nvim')
 
   use('dstein64/vim-startuptime')
-  use('lewis6991/impatient.nvim')
 
   use('tversteeg/registers.nvim')
   use('ojroques/vim-oscyank')
@@ -114,13 +111,6 @@ return require('packer').startup(function(use)
       require('ibl').setup {
         exclude = { filetypes = { 'terminal', 'nofile', 'help', 'markdown', 'vimwiki', 'text', 'fugitive' } },
       }
-    end,
-  }
-
-  use {
-    'jose-elias-alvarez/null-ls.nvim',
-    config = function()
-      require('mt.plugins.null-ls')
     end,
   }
 
@@ -280,36 +270,6 @@ return require('packer').startup(function(use)
   }
 
   use {
-    'nvim-neo-tree/neo-tree.nvim',
-    branch = 'v2.x',
-    requires = {
-      'nvim-lua/plenary.nvim',
-      'kyazdani42/nvim-web-devicons', -- not strictly required, but recommended
-      'MunifTanjim/nui.nvim',
-    },
-    config = function()
-      vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-      require('neo-tree').setup {
-        filesystem = {
-          window = {
-            mappings = {
-              ['<tab>'] = 'open',
-              ['l'] = 'open',
-              ['h'] = 'navigate_up',
-              ['<space>'] = false,
-            },
-          },
-        },
-      }
-      -- TODO: look into this mapping
-      vim.keymap.set('n', '<C-p>', function()
-        vim.cmd.Neotree { 'toggle', 'current', 'reveal_force_cwd' }
-      end)
-      -- TODO: set keymaping for running in a new tab lua require("neo-tree").paste_default_config()
-    end,
-  }
-
-  use {
     'folke/todo-comments.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
@@ -346,9 +306,6 @@ return require('packer').startup(function(use)
   }
   use('godlygeek/tabular')
 
-  -- NOTE: need this until https://github.com/neovim/neovim/issues/12587 gets resolved
-  use('antoinemadec/FixCursorHold.nvim')
-
   use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -364,11 +321,7 @@ return require('packer').startup(function(use)
     end,
   }
   use('windwp/nvim-ts-autotag')
-  use {
-    'nvim-treesitter/playground',
-    cmd = { 'TSPlaygroundToggle', 'TSHighlightCapturesUnderCursor' },
-  }
-  use('nvim-lua/plenary.nvim')
+  use('nvim-lua/plenary.nvim') 
   use('nvim-lua/popup.nvim')
   use('folke/neodev.nvim')
 
@@ -413,7 +366,7 @@ return require('packer').startup(function(use)
     config = function()
       require('lspsaga').setup {}
     end,
-    dependencies = {
+    requires = {
       'nvim-treesitter/nvim-treesitter', -- optional
       'nvim-tree/nvim-web-devicons',     -- optional
     },

@@ -35,7 +35,7 @@ end
 lspconfig.intelephense.setup {
   on_attach = my_attach,
   init_options = {
-    licenceKey = os.getenv('INTELEPHENSE_KEY'),
+    licenceKey = vim.env.INTELEPHENSE_KEY,
   },
 }
 
@@ -74,17 +74,17 @@ lspconfig.clangd.setup {
   on_attach = my_attach,
 }
 
-require("neodev").setup {}
+require('neodev').setup {}
 -- example to setup sumneko and enable call snippets
-lspconfig.sumneko_lua.setup({
+lspconfig.lua_ls.setup {
   settings = {
     Lua = {
       completion = {
-        callSnippet = "Replace"
-      }
-    }
-  }
-})
+        callSnippet = 'Replace',
+      },
+    },
+  },
+}
 
 -- define diagnostics signs
 vim.cmd([[
