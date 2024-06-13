@@ -1,41 +1,40 @@
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
+  vim.fn.system {
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable', -- latest stable release
     lazypath,
-  })
+  }
 end
 vim.opt.rtp:prepend(lazypath)
 
-  -- TODO: LOOK INTO LAZY LOADING A LOT OF THESE
-  -- NEED TO MOVE PLUGIN CONFIGS OUTSIDE OF AUTOLOADED /PLUGIN DIR
-require('lazy').setup({
+-- TODO: LOOK INTO LAZY LOADING A LOT OF THESE
+-- NEED TO MOVE PLUGIN CONFIGS OUTSIDE OF AUTOLOADED /PLUGIN DIR
+require('lazy').setup {
   {
-    'ggandor/leap.nvim',
+    'folke/tokyonight.nvim',
+    lazy = false,
+    priority = 1000,
     config = function()
-      require('leap').set_default_keymaps()
+      vim.g.tokyonight_style = 'night'
+      vim.cmd.colorscheme('tokyonight')
     end,
   },
 
-  'folke/tokyonight.nvim',
-
-  'dstein64/vim-startuptime',
+  { 'dstein64/vim-startuptime', cmd = 'StartupTime' },
 
   'tversteeg/registers.nvim',
   'ojroques/vim-oscyank',
 
   {
     'folke/which-key.nvim',
-    config = function()
-      require('which-key').setup()
-    end,
+    opts = {},
   },
 
-{
+  {
     'hoob3rt/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
@@ -45,13 +44,11 @@ require('lazy').setup({
   {
     'kevinhwang91/nvim-ufo',
     dependencies = { 'kevinhwang91/promise-async' },
-    config = function()
-      require('ufo').setup {
+    opts = {
         provider_selector = function()
           return { 'treesitter', 'indent' }
         end,
-      }
-    end,
+    }
   },
 
   ------
@@ -103,7 +100,7 @@ require('lazy').setup({
     'lukas-reineke/indent-blankline.nvim',
     config = function()
       require('ibl').setup {
-        exclude = { filetypes = { 'terminal', 'nofile', 'help', 'markdown', 'vimwiki', 'text', 'fugitive' } },
+        exclude = { filetypes = { 'terminal', 'nofile', 'help', 'markdown', 'text', 'fugitive' } },
       }
     end,
   },
@@ -111,15 +108,14 @@ require('lazy').setup({
   {
     'mbbill/undotree',
     config = function()
-      vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'UndotreeToggle' })
+      vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Toggle undo tree' })
     end,
   },
 
   {
     'windwp/nvim-autopairs',
-    config = function()
-      require('nvim-autopairs').setup()
-    end,
+    event = 'InsertEnter',
+    opts = {},
   },
 
   {
@@ -135,13 +131,14 @@ require('lazy').setup({
   -- TODO: need to install the tmux plguin so can navigate back
   {
     'christoomey/vim-tmux-navigator',
+    keys = {
+      { '<C-L>', '<cmd>TmuxNavigateRight<cr>', { desc = 'Tmux Navigate Right' } },
+      { '<C-K>', '<cmd>TmuxNavigateUp<cr>', { desc = 'Tmux Navigate Up' } },
+      { '<C-J>', '<cmd>TmuxNavigateDown<cr>', { desc = 'Tmux Navigate Down' } },
+      { '<C-H>', '<cmd>TmuxNavigateLeft<cr>', { desc = 'Tmux Navigate Left' } },
+    },
     config = function()
       vim.g.tmux_navigator_disable_when_zoomed = 1
-
-      vim.keymap.set('n', '<C-L>', vim.cmd.TmuxNavigateRight, { desc = 'TmuxNavigateRight' })
-      vim.keymap.set('n', '<C-K>', vim.cmd.TmuxNavigateUp, { desc = 'TmuxNavigateUp' })
-      vim.keymap.set('n', '<C-J>', vim.cmd.TmuxNavigateDown, { desc = 'TmuxNavigateDown' })
-      vim.keymap.set('n', '<C-H>', vim.cmd.TmuxNavigateLeft, { desc = 'TmuxNavigateLeft' })
     end,
   },
   {
@@ -177,10 +174,6 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sj', vim.cmd.SplitjoinJoin, { desc = 'SplitjoinJoin' })
     end,
     event = 'VeryLazy',
-    -- keys = {
-    --   { 'n', '<leader>ss' },
-    --   { 'n', '<leader>sj' },
-    -- },
   },
 
   {
@@ -208,31 +201,18 @@ require('lazy').setup({
   'tpope/vim-abolish',
   'tpope/vim-speeddating',
   'tpope/vim-obsession',
-
-  {
-    'tpope/vim-scriptease',
-    event = 'VeryLazy',
-    -- keys = {
-    --   { 'n', 'zS' },
-    --   { 'n', '<leader>m' },
-    -- },
-    config = function()
-      vim.keymap.set('n', '<leader>m', vim.cmd.Messages, { desc = 'Messages' })
-    end,
-  },
+  'tpope/vim-scriptease',
   {
     'tpope/vim-dispatch',
-    event = 'VeryLazy',
-    -- cmd = { 'Dispatch', 'Make', 'Focus', 'Start' },
-    -- opt = true,
+    cmd = { 'Dispatch', 'Make', 'Focus', 'Start' },
     config = function()
       vim.g.dispatch_no_tmux_dispatch = 1 -- breaks zoomed panes
     end,
   },
 
-  'L3MON4D3/LuaSnip',
-
-  'honza/vim-snippets',
+  { 'L3MON4D3/LuaSnip', event = 'InsertEnter', dependencies = {
+    'honza/vim-snippets',
+  } },
 
   {
     'sindrets/diffview.nvim',
@@ -250,11 +230,12 @@ require('lazy').setup({
   },
   {
     'tpope/vim-fugitive',
+    cmd = 'G',
     config = function()
       require('mt.plugins.fugitive')
     end,
+    dependencies = { 'tpope/vim-rhubarb' },
   },
-  'tpope/vim-rhubarb',
   {
     'lewis6991/gitsigns.nvim',
     dependencies = {
@@ -294,11 +275,11 @@ require('lazy').setup({
   'junegunn/goyo.vim',
   {
     'dkarter/bullets.vim',
-    ft = { 'nofile', 'text', 'markdown', 'vimwiki' },
+    ft = { 'nofile', 'text', 'markdown' },
   },
   {
     'plasticboy/vim-markdown',
-    ft = { 'markdown', 'vimwiki' },
+    ft = { 'markdown' },
   },
   'godlygeek/tabular',
 
@@ -316,7 +297,11 @@ require('lazy').setup({
       require('treesitter-context').setup()
     end,
   },
-  'windwp/nvim-ts-autotag',
+  {
+    'windwp/nvim-ts-autotag',
+    event = 'InsertEnter',
+    opts = {},
+  },
   'nvim-lua/plenary.nvim',
   'nvim-lua/popup.nvim',
   'folke/neodev.nvim',
@@ -332,6 +317,7 @@ require('lazy').setup({
 
   {
     'hrsh7th/nvim-cmp',
+    event = 'InsertEnter',
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
@@ -353,23 +339,20 @@ require('lazy').setup({
   },
   {
     'j-hui/fidget.nvim',
-    config = function()
-      require('fidget').setup()
-    end,
+    opts = {},
   },
   {
     'nvimdev/lspsaga.nvim',
-    config = function()
-      require('lspsaga').setup {}
-    end,
+    opts = {},
     dependencies = {
       'nvim-treesitter/nvim-treesitter', -- optional
-      'nvim-tree/nvim-web-devicons',     -- optional
+      'nvim-tree/nvim-web-devicons', -- optional
     },
   },
 
   {
     'folke/trouble.nvim',
+    cmd = 'Trouble',
     config = function()
       vim.cmd([[
         hi link TroubleSignError DiagnosticSignError
@@ -389,6 +372,5 @@ require('lazy').setup({
         },
       }
     end,
-    event = 'VeryLazy',
   },
 })
