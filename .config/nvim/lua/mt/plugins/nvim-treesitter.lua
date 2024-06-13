@@ -1,7 +1,3 @@
--- TODO: this shouldn't always be `expr`, for example vim files with markers
-vim.cmd([[ set foldmethod=expr ]])
-vim.cmd([[ set foldexpr=nvim_treesitter#foldexpr() ]])
-
 require('nvim-treesitter.configs').setup {
 
   -- one of "all", "maintained" (parsers with maintainers), or a list of languages
