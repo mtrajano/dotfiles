@@ -373,4 +373,6 @@ require('lazy').setup {
       }
     end,
   },
-})
+
+  { import = 'plugins' },
+}

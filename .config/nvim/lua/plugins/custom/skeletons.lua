@@ -1,3 +1,4 @@
+-- TODO: convert this to a proper namespace
 local api = vim.api
 local cmd = vim.cmd
 local fn = vim.fn
@@ -63,6 +64,6 @@ M.try_import_skeleton = function()
 end
 
 -- manually import skeleton
-cmd([[ command! -nargs=0 SI lua require('plugins.skeletons').try_import_skeleton() ]])
+cmd([[ command! -nargs=0 SI lua require('plugins.custom.skeletons').try_import_skeleton() ]])
 
 return M

@@ -2,7 +2,7 @@
 " import class skeletons
 " augroup import_skeleton
 "   autocmd!
-"   autocmd BufNewFile * lua require('plugins.skeletons').try_import_skeleton()
+"   autocmd BufNewFile * lua require('plugins.custom.skeletons').try_import_skeleton()
 " augroup END
 
 command! -nargs=0 Cd exec 'cd ' . system('git root ' . expand('%:h'))
