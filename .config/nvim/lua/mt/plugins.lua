@@ -67,13 +67,6 @@ require('lazy').setup {
   },
 
   {
-    'nvim-neorg/neorg',
-    config = function()
-      require('mt.plugins.neorg')
-    end,
-    dependencies = { 'nvim-treesitter', 'nvim-lua/plenary.nvim', 'nvim-neorg/neorg-telescope' },
-  },
-  {
     'simrat39/symbols-outline.nvim',
     config = function()
       require('symbols-outline').setup()
