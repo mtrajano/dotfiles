@@ -91,6 +91,7 @@ require('lazy').setup {
 
   {
     'lukas-reineke/indent-blankline.nvim',
+    enabled = false,
     config = function()
       require('ibl').setup {
         exclude = { filetypes = { 'terminal', 'nofile', 'help', 'markdown', 'text', 'fugitive' } },
@@ -305,21 +306,6 @@ require('lazy').setup {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require('mt.telescope')
-    end,
-  },
-
-  {
-    'hrsh7th/nvim-cmp',
-    event = 'InsertEnter',
-    dependencies = {
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-cmdline', -- TODO: looks like it breaks when native_menu is set, look into: https://github.com/hrsh7th/nvim-cmp/issues/1059
-    },
-    config = function()
-      require('mt.plugins.nvim-cmp')
     end,
   },
   {

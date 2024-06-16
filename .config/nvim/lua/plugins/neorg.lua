@@ -35,6 +35,12 @@ return {
               default_workspace = 'dev',
             },
           },
+          ['core.completion'] = {
+            config = {
+              engine = 'nvim-cmp',
+            },
+          },
+          ['core.integrations.nvim-cmp'] = {},
         },
       }
     end,

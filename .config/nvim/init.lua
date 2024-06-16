@@ -3,6 +3,7 @@ vim.loader.enable()
 local should_profile = false
 
 vim.g.mapleader = ' '
+vim.g.maplocalleader = ','
 
 vim.env.DOTFILES = vim.env.HOME .. '/dotfiles/.config/nvim'
 
