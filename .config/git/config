@@ -123,10 +123,7 @@
 [diff "tmux"]
   xfuncname = ""
 
-[diff "sh"]
-  xfuncname = ""
-
 [pull]
   ff = only
 [init]
-	defaultBranch = main
+  defaultBranch = main

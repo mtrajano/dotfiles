@@ -41,6 +41,13 @@ return {
             },
           },
           ['core.integrations.nvim-cmp'] = {},
+          ['core.keybinds'] = {
+            config = {
+              hook = function(keybinds)
+                keybinds.remap_event('norg', 'i', '<C-CR>', 'core.itero.next-iteration')
+              end,
+            },
+          },
         },
       }
     end,

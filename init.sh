@@ -32,13 +32,15 @@ _install_mac() {
     php \
     composer \
     jq \
-    lazygit
+    lazygit \
+    luajit \
+    bat
 
   # enable fzf keybindinds
   $(brew --prefix)/opt/fzf/install
 
   # install nvm
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
 
   # for spotify
   brew install spotify spotifyd
@@ -82,7 +84,8 @@ _install_linux() {
     git-delta \
     git \
     gh \
-    tldr
+    tldr \
+    luajit
 
   # build neovim
   yay -S base-devel cmake unzip ninja tree-sitter curl
