@@ -120,9 +120,6 @@
 [diff "lua"]
   xfuncname = "(local function \\w+[^)]\\)|\\w+\\.[\\w\\.]+ = function[^)]+\\))"
 
-[diff "tmux"]
-  xfuncname = ""
-
 [pull]
   ff = only
 [init]

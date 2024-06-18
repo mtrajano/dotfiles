@@ -288,7 +288,9 @@ require('lazy').setup {
   {
     'nvim-treesitter/nvim-treesitter-context',
     config = function()
-      require('treesitter-context').setup()
+      require('treesitter-context').setup {
+        max_lines = 2,
+      }
     end,
   },
   {
@@ -322,7 +324,11 @@ require('lazy').setup {
   },
   {
     'nvimdev/lspsaga.nvim',
-    opts = {},
+    opts = {
+      lightbulb = {
+        sign = false, -- causes view to shift on every cursor move if the space is not reserved on the sign column
+      }
+    },
     dependencies = {
       'nvim-treesitter/nvim-treesitter', -- optional
       'nvim-tree/nvim-web-devicons', -- optional
