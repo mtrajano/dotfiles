@@ -1,19 +1,19 @@
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  vim.fn.system {
+  vim.fn.system({
     'git',
     'clone',
     '--filter=blob:none',
     'https://github.com/folke/lazy.nvim.git',
     '--branch=stable', -- latest stable release
     lazypath,
-  }
+  })
 end
 vim.opt.rtp:prepend(lazypath)
 
 -- TODO: LOOK INTO LAZY LOADING A LOT OF THESE
 -- NEED TO MOVE PLUGIN CONFIGS OUTSIDE OF AUTOLOADED /PLUGIN DIR
-require('lazy').setup {
+require('lazy').setup({
   {
     'folke/tokyonight.nvim',
     lazy = false,
@@ -93,9 +93,9 @@ require('lazy').setup {
     'lukas-reineke/indent-blankline.nvim',
     enabled = false,
     config = function()
-      require('ibl').setup {
+      require('ibl').setup({
         exclude = { filetypes = { 'terminal', 'nofile', 'help', 'markdown', 'text', 'fugitive' } },
-      }
+      })
     end,
   },
 
@@ -150,11 +150,11 @@ require('lazy').setup {
     config = function()
       vim.keymap.set('n', '<leader>bd', vim.cmd.Bd, { desc = 'Bufferdelete' })
       vim.keymap.set('n', '<leader>bD', function()
-        vim.cmd.Bd { bang = true }
+        vim.cmd.Bd({ bang = true })
       end, { desc = 'Bufferdelete force' })
       vim.keymap.set('n', '<leader>bw', vim.cmd.Bw, { desc = 'Bufferwipeout' })
       vim.keymap.set('n', '<leader>bW', function()
-        vim.cmd.Bw { bang = true }
+        vim.cmd.Bw({ bang = true })
       end, { desc = 'Bufferwipeout force' })
     end,
   },
@@ -172,13 +172,7 @@ require('lazy').setup {
 
   {
     'kylechui/nvim-surround',
-    config = function()
-      require('nvim-surround').setup {
-        aliases = {
-          ['c'] = '`', -- inline code block, should this be moved to markdown/norg specific?
-        },
-      }
-    end,
+    opts = {},
   },
 
   'tpope/vim-sleuth', -- automatically detect space issue
@@ -213,13 +207,13 @@ require('lazy').setup {
     config = function()
       local actions = require('diffview.actions')
       vim.keymap.set('n', '<leader>D', vim.cmd.DiffviewOpen, { desc = 'DiffviewOpen' })
-      require('diffview').setup {
+      require('diffview').setup({
         keymaps = {
           file_panel = {
             ['s'] = actions.toggle_stage_entry, -- Stage / unstage the selected entry.
           },
         },
-      }
+      })
     end,
   },
   {
@@ -244,7 +238,7 @@ require('lazy').setup {
     'folke/todo-comments.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
-      require('todo-comments').setup {}
+      require('todo-comments').setup({})
 
       vim.cmd.inoreabbrev('bug:', 'BUG:')
       vim.cmd.inoreabbrev('todo:', 'TODO:')
@@ -288,9 +282,9 @@ require('lazy').setup {
   {
     'nvim-treesitter/nvim-treesitter-context',
     config = function()
-      require('treesitter-context').setup {
+      require('treesitter-context').setup({
         max_lines = 2,
-      }
+      })
     end,
   },
   {
@@ -313,9 +307,9 @@ require('lazy').setup {
   {
     'ray-x/lsp_signature.nvim',
     config = function()
-      require('lsp_signature').setup {
+      require('lsp_signature').setup({
         toggle_key = '<C-K>',
-      }
+      })
     end,
   },
   {
@@ -327,7 +321,7 @@ require('lazy').setup {
     opts = {
       lightbulb = {
         sign = false, -- causes view to shift on every cursor move if the space is not reserved on the sign column
-      }
+      },
     },
     dependencies = {
       'nvim-treesitter/nvim-treesitter', -- optional
@@ -345,7 +339,7 @@ require('lazy').setup {
         hi link TroubleSignWarning DiagnosticSignWarning
         hi link TroubleTextWarning DiagnosticWarning
       ]])
-      require('trouble').setup {
+      require('trouble').setup({
         auto_fold = true,
         auto_close = true,
         signs = {
@@ -355,9 +349,9 @@ require('lazy').setup {
           information = '',
           other = '﫠',
         },
-      }
+      })
     end,
   },
 
   { import = 'plugins' },
-}
+})
