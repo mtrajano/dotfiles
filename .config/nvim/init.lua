@@ -43,3 +43,4 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 require('mt.options')
 require('mt.search')
+require('mt.lsp')

@@ -8,7 +8,7 @@ if debug then
 end
 
 require('mason').setup()
-require('mason-tool-installer').setup {
+require('mason-tool-installer').setup({
   ensure_installed = {
     -- lsp
     'intelephense',
@@ -22,7 +22,7 @@ require('mason-tool-installer').setup {
     'stylua',
     'proselint',
   },
-}
+})
 
 local lspconfig = require('lspconfig')
 local lsp_signature = require('lsp_signature')
@@ -32,22 +32,22 @@ local function my_attach(client)
   lsp_signature.on_attach()
 end
 
-lspconfig.intelephense.setup {
+lspconfig.intelephense.setup({
   on_attach = my_attach,
   init_options = {
     licenceKey = vim.env.INTELEPHENSE_KEY,
   },
-}
+})
 
-lspconfig.tsserver.setup {
+lspconfig.tsserver.setup({
   on_attach = my_attach,
-}
+})
 
 --Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-lspconfig.jsonls.setup {
+lspconfig.jsonls.setup({
   capabilities = capabilities,
   on_attach = my_attach,
   -- TODO: see if can complain about incorrect keys
@@ -68,15 +68,15 @@ lspconfig.jsonls.setup {
       },
     },
   },
-}
+})
 
-lspconfig.clangd.setup {
+lspconfig.clangd.setup({
   on_attach = my_attach,
-}
+})
 
-require('neodev').setup {}
+require('neodev').setup({})
 -- example to setup sumneko and enable call snippets
-lspconfig.lua_ls.setup {
+lspconfig.lua_ls.setup({
   settings = {
     Lua = {
       completion = {
@@ -84,7 +84,7 @@ lspconfig.lua_ls.setup {
       },
     },
   },
-}
+})
 
 -- define diagnostics signs
 vim.cmd([[
@@ -128,10 +128,10 @@ vim.keymap.set('n', ']D', function()
   require('lspsaga.diagnostic'):goto_next()
 end, { desc = 'Diagnostic go to next' })
 vim.keymap.set('n', '[d', function()
-  require('lspsaga.diagnostic'):goto_prev { severity = vim.diagnostic.severity.WARN }
+  require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.WARN })
 end, { desc = 'Diagnostic go to prev warning+' })
 vim.keymap.set('n', ']d', function()
-  require('lspsaga.diagnostic'):goto_next { severity = vim.diagnostic.severity.WARN }
+  require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.WARN })
 end, { desc = 'Diagnostic go to next warning+' })
 
 vim.keymap.set('n', '<leader>da', function()

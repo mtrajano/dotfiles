@@ -61,9 +61,6 @@ require('lazy').setup({
       'WhoIsSethDaniel/mason-tool-installer.nvim',
       'neovim/nvim-lspconfig',
     },
-    config = function()
-      require('mt.lsp')
-    end,
   },
 
   {
