@@ -9,7 +9,7 @@ if developing then
   RELOAD('popup')
 end
 
-require('telescope').setup {
+require('telescope').setup({
   defaults = {
     sorting_strategy = 'ascending',
     layout_config = {
@@ -37,7 +37,7 @@ require('telescope').setup {
       case_mode = 'ignore_case', -- or "ignore_case" or "respect_case"
     },
   },
-}
+})
 
 require('telescope').load_extension('fzf')
 
@@ -55,7 +55,6 @@ custom_mapping('<leader>jd', 'edit_dotfiles')
 custom_mapping('<leader>jv', 'edit_vendor')
 custom_mapping('<leader>jp', 'edit_packer')
 custom_mapping('<leader>jr', 'edit_runtime')
-custom_mapping('<leader>jn', 'edit_notes')
 
 custom_mapping('<leader>l', 'buffers')
 custom_mapping('<leader>H', 'search_help')
@@ -103,19 +102,19 @@ M.find_files = function()
 end
 
 M.find_all_files = function()
-  require('telescope.builtin').find_files {
+  require('telescope.builtin').find_files({
     find_command = { 'fd', '--type', 'f', '--no-ignore-vcs' },
     hidden = true,
-  }
+  })
 end
 
 M.edit_dotfiles = function()
-  require('telescope.builtin').find_files {
-    cwd = tostring(Path:new { vim.loop.os_homedir(), 'dotfiles' }),
+  require('telescope.builtin').find_files({
+    cwd = tostring(Path:new({ vim.loop.os_homedir(), 'dotfiles' })),
     search_dirs = { '.config', 'init.sh' },
     prompt_title = ' Dotfiles',
     prompt_prefix = 'dotfiles> ',
-  }
+  })
 end
 
 -- TODO: replace this with plenary.path
@@ -124,65 +123,57 @@ local function relative_path(path)
 end
 
 M.edit_packer = function()
-  require('telescope.builtin').find_files {
+  require('telescope.builtin').find_files({
     prompt_title = 'Packer',
     cwd = os.getenv('XDG_DATA_HOME') .. '/nvim/site/pack/packer',
-  }
+  })
 end
 
 M.edit_vendor = function()
-  require('telescope.builtin').find_files {
+  require('telescope.builtin').find_files({
     prompt_title = 'Vendor Files',
     cwd = relative_path('vendor'),
-  }
+  })
 end
 
 M.edit_runtime = function()
-  require('telescope.builtin').find_files {
+  require('telescope.builtin').find_files({
     prompt_title = 'Runtime',
     cwd = os.getenv('VIMRUNTIME'),
-  }
-end
-
--- TODO: move this to the neorg config
-M.edit_notes = function()
-  require('telescope.builtin').find_files {
-    prompt_title = 'Notes',
-    cwd = tostring(Path:new { vim.loop.os_homedir(), 'notes' }),
-  }
+  })
 end
 
 M.oldfiles = function()
-  require('telescope.builtin').oldfiles {}
+  require('telescope.builtin').oldfiles({})
 end
 
 M.quickfix = function()
-  require('telescope.builtin').quickfix {}
+  require('telescope.builtin').quickfix({})
 end
 
 M.buffers = function()
-  require('telescope.builtin').buffers {
+  require('telescope.builtin').buffers({
     sort_mru = true,
-  }
+  })
 end
 
 M.search_help = function()
-  require('telescope.builtin').help_tags {
+  require('telescope.builtin').help_tags({
     prompt_prefix = 'help tags> ',
-  }
+  })
 end
 
 M.man_pages = function()
-  require('telescope.builtin').man_pages {
+  require('telescope.builtin').man_pages({
     prompt_prefix = 'man pages> ',
-  }
+  })
 end
 
 M.lsp_references = function()
-  require('telescope.builtin').lsp_references {
+  require('telescope.builtin').lsp_references({
     entry_maker = require('mt.telescope.entry_makers').file_with_linenumbers,
     layout_strategy = 'vertical',
-  }
+  })
 end
 
 return M

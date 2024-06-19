@@ -175,6 +175,7 @@ require('lazy').setup({
     opts = {},
   },
 
+  'mtrajano/vim-vinegar', -- NOTE: had to fork repo to make y. work due to it having a mapcheck which is taken by which-key
   'tpope/vim-sleuth', -- automatically detect space issue
   'tpope/vim-repeat',
   {

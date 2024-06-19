@@ -140,12 +140,12 @@ end, { desc = 'Code action' })
 
 -- coming from other plugins
 vim.keymap.set('n', '<leader>k', function()
-  require('telescope.builtin').lsp_document_symbols { ignore_filename = false, symbol_width = 35 }
-end, { silent = true })
+  require('telescope.builtin').lsp_document_symbols({ ignore_filename = false, symbol_width = 35 })
+end, { silent = true, desc = 'Search document symbols' })
 vim.keymap.set('n', '<leader>K', function()
-  require('telescope.builtin').lsp_dynamic_workspace_symbols {
+  require('telescope.builtin').lsp_dynamic_workspace_symbols({
     ignore_filename = false,
     previewer = false,
     show_line = true,
-  }
-end, { silent = true })
+  })
+end, { silent = true, desc = 'Search workspace symbols' })

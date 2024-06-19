@@ -36,6 +36,7 @@ return {
             },
             { keybinds.leader .. 'sh', 'core.integrations.telescope.search_headings' },
             { keybinds.leader .. 'il', 'core.integrations.telescope.insert_link' },
+            { keybinds.leader .. 'sf', 'core.integrations.telescope.find_norg_files' },
           },
           i = { -- Bind in insert mode
             { '<C-l>', 'core.integrations.telescope.insert_link' },
