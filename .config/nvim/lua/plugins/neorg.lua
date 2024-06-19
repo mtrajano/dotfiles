@@ -6,9 +6,8 @@ return {
   },
 
   {
-    -- TODO: install neorg telescope integration
     'nvim-neorg/neorg',
-    dependencies = { 'luarocks.nvim' },
+    dependencies = { 'luarocks.nvim', 'nvim-neorg/neorg-telescope' },
     lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
     version = '*', -- Pin Neorg to the latest stable release
     config = function()
@@ -20,6 +19,33 @@ return {
         end
       end)
 
+      -- Quickly switching to workspace
+      vim.keymap.set('n', '<leader>jw', function()
+        vim.cmd.Telescope({ 'neorg', 'switch_workspace' })
+      end)
+
+      local neorg_callbacks = require('neorg.core.callbacks')
+
+      neorg_callbacks.on_event('core.keybinds.events.enable_keybinds', function(_, keybinds)
+        -- Map all the below keybinds only when the "norg" mode is active
+        keybinds.map_event_to_mode('norg', {
+          n = { -- Bind keys in normal mode
+            {
+              keybinds.leader .. 'ss',
+              'core.integrations.telescope.find_linkable',
+            },
+            { keybinds.leader .. 'sh', 'core.integrations.telescope.search_headings' },
+            { keybinds.leader .. 'il', 'core.integrations.telescope.insert_link' },
+          },
+          i = { -- Bind in insert mode
+            { '<C-l>', 'core.integrations.telescope.insert_link' },
+          },
+        }, {
+          silent = true,
+          noremap = true,
+        })
+      end)
+
       require('neorg').setup({
         load = {
           ['core.defaults'] = {},
@@ -28,8 +54,8 @@ return {
             config = {
               workspaces = {
                 dev = '~/notes/dev',
-                pontal = '~/noes/pontal',
-                personal = '~/noes/personal',
+                pontal = '~/notes/pontal',
+                personal = '~/notes/personal',
               },
               default_workspace = 'dev',
             },
@@ -57,6 +83,7 @@ return {
               end,
             },
           },
+          ['core.integrations.telescope'] = {},
         },
       })
     end,
