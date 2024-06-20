@@ -31,7 +31,6 @@ require('lazy').setup({
     'folke/which-key.nvim',
     opts = {},
   },
-
   {
     'hoob3rt/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -256,7 +255,6 @@ require('lazy').setup({
 
   {
     'windwp/nvim-ts-autotag',
-    event = 'InsertEnter',
     opts = {},
   },
   'nvim-lua/plenary.nvim',
