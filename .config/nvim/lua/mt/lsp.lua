@@ -98,6 +98,7 @@ vim.cmd([[
 -- KEYMAPS
 ----------
 local function hover_or_get_docs()
+  -- NOTE: can probably simplify these by setting 'keywordprg' for each buffer
   if vim.tbl_contains({ 'vim', 'help' }, o.filetype) then
     vim.cmd.help(fn.expand('<cword>'))
   elseif vim.tbl_contains({ 'sh', 'zsh' }, o.filetype) then
@@ -110,14 +111,15 @@ end
 -- mappings
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'definition' })
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'declaration' })
+-- NOTE: overwrites vim's replace mode which is like like the insert key in windows
+-- I have personally never used it but if it's needed, replaces this keymap
 vim.keymap.set('n', 'R', function()
   vim.cmd.Lspsaga('rename')
 end, { desc = 'Saga rename' })
 vim.keymap.set('n', 'gr', require('mt.telescope').lsp_references, { desc = 'lsp_references' })
-vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, { desc = 'implementation' })
+vim.keymap.set('n', '<leader>di', vim.lsp.buf.implementation, { desc = 'implementation' })
 
--- NOTE: Cool looks like pressing this twice moves us to the hover window but is hard to get out of
--- TODO: Create a keymap to leave the floating window easier? <esc> or q are possibilities, probably contribute usptream?
+-- NOTE: Cool looks like pressing this twice moves us to the hover window
 vim.keymap.set('n', 'K', hover_or_get_docs, { desc = 'hover_or_get_docs' })
 
 -- jump to diagnostics

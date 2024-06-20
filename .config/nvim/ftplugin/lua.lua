@@ -7,15 +7,14 @@ end, {
   desc = 'Run lua file',
 })
 
-require('nvim-surround').buffer_setup {
+require('nvim-surround').buffer_setup({
   surrounds = {
     ['F'] = {
-      -- TODO: look at the other actions
+      -- TODO: can I create a delete version of this?
       add = { 'function() ', ' end' },
     },
     ['P'] = {
-      -- TODO: look at the other actions
       add = { 'P(', ')' },
     },
   },
-}
+})

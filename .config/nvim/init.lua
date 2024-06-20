@@ -7,7 +7,6 @@ vim.g.maplocalleader = ','
 
 vim.env.DOTFILES = vim.env.HOME .. '/dotfiles/.config/nvim'
 
--- TODO: remove when plugin config was moved into autoload folders
 -- TODO: move any custom plugins to personal dev folder
 require('mt.plugins')
 

@@ -53,7 +53,7 @@ custom_mapping('<leader>jj', 'find_files')
 custom_mapping('<leader>jg', 'git_files')
 custom_mapping('<leader>jd', 'edit_dotfiles')
 custom_mapping('<leader>jv', 'edit_vendor')
-custom_mapping('<leader>jp', 'edit_packer')
+custom_mapping('<leader>jp', 'edit_plugins')
 custom_mapping('<leader>jr', 'edit_runtime')
 
 custom_mapping('<leader>l', 'buffers')
@@ -122,10 +122,13 @@ local function relative_path(path)
   return string.format('%s/%s', fn.getcwd(), path)
 end
 
-M.edit_packer = function()
+-- TODO: should this cd into the path?
+M.edit_plugins = function()
   require('telescope.builtin').find_files({
-    prompt_title = 'Packer',
-    cwd = os.getenv('XDG_DATA_HOME') .. '/nvim/site/pack/packer',
+    prompt_title = 'Go to plugins',
+    find_command = { 'fd', '--type', 'directory', '--max-depth', '1' },
+    cwd = vim.fn.stdpath('data') .. '/lazy',
+    previewer = false,
   })
 end
 

@@ -5,6 +5,7 @@ return {
     config = true,
   },
 
+  -- TODO: consider lazy loading, is the one causing the most time during startup
   {
     'nvim-neorg/neorg',
     dependencies = { 'luarocks.nvim', 'nvim-neorg/neorg-telescope' },

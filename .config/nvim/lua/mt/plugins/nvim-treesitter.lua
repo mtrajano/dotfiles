@@ -1,5 +1,5 @@
 ---@diagnostic disable-next-line: missing-fields
-require('nvim-treesitter.configs').setup {
+require('nvim-treesitter.configs').setup({
 
   auto_install = false, -- do not auto install parsers, should manually pick which ones I want to install
 
@@ -94,10 +94,11 @@ require('nvim-treesitter.configs').setup {
     keymaps = {
       init_selection = 'gnn', -- set to `false` to disable one of the mappings
       -- scope_incremental = 's',
-      -- NOTE: experimental
+      -- NOTE: experimental, ; might cause problems, consier replacing with . but it will overwrite the current map I
+      -- have for `normal .`
       -- good candidates for this: ; , . s S (since c/C do same thing in visual mode)
       node_incremental = ';',
       node_decremental = ',',
     },
   },
-}
+})

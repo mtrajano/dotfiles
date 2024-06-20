@@ -11,8 +11,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- TODO: LOOK INTO LAZY LOADING A LOT OF THESE
--- NEED TO MOVE PLUGIN CONFIGS OUTSIDE OF AUTOLOADED /PLUGIN DIR
 require('lazy').setup({
   {
     'folke/tokyonight.nvim',
@@ -43,12 +41,12 @@ require('lazy').setup({
   },
   {
     'kevinhwang91/nvim-ufo',
-    dependencies = { 'kevinhwang91/promise-async' },
+    dependencies = { 'kevinhwang91/promise-async', 'nvim-treesitter/nvim-treesitter' },
     opts = {
-        provider_selector = function()
-          return { 'treesitter', 'indent' }
-        end,
-    }
+      provider_selector = function()
+        return { 'treesitter', 'indent' }
+      end,
+    },
   },
 
   ------
@@ -119,7 +117,6 @@ require('lazy').setup({
     end,
   },
 
-  -- TODO: need to install the tmux plguin so can navigate back
   {
     'christoomey/vim-tmux-navigator',
     keys = {
@@ -142,19 +139,7 @@ require('lazy').setup({
       vim.g.qf_mapping_ack_style = 1
     end,
   },
-  {
-    'moll/vim-bbye',
-    config = function()
-      vim.keymap.set('n', '<leader>bd', vim.cmd.Bd, { desc = 'Bufferdelete' })
-      vim.keymap.set('n', '<leader>bD', function()
-        vim.cmd.Bd({ bang = true })
-      end, { desc = 'Bufferdelete force' })
-      vim.keymap.set('n', '<leader>bw', vim.cmd.Bw, { desc = 'Bufferwipeout' })
-      vim.keymap.set('n', '<leader>bW', function()
-        vim.cmd.Bw({ bang = true })
-      end, { desc = 'Bufferwipeout force' })
-    end,
-  },
+  'moll/vim-bbye',
   {
     'AndrewRadev/splitjoin.vim',
     config = function()
@@ -270,22 +255,6 @@ require('lazy').setup({
   'godlygeek/tabular',
 
   {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    config = function()
-      require('mt.plugins.nvim-treesitter')
-    end,
-  },
-  'nvim-treesitter/nvim-treesitter-textobjects',
-  {
-    'nvim-treesitter/nvim-treesitter-context',
-    config = function()
-      require('treesitter-context').setup({
-        max_lines = 2,
-      })
-    end,
-  },
-  {
     'windwp/nvim-ts-autotag',
     event = 'InsertEnter',
     opts = {},
@@ -329,8 +298,14 @@ require('lazy').setup({
 
   {
     'folke/trouble.nvim',
-    cmd = 'Trouble',
     config = function()
+      vim.keymap.set('n', '<leader>tt', function()
+        vim.cmd.Trouble('diagnostics')
+      end)
+      vim.keymap.set('n', '<leader>to', function()
+        vim.cmd.Trouble('todo')
+      end)
+
       vim.cmd([[
         hi link TroubleSignError DiagnosticSignError
         hi link TroubleTextError DiagnosticError
