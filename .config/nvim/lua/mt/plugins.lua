@@ -109,9 +109,11 @@ require('lazy').setup({
   {
     'andymass/vim-matchup',
     config = function()
+      -- on cursor over only highlight the tagname and not the properties
       vim.g.matchup_matchpref = {
         html = { tagnameonly = 1 },
         liquid = { tagnameonly = 1 },
+        typescriptreact = { tagnameonly = 1 },
       }
     end,
   },
@@ -140,15 +142,24 @@ require('lazy').setup({
   },
   'moll/vim-bbye',
   {
-    'AndrewRadev/splitjoin.vim',
-    config = function()
-      -- split join, each method call in a different line
-      vim.g.splitjoin_php_method_chain_full = 1
-
-      vim.keymap.set('n', '<leader>ss', vim.cmd.SplitjoinSplit, { desc = 'SplitjoinSplit' })
-      vim.keymap.set('n', '<leader>sj', vim.cmd.SplitjoinJoin, { desc = 'SplitjoinJoin' })
-    end,
-    event = 'VeryLazy',
+    'Wansmer/treesj',
+    opts = {
+      use_default_keymaps = false,
+    },
+    keys = {
+      {
+        'gs',
+        function()
+          require('treesj').split()
+        end,
+      },
+      {
+        'gJ',
+        function()
+          require('treesj').join()
+        end,
+      },
+    },
   },
 
   {
@@ -167,7 +178,26 @@ require('lazy').setup({
     end,
   },
   'tpope/vim-commentary', -- TODO: install the nvim version
-  'tpope/vim-unimpaired',
+  {
+    'tpope/vim-unimpaired',
+    config = function()
+      -- remap [oc, ]oc, yoc which usually toggles the cursorline to toggle conceal instead which is more useful for me
+      local map = vim.keymap.set
+      map('n', '[oc', function()
+        vim.opt_local.conceallevel = 2
+      end)
+      map('n', ']oc', function()
+        vim.opt_local.conceallevel = 0
+      end)
+      map('n', 'yoc', function()
+        if vim.opt_local.conceallevel:get() > 0 then
+          vim.opt_local.conceallevel = 0
+        else
+          vim.opt_local.conceallevel = 2
+        end
+      end)
+    end,
+  },
   'tpope/vim-abolish',
   'tpope/vim-speeddating',
   'tpope/vim-obsession',
@@ -255,7 +285,9 @@ require('lazy').setup({
 
   {
     'windwp/nvim-ts-autotag',
-    opts = {},
+    opts = {
+      enable_rename = true,
+    },
   },
   'nvim-lua/plenary.nvim',
   'nvim-lua/popup.nvim',

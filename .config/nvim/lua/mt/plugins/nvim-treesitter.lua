@@ -97,7 +97,7 @@ require('nvim-treesitter.configs').setup({
       -- NOTE: experimental, ; might cause problems, consier replacing with . but it will overwrite the current map I
       -- have for `normal .`
       -- good candidates for this: ; , . s S (since c/C do same thing in visual mode)
-      node_incremental = ';',
+      node_incremental = '.',
       node_decremental = ',',
     },
   },

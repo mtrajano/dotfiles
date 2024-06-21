@@ -17,6 +17,7 @@ require('mason-tool-installer').setup({
     'bash-language-server',
     'json-lsp',
     'pyright',
+    'css-lsp',
 
     'shellcheck',
     'stylua',
@@ -41,6 +42,16 @@ lspconfig.intelephense.setup({
 
 lspconfig.tsserver.setup({
   on_attach = my_attach,
+})
+
+-- enable css autocomplete
+-- TODO: should this be the case for all clients?
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+lspconfig.cssls.setup({
+  on_attach = my_attach,
+  capabilities = capabilities,
 })
 
 --Enable (broadcasting) snippet capability for completion

@@ -17,7 +17,7 @@ keymap.set('n', 'gp', '`[v`]') -- select last pasted
 keymap.set('n', '<leader><space>', '<C-^>') -- last buffer/window
 keymap.set('n', '<leader>q', '<Plug>(qf_qf_toggle)', { remap = true }) -- toggle quickfix
 keymap.set('v', '*', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]]) -- search under selection
-keymap.set('v', '.', ':norm .<CR>')
+keymap.set('v', '<leader>.', ':norm .<CR>')
 
 opt.swapfile = false
 opt.number = true

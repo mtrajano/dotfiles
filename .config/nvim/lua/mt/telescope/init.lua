@@ -54,15 +54,15 @@ custom_mapping('<leader>jg', 'git_files')
 custom_mapping('<leader>jd', 'edit_dotfiles')
 custom_mapping('<leader>jv', 'edit_vendor')
 custom_mapping('<leader>jp', 'edit_plugins')
-custom_mapping('<leader>jr', 'edit_runtime')
 
 custom_mapping('<leader>l', 'buffers')
 custom_mapping('<leader>H', 'search_help')
 builtin_mapping('<leader>M', 'man_pages')
 builtin_mapping('<leader>:', 'commands')
+builtin_mapping('<leader>;', 'command_history')
 builtin_mapping('<leader>jo', 'oldfiles')
 builtin_mapping('<leader>jq', 'quickfix')
-builtin_mapping('<leader>jl', 'resume')
+builtin_mapping('<leader>jr', 'resume')
 
 local function shorten_path(path)
   path = fn.fnamemodify(path, ':~')
@@ -136,13 +136,6 @@ M.edit_vendor = function()
   require('telescope.builtin').find_files({
     prompt_title = 'Vendor Files',
     cwd = relative_path('vendor'),
-  })
-end
-
-M.edit_runtime = function()
-  require('telescope.builtin').find_files({
-    prompt_title = 'Runtime',
-    cwd = os.getenv('VIMRUNTIME'),
   })
 end
 
