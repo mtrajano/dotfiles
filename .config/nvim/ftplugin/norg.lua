@@ -1,13 +1,5 @@
 vim.opt_local.conceallevel = 2
 
-local function ensure_link_prefix(link)
-  if not string.match(link, '^https://') then
-    link = 'https://' .. link
-  end
-
-  return link
-end
-
 require('nvim-surround').buffer_setup({
   -- NOTE: this can be applied to other filetypes as well, ex. markdown, etc..
   aliases = {
@@ -29,7 +21,6 @@ require('nvim-surround').buffer_setup({
         local result = config.get_input('Enter link: ')
         if result then
           -- TODO: move this into a util file
-          result = ensure_link_prefix(result)
           return { { '{' .. result .. '}[' }, { ']' } }
         end
       end,

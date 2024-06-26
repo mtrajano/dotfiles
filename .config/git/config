@@ -92,8 +92,8 @@
   stC = stash clear
 
   # push/pull
-  up = push --force origin
-  pu = pull --rebase upstream master
+  up = push origin
+  pu = pull --rebase upstream
 
   # MISC
   cp = cherry-pick

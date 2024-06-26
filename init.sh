@@ -34,7 +34,8 @@ _install_mac() {
     jq \
     lazygit \
     luajit \
-    bat
+    bat \
+    ranger
 
   # enable fzf keybindinds
   $(brew --prefix)/opt/fzf/install

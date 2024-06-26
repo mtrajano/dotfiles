@@ -12,24 +12,24 @@ vim.keymap.set('n', '<leader>Y', '<leader>y$', { remap = true, desc = 'Copy to c
 vim.keymap.set(
   'n',
   '<leader>yf',
-  '<cmd>let @+=expand("%:t")<cr>',
+  '<cmd>let @+=expand("%:t") | echo "Copied file name to clipboard"<cr>',
   { remap = true, desc = 'Copy curent file name to clipboard' }
 )
 vim.keymap.set(
   'n',
   '<leader>yp',
-  '<cmd>let @+=expand("%:p")<cr>',
+  '<cmd>let @+=expand("%:p") | echo "Copied file path to clipboard"<cr>',
   { remap = true, desc = 'Copy curent file absolute path to clipboard' }
 )
 vim.keymap.set(
   'n',
   '<leader>yl',
-  '<cmd>let @+=expand("%:p") . ":" . line(".")<cr>',
+  '<cmd>let @+=expand("%:p") . ":" . line(".") | echo "Copied file path with line to clipboard"<cr>',
   { remap = true, desc = 'Copy curent file absolute path to clipboard with line number appended' }
 )
 vim.keymap.set(
   'n',
   '<leader>yr',
-  '<cmd>let @+=expand("%")<cr>',
+  '<cmd>let @+=expand("%") | echo "Copied relative file path to clipboard"<cr>',
   { remap = true, desc = 'Copy curent file relative path to clipboard' }
 )

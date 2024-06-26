@@ -108,6 +108,9 @@ require('lazy').setup({
 
   {
     'andymass/vim-matchup',
+    -- disable if causing lag on cursor move for larger files
+    -- TODO: figure out how to do this automatically on a buffer
+    enabled = true,
     config = function()
       -- on cursor over only highlight the tagname and not the properties
       vim.g.matchup_matchpref = {
@@ -162,12 +165,6 @@ require('lazy').setup({
     },
   },
 
-  {
-    'kylechui/nvim-surround',
-    opts = {},
-  },
-
-  'mtrajano/vim-vinegar', -- NOTE: had to fork repo to make y. work due to it having a mapcheck which is taken by which-key
   'tpope/vim-sleuth', -- automatically detect space issue
   'tpope/vim-repeat',
   {
@@ -200,7 +197,7 @@ require('lazy').setup({
   },
   'tpope/vim-abolish',
   'tpope/vim-speeddating',
-  'tpope/vim-obsession',
+  'tpope/vim-obsession', -- TODO: look into replacing with recession.nvim
   'tpope/vim-scriptease',
   {
     'tpope/vim-dispatch',
@@ -253,11 +250,14 @@ require('lazy').setup({
       require('todo-comments').setup({})
 
       vim.cmd.inoreabbrev('bug:', 'BUG:')
-      vim.cmd.inoreabbrev('todo:', 'TODO:')
-      vim.cmd.inoreabbrev('note:', 'NOTE:')
-      vim.cmd.inoreabbrev('test:', 'TEST:')
-      vim.cmd.inoreabbrev('hack:', 'HACK:')
       vim.cmd.inoreabbrev('fixme:', 'FIXME:')
+      vim.cmd.inoreabbrev('hack:', 'HACK:')
+      vim.cmd.inoreabbrev('info:', 'INFO:')
+      vim.cmd.inoreabbrev('note:', 'NOTE:')
+      vim.cmd.inoreabbrev('perf:', 'PERF:')
+      vim.cmd.inoreabbrev('test:', 'TEST:')
+      vim.cmd.inoreabbrev('todo:', 'TODO:')
+      vim.cmd.inoreabbrev('warn:', 'WARN:')
     end,
   },
 
@@ -286,7 +286,9 @@ require('lazy').setup({
   {
     'windwp/nvim-ts-autotag',
     opts = {
-      enable_rename = true,
+      opts = {
+        enable_rename = true,
+      },
     },
   },
   'nvim-lua/plenary.nvim',
@@ -357,4 +359,7 @@ require('lazy').setup({
   },
 
   { import = 'plugins' },
+}, {
+  -- colorscheme for the auto install popup
+  install = { colorscheme = { 'tokyonight' } },
 })

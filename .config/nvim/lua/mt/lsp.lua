@@ -152,10 +152,10 @@ vim.keymap.set('n', '<leader>da', function()
 end, { desc = 'Code action' })
 
 -- coming from other plugins
-vim.keymap.set('n', '<leader>k', function()
+vim.keymap.set('n', '<leader>ds', function()
   require('telescope.builtin').lsp_document_symbols({ ignore_filename = false, symbol_width = 35 })
 end, { silent = true, desc = 'Search document symbols' })
-vim.keymap.set('n', '<leader>K', function()
+vim.keymap.set('n', '<leader>dw', function()
   require('telescope.builtin').lsp_dynamic_workspace_symbols({
     ignore_filename = false,
     previewer = false,
