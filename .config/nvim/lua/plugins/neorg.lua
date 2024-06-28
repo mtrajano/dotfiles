@@ -15,10 +15,8 @@ return {
       vim.keymap.set('n', '<leader>n', function()
         if vim.bo.filetype == 'norg' then
           vim.cmd.Neorg('return')
-          vim.cmd.lcd('-')
         else
           vim.cmd.Neorg('index')
-          vim.cmd.lcd('%:h')
         end
       end)
 

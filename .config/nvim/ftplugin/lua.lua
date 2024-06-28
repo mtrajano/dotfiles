@@ -10,8 +10,9 @@ end, {
 require('nvim-surround').buffer_setup({
   surrounds = {
     ['F'] = {
-      -- TODO: can I create a delete version of this?
       add = { 'function() ', ' end' },
+      -- TODO: can I create a delete version of this? Should be something like this but it's not working
+      -- delete = '^(function%(%) )().*( end)()$',
     },
     ['P'] = {
       add = { 'P(', ')' },

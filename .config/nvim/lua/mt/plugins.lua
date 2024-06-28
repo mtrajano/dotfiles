@@ -28,6 +28,50 @@ require('lazy').setup({
   'ojroques/vim-oscyank',
 
   {
+    'gbprod/yanky.nvim',
+    opts = {
+      highlight = {
+        on_put = true, -- consider turning off if annoying
+        timer = 300,
+      },
+    },
+    keys = {
+      -- overwrite paste methods
+      { 'p', '<Plug>(YankyPutAfter)', mode = { 'n', 'x' } },
+      { 'P', '<Plug>(YankyPutBefore)', mode = { 'n', 'x' } },
+      { 'gp', '<Plug>(YankyGPutAfter)', mode = { 'n', 'x' } },
+      { 'gP', '<Plug>(YankyGPutBefore)', mode = { 'n', 'x' } },
+
+      -- keyring
+      { '<c-p>', '<Plug>(YankyPreviousEntry)', mode = 'n' },
+      { '<c-n>', '<Plug>(YankyNextEntry)', mode = 'n' },
+
+      -- unimpaired style plugins
+      { ']p', '<Plug>(YankyPutIndentAfterLinewise)', mode = 'n' },
+      { '[p', '<Plug>(YankyPutIndentBeforeLinewise)', mode = 'n' },
+      { ']P', '<Plug>(YankyPutIndentAfterLinewise)', mode = 'n' },
+      { '[P', '<Plug>(YankyPutIndentBeforeLinewise)', mode = 'n' },
+
+      { '>p', '<Plug>(YankyPutIndentAfterShiftRight)', mode = 'n' },
+      { '<p', '<Plug>(YankyPutIndentAfterShiftLeft)', mode = 'n' },
+      { '>P', '<Plug>(YankyPutIndentBeforeShiftRight)', mode = 'n' },
+      { '<P', '<Plug>(YankyPutIndentBeforeShiftLeft)', mode = 'n' },
+
+      { '=p', '<Plug>(YankyPutAfterFilter)', mode = 'n' },
+      { '=P', '<Plug>(YankyPutBeforeFilter)', mode = 'n' },
+    },
+  },
+
+  {
+    'danymat/neogen',
+    opts = {},
+    cmd = 'Neogen',
+    keys = {
+      { '<leader>ga', '<cmd>Neogen<cr>' },
+    },
+  },
+
+  {
     'folke/which-key.nvim',
     opts = {},
   },
