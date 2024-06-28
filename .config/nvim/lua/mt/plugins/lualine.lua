@@ -1,7 +1,15 @@
 -- TODO: add line to say wether session is being recorded
-require('lualine').setup {
+require('lualine').setup({
   options = {
     theme = 'tokyonight',
+    ignore_focus = {
+      'dapui_scopes',
+      'dapui_breakpoints',
+      'dapui_stacks',
+      'dapui_watches',
+      'dap-repl',
+      'dapui_console',
+    },
   },
   sections = {
     lualine_a = { 'mode' },
@@ -20,4 +28,4 @@ require('lualine').setup {
     lualine_c = { 'filename' },
     lualine_x = { 'location' },
   },
-}
+})

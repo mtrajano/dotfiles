@@ -112,21 +112,6 @@ require('lazy').setup({
     end,
   },
 
-  --------------
-  ---- DEBUGGING
-  --------------
-  --use {
-  --  'mfussenegger/nvim-dap',
-  --  dependencies = {
-  --    'rcarriga/nvim-dap-ui',
-  --  },
-  --  config = function()
-  --    require('mt.plugins.dap')
-  --  end,
-  --},
-
-  'jbyuki/one-small-step-for-vimkind',
-
   {
     'lukas-reineke/indent-blankline.nvim',
     enabled = false,
