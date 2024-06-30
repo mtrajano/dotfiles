@@ -8,6 +8,7 @@ vim.g.maplocalleader = ','
 vim.env.DOTFILES = vim.env.HOME .. '/dotfiles/.config/nvim'
 
 -- TODO: move any custom plugins to personal dev folder
+require('mt.options') -- load options before loading plugins
 require('mt.plugins')
 
 function RELOAD(script)
@@ -40,6 +41,5 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('highlight_on_yank', {}),
 })
 
-require('mt.options')
 require('mt.search')
 require('mt.lsp')

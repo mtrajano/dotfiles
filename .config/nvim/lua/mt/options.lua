@@ -90,12 +90,13 @@ cmd.inoreabbrev('mb', 'MB')
 cmd.inoreabbrev('gb', 'GB')
 cmd.inoreabbrev('tb', 'TB')
 
--- TODO: eventually move these to mt.filetype
-vim.filetype.add {
+-- TODO: eventually move these to filetype.lua file
+vim.filetype.add({
   filename = {
     ['.env'] = 'env',
   },
-}
+})
 
--- TODO: move these to lua, also need autogroup
--- vim.cmd([[au TextYankPost * silent! lua vim.highlight.on_yank {on_visual=false}]])
+-- matchparen highlight updates on every cursor move, for very large files/lines this can help with perf
+vim.g.matchparen_timeout = 50
+vim.g.matchparen_insert_timeout = 50

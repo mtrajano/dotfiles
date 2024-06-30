@@ -48,15 +48,16 @@ lspconfig.tsserver.setup({
 -- TODO: should this be the case for all clients?
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- for nvim-ufo
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
 
 lspconfig.cssls.setup({
   on_attach = my_attach,
   capabilities = capabilities,
 })
-
---Enable (broadcasting) snippet capability for completion
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 lspconfig.jsonls.setup({
   capabilities = capabilities,
@@ -98,11 +99,13 @@ lspconfig.lua_ls.setup({
 })
 
 -- define diagnostics signs
+-- TODO: convert this to vim.diagnostic.config
+-- TODO: signs in neotree are still not working correctly, might need to define this before plugin loads
 vim.cmd([[
-  sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=
-  sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=
+  sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=
+  sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=
   sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=
-  sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=
+  sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=
 ]])
 
 ----------
@@ -141,10 +144,10 @@ vim.keymap.set('n', ']D', function()
   require('lspsaga.diagnostic'):goto_next()
 end, { desc = 'Diagnostic go to next' })
 vim.keymap.set('n', '[d', function()
-  require('lspsaga.diagnostic'):goto_prev({ severity = vim.diagnostic.severity.WARN })
+  require('lspsaga.diagnostic'):goto_prev({ severity = { min = vim.diagnostic.severity.WARN } })
 end, { desc = 'Diagnostic go to prev warning+' })
 vim.keymap.set('n', ']d', function()
-  require('lspsaga.diagnostic'):goto_next({ severity = vim.diagnostic.severity.WARN })
+  require('lspsaga.diagnostic'):goto_next({ severity = { min = vim.diagnostic.severity.WARN } })
 end, { desc = 'Diagnostic go to next warning+' })
 
 vim.keymap.set('n', '<leader>da', function()

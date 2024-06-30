@@ -13,12 +13,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   {
-    'folke/tokyonight.nvim',
+    'navarasu/onedark.nvim',
     lazy = false,
     priority = 1000,
     config = function()
-      vim.g.tokyonight_style = 'night'
-      vim.cmd.colorscheme('tokyonight')
+      require('onedark').load()
+      vim.cmd.colorscheme('onedark')
     end,
   },
 
@@ -37,10 +37,10 @@ require('lazy').setup({
     },
     keys = {
       -- overwrite paste methods
+      -- theres also gp and gP for YankyGPutAfter and YankyGPutBefore which I have never used (see :h gp)
+      -- setting these would overwrite gp which I have set to highlight last paste
       { 'p', '<Plug>(YankyPutAfter)', mode = { 'n', 'x' } },
       { 'P', '<Plug>(YankyPutBefore)', mode = { 'n', 'x' } },
-      { 'gp', '<Plug>(YankyGPutAfter)', mode = { 'n', 'x' } },
-      { 'gP', '<Plug>(YankyGPutBefore)', mode = { 'n', 'x' } },
 
       -- keyring
       { '<c-p>', '<Plug>(YankyPreviousEntry)', mode = 'n' },
@@ -85,11 +85,26 @@ require('lazy').setup({
   {
     'kevinhwang91/nvim-ufo',
     dependencies = { 'kevinhwang91/promise-async', 'nvim-treesitter/nvim-treesitter' },
-    opts = {
-      provider_selector = function()
-        return { 'treesitter', 'indent' }
-      end,
-    },
+
+    config = function()
+      vim.o.foldcolumn = '0' -- '1' to show fold column
+      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
+
+      -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
+      -- TODO: see if can set up `zm` and `zr` correclty
+      vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
+      vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
+
+      require('ufo').setup()
+    end,
+
+    -- opts = {
+    --   provider_selector = function()
+    --     return { 'treesitter', 'indent' }
+    --   end,
+    -- },
   },
 
   ------
@@ -141,6 +156,9 @@ require('lazy').setup({
     -- TODO: figure out how to do this automatically on a buffer
     enabled = true,
     config = function()
+      -- should help with perf issues on large files
+      vim.b.matchup_matchparen_deferred = 1
+
       -- on cursor over only highlight the tagname and not the properties
       vim.g.matchup_matchpref = {
         html = { tagnameonly = 1 },
@@ -390,5 +408,5 @@ require('lazy').setup({
   { import = 'plugins' },
 }, {
   -- colorscheme for the auto install popup
-  install = { colorscheme = { 'tokyonight' } },
+  install = { colorscheme = { 'onedark' } },
 })
