@@ -12,7 +12,8 @@ return {
   { 'nvim-treesitter/nvim-treesitter-textobjects', enabled = treesitter_enabled },
   {
     'nvim-treesitter/nvim-treesitter-context',
-    enabled = treesitter_enabled,
+    -- PERF: seems to cause increased BufEnter time for larger files
+    enabled = ENABLE_SLOW_PLUGINS,
     config = function()
       require('treesitter-context').setup({
         max_lines = 2,

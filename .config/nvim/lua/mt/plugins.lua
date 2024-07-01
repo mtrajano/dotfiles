@@ -121,10 +121,11 @@ require('lazy').setup({
 
   {
     'simrat39/symbols-outline.nvim',
-    config = function()
-      require('symbols-outline').setup()
-      vim.keymap.set('n', '<leader>o', vim.cmd.SymbolsOutline)
-    end,
+    keys = {
+      { '<leader>o', vim.cmd.SymbolsOutline },
+    },
+    cmd = 'SymbolsOutline',
+    opts = {},
   },
 
   {
@@ -293,6 +294,7 @@ require('lazy').setup({
   {
     'folke/todo-comments.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
+    enabled = ENABLE_SLOW_PLUGINS, -- PERF: look into this, looks like WinScroll autocmd is causing perf issues for very large files
     config = function()
       require('todo-comments').setup({})
 
@@ -315,6 +317,7 @@ require('lazy').setup({
 
   -- install_textobj('kana/vim-textobj-entire')
   -- install_textobj('glts/vim-textobj-comment')
+  -- TODO: can this be replace with treesitter-text-objs?
   'wellle/targets.vim',
 
   -- for writing
@@ -354,6 +357,8 @@ require('lazy').setup({
     'ray-x/lsp_signature.nvim',
     config = function()
       require('lsp_signature').setup({
+        -- TODO: this doesn't seem to be working correctly, it doesnt seem to be permanent
+        -- there seems to be something (like an autocmd) bringing it back
         toggle_key = '<C-K>',
       })
     end,

@@ -27,7 +27,8 @@ require('nvim-treesitter.configs').setup({
   },
 
   highlight = {
-    enable = true,
+    -- PERF: seems to be really slow for large files, can disable and fall back to regex highlighting
+    enable = ENABLE_SLOW_PLUGINS,
     disable = { 'php' }, -- breaks autoindent in php (relies on synId)
   },
 

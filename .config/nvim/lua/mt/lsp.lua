@@ -28,25 +28,17 @@ require('mason-tool-installer').setup({
 local lspconfig = require('lspconfig')
 local lsp_signature = require('lsp_signature')
 
--- TODO: see if theres a way to do this once insead of having to call it on every clients setup
 local function my_attach(client)
   lsp_signature.on_attach()
+  -- PERF: seems to be causing a lot of lag in larger files, disabling for now
+  -- TODO: look into this:
+  --  * https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide#:~:text=Semantic%20tokenization%20allows%20language%20servers,the%20syntax%20highlighting%20from%20grammars
+  --  * https://blog.jetbrains.com/pycharm/2017/01/make-sense-of-your-variables-at-a-glance-with-semantic-highlighting/
+  client.server_capabilities.semanticTokensProvider = nil
 end
 
-lspconfig.intelephense.setup({
-  on_attach = my_attach,
-  init_options = {
-    licenceKey = vim.env.INTELEPHENSE_KEY,
-  },
-})
-
-lspconfig.tsserver.setup({
-  on_attach = my_attach,
-})
-
--- enable css autocomplete
--- TODO: should this be the case for all clients?
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- enables css autocomplete
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 -- for nvim-ufo
 capabilities.textDocument.foldingRange = {
@@ -54,14 +46,27 @@ capabilities.textDocument.foldingRange = {
   lineFoldingOnly = true,
 }
 
-lspconfig.cssls.setup({
-  on_attach = my_attach,
+lspconfig.intelephense.setup({
   capabilities = capabilities,
+  on_attach = my_attach,
+  init_options = {
+    licenceKey = vim.env.INTELEPHENSE_KEY,
+  },
+})
+
+lspconfig.tsserver.setup({
+  capabilities = capabilities,
+  on_attach = my_attach,
+})
+
+lspconfig.cssls.setup({
+  capabilities = capabilities,
+  on_attach = my_attach,
 })
 
 lspconfig.jsonls.setup({
-  capabilities = capabilities,
   on_attach = my_attach,
+  capabilities = capabilities,
   -- TODO: see if can complain about incorrect keys
   settings = {
     json = {
@@ -83,12 +88,15 @@ lspconfig.jsonls.setup({
 })
 
 lspconfig.clangd.setup({
+  capabilities = capabilities,
   on_attach = my_attach,
 })
 
 require('neodev').setup({})
 -- example to setup sumneko and enable call snippets
 lspconfig.lua_ls.setup({
+  capabilities = capabilities,
+  on_attach = my_attach,
   settings = {
     Lua = {
       completion = {
