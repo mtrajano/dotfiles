@@ -153,9 +153,6 @@ require('lazy').setup({
 
   {
     'andymass/vim-matchup',
-    -- disable if causing lag on cursor move for larger files
-    -- TODO: figure out how to do this automatically on a buffer
-    enabled = true,
     config = function()
       -- should help with perf issues on large files
       vim.b.matchup_matchparen_deferred = 1

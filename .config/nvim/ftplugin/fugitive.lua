@@ -15,3 +15,8 @@ end)
 map('n', 'P', function()
   vim.cmd.G('up')
 end)
+
+-- open gitignore instead of .git/info/exclude by default
+map('n', 'gi', function()
+  vim.cmd.Gsplit('.gitignore')
+end)

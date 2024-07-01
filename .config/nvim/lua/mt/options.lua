@@ -97,6 +97,12 @@ vim.filetype.add({
   },
 })
 
+-- TODO: see a better place to put this
+vim.api.nvim_create_autocmd('TextYankPost', {
+  command = 'silent! lua vim.highlight.on_yank()',
+  group = vim.api.nvim_create_augroup('highlight_on_yank', {}),
+})
+
 -- matchparen highlight updates on every cursor move, for very large files/lines this can help with perf
 vim.g.matchparen_timeout = 50
 vim.g.matchparen_insert_timeout = 50
