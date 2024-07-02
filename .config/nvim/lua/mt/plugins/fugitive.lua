@@ -26,13 +26,18 @@ local function toggle_git_pane()
   end
 end
 
-vim.keymap.set('n', '<leader>gg', toggle_git_pane, {silent=true})
+vim.keymap.set('n', '<leader>gg', toggle_git_pane, { silent = true })
 vim.keymap.set('n', '<leader>gd', cmd.DiffviewOpen)
 vim.keymap.set('n', '<leader>gf', cmd.DiffviewFileHistory)
 vim.keymap.set('n', '<leader>gb', function() cmd.Git('blame') end)
 vim.keymap.set('n', '<leader>gl', function() cmd.Git('log -n 500') end)
 vim.keymap.set('n', '<leader>gr', function() cmd.Gread('master:%') end)
 vim.keymap.set('n', '<leader>gs', cmd.Gw)
+vim.keymap.set('n', '<leader>ge', cmd.Gedit)
+
+vim.keymap.set('n', '<leader>gco', function()
+  cmd.Telescope('git_branches')
+end)
 
 -- Merge conflict remaps
 -- TODO only map these when inside of a merge conflict
@@ -44,6 +49,9 @@ cmd.cnoreabbrev('Gco', 'GBranches --locals')
 cmd.cnoreabbrev('Gcor', 'GBranches --remotes')
 
 -- TODO: convert to lua
-api.nvim_exec([[
-  command! -nargs=1 Browse exec '!open -a "Brave Browser"' fnameescape(<q-args>)
-]], false)
+api.nvim_exec(
+  [[
+  command! -nargs=1 Browse exec '!open -a "Google Chrome"' fnameescape(<q-args>)
+]],
+  false
+)

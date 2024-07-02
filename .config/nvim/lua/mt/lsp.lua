@@ -19,9 +19,13 @@ require('mason-tool-installer').setup({
     'pyright',
     'css-lsp',
 
+    -- linters
     'shellcheck',
-    'stylua',
     'proselint',
+
+    -- formatters
+    'stylua',
+    'prettierd',
   },
 })
 
@@ -30,11 +34,13 @@ local lsp_signature = require('lsp_signature')
 
 local function my_attach(client)
   lsp_signature.on_attach()
-  -- PERF: seems to be causing a lot of lag in larger files, disabling for now
+  -- PERF: seems to be causing a lot of lag in larger files (only tested with C files), disabling for now
   -- TODO: look into this:
   --  * https://code.visualstudio.com/api/language-extensions/semantic-highlight-guide#:~:text=Semantic%20tokenization%20allows%20language%20servers,the%20syntax%20highlighting%20from%20grammars
   --  * https://blog.jetbrains.com/pycharm/2017/01/make-sense-of-your-variables-at-a-glance-with-semantic-highlighting/
-  client.server_capabilities.semanticTokensProvider = nil
+  if vim.tbl_contains({ 'clangd' }, client.name) then
+    client.server_capabilities.semanticTokensProvider = nil
+  end
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -68,6 +74,7 @@ lspconfig.jsonls.setup({
   on_attach = my_attach,
   capabilities = capabilities,
   -- TODO: see if can complain about incorrect keys
+  -- might be missing setting up cmp capabilities
   settings = {
     json = {
       schemas = {

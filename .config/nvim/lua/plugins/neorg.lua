@@ -7,7 +7,7 @@ return {
 
   -- TODO: consider lazy loading, is the one causing the most time during startup
   {
-    'nvim-neorg/neorg',
+    dir = '~/dev/nvim-plugins/neorg',
     dependencies = { 'luarocks.nvim', 'nvim-neorg/neorg-telescope' },
     lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
     version = '*', -- Pin Neorg to the latest stable release

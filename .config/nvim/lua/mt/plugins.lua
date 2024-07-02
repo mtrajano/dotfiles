@@ -188,7 +188,13 @@ require('lazy').setup({
       vim.g.qf_mapping_ack_style = 1
     end,
   },
-  'moll/vim-bbye',
+  {
+    'moll/vim-bbye',
+    config = function()
+      vim.keymap.set('ca', 'bd', 'Bd')
+    end,
+  },
+
   {
     'Wansmer/treesj',
     opts = {
@@ -272,7 +278,7 @@ require('lazy').setup({
   },
   {
     'tpope/vim-fugitive',
-    cmd = 'G',
+    cmd = { 'G', 'Gread', 'Gwrite', 'GBrowse' },
     config = function()
       require('mt.plugins.fugitive')
     end,

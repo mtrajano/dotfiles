@@ -6,7 +6,7 @@ return {
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
     'saadparwaiz1/cmp_luasnip',
-    'hrsh7th/cmp-cmdline', -- TODO: looks like it breaks when native_menu is set, look into: https://github.com/hrsh7th/nvim-cmp/issues/1059
+    'hrsh7th/cmp-cmdline', -- NOTE: looks like it breaks when native_menu is set, look into: https://github.com/hrsh7th/nvim-cmp/issues/1059
   },
   config = function()
     local cmp = require('cmp')
