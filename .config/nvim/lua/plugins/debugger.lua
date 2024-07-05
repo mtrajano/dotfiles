@@ -18,7 +18,7 @@ return {
       -- 'jay-babu/mason-nvim-dap.nvim',
 
       -- TODO: look into this, it's not working super well, rel issue: https://github.com/jbyuki/one-small-step-for-vimkind/issues/21
-      'jbyuki/one-small-step-for-vimkind',
+      { 'jbyuki/one-small-step-for-vimkind', version = '*' },
     },
     config = function()
       local dap = require('dap')

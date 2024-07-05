@@ -216,6 +216,23 @@ require('lazy').setup({
     },
   },
 
+  {
+    'tpope/vim-eunuch',
+    cmd = {
+      'Remove',
+      'Delete',
+      'Rename',
+      'Copy',
+      'Duplicate',
+      'Move',
+      'Chmod',
+      'Mkdir',
+      'Wall',
+      'SudoWrite',
+      'SudoEdit',
+    },
+  },
+
   'tpope/vim-sleuth', -- automatically detect space issue
   'tpope/vim-repeat',
   {
