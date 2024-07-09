@@ -11,12 +11,14 @@ return {
       function()
         require('harpoon'):list():add()
       end,
+      desc = 'Harpoon add',
     },
     {
       '<leader>al',
       function()
         require('harpoon').ui:toggle_quick_menu(require('harpoon'):list())
       end,
+      desc = 'Harpoon list',
     },
     {
       '<M-j>',

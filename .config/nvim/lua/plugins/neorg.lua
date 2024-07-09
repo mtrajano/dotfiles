@@ -16,14 +16,14 @@ return {
         if vim.bo.filetype == 'norg' then
           vim.cmd.Neorg('return')
         else
-          vim.cmd.Neorg('index')
+          vim.cmd.Telescope({ 'neorg', 'find_norg_files' })
         end
-      end)
+      end, { desc = 'Neorg find files' })
 
       -- Quickly switching to workspace
       vim.keymap.set('n', '<leader>jw', function()
         vim.cmd.Telescope({ 'neorg', 'switch_workspace' })
-      end)
+      end, { desc = 'Neorg switch workspace' })
 
       local neorg_callbacks = require('neorg.core.callbacks')
 

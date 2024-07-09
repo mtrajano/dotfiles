@@ -13,5 +13,4 @@ require('mt.globals')
 require('mt.options') -- load options before loading plugins
 require('mt.plugins')
 
-require('mt.search')
 require('mt.lsp')

@@ -67,7 +67,7 @@ require('lazy').setup({
     opts = {},
     cmd = 'Neogen',
     keys = {
-      { '<leader>ga', '<cmd>Neogen<cr>' },
+      { '<leader>ga', '<cmd>Neogen<cr>', desc = 'Neogen generate annotations' },
     },
   },
 
@@ -122,7 +122,7 @@ require('lazy').setup({
   {
     'simrat39/symbols-outline.nvim',
     keys = {
-      { '<leader>o', vim.cmd.SymbolsOutline },
+      { '<leader>o', vim.cmd.SymbolsOutline, desc = 'Toggle symbols outline' },
     },
     cmd = 'SymbolsOutline',
     opts = {},
@@ -301,7 +301,6 @@ require('lazy').setup({
   },
   {
     'tpope/vim-fugitive',
-    cmd = { 'G', 'Gread', 'Gwrite', 'GBrowse' },
     config = function()
       require('mt.plugins.fugitive')
     end,
@@ -402,7 +401,7 @@ require('lazy').setup({
       rename = {
         keys = {
           quit = 'q',
-        }
+        },
       },
       dependencies = {
         'nvim-treesitter/nvim-treesitter', -- optional
@@ -416,10 +415,10 @@ require('lazy').setup({
     config = function()
       vim.keymap.set('n', '<leader>tt', function()
         vim.cmd.Trouble('diagnostics')
-      end)
+      end, { desc = 'Trouble toggle' })
       vim.keymap.set('n', '<leader>to', function()
         vim.cmd.Trouble('todo')
-      end)
+      end, { desc = 'Trouble todo comments' })
 
       vim.cmd([[
         hi link TroubleSignError DiagnosticSignError

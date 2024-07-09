@@ -49,7 +49,7 @@ return {
         dapui.close()
       end
 
-      vim.keymap.set('n', '<leader>du', dapui.toggle)
+      vim.keymap.set('n', '<leader>du', dapui.toggle, { desc = 'DAP UI toggle' })
 
       -- TODO: enable completion in repl, this is not currently working
       -- vim.cmd([[ au FileType dap-repl lua require('dap.ext.autocompl').attach() ]])
@@ -62,18 +62,18 @@ return {
         require('osv').stop()
       end, { desc = 'Stop debugging neovim' })
 
-      vim.keymap.set('n', '<leader>dc', require('dap').continue)
-      vim.keymap.set('n', '<leader>dn', require('dap').step_over) -- TODO: make this an easier mapping
-      vim.keymap.set('n', '<leader>di', require('dap').step_into)
-      vim.keymap.set('n', '<leader>do', require('dap').step_out)
-      vim.keymap.set('n', '<leader>db', require('dap').toggle_breakpoint)
+      vim.keymap.set('n', '<leader>dc', require('dap').continue, { desc = 'DAP continue' })
+      vim.keymap.set('n', '<leader>dn', require('dap').step_over, { desc = 'DAP step over' }) -- TODO: make this an easier mapping
+      vim.keymap.set('n', '<leader>di', require('dap').step_into, { desc = 'DAP step into' })
+      vim.keymap.set('n', '<leader>do', require('dap').step_out, { desc = 'DAP step out' })
+      vim.keymap.set('n', '<leader>db', require('dap').toggle_breakpoint, { desc = 'DAP toggle breakpoint' })
       vim.keymap.set('n', '<leader>dx', function()
         require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))
-      end)
-      vim.keymap.set('n', '<leader>dr', require('dap').repl.open)
-      vim.keymap.set('n', '<leader>dl', require('dap').run_last)
-      vim.keymap.set('n', '<leader>dR', require('dap').restart)
-      vim.keymap.set('n', '<leader>dk', require('dap').terminate)
+      end, { desc = 'DAP toggle conditional breakpoint' })
+      vim.keymap.set('n', '<leader>dr', require('dap').repl.open, { desc = 'DAP repl open' })
+      vim.keymap.set('n', '<leader>dl', require('dap').run_last, { desc = 'DAP run last' })
+      vim.keymap.set('n', '<leader>dR', require('dap').restart, { desc = 'DAP restart debug session' })
+      vim.keymap.set('n', '<leader>dk', require('dap').terminate, { desc = 'DAP terminate' })
 
       vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
       -- TODO: create new highlight group for this, right now I used the string highlight group to make it green

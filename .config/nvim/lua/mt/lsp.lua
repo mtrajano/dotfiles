@@ -143,18 +143,18 @@ local function hover_or_get_docs()
 end
 
 -- mappings
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'definition' })
-vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'declaration' })
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { desc = 'Go to definition' })
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { desc = 'Go to declaration' })
 -- NOTE: overwrites vim's replace mode which is like like the insert key in windows
 -- I have personally never used it but if it's needed, replaces this keymap
 vim.keymap.set('n', 'R', function()
   vim.cmd.Lspsaga('rename')
 end, { desc = 'Saga rename' })
-vim.keymap.set('n', 'gr', require('mt.telescope').lsp_references, { desc = 'lsp_references' })
-vim.keymap.set('n', '<leader>di', vim.lsp.buf.implementation, { desc = 'implementation' })
+vim.keymap.set('n', 'gr', require('mt.telescope').lsp_references, { desc = 'Find references ' })
+vim.keymap.set('n', '<leader>di', vim.lsp.buf.implementation, { desc = 'Go to implementation' })
 
 -- NOTE: Cool looks like pressing this twice moves us to the hover window
-vim.keymap.set('n', 'K', hover_or_get_docs, { desc = 'hover_or_get_docs' })
+vim.keymap.set('n', 'K', hover_or_get_docs, { desc = 'Hover or get docs' })
 
 -- jump to diagnostics
 vim.keymap.set('n', '[D', function()
