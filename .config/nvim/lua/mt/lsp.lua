@@ -99,6 +99,11 @@ lspconfig.clangd.setup({
   on_attach = my_attach,
 })
 
+lspconfig.pyright.setup({
+  capabilities = capabilities,
+  on_attach = my_attach,
+})
+
 require('neodev').setup({})
 -- example to setup sumneko and enable call snippets
 lspconfig.lua_ls.setup({

@@ -264,7 +264,6 @@ require('lazy').setup({
     end,
   },
   'tpope/vim-abolish',
-  'tpope/vim-speeddating',
   'tpope/vim-obsession', -- TODO: look into replacing with recession.nvim
   'tpope/vim-scriptease',
   {
@@ -275,9 +274,16 @@ require('lazy').setup({
     end,
   },
 
-  { 'L3MON4D3/LuaSnip', event = 'InsertEnter', dependencies = {
-    'honza/vim-snippets',
-  } },
+  {
+    'L3MON4D3/LuaSnip',
+    event = 'InsertEnter',
+    version = 'v2.*',
+    dependencies = { 'rafamadriz/friendly-snippets' },
+    config = function()
+      require('luasnip.loaders.from_vscode').lazy_load()
+      require('luasnip.loaders.from_snipmate').lazy_load()
+    end,
+  },
 
   {
     'sindrets/diffview.nvim',
@@ -393,10 +399,15 @@ require('lazy').setup({
       lightbulb = {
         sign = false, -- causes view to shift on every cursor move if the space is not reserved on the sign column
       },
-    },
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter', -- optional
-      'nvim-tree/nvim-web-devicons', -- optional
+      rename = {
+        keys = {
+          quit = 'q',
+        }
+      },
+      dependencies = {
+        'nvim-treesitter/nvim-treesitter', -- optional
+        'nvim-tree/nvim-web-devicons', -- optional
+      },
     },
   },
 

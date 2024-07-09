@@ -33,3 +33,20 @@ vim.keymap.set(
   '<cmd>let @+=expand("%") | echo "Copied relative file path to clipboard"<cr>',
   { remap = true, desc = 'Copy curent file relative path to clipboard' }
 )
+vim.keymap.set('n', '<leader>yd', function()
+  local lnum = vim.fn.line('.')
+  local diagnostics = vim.diagnostic.get(0, { lnum = lnum - 1 })
+  diagnostics = vim.tbl_map(function(diagnostic)
+    return diagnostic['message']
+  end, diagnostics)
+
+  if vim.tbl_isempty(diagnostics) then
+    return
+  elseif #diagnostics == 1 then -- if only one diagnostic in line simply set it
+    vim.fn.setreg('+', diagnostics[1])
+  else
+    vim.ui.select(diagnostics, {}, function(choice)
+      vim.fn.setreg('+', choice)
+    end)
+  end
+end, { remap = true, desc = 'Yank diagnostic message under cursor' })
