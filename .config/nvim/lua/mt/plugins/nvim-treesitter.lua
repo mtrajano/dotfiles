@@ -79,8 +79,8 @@ require('nvim-treesitter.configs').setup({
 
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
-        ['af'] = '@function.outer',
         ['if'] = '@function.inner',
+        ['af'] = '@function.outer',
       },
       -- You can choose the select mode (default is charwise 'v')
       selection_modes = {
@@ -92,7 +92,9 @@ require('nvim-treesitter.configs').setup({
       -- extended to include preceding xor succeeding whitespace. Succeeding
       -- whitespace has priority in order to act similarly to eg the built-in
       -- `ap`.
-      include_surrounding_whitespace = true,
+      include_surrounding_whitespace = function(opts)
+        return opts.query_string ~= '@function.inner'
+      end,
     },
   },
 

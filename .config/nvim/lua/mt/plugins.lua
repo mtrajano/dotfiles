@@ -335,17 +335,15 @@ require('lazy').setup({
     end,
   },
 
-  -- TODO: try treesitter-text-objs and get rid of most of these
-  -- local function install_textobj(repo)
-  --   use {, repo, dependencies = { 'kana/vim-textobj-user' } }
-  -- end
-
-  -- install_textobj('kana/vim-textobj-entire')
-  -- install_textobj('glts/vim-textobj-comment')
-  -- TODO: can this be replace with treesitter-text-objs?
+  -- TEXT OBJECTS
+  -- TODO: try to replace most of these with nvim-treesitter-textobjects
+  { 'kana/vim-textobj-entire', dependencies = { 'kana/vim-textobj-user' } },
+  -- NOTE: treesitter comment query has the limitation of only selecting a single comment block (not siblings)
+  { 'glts/vim-textobj-comment', dependencies = { 'kana/vim-textobj-user' } },
+  -- NOTE: removing this also breaks the q alias for strings
   'wellle/targets.vim',
 
-  -- for writing
+  -- FOR WRITING
   'preservim/vim-pencil',
   'junegunn/goyo.vim',
   {

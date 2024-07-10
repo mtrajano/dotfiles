@@ -58,6 +58,7 @@ return {
                 dev = '~/notes/dev',
                 pontal = '~/notes/pontal',
                 personal = '~/notes/personal',
+                journal = '~/notes/journal',
               },
               default_workspace = 'dev',
             },
@@ -86,6 +87,12 @@ return {
             },
           },
           ['core.integrations.telescope'] = {},
+          ['core.ui.calendar'] = {},
+          ['core.journal'] = {
+            config = {
+              workspace = 'journal',
+            },
+          },
         },
       })
     end,
