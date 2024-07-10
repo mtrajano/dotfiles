@@ -103,6 +103,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('highlight_on_yank', {}),
 })
 
+-- util functions, find better to put these
+vim.keymap.set('n', '<localleader>it', function()
+  local time = os.date('%I:%M %p') -- Format the time as HH:MM:SS
+  vim.api.nvim_put({ time }, 'c', true, true) -- Insert the time at the cursor position
+end, { desc = 'Insert time' })
+
 -- matchparen highlight updates on every cursor move, for very large files/lines this can help with perf
 vim.g.matchparen_timeout = 50
 vim.g.matchparen_insert_timeout = 50
