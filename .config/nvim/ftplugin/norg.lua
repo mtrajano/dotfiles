@@ -1,6 +1,10 @@
 vim.opt_local.conceallevel = 2
 vim.opt_local.wrap = true
 
+vim.keymap.set('n', '<localleader>q', function()
+  vim.cmd.Neorg('return')
+end)
+
 require('nvim-surround').buffer_setup({
   -- NOTE: this can be applied to other filetypes as well, ex. markdown, etc..
   aliases = {

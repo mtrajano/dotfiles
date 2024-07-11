@@ -12,12 +12,8 @@ return {
     lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
     version = '*', -- Pin Neorg to the latest stable release
     config = function()
-      vim.keymap.set('n', '<leader>n', function()
-        if vim.bo.filetype == 'norg' then
-          vim.cmd.Neorg('return')
-        else
-          vim.cmd.Telescope({ 'neorg', 'find_norg_files' })
-        end
+      vim.keymap.set('n', '<leader>jn', function()
+        vim.cmd.Telescope({ 'neorg', 'find_norg_files' })
       end, { desc = 'Neorg find files' })
 
       -- Quickly switching to workspace
