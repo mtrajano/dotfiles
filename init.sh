@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# font install https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/JetBrainsMono.zip
+
 set -x
 
 _change_zsh_dir() {
@@ -7,6 +9,9 @@ _change_zsh_dir() {
 }
 
 _install_mac() {
+
+  # increase file descriptor limits
+  # sudo launchctl limit maxfiles 65536 200000
 
   echo "Intalling Homebrew"
   command -v brew > /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -126,8 +131,7 @@ _install_neovim() {
   fi
 }
 
-
-mkdir -p ~/src ~/bin
+mkdir -p ~/src ~/bin ~/.config
 
 _install_deps
 _change_zsh_dir

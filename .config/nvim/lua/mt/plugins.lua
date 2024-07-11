@@ -275,17 +275,6 @@ require('lazy').setup({
   },
 
   {
-    'L3MON4D3/LuaSnip',
-    event = 'InsertEnter',
-    version = 'v2.*',
-    dependencies = { 'rafamadriz/friendly-snippets' },
-    config = function()
-      require('luasnip.loaders.from_vscode').lazy_load()
-      require('luasnip.loaders.from_snipmate').lazy_load()
-    end,
-  },
-
-  {
     'sindrets/diffview.nvim',
     config = function()
       local actions = require('diffview.actions')
