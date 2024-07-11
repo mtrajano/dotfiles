@@ -1,4 +1,6 @@
 local action = require('telescope.actions')
+local action_set = require('telescope.actions.set')
+local action_state = require('telescope.actions.state')
 local Path = require('plenary.path')
 local fn = vim.fn
 
@@ -129,6 +131,15 @@ M.edit_plugins = function()
     find_command = { 'fd', '--type', 'directory', '--max-depth', '1' },
     cwd = vim.fn.stdpath('data') .. '/lazy',
     previewer = false,
+    attach_mappings = function()
+      action.select_default:replace(function(prompt_bufnr)
+        action.select_tab(prompt_bufnr)
+        local entry = action_state.get_selected_entry()
+        vim.cmd.tcd(entry.path)
+      end)
+
+      return true
+    end,
   })
 end
 
