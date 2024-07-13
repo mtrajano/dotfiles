@@ -19,28 +19,26 @@ _install_mac() {
   echo "Installing dependencies on Mac OS X"
   # TODO: look into moving these to a packages file and organizing list
   brew install \
-    stow \
-    brave-browser \
-    kitty \
-    tmux \
-    rg \
+    bat \
+    curl \
+    docker-compose \
     fd \
     fzf \
-    zsh \
-    htop \
-    git-delta \
     git \
-    gh \
-    tldr \
-    zoxide \
-    node \
-    php \
-    composer \
+    git-delta \
+    htop \
     jq \
+    kitty \
     lazygit \
-    luajit \
-    bat \
-    ranger
+    neovim \
+    ranger \
+    rg \
+    stow \
+    tldr \
+    tmux \
+    watchman \
+    zoxide \
+    zsh
 
   # enable fzf keybindinds
   $(brew --prefix)/opt/fzf/install

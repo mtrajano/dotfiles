@@ -10,8 +10,14 @@ zstyle ':completion:*' menu select=1
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle :compinstall filename '/Users/trajano/.config/zsh/completion.zsh'
 
+# homebrew completions
+if type brew &>/dev/null
+then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
+
 autoload -Uz compinit
-compinit -C
+compinit
 
 autoload zmv
 
