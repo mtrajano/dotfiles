@@ -1,6 +1,3 @@
-" don't continue comment on o/O operation
-set formatoptions-=o
-
 " spacing
 set shiftround " indenting rounds to multiple of shiftwidth
 set tabstop=2

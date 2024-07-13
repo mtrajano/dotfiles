@@ -1,5 +1,4 @@
 vim.opt_local.conceallevel = 2
-vim.opt_local.wrap = true
 
 vim.keymap.set('n', '<localleader>q', function()
   vim.cmd.Neorg('return')

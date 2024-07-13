@@ -35,16 +35,19 @@ vim.keymap.set('n', '<leader>ge', cmd.Gedit, { desc = 'Gedit'})
 
 vim.keymap.set('n', '<leader>gco', function()
   cmd.Telescope('git_branches')
-end, { desc = 'Git checkout branch'})
+end, { desc = 'Git checkout branch' })
 
 -- Merge conflict remaps
 -- TODO only map these when inside of a merge conflict
-vim.keymap.set('n', '<leader>g<', ':diffget //2', { desc = 'Diffget take left (mergeconflict)'})
-vim.keymap.set('n', '<leader>g>', ':diffget //3', { desc = 'Diffget take right (mergeconflict)'})
+vim.keymap.set('n', '<leader>g<', ':diffget //2', { desc = 'Diffget take left (mergeconflict)' })
+vim.keymap.set('n', '<leader>g>', ':diffget //3', { desc = 'Diffget take right (mergeconflict)' })
 
 cmd.cnoreabbrev('Gvsm', 'Gvsplit master:%')
 cmd.cnoreabbrev('Gco', 'GBranches --locals')
 cmd.cnoreabbrev('Gcor', 'GBranches --remotes')
+
+-- remove this user command which pretty much just says to use GBrowse
+vim.api.nvim_del_user_command('Gbrowse')
 
 vim.api.nvim_create_user_command('Browse', function(args)
   vim.ui.open(args.args)
