@@ -81,6 +81,8 @@ require('nvim-treesitter.configs').setup({
         -- You can use the capture groups defined in textobjects.scm
         ['if'] = '@function.inner',
         ['af'] = '@function.outer',
+        ['ia'] = '@parameter.inner',
+        ['aa'] = '@parameter.outer',
       },
       -- You can choose the select mode (default is charwise 'v')
       selection_modes = {

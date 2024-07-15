@@ -1,4 +1,6 @@
 return {
+
+  -- TODO: see if can get rid of this dependency now that lazy supports lua rocks deps
   {
     'vhyrro/luarocks.nvim',
     priority = 1000,
@@ -24,7 +26,7 @@ return {
       local neorg_callbacks = require('neorg.core.callbacks')
 
       neorg_callbacks.on_event('core.keybinds.events.enable_keybinds', function(_, keybinds)
-        -- Map all the below keybinds only when the "norg" mode is active
+        -- Map all the below key binds only when the "norg" mode is active
         keybinds.map_event_to_mode('norg', {
           n = { -- Bind keys in normal mode
             {
