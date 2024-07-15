@@ -45,9 +45,16 @@ return {
         { name = 'path' },
         { name = 'nvim_lsp', max_item_count = 10 }, -- NOTE: this seems very noisy
         { name = 'luasnip' },
-        { name = 'neorg' },
         { name = 'buffer', max_item_count = 5 },
       }),
+    })
+
+    cmp.setup.filetype({ 'norg' }, {
+      sources = {
+        { name = 'neorg' },
+        { name = 'path' },
+        { name = 'buffer', max_item_count = 5 },
+      },
     })
 
     -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
