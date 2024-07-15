@@ -1,4 +1,4 @@
-" TODO: replace these with vim-pencil
+" TODO: convert this file to lua and add surrounds
 setlocal conceallevel=2
 setlocal wrap
 

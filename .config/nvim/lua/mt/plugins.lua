@@ -24,7 +24,6 @@ require('lazy').setup({
 
   { 'dstein64/vim-startuptime', cmd = 'StartupTime' },
 
-  'tversteeg/registers.nvim',
   'ojroques/vim-oscyank',
 
   {
@@ -177,10 +176,6 @@ require('lazy').setup({
     config = function()
       vim.g.tmux_navigator_disable_when_zoomed = 1
     end,
-  },
-  {
-    'mileszs/ack.vim',
-    event = 'VeryLazy',
   },
   {
     'romainl/vim-qf',
@@ -340,18 +335,16 @@ require('lazy').setup({
   -- NOTE: removing this also breaks the q alias for strings
   'wellle/targets.vim',
 
-  -- FOR WRITING
-  'preservim/vim-pencil',
-  'junegunn/goyo.vim',
   {
     'dkarter/bullets.vim',
-    ft = { 'nofile', 'text', 'markdown' },
+    ft = { 'nofile', 'text', 'markdown', 'gitcommit' },
   },
   {
     'plasticboy/vim-markdown',
     ft = { 'markdown' },
   },
-  'godlygeek/tabular',
+
+  { 'godlygeek/tabular', cmd = 'Tabularize' },
 
   {
     'windwp/nvim-ts-autotag',
