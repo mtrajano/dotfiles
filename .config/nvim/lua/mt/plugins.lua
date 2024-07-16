@@ -305,7 +305,12 @@ require('lazy').setup({
     dependencies = { 'nvim-lua/plenary.nvim' },
     enabled = ENABLE_SLOW_PLUGINS, -- PERF: look into this, looks like WinScroll autocmd is causing perf issues for very large files
     config = function()
-      require('todo-comments').setup({})
+      require('todo-comments').setup({
+        highlight = {
+          -- list of filetypes to exclude highlighting from
+          exclude = { 'qf' },
+        },
+      })
 
       vim.keymap.set('n', ']t', function()
         require('todo-comments').jump_next()

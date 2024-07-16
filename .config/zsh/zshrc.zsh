@@ -27,6 +27,7 @@ path=(
 source "$XDG_CONFIG_HOME/zsh/plugins.zsh"
 
 # extra configuration
+source "$XDG_CONFIG_HOME/zsh/options.zsh"
 source "$XDG_CONFIG_HOME/zsh/completion.zsh"
 source "$XDG_CONFIG_HOME/zsh/keybindings.zsh"
 source "$XDG_CONFIG_HOME/zsh/aliases.zsh"
