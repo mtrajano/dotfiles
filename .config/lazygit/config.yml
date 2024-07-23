@@ -1,3 +1,4 @@
-keybinding:
-  universal:
-    goInto: '<tab>'
+gui:
+  theme:
+    selectedLineBgColor:
+      - reverse

@@ -1,0 +1,6 @@
+# FIX: can't see current line hover, underline doesn't seem to be working
+[flavor]
+use = "onedark"
+
+[manager]
+hovered = { bg = "#3E4452" }  # Visual grey from tmux

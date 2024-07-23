@@ -22,7 +22,7 @@ require('lualine').setup({
     lualine_y = {
       { 'diagnostics', sources = { 'nvim_diagnostic' } },
     },
-    lualine_z = { 'location', 'progress' },
+    lualine_z = { 'ObsessionStatus', 'location', 'progress' },
   },
   inactive_sections = {
     lualine_c = { 'filename' },

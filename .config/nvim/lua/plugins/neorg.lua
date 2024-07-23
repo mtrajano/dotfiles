@@ -14,6 +14,10 @@ return {
     lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
     version = '*', -- Pin Neorg to the latest stable release
     config = function()
+      --------------
+      -- KEYBINDINGS
+      --------------
+      -- FIX: gO to open TOC is broken
       vim.keymap.set('n', '<leader>jn', function()
         vim.cmd.Telescope({ 'neorg', 'find_norg_files' })
       end, { desc = 'Neorg find files' })
@@ -23,28 +27,26 @@ return {
         vim.cmd.Telescope({ 'neorg', 'switch_workspace' })
       end, { desc = 'Neorg switch workspace' })
 
-      local neorg_callbacks = require('neorg.core.callbacks')
+      vim.api.nvim_create_autocmd('Filetype', {
+        pattern = 'norg',
+        callback = function()
+          vim.keymap.set('n', '<localleader>q', function()
+            vim.cmd.Neorg('return')
+          end)
 
-      neorg_callbacks.on_event('core.keybinds.events.enable_keybinds', function(_, keybinds)
-        -- Map all the below key binds only when the "norg" mode is active
-        keybinds.map_event_to_mode('norg', {
-          n = { -- Bind keys in normal mode
-            {
-              keybinds.leader .. 'ss',
-              'core.integrations.telescope.find_linkable',
-            },
-            { keybinds.leader .. 'sh', 'core.integrations.telescope.search_headings' },
-            { keybinds.leader .. 'il', 'core.integrations.telescope.insert_link' },
-            { keybinds.leader .. 'sf', 'core.integrations.telescope.find_norg_files' },
-          },
-          i = { -- Bind in insert mode
-            { '<C-l>', 'core.integrations.telescope.insert_link' },
-          },
-        }, {
-          silent = true,
-          noremap = true,
-        })
-      end)
+          -- telescope
+          vim.keymap.set('i', '<C-l>', '<Plug>(neorg.telescope.insert_link)', { buffer = true })
+          vim.keymap.set('n', '<localleader>ss', '<Plug>(neorg.telescope.find_linkable)', { buffer = true })
+          vim.keymap.set('n', '<localleader>sh', '<Plug>(neorg.telescope.search_headings)', { buffer = true })
+          vim.keymap.set('n', '<localleader>il', '<Plug>(neorg.telescope.insert_link)', { buffer = true })
+
+          -- text objects
+          vim.keymap.set('n', '<up>', '<Plug>(neorg.text-objects.item-up)')
+          vim.keymap.set('n', '<down>', '<Plug>(neorg.text-objects.item-down)')
+          vim.keymap.set({ 'o', 'x' }, 'iH', '<Plug>(neorg.text-objects.textobject.heading.inner)')
+          vim.keymap.set({ 'o', 'x' }, 'aH', '<Plug>(neorg.text-objects.textobject.heading.outer)')
+        end,
+      })
 
       require('neorg').setup({
         load = {
@@ -68,22 +70,6 @@ return {
           },
           ['core.integrations.nvim-cmp'] = {},
           ['core.text-objects'] = {},
-          ['core.keybinds'] = {
-            config = {
-              hook = function(keybinds)
-                -- NOTE: testing these
-                -- Binds to move items up or down
-                keybinds.remap_event('norg', 'n', '<M-up>', 'core.text-objects.item_up')
-                keybinds.remap_event('norg', 'n', '<M-down>', 'core.text-objects.item_down')
-
-                -- NOTE: testing these
-                -- text objects, these binds are available as `vaH` to "visual select around a header" or
-                -- `diH` to "delete inside a header"
-                keybinds.remap_event('norg', { 'o', 'x' }, 'iH', 'core.text-objects.textobject.heading.inner')
-                keybinds.remap_event('norg', { 'o', 'x' }, 'aH', 'core.text-objects.textobject.heading.outer')
-              end,
-            },
-          },
           ['core.integrations.telescope'] = {},
           ['core.ui.calendar'] = {},
           ['core.journal'] = {

@@ -10,9 +10,6 @@ _change_zsh_dir() {
 
 _install_mac() {
 
-  # increase file descriptor limits
-  # sudo launchctl limit maxfiles 65536 200000
-
   echo "Intalling Homebrew"
   command -v brew > /dev/null || /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
@@ -40,6 +37,11 @@ _install_mac() {
     zoxide \
     zsh
 
+  # TEST: yazi as a replacement for ranger
+  brew install
+    yazi \ 
+    poppler # yazi dep for cli pdf preview
+
   # enable fzf keybindinds
   $(brew --prefix)/opt/fzf/install
 
@@ -50,7 +52,7 @@ _install_mac() {
   brew install spotify spotifyd
   brew service start spotifyd
 
-  # for neovim
+  # for building neovim
   brew install ninja libtool automake cmake pkg-config gettext curl
 
   case "$(uname -m)" in
@@ -67,6 +69,9 @@ _install_mac() {
 }
 
 _config_mac() {
+  # increase file descriptor limits
+  sudo launchctl limit maxfiles 65536 200000
+
   defaults write -g InitialKeyRepeat -int 12 # normal minimum is 15 (225 ms)
   defaults write -g KeyRepeat -int 2 # normal minimum is 2 (30 ms)
 }

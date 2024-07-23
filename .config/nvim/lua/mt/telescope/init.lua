@@ -1,5 +1,4 @@
 local action = require('telescope.actions')
-local action_set = require('telescope.actions.set')
 local action_state = require('telescope.actions.state')
 local Path = require('plenary.path')
 local fn = vim.fn
@@ -124,7 +123,6 @@ local function relative_path(path)
   return string.format('%s/%s', fn.getcwd(), path)
 end
 
--- TODO: should this cd into the path?
 M.edit_plugins = function()
   require('telescope.builtin').find_files({
     prompt_title = 'Go to plugins',

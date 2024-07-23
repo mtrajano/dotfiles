@@ -26,11 +26,11 @@ end
 
 vim.keymap.set('n', '<leader>gg', toggle_git_pane, { silent = true, desc = 'Toggle git pane' })
 vim.keymap.set('n', '<leader>gd', cmd.DiffviewOpen, { desc = 'Diffview Open'})
-vim.keymap.set('n', '<leader>gf', cmd.DiffviewFileHistory, { desc = 'Diffview file history'})
+vim.keymap.set('n', '<leader>gf', function() cmd.DiffviewFileHistory('%') end, { desc = 'Diffview file history'})
 vim.keymap.set('n', '<leader>gb', function() cmd.Git('blame') end, { desc = 'Git blame'})
 vim.keymap.set('n', '<leader>gl', function() cmd.Git('log -n 500') end, { desc = 'Git log'})
 vim.keymap.set('n', '<leader>gr', function() cmd.Gread('master:%') end, { desc = 'Gread master:%'})
-vim.keymap.set('n', '<leader>gs', cmd.Gw, { desc = 'Gwrite'})
+vim.keymap.set('n', '<leader>gw', cmd.Gw, { desc = 'Gwrite'})
 vim.keymap.set('n', '<leader>ge', cmd.Gedit, { desc = 'Gedit'})
 
 vim.keymap.set('n', '<leader>gco', function()
@@ -38,9 +38,11 @@ vim.keymap.set('n', '<leader>gco', function()
 end, { desc = 'Git checkout branch' })
 
 -- Merge conflict remaps
+vim.keymap.set('n', '<leader>gm2', function() vim.cmd.Gvdiffsplit() end) -- 2 way split
+vim.keymap.set('n', '<leader>gm3', function() vim.cmd.Gvdiffsplit({bang = true}) end) -- 3 way split (preferred)
 -- TODO only map these when inside of a merge conflict
-vim.keymap.set('n', '<leader>g<', ':diffget //2', { desc = 'Diffget take left (mergeconflict)' })
-vim.keymap.set('n', '<leader>g>', ':diffget //3', { desc = 'Diffget take right (mergeconflict)' })
+vim.keymap.set('n', '<leader>g<', ':diffget //2<cr>', { desc = 'Diffget take left (mergeconflict)' }) -- theirs
+vim.keymap.set('n', '<leader>g>', ':diffget //3<cr>', { desc = 'Diffget take right (mergeconflict)' }) -- ours
 
 cmd.cnoreabbrev('Gvsm', 'Gvsplit master:%')
 cmd.cnoreabbrev('Gco', 'GBranches --locals')
