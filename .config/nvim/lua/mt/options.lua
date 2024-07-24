@@ -81,6 +81,9 @@ opt.wildignore = opt.wildignore + { 'vendor/**', '.git/**', 'node_modules/**' }
 -- start with folds open
 opt.foldlevelstart = 99
 
+-- TODO: read `:h dictionary`
+opt.dictionary = '/usr/share/dict/words'
+
 -- ====================
 -- INSERT ABBREVIATIONS
 -- ====================

@@ -303,9 +303,11 @@ require('lazy').setup({
   },
 
   {
+    -- PERF: look into this, looks like WinScroll autocmd is causing perf issues for very large files
+    -- Issue: https://github.com/folke/todo-comments.nvim/issues/285
     'folke/todo-comments.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    enabled = ENABLE_SLOW_PLUGINS, -- PERF: look into this, looks like WinScroll autocmd is causing perf issues for very large files
+    enabled = ENABLE_SLOW_PLUGINS,
     config = function()
       require('todo-comments').setup({
         highlight = {
@@ -440,4 +442,11 @@ require('lazy').setup({
 }, {
   -- colorscheme for the auto install popup
   install = { colorscheme = { 'onedark' } },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        'netrwPlugin',
+      },
+    },
+  },
 })

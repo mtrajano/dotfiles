@@ -6,9 +6,6 @@ set shiftwidth=2
 set smartindent
 set expandtab
 
-" only folds classes inner content
-set foldlevel=1
-
 " do not align arrows on multi-lined chained calls
 let g:PHP_noArrowMatching = 1
 
