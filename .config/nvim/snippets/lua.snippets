@@ -1,10 +1,32 @@
 snippet af anonymous function
-	function() $0 end
+	function() 
+		$0 
+	end
+
+# NVIM 
 
 snippet conf plugin config
 	config = function() 
 		$0 
 	end
 
-snippet vp vim print
+snippet vp vim.print
 	vim.print($0)
+
+snippet api vim.api
+	vim.api.$0
+
+snippet cmd vim.cmd
+	vim.cmd.$0
+
+# KEYMAPS
+
+snippet ks set keymap
+	vim.keymap.set($0)
+
+snippet <l <leader>
+	<leader>
+
+snippet <p <plug>
+	<Plug>
+

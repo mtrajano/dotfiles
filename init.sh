@@ -55,6 +55,9 @@ _install_mac() {
   # for building neovim
   brew install ninja libtool automake cmake pkg-config gettext curl
 
+  # shopify dev
+  npm install -g @shopify/cli@latest
+
   case "$(uname -m)" in
 
      arm64) # m1 chip

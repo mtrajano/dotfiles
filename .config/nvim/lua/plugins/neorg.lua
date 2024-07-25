@@ -39,6 +39,7 @@ return {
           vim.keymap.set('n', '<localleader>ss', '<Plug>(neorg.telescope.find_linkable)', { buffer = true })
           vim.keymap.set('n', '<localleader>sh', '<Plug>(neorg.telescope.search_headings)', { buffer = true })
           vim.keymap.set('n', '<localleader>il', '<Plug>(neorg.telescope.insert_link)', { buffer = true })
+          vim.keymap.set('n', '<localleader>if', '<Plug>(neorg.telescope.insert_file_link)', { buffer = true })
 
           -- text objects
           vim.keymap.set('n', '<up>', '<Plug>(neorg.text-objects.item-up)')
