@@ -8,7 +8,6 @@ ENABLE_SLOW_PLUGINS = true
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 
--- TODO: move any custom plugins to personal dev folder
 require('mt.globals')
 require('mt.options') -- load options before loading plugins
 require('mt.plugins')

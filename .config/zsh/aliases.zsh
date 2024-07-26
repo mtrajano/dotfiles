@@ -57,6 +57,8 @@ ranger() {
 }
 alias r=ranger
 
+alias yz=yazi
+
 ############
 # LS ALIASES
 ############

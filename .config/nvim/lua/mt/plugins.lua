@@ -326,7 +326,7 @@ require('lazy').setup({
 
       vim.cmd.inoreabbrev('bug:', 'BUG:')
       vim.cmd.inoreabbrev('fixme:', 'FIXME:')
-      vim.cmd.inoreabbrev('fixme:', 'FIX:')
+      vim.cmd.inoreabbrev('fix:', 'FIX:')
       vim.cmd.inoreabbrev('hack:', 'HACK:')
       vim.cmd.inoreabbrev('info:', 'INFO:')
       vim.cmd.inoreabbrev('note:', 'NOTE:')
