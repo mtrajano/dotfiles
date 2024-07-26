@@ -24,12 +24,16 @@ local function toggle_git_pane()
   end
 end
 
+-- stylua: ignore start
 vim.keymap.set('n', '<leader>gg', toggle_git_pane, { silent = true, desc = 'Toggle git pane' })
 vim.keymap.set('n', '<leader>gd', cmd.DiffviewOpen, { desc = 'Diffview Open'})
 vim.keymap.set('n', '<leader>gf', function() cmd.DiffviewFileHistory('%') end, { desc = 'Diffview file history'})
 vim.keymap.set('n', '<leader>gb', function() cmd.Git('blame') end, { desc = 'Git blame'})
 vim.keymap.set('n', '<leader>gl', function() cmd.Git('log -n 500') end, { desc = 'Git log'})
-vim.keymap.set('n', '<leader>gr', function() cmd.Gread('master:%') end, { desc = 'Gread master:%'})
+vim.keymap.set('n', '<leader>gr', function()
+  cmd.Gread('HEAD:%')
+  cmd.write()
+end, { desc = 'Reset file to HEAD'})
 vim.keymap.set('n', '<leader>gw', cmd.Gw, { desc = 'Gwrite'})
 vim.keymap.set('n', '<leader>ge', cmd.Gedit, { desc = 'Gedit'})
 
@@ -44,9 +48,10 @@ vim.keymap.set('n', '<leader>gm3', function() vim.cmd.Gvdiffsplit({bang = true})
 vim.keymap.set('n', '<leader>g<', ':diffget //2<cr>', { desc = 'Diffget take left (mergeconflict)' }) -- theirs
 vim.keymap.set('n', '<leader>g>', ':diffget //3<cr>', { desc = 'Diffget take right (mergeconflict)' }) -- ours
 
-cmd.cnoreabbrev('Gvsm', 'Gvsplit master:%')
+cmd.cnoreabbrev('Gvs', 'Gvsplit HEAD:%')
 cmd.cnoreabbrev('Gco', 'GBranches --locals')
 cmd.cnoreabbrev('Gcor', 'GBranches --remotes')
+-- stylua: ignore end
 
 -- remove this user command which pretty much just says to use GBrowse
 vim.api.nvim_del_user_command('Gbrowse')

@@ -26,6 +26,11 @@ require('lazy').setup({
 
   'ojroques/vim-oscyank',
 
+  -- Source/docs: https://github.com/Robitx/gp.nvim
+  -- TODO: figure out proper workflow for switching back and forth to an existing chat, toggling it if it's open
+  -- TODO: how to use chat finder to find previous chats, how to use `:GpChatFinder`?
+  { 'Robitx/gp.nvim', opts = {} },
+
   {
     'gbprod/yanky.nvim',
     opts = {
@@ -305,6 +310,7 @@ require('lazy').setup({
   {
     -- PERF: look into this, looks like WinScroll autocmd is causing perf issues for very large files
     -- Issue: https://github.com/folke/todo-comments.nvim/issues/285
+    -- Submitted fix for this: https://github.com/folke/todo-comments.nvim/pull/304
     'folke/todo-comments.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     enabled = ENABLE_SLOW_PLUGINS,

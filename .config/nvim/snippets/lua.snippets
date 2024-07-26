@@ -3,21 +3,29 @@ snippet af anonymous function
 		$0 
 	end
 
-# NVIM 
+# LAZY.NVIM
 
 snippet conf plugin config
 	config = function() 
 		$0 
 	end
 
+# NVIM 
+
 snippet vp vim.print
 	vim.print($0)
+
+snippet vpf vim.print with format
+	vim.print(string.format("$1", $0))
 
 snippet api vim.api
 	vim.api.$0
 
 snippet cmd vim.cmd
 	vim.cmd.$0
+
+snippet fn vim.fn
+	vim.fn.$0
 
 # KEYMAPS
 
@@ -29,4 +37,11 @@ snippet <l <leader>
 
 snippet <p <plug>
 	<Plug>
+
+# STYLELUA
+
+snippet nofmt
+	-- stylua: ignore start
+	$0
+	-- stylua: ignore end
 
