@@ -1,6 +1,7 @@
 return {
 
   -- TODO: see if can get rid of this dependency now that lazy supports lua rocks deps
+  -- Need to upgrade lazy nvim
   {
     'vhyrro/luarocks.nvim',
     priority = 1000,
@@ -35,7 +36,7 @@ return {
           end)
 
           -- telescope
-          vim.keymap.set('i', '<C-l>', '<Plug>(neorg.telescope.insert_link)', { buffer = true })
+          -- vim.keymap.set('i', '<C-l>', '<c-o><Plug>(neorg.telescope.insert_link)', { buffer = true }) -- FIX: not working
           vim.keymap.set('n', '<localleader>ss', '<Plug>(neorg.telescope.find_linkable)', { buffer = true })
           vim.keymap.set('n', '<localleader>sh', '<Plug>(neorg.telescope.search_headings)', { buffer = true })
           vim.keymap.set('n', '<localleader>il', '<Plug>(neorg.telescope.insert_link)', { buffer = true })

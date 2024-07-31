@@ -112,6 +112,15 @@ vim.keymap.set('n', '<localleader>it', function()
   vim.api.nvim_put({ time }, 'c', true, true) -- Insert the time at the cursor position
 end, { desc = 'Insert time' })
 
+-- NOTE: can expand this with other useful debugging info
+local function info()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local winr = vim.api.nvim_win_get_number(0)
+
+  vim.print(vim.inspect({ bufnr = bufnr, winr = winr }))
+end
+vim.api.nvim_create_user_command('Info', info, {})
+
 -- matchparen highlight updates on every cursor move, for very large files/lines this can help with perf
 vim.g.matchparen_timeout = 50
 vim.g.matchparen_insert_timeout = 50
