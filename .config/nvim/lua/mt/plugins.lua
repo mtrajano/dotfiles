@@ -35,6 +35,8 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>cc', function()
         vim.cmd.GpChatNew('tabnew')
       end)
+      vim.keymap.set('n', '<leader>cf', vim.cmd.GpChatFinder)
+
       require('gp').setup({})
     end,
   },
@@ -84,14 +86,27 @@ require('lazy').setup({
   },
 
   -- TODO: upgrade and look at the new hydra features
+  -- FIX: Looks like playing back the macro ends up in the last key being duplicated
   {
     'folke/which-key.nvim',
+    enabled = false,
     event = 'VeryLazy',
     opts = {},
   },
   {
     'hoob3rt/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+      {
+        'letieu/harpoon-lualine',
+        dependencies = {
+          {
+            'ThePrimeagen/harpoon',
+            branch = 'harpoon2',
+          },
+        },
+      },
+    },
     config = function()
       require('mt.plugins.lualine')
     end,
@@ -449,6 +464,58 @@ require('lazy').setup({
           other = '﫠',
         },
       })
+    end,
+  },
+
+  {
+    dir = '~/dev/nvim-plugins/tssorter.nvim',
+    config = function()
+      -- TODO: look into making adding these in the specific ftplugin files
+      require('tssorter').setup({
+        sortables = {
+          markdown = {
+            list = {
+              node = 'list_item',
+              order_by = function(node1, node2)
+                local text1 = require('tssorter.tshelper').get_text(node1)
+                local text2 = require('tssorter.tshelper').get_text(node2)
+
+                return vim.trim(text2) < vim.trim(text1)
+              end,
+            },
+          },
+          lua = {
+            array = {
+              node = 'field',
+            },
+            method = {
+              node = { 'function_declaration' },
+            },
+          },
+          norg = {
+            headers = {
+              node = {
+                'heading1',
+                'heading2',
+                'heading3',
+                'heading4',
+                'heading5',
+                'heading6',
+              },
+            },
+          },
+        },
+        -- TODO: pass this to logger
+        logger = {
+          level = vim.log.levels.WARN,
+          -- outfile = '/tmp/sorterlog',
+        },
+      })
+
+      vim.keymap.set('n', '<leader>s', require('tssorter').sort)
+      vim.keymap.set('n', '<leader>S', function()
+        require('tssorter').sort({ reverse = true })
+      end)
     end,
   },
 

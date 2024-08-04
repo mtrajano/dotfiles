@@ -1,3 +1,8 @@
+-- returns filename as indicator
+local function get_harpoon_indicator(harpoon_entry)
+  return vim.fs.basename(harpoon_entry.value)
+end
+
 -- TODO: add line to say wether session is being recorded
 require('lualine').setup({
   options = {
@@ -16,7 +21,17 @@ require('lualine').setup({
     lualine_b = { 'branch', 'diff' },
     lualine_c = {
       { 'filename', file_status = true, path = 1 },
-      { 'vim.b.lsp_current_function' },
+      { '%=' },
+      {
+        'harpoon2',
+        indicators = {
+          get_harpoon_indicator,
+          get_harpoon_indicator,
+          get_harpoon_indicator,
+          get_harpoon_indicator,
+        },
+        _separator = ' ',
+      },
     },
     lualine_x = {},
     lualine_y = {
