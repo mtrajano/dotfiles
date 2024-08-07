@@ -395,7 +395,7 @@ require('lazy').setup({
   },
   'nvim-lua/plenary.nvim',
   'nvim-lua/popup.nvim',
-  'folke/neodev.nvim',
+  'folke/neodev.nvim', -- TODO: replace with [lazydev.nvim](https://github.com/folke/lazydev.nvim)
 
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   {
@@ -418,6 +418,7 @@ require('lazy').setup({
   {
     'j-hui/fidget.nvim',
     opts = {},
+    event = 'LspAttach',
   },
   {
     'nvimdev/lspsaga.nvim',
@@ -470,47 +471,7 @@ require('lazy').setup({
   {
     dir = '~/dev/nvim-plugins/tssorter.nvim',
     config = function()
-      -- TODO: look into making adding these in the specific ftplugin files
-      require('tssorter').setup({
-        sortables = {
-          markdown = {
-            list = {
-              node = 'list_item',
-              order_by = function(node1, node2)
-                local text1 = require('tssorter.tshelper').get_text(node1)
-                local text2 = require('tssorter.tshelper').get_text(node2)
-
-                return vim.trim(text2) < vim.trim(text1)
-              end,
-            },
-          },
-          lua = {
-            array = {
-              node = 'field',
-            },
-            method = {
-              node = { 'function_declaration' },
-            },
-          },
-          norg = {
-            headers = {
-              node = {
-                'heading1',
-                'heading2',
-                'heading3',
-                'heading4',
-                'heading5',
-                'heading6',
-              },
-            },
-          },
-        },
-        -- TODO: pass this to logger
-        logger = {
-          level = vim.log.levels.WARN,
-          -- outfile = '/tmp/sorterlog',
-        },
-      })
+      require('tssorter').setup()
 
       vim.keymap.set('n', '<leader>s', require('tssorter').sort)
       vim.keymap.set('n', '<leader>S', function()

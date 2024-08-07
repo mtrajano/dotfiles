@@ -51,6 +51,7 @@ return {
 
     cmp.setup.filetype({ 'norg' }, {
       sources = {
+        { name = 'luasnip', priority = 10 },
         { name = 'neorg' },
         { name = 'path' },
         { name = 'buffer', max_item_count = 5 },

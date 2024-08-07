@@ -1,17 +1,10 @@
 return {
 
-  -- TODO: see if can get rid of this dependency now that lazy supports lua rocks deps
-  -- Need to upgrade lazy nvim
-  {
-    'vhyrro/luarocks.nvim',
-    priority = 1000,
-    config = true,
-  },
 
   -- TODO: consider lazy loading, is the one causing the most time during startup
   {
     dir = '~/dev/nvim-plugins/neorg',
-    dependencies = { 'luarocks.nvim', 'nvim-neorg/neorg-telescope' },
+    dependencies = { 'nvim-neorg/neorg-telescope' },
     lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
     version = '*', -- Pin Neorg to the latest stable release
     config = function()
@@ -47,6 +40,8 @@ return {
           vim.keymap.set('n', '<down>', '<Plug>(neorg.text-objects.item-down)')
           vim.keymap.set({ 'o', 'x' }, 'iH', '<Plug>(neorg.text-objects.textobject.heading.inner)')
           vim.keymap.set({ 'o', 'x' }, 'aH', '<Plug>(neorg.text-objects.textobject.heading.outer)')
+
+          vim.keymap.set('n', '<localleader>e', '<Plug>(neorg.looking-glass.magnify-code-block)')
         end,
       })
 
@@ -79,6 +74,7 @@ return {
               workspace = 'journal',
             },
           },
+          ['core.looking-glass'] = {},
         },
       })
     end,
