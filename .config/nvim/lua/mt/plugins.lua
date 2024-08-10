@@ -409,9 +409,8 @@ require('lazy').setup({
     'ray-x/lsp_signature.nvim',
     config = function()
       require('lsp_signature').setup({
-        -- TODO: this doesn't seem to be working correctly, it doesnt seem to be permanent
-        -- there seems to be something (like an autocmd) bringing it back
-        toggle_key = '<C-K>',
+        toggle_key = '<C-s>',
+        toggle_key_flip_floatwin_setting = true,
       })
     end,
   },
