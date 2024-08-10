@@ -2,12 +2,6 @@ local opt = vim.opt
 local cmd = vim.cmd
 local keymap = vim.keymap
 
-local function disable(key, reason)
-  keymap.set('n', key, '<NOP>', { desc = reason })
-end
-
-disable('Q', 'disable ex-mode (can be mapped)')
-
 -- map escape in terminal
 keymap.set('t', '<esc>', '<C-\\><C-n>')
 keymap.set('n', '<esc>', ':noh<cr><esc>', { silent = true })
@@ -18,6 +12,11 @@ keymap.set('n', '<leader><space>', '<C-^>') -- last buffer/window
 keymap.set('n', '<leader>q', '<Plug>(qf_qf_toggle)', { remap = true }) -- toggle quickfix
 keymap.set('v', '*', [[y/\V<C-R>=escape(@",'/\')<CR><CR>]]) -- search under selection
 keymap.set('v', '<leader>.', ':norm .<CR>')
+
+-- quick macro with Q
+vim.keymap.set({ 'n', 'v' }, 'Q', function()
+  vim.cmd.norm('@q')
+end)
 
 opt.swapfile = false
 opt.number = true
