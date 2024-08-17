@@ -31,13 +31,15 @@ require('lazy').setup({
   -- TODO: how to use chat finder to find previous chats, how to use `:GpChatFinder`?
   {
     'Robitx/gp.nvim',
+    keys = {
+      -- stylua: ignore start
+      { '<leader>cc', function() vim.cmd.GpChatNew('tabnew') end, },
+      { '<leader>cf', vim.cmd.GpChatFinder },
+      -- stylua: ignore end
+    },
+    opts = {},
+  },
     config = function()
-      vim.keymap.set('n', '<leader>cc', function()
-        vim.cmd.GpChatNew('tabnew')
-      end)
-      vim.keymap.set('n', '<leader>cf', vim.cmd.GpChatFinder)
-
-      require('gp').setup({})
     end,
   },
 
@@ -378,10 +380,6 @@ require('lazy').setup({
     'dkarter/bullets.vim',
     ft = { 'nofile', 'text', 'markdown', 'gitcommit' },
   },
-  {
-    'plasticboy/vim-markdown',
-    ft = { 'markdown' },
-  },
 
   { 'godlygeek/tabular', cmd = 'Tabularize' },
 
@@ -426,15 +424,30 @@ require('lazy').setup({
         sign = false, -- causes view to shift on every cursor move if the space is not reserved on the sign column
       },
       rename = {
-        keys = {
-          quit = 'q',
-        },
+        in_select = true,
       },
       dependencies = {
         'nvim-treesitter/nvim-treesitter', -- optional
         'nvim-tree/nvim-web-devicons', -- optional
       },
     },
+    config = function(_, opts)
+      -- For w/e reasoing adding this q mapping in lspsaga config also remaps on insert mode so wouldn't be able to use
+      -- q when passing the new name. Doing this autocmd as a workaround.
+      -- TODO: probably submit a ticket/pr for this?
+      local gid = vim.api.nvim_create_augroup('LspSagaRemap', { clear = true })
+      vim.api.nvim_create_autocmd('FileType', {
+        group = gid,
+        pattern = 'sagarename',
+        callback = function(ev)
+          vim.keymap.set('n', 'q', function()
+            require('lspsaga.rename'):close_rename_win()
+          end, { buffer = true })
+        end,
+      })
+
+      require('lspsaga').setup(opts)
+    end,
   },
 
   {
@@ -469,8 +482,14 @@ require('lazy').setup({
 
   {
     dir = '~/dev/nvim-plugins/tssorter.nvim',
+    enabled = true,
     config = function()
-      require('tssorter').setup()
+      require('tssorter').setup({
+        logger = {
+          level = vim.log.levels.TRACE,
+          outfile = '/tmp/tssorter.log',
+        },
+      })
 
       vim.keymap.set('n', '<leader>s', require('tssorter').sort)
       vim.keymap.set('n', '<leader>S', function()

@@ -1,7 +1,6 @@
 vim.opt_local.conceallevel = 2
 
 require('nvim-surround').buffer_setup({
-  -- NOTE: this can be applied to other filetypes as well, ex. markdown, etc..
   aliases = {
     ['c'] = '`', -- code
     ['b'] = '*', -- bold

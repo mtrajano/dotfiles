@@ -86,6 +86,10 @@ lspconfig.jsonls.setup({
           fileMatch = { 'package.json' },
           url = 'https://json.schemastore.org/package',
         },
+        {
+          fileMatch = { 'tsconfig.json' },
+          url = 'https://json.schemastore.org/tsconfig.json',
+        },
       },
       validate = {
         enable = true,
