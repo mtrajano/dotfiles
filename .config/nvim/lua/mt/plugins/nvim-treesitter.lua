@@ -22,6 +22,7 @@ require('nvim-treesitter.configs').setup({
     'vue',
     'html',
     'markdown',
+    'markdown_inline',
     'norg',
     'fennel', -- for plugins/config writter in fennel
     -- tmux -- is still pretty new and has a lot of parsing errors

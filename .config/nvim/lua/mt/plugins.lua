@@ -269,7 +269,6 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>et', vim.cmd.Etest, { desc = 'Etest' })
     end,
   },
-  'tpope/vim-commentary', -- TODO: install the nvim version
   {
     'tpope/vim-unimpaired',
     config = function()
