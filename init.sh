@@ -19,11 +19,13 @@ _install_mac() {
     bat \
     curl \
     docker-compose \
+    exiftool \ # tool for show exif data in cli and yazi
     fd \
     fzf \
     git \
     git-delta \
     htop \
+    imagemagick \ # image manipulation and previewer for yazi
     jq \
     kitty \
     lazygit \
@@ -37,10 +39,10 @@ _install_mac() {
     zoxide \
     zsh
 
-  # TEST: yazi as a replacement for ranger
   brew install
     yazi \ 
-    poppler # yazi dep for cli pdf preview
+    poppler \ # yazi dep for cli pdf preview
+    7zip \ # archive previewing
 
   # enable fzf keybindinds
   $(brew --prefix)/opt/fzf/install

@@ -16,3 +16,5 @@
 .config/gcloud/
 
 .config/lazygit/state.yml
+
+.config/yazi/plugins/
