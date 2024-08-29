@@ -83,6 +83,8 @@ opt.foldlevelstart = 99
 -- TODO: read `:h dictionary`
 opt.dictionary = '/usr/share/dict/words'
 
+opt.grepprg = 'rg --vimgrep -S'
+
 -- ====================
 -- INSERT ABBREVIATIONS
 -- ====================

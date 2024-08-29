@@ -25,24 +25,6 @@ require('lazy').setup({
   { 'dstein64/vim-startuptime', cmd = 'StartupTime' },
 
   'ojroques/vim-oscyank',
-
-  -- Source/docs: https://github.com/Robitx/gp.nvim
-  -- TODO: figure out proper workflow for switching back and forth to an existing chat, toggling it if it's open
-  -- TODO: how to use chat finder to find previous chats, how to use `:GpChatFinder`?
-  {
-    'Robitx/gp.nvim',
-    keys = {
-      -- stylua: ignore start
-      { '<leader>cc', function() vim.cmd.GpChatNew('tabnew') end, },
-      { '<leader>cf', vim.cmd.GpChatFinder },
-      -- stylua: ignore end
-    },
-    opts = {},
-  },
-    config = function()
-    end,
-  },
-
   {
     'gbprod/yanky.nvim',
     opts = {
@@ -257,6 +239,14 @@ require('lazy').setup({
       'Wall',
       'SudoWrite',
       'SudoEdit',
+    },
+    keys = {
+      {
+        '<leader>er',
+        function()
+          vim.cmd.Remove({ bang = true })
+        end,
+      },
     },
   },
 

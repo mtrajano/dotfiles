@@ -7,14 +7,14 @@ return {
   },
   keys = {
     {
-      '<leader>aa',
+      'gha',
       function()
         require('harpoon'):list():add()
       end,
       desc = 'Harpoon add',
     },
     {
-      '<leader>al',
+      'ghl',
       function()
         require('harpoon').ui:toggle_quick_menu(require('harpoon'):list())
       end,

@@ -12,4 +12,16 @@ require('nvim-surround').buffer_setup({
     ['b'] = '**', -- bold
     ['i'] = '_', -- italics
   },
+  surrounds = {
+    -- TODO: add delete and change
+    ['l'] = { -- add a link
+      add = function()
+        local config = require('nvim-surround.config')
+        local result = config.get_input('Enter link: ')
+        if result then
+          return { { '[' }, { '](' .. result .. ')' } }
+        end
+      end,
+    },
+  },
 })

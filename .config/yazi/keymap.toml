@@ -4,6 +4,21 @@
 
 [manager]
 
+# custom configs
+[[manager.prepend_keymap]]
+on = [ "g", "c" ]
+run = "cd ~/dotfiles/.config"
+desc = "Go to the dotfiles directory"
+
+[[manager.prepend_keymap]]
+on = [ "g", "o" ]
+run = "cd ~/OneDrive\\ -\\ Pontal\\ Brazil"
+desc = "Go to the OneDrive directory"
+
+# { on = [ "g", "o" ],       run = 'cd ~/OneDrive - Pontal Brazil',     desc = "Go to the OneDrive directory" },
+# { on = [ "g", "w" ],       run = "cd ~/dev",     desc = "Go to the OneDrive directory" },
+
+
 # relative jump plugin
 [[manager.prepend_keymap]]
 on = [ "1" ]
@@ -49,8 +64,3 @@ desc = "Move in relative steps"
 on = [ "9" ]
 run = "plugin relative-motions --args=9"
 desc = "Move in relative steps"
-
-# custom configs
-prepend_keymap = [
-  { on = [ "g", "c" ],       run = "cd ~/dotfiles/.config",     desc = "Go to the dotfiles directory" },
-]
