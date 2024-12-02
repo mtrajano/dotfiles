@@ -15,6 +15,11 @@ on = [ "g", "o" ]
 run = "cd ~/OneDrive\\ -\\ Pontal\\ Brazil"
 desc = "Go to the OneDrive directory"
 
+[[manager.prepend_keymap]]
+on = [ "g", "t" ]
+run = "cd ~/OneDrive\\ -\\ Pontal\\ Brazil/Translation\\ Docs/classified"
+desc = "Go to the OneDrive directory"
+
 # { on = [ "g", "o" ],       run = 'cd ~/OneDrive - Pontal Brazil',     desc = "Go to the OneDrive directory" },
 # { on = [ "g", "w" ],       run = "cd ~/dev",     desc = "Go to the OneDrive directory" },
 

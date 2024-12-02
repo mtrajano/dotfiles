@@ -165,6 +165,11 @@ require('lazy').setup({
   },
 
   {
+    'folke/ts-comments.nvim',
+    opts = {},
+  },
+
+  {
     'andymass/vim-matchup',
     config = function()
       -- should help with perf issues on large files
