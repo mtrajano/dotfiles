@@ -171,7 +171,7 @@ require('lazy').setup({
 
   {
     'andymass/vim-matchup',
-    config = function()
+    config = function(_, opts)
       -- should help with perf issues on large files
       vim.b.matchup_matchparen_deferred = 1
 
@@ -181,6 +181,18 @@ require('lazy').setup({
         liquid = { tagnameonly = 1 },
         typescriptreact = { tagnameonly = 1 },
       }
+
+      -- FIX: https://github.com/hrsh7th/nvim-cmp/issues/1940
+      local ok, cmp = pcall(require, 'cmp')
+      if ok then
+        cmp.event:on('menu_opened', function()
+          vim.b.matchup_matchparen_enabled = false
+        end)
+        cmp.event:on('menu_closed', function()
+          vim.b.matchup_matchparen_enabled = true
+        end)
+      end
+      require('match-up').setup(opts)
     end,
   },
 
