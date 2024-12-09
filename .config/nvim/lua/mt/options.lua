@@ -125,3 +125,20 @@ vim.api.nvim_create_user_command('Info', info, {})
 -- matchparen highlight updates on every cursor move, for very large files/lines this can help with perf
 vim.g.matchparen_timeout = 50
 vim.g.matchparen_insert_timeout = 50
+
+vim.keymap.set('v', '<C-f>', function()
+  local old_reg = vim.fn.getreg('z')
+  local old_reg_type = vim.fn.getregtype('z')
+  vim.cmd('normal! "zy')
+
+  local selected_text = vim.fn.getreg('z')
+
+  vim.fn.setreg('z', old_reg, old_reg_type)
+
+  -- escape special characters for grep
+  selected_text = vim.fn.escape(selected_text, '\\[]^$.*')
+
+  -- execute grep command
+  vim.cmd('grep! ' .. vim.fn.shellescape(selected_text))
+  vim.cmd('copen')
+end, { desc = 'Grep for selected text' })
