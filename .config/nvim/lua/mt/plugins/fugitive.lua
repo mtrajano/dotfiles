@@ -42,8 +42,8 @@ vim.keymap.set('n', '<leader>gco', function()
 end, { desc = 'Git checkout branch' })
 
 -- Merge conflict remaps
-vim.keymap.set('n', '<leader>gm2', function() vim.cmd.Gvdiffsplit() end) -- 2 way split
-vim.keymap.set('n', '<leader>gm3', function() vim.cmd.Gvdiffsplit({bang = true}) end) -- 3 way split (preferred)
+-- vim.keymap.set('n', '<leader>gm2', function() vim.cmd.Gvdiffsplit() end) -- 2 way split
+vim.keymap.set('n', '<leader>gm', function() vim.cmd.Gvdiffsplit({bang = true}) end) -- 3 way split (preferred)
 -- TODO only map these when inside of a merge conflict
 vim.keymap.set('n', '<leader>g<', ':diffget //2<cr>', { desc = 'Diffget take left (mergeconflict)' }) -- theirs
 vim.keymap.set('n', '<leader>g>', ':diffget //3<cr>', { desc = 'Diffget take right (mergeconflict)' }) -- ours

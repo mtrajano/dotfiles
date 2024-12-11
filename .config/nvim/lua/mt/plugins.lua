@@ -70,10 +70,12 @@ require('lazy').setup({
   },
 
   -- TODO: upgrade and look at the new hydra features
-  -- FIX: Looks like playing back the macro ends up in the last key being duplicated
+  -- FIX: Looks like playing back the macro ends up in the last key being duplicated: https://github.com/folke/which-key.nvim/issues/822
   {
     'folke/which-key.nvim',
-    enabled = false,
+    plugins = {
+      registers = false, -- NOTE: had to disable this due to the bug mentioned above
+    },
     event = 'VeryLazy',
     opts = {},
   },

@@ -60,7 +60,7 @@ lspconfig.intelephense.setup({
   },
 })
 
-lspconfig.tsserver.setup({
+lspconfig.ts_ls.setup({
   capabilities = capabilities,
   on_attach = my_attach,
 })

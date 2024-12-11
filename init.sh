@@ -79,6 +79,13 @@ _config_mac() {
 
   defaults write -g InitialKeyRepeat -int 12 # normal minimum is 15 (225 ms)
   defaults write -g KeyRepeat -int 2 # normal minimum is 2 (30 ms)
+
+  # enable keyrepeat for the vim vscode extension, this will desable the behavior to show letters with accents
+  defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false              
+  defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false      
+  defaults write com.vscodium ApplePressAndHoldEnabled -bool false                      
+  defaults write com.microsoft.VSCodeExploration ApplePressAndHoldEnabled -bool false   
+  defaults delete -g ApplePressAndHoldEnabled
 }
 
 _install_linux() {
