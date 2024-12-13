@@ -18,6 +18,7 @@ require('mason-tool-installer').setup({
     'json-lsp',
     'pyright',
     'css-lsp',
+    'tailwindcss-language-server',
 
     -- linters
     'shellcheck',
