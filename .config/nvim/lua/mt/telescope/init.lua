@@ -142,9 +142,21 @@ M.edit_plugins = function()
 end
 
 M.edit_vendor = function()
+  -- include logic in here to get vendor path local to path, filetype, etc..
+  local function get_vendor_path()
+    local filetype = vim.bo.filetype
+    if vim.tbl_contains({ 'javascript', 'typescript' }, filetype) then
+      return relative_path('node_modules')
+    elseif filetype == 'php' then
+      return relative_path('vendor')
+    end
+
+    error('Vendor not defined for this file')
+  end
+
   require('telescope.builtin').find_files({
     prompt_title = 'Vendor Files',
-    cwd = relative_path('vendor'),
+    cwd = get_vendor_path(),
   })
 end
 
