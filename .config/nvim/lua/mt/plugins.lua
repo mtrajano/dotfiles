@@ -13,12 +13,14 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   {
-    'navarasu/onedark.nvim',
-    lazy = false,
+    'catppuccin/nvim',
+    name = 'catppuccin',
     priority = 1000,
     config = function()
-      require('onedark').load()
-      vim.cmd.colorscheme('onedark')
+      require('catppuccin').setup({
+        flavour = 'macchiato',
+      })
+      vim.cmd.colorscheme('catppuccin')
     end,
   },
 
@@ -522,7 +524,7 @@ require('lazy').setup({
   { import = 'plugins' },
 }, {
   -- colorscheme for the auto install popup
-  install = { colorscheme = { 'onedark' } },
+  install = { colorscheme = { 'macchiato' } },
   performance = {
     rtp = {
       disabled_plugins = {

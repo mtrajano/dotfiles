@@ -6,7 +6,7 @@ end
 -- TODO: add line to say wether session is being recorded
 require('lualine').setup({
   options = {
-    theme = 'onedark',
+    theme = 'catppuccin',
     ignore_focus = {
       'dapui_scopes',
       'dapui_breakpoints',
