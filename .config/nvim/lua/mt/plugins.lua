@@ -197,6 +197,7 @@ require('lazy').setup({
         html = { tagnameonly = 1 },
         liquid = { tagnameonly = 1 },
         typescriptreact = { tagnameonly = 1 },
+        javascriptreact = { tagnameonly = 1 },
       }
 
       -- FIX: https://github.com/hrsh7th/nvim-cmp/issues/1940
