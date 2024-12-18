@@ -23,11 +23,27 @@ require('mason-tool-installer').setup({
     -- linters
     'shellcheck',
     'proselint',
+    'psalm',
 
     -- formatters
     'stylua',
     'prettierd',
   },
+})
+
+-------
+-- LINT
+-------
+require('lint').linters_by_ft = {
+  php = { 'psalm' },
+}
+
+vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+  callback = function()
+    -- NOTE: see https://github.com/mfussenegger/nvim-lint for usage
+    require('lint').try_lint()
+  end,
+  group = vim.api.nvim_create_augroup('lint_on_save', {}),
 })
 
 local lspconfig = require('lspconfig')

@@ -135,6 +135,9 @@ require('lazy').setup({
       'neovim/nvim-lspconfig',
     },
   },
+  {
+    'mfussenegger/nvim-lint',
+  },
 
   {
     'simrat39/symbols-outline.nvim',
