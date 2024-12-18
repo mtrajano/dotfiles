@@ -25,6 +25,9 @@ local function toggle_git_pane()
 end
 
 -- stylua: ignore start
+vim.keymap.set('n', '<leader>gs', cmd.AdvancedGitSearch, { silent = true, desc = 'Git search' })
+
+-- fugitive maps
 vim.keymap.set('n', '<leader>gg', toggle_git_pane, { silent = true, desc = 'Toggle git pane' })
 vim.keymap.set('n', '<leader>gd', cmd.DiffviewOpen, { desc = 'Diffview Open'})
 vim.keymap.set('n', '<leader>gf', function() cmd.DiffviewFileHistory('%') end, { desc = 'Diffview file history'})

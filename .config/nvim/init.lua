@@ -13,3 +13,4 @@ require('mt.options') -- load options before loading plugins
 require('mt.plugins')
 
 require('mt.lsp')
+require('mt.git')
