@@ -4,6 +4,7 @@
 alias -g G="| grep"
 alias -g L="| less"
 alias -g H="| head -n"
+alias reload=". ~/.zshrc"
 
 #############
 # APP ALIASES

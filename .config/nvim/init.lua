@@ -8,6 +8,18 @@ ENABLE_SLOW_PLUGINS = true
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 
+-- configure file types, possibly a petter place for this
+vim.filetype.add({
+  pattern = {
+    ['composer.lock'] = 'json',
+    ['.*/git/config'] = 'gitconfig',
+  },
+  extension = {
+    snippets = 'snippets',
+    tmux = 'tmux',
+  },
+})
+
 require('mt.globals')
 require('mt.options') -- load options before loading plugins
 require('mt.plugins')
