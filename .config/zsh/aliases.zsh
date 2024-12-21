@@ -194,6 +194,12 @@ pu() {
 }
 # in case still want to use phpunit
 alias phpunit="./vendor/bin/phpunit"
+alias artisan="php artisan"
+dartisan() {
+    local container=${1:-app}
+    shift 2>/dev/null  # Remove container name from args if provided
+    docker compose exec $container php artisan "$@" # Default to tinker if no command provided
+}
 
 #############
 # LUA ALIASES
