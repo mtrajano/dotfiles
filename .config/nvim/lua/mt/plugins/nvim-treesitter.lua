@@ -41,7 +41,7 @@ require('nvim-treesitter.configs').setup({
   },
 
   indent = {
-    enable = false, -- still seems to be pretty buggy
+    enable = true,
   },
 
   -- for debugging
@@ -92,13 +92,16 @@ require('nvim-treesitter.configs').setup({
         ['@function.outer'] = 'V', -- linewise
         ['@class.outer'] = '<c-v>', -- blockwise
       },
+
       -- If you set this to `true` (default is `false`) then any textobject is
       -- extended to include preceding xor succeeding whitespace. Succeeding
       -- whitespace has priority in order to act similarly to eg the built-in
       -- `ap`.
-      include_surrounding_whitespace = function(opts)
-        return opts.query_string ~= '@function.inner'
-      end,
+      -- FIX: breaking include whitespace is breaking with linewise select: https://github.com/nvim-treesitter/nvim-treesitter-textobjects/issues/575
+      -- include_surrounding_whitespace = function(opts)
+      --   return opts.query_string ~= '@function.inner'
+      -- end,
+      include_surrounding_whitespace = false,
     },
   },
 
