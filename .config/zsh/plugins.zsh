@@ -30,14 +30,11 @@ export DYLD_LIBRARY_PATH="/opt/homebrew/lib/:$DYLD_LIBRARY_PATH"
 # set up rbenv
 eval "$(rbenv init - zsh)"
 
-# nvm for node version management
-export NVM_DIR="$XDG_DATA_HOME/nvm"
-# PERF: this is causing slow start up stimes (https://github.com/nvm-sh/nvm/issues/1277)
-# For some options on lazy loading this:
-#   - https://github.com/nvm-sh/nvm/issues/1277#issuecomment-693390529
-#   - https://gist.github.com/danielzen/be2dcd7381d763f7dbe72b342466dbff
-#   - https://github.com/nvm-sh/nvm/issues/1277#issuecomment-318915266
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# fnm
+FNM_PATH="/Users/mtrajano/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/Users/mtrajano/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
 
 eval "$(zoxide init zsh)"
