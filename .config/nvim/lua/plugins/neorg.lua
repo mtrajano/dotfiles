@@ -1,26 +1,27 @@
-return {
+local function neorg_find_files()
+  vim.cmd.Telescope({ 'neorg', 'find_norg_files' })
+end
 
+local function neorg_switch_workspace()
+  vim.cmd.Telescope({ 'neorg', 'switch_workspace' })
+end
+
+return {
 
   -- TODO: consider lazy loading, is the one causing the most time during startup
   {
     dir = '~/dev/nvim-plugins/neorg',
-    dependencies = { 'nvim-neorg/neorg-telescope' },
-    lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
+    dependencies = { 'nvim-neorg/neorg-telescope', 'hrsh7th/nvim-cmp' },
     version = '*', -- Pin Neorg to the latest stable release
+    keys = {
+      -- stylua: ignore start
+      { '<leader>jn', neorg_find_files, desc = 'Neorg find files' },
+      { '<leader>jw', neorg_switch_workspace, desc = 'Neorg switch workspace' },
+      -- stylua: ignore end
+    },
+    ft = 'norg',
+    cmd = 'Neorg',
     config = function()
-      --------------
-      -- KEYBINDINGS
-      --------------
-      -- FIX: gO to open TOC is broken
-      vim.keymap.set('n', '<leader>jn', function()
-        vim.cmd.Telescope({ 'neorg', 'find_norg_files' })
-      end, { desc = 'Neorg find files' })
-
-      -- Quickly switching to workspace
-      vim.keymap.set('n', '<leader>jw', function()
-        vim.cmd.Telescope({ 'neorg', 'switch_workspace' })
-      end, { desc = 'Neorg switch workspace' })
-
       vim.api.nvim_create_autocmd('Filetype', {
         pattern = 'norg',
         callback = function()
