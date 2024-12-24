@@ -37,6 +37,16 @@ opt.smartindent = true
 opt.expandtab = true
 
 opt.textwidth = 120
+opt.colorcolumn = { 120 } -- highlight max text width
+
+-- disable text width for certain file types
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'Avante', 'AvanteInput' },
+  callback = function()
+    vim.opt_local.textwidth = 0
+    vim.opt_local.colorcolumn = {}
+  end,
+})
 
 -- NOTE: keeping these low for which-key
 opt.timeoutlen = 500 -- decrease timeout b/w remaps
@@ -70,8 +80,6 @@ opt.list = true
 opt.listchars = 'tab:> ,nbsp:·'
 
 opt.switchbuf = 'uselast' -- open quickfix result in last window
-
-opt.colorcolumn = { 120 }
 
 -- find nested files
 opt.path = opt.path + { '**' }
