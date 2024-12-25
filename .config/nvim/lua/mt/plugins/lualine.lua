@@ -3,6 +3,11 @@ local function get_harpoon_indicator(harpoon_entry)
   return vim.fs.basename(harpoon_entry.value)
 end
 
+-- returns filename as indicator
+local function get_active_indicator(harpoon_entry)
+  return string.format('[%s]', get_harpoon_indicator(harpoon_entry))
+end
+
 -- TODO: add line to say wether session is being recorded
 require('lualine').setup({
   options = {
@@ -29,6 +34,12 @@ require('lualine').setup({
           get_harpoon_indicator,
           get_harpoon_indicator,
           get_harpoon_indicator,
+        },
+        active_indicators = {
+          get_active_indicator,
+          get_active_indicator,
+          get_active_indicator,
+          get_active_indicator,
         },
         _separator = ' ',
       },
