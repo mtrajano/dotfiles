@@ -27,7 +27,7 @@ return {
         callback = function()
           vim.keymap.set('n', '<localleader>q', function()
             vim.cmd.Neorg('return')
-          end)
+          end, { buffer = true })
 
           -- telescope
           -- vim.keymap.set('i', '<C-l>', '<c-o><Plug>(neorg.telescope.insert_link)', { buffer = true }) -- FIX: not working
